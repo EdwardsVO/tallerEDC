@@ -1,0 +1,26 @@
+
+.footer{
+    text-align: center;
+    margin: auto;
+    width: 100%;
+    background-color: rgb(233, 233, 233);
+    img{
+        width: 8%;
+        margin-top: 10px;
+       
+    }
+    .social-media{
+        text-align: center;
+        width: 50%;
+        margin: auto;
+        img{
+            margin: 10px;
+        }
+        img:hover{
+            -webkit-filter: drop-shadow(4px 4px 4px #2E3192);
+            filter: drop-shadow(4px 4px 4px #2E3192);
+        }
+        
+    }
+}
+
