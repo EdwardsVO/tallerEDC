@@ -24,6 +24,7 @@ import { TestimoniosComponent } from './components/testimonios/testimonios.compo
 import { LocationComponent } from './components/location/location.component';
 import { ContactComponent } from './components/contact/contact.component';
 import {MatButtonModule} from '@angular/material/button';
+import { AppointmentsComponent } from './pages/client/appointments/appointments.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import {MatButtonModule} from '@angular/material/button';
     NosotrosComponent,
     TestimoniosComponent,
     LocationComponent,
-    ContactComponent
+    AppointmentsComponent
   ],
   imports: [
     BrowserModule,
