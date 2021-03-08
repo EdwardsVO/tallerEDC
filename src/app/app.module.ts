@@ -22,6 +22,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { NosotrosComponent } from './components/nosotros/nosotros.component';
 import { TestimoniosComponent } from './components/testimonios/testimonios.component';
 import { LocationComponent } from './components/location/location.component';
+import { AppointmentsComponent } from './pages/client/appointments/appointments.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { LocationComponent } from './components/location/location.component';
     CarouselComponent,
     NosotrosComponent,
     TestimoniosComponent,
-    LocationComponent
+    LocationComponent,
+    AppointmentsComponent
   ],
   imports: [
     BrowserModule,
