@@ -13,12 +13,14 @@ import { MaterialModule } from './material/material.module';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { ClientNavbarComponent } from './client-navbar/client-navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
-    NavbarComponent
+    NavbarComponent,
+    ClientNavbarComponent
   ],
   imports: [
     BrowserModule,
