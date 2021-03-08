@@ -17,22 +17,26 @@ import { MaterialModule } from './material/material.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatToolbarModule} from '@angular/material/toolbar';
-import { LandingPageComponent } from './pages/landing-page/landing-page.component';
-import { CarouselComponent } from './components/carousel/carousel.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { NosotrosComponent } from './components/nosotros/nosotros.component';
 import { TestimoniosComponent } from './components/testimonios/testimonios.component';
 import { LocationComponent } from './components/location/location.component';
 import { ContactComponent } from './components/contact/contact.component';
 import {MatButtonModule} from '@angular/material/button';
 import { AppointmentsComponent } from './pages/client/appointments/appointments.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     NavbarComponent,
-    LandingPageComponent,
     CarouselComponent,
+    LandingPageComponent,
+    ProfileComponent,
+    ProfilePageComponent,
     NosotrosComponent,
     TestimoniosComponent,
     LocationComponent,
