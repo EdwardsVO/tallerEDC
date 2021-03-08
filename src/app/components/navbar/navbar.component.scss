@@ -3,7 +3,8 @@ mat-toolbar {
     height: 100px;
     display: flex;
     justify-content: space-between;
-    
+    position: fixed;
+    z-index: 100;
     
     
 
