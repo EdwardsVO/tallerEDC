@@ -22,6 +22,8 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { NosotrosComponent } from './components/nosotros/nosotros.component';
 import { TestimoniosComponent } from './components/testimonios/testimonios.component';
 import { LocationComponent } from './components/location/location.component';
+import { ContactComponent } from './components/contact/contact.component';
+import {MatButtonModule} from '@angular/material/button';
 import { AppointmentsComponent } from './pages/client/appointments/appointments.component';
 
 @NgModule({
@@ -47,7 +49,8 @@ import { AppointmentsComponent } from './pages/client/appointments/appointments.
     MaterialModule,
     MatToolbarModule,
     NgbModule,
-    RouterModule
+    RouterModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
