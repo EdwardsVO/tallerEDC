@@ -22,6 +22,8 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { NosotrosComponent } from './components/nosotros/nosotros.component';
 import { TestimoniosComponent } from './components/testimonios/testimonios.component';
 import { LocationComponent } from './components/location/location.component';
+import { ContactComponent } from './components/contact/contact.component';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { LocationComponent } from './components/location/location.component';
     CarouselComponent,
     NosotrosComponent,
     TestimoniosComponent,
-    LocationComponent
+    LocationComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,8 @@ import { LocationComponent } from './components/location/location.component';
     MaterialModule,
     MatToolbarModule,
     NgbModule,
-    RouterModule
+    RouterModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

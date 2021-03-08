@@ -1,0 +1,68 @@
+h1{
+    text-align: center;
+    color: #2E3192;
+    font-family: 'Bree Serif', serif;
+    margin-top: 150px;
+}
+
+.name{
+    width: 75%;
+    text-align: center;
+    margin: auto;
+}
+
+.contact-space{
+    text-align: center;
+}
+label{
+    color: rgb(153, 153, 153);
+}
+
+input{
+    height: 35px;
+    border: 1px solid rgb(184, 184, 184);
+    background-color: rgb(241, 241, 241);
+}
+textarea{
+    border: 1px solid rgb(184, 184, 184);
+    background-color: rgb(241, 241, 241);
+    color:  rgb(153, 153, 153);
+}
+button{
+    color: white;
+    background-color: #2E3192;
+    margin-left: 50%;
+    width: 10%;
+    height: 50px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.second{
+    
+    margin-bottom: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    width: 100%;
+    div{
+        display: block;
+        
+        
+    }
+}
+
+.one {
+    padding-left: 12.5%;
+    input{
+        width:240%;
+    }
+}
+
+.two{
+    padding-left: 10%;
+    width: 240%;
+}
+
+
