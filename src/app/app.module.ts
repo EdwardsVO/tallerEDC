@@ -13,12 +13,15 @@ import { MaterialModule } from './material/material.module';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { RouterModule } from '@angular/router';
+import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
-    NavbarComponent
+    NavbarComponent,
+    AdminNavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     AngularFirestoreModule,
     BrowserAnimationsModule,
     MaterialModule,
-    MatToolbarModule
+    MatToolbarModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
