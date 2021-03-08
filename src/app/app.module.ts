@@ -17,7 +17,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatToolbarModule} from '@angular/material/toolbar';
 import { LandingPageComponent } from './pages/user/landing-page/landing-page.component';
-import { CarouselComponent } from './landing/carousel/carousel.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 @NgModule({
   declarations: [
