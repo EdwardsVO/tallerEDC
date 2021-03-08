@@ -1,0 +1,33 @@
+h1{
+    margin-top: 150px;
+    text-align: center;
+    color: #2E3192;
+}
+img{
+    width: 20%;
+    border-radius: 50%;
+}
+
+p{
+    width: 70%;
+    text-align: center;
+    justify-content: space-between;
+    padding-top: 10%;
+    padding-left: 30%;
+    font-weight: 300;
+}
+
+h4{
+    font-weight: 800;
+}
+
+.testimony-space {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 8%;
+    div{
+        text-align: center;
+    }  
+}

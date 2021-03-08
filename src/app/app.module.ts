@@ -5,6 +5,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { BrowserModule } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
+import { RouterModule } from '@angular/router';
 
 // Bootstrap
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -16,8 +17,11 @@ import { MaterialModule } from './material/material.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatToolbarModule} from '@angular/material/toolbar';
-import { LandingPageComponent } from './pages/user/landing-page/landing-page.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { NosotrosComponent } from './components/nosotros/nosotros.component';
+import { TestimoniosComponent } from './components/testimonios/testimonios.component';
+import { LocationComponent } from './components/location/location.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,10 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     FooterComponent,
     NavbarComponent,
     LandingPageComponent,
-    CarouselComponent
+    CarouselComponent,
+    NosotrosComponent,
+    TestimoniosComponent,
+    LocationComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +44,8 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     BrowserAnimationsModule,
     MaterialModule,
     MatToolbarModule,
-    NgbModule
+    NgbModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
