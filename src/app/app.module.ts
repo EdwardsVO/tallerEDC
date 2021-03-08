@@ -36,7 +36,8 @@ import { AppointmentsComponent } from './pages/client/appointments/appointments.
     NosotrosComponent,
     TestimoniosComponent,
     LocationComponent,
-    AppointmentsComponent
+    AppointmentsComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
