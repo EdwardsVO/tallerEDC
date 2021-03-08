@@ -18,6 +18,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatToolbarModule} from '@angular/material/toolbar';
 import { LandingPageComponent } from './pages/user/landing-page/landing-page.component';
 import { CarouselComponent } from './landing/carousel/carousel.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+
+
 
 @NgModule({
   declarations: [
@@ -25,7 +29,9 @@ import { CarouselComponent } from './landing/carousel/carousel.component';
     FooterComponent,
     NavbarComponent,
     LandingPageComponent,
-    CarouselComponent
+    CarouselComponent,
+    ProfileComponent,
+    ProfilePageComponent
   ],
   imports: [
     BrowserModule,
