@@ -22,6 +22,9 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { NosotrosComponent } from './components/nosotros/nosotros.component';
 import { TestimoniosComponent } from './components/testimonios/testimonios.component';
 import { LocationComponent } from './components/location/location.component';
+import { LoginComponent } from './components/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginPageComponent } from './pages/client/login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { LocationComponent } from './components/location/location.component';
     CarouselComponent,
     NosotrosComponent,
     TestimoniosComponent,
-    LocationComponent
+    LocationComponent,
+    LoginComponent,
+    LoginPageComponent
+
   ],
   imports: [
     BrowserModule,
@@ -45,7 +51,10 @@ import { LocationComponent } from './components/location/location.component';
     MaterialModule,
     MatToolbarModule,
     NgbModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

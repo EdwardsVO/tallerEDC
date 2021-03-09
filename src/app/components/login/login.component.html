@@ -1,0 +1,23 @@
+<div class="container">
+    <mat-card>
+        <form
+        [formGroup] = "authForm" 
+    >
+    <mat-card-title>Inicia sesion en<span> TalleresEDC</span></mat-card-title>
+    <mat-form-field class="example-full-width">
+        <mat-label>Introduce tu Correo</mat-label>
+        <input type="email" matInput placeholder="@Example.com">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Introduce tu Contraseña</mat-label>
+        <input type="password" matInput>
+      </mat-form-field>
+ 
+        <button mat-raised-button color="primary" >Ingresar</button>
+        <button mat-raised-button color="primary" (click) = "handleGoogleLogin()">Ingresa con Google</button>
+
+        </form>
+    </mat-card>
+</div>
+
