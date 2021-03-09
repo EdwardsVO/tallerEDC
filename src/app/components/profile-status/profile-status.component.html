@@ -1,0 +1,24 @@
+<mat-card class="profile-vehicle">
+    <mat-card-title class="header">STATUS</mat-card-title>
+    <div class='carros'>
+        <div class="vehicle-container" *ngFor="let car of cars">
+            <img mat-card-sm-image src="{{car.img}}" alt="client's car1">
+           
+                <mat-card-subtitle class="h-status">MODELO
+                    <p>{{car.model}}</p>
+                </mat-card-subtitle>
+                <mat-card-subtitle class="h-status">AÑO
+                    <P>{{car.year}}</P>
+                </mat-card-subtitle>
+                <mat-card-subtitle class="h-status">PLACA
+                    <P>{{car.license_plate}}</P>
+                </mat-card-subtitle>
+                <mat-card-subtitle class="h-status">STATUS
+                    <P class="status">LISTO PARA RECOGER</P>
+                </mat-card-subtitle>
+            
+            
+    </div>
+    </div>
+   
+</mat-card>

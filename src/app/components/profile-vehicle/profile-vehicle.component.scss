@@ -1,0 +1,57 @@
+.profile-vehicle{
+    margin: 0  15%;
+
+    margin-bottom: 5%;
+    box-shadow: none !important;
+    border-color: rgb(233, 233, 233);
+    border-width: 100%;
+    background-color: rgb(233, 233, 233);
+}
+
+.agg-btn{
+    margin-top: 3%;
+    float: right;
+}
+
+.carros{
+    background-color: white;
+    
+}
+
+td {
+    padding-right: 9%;
+    align-items: center;
+    flex-direction: row;
+    position: -webkit-sticky;
+position: sticky;
+}
+
+.vehicle-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    align-items: center;
+  }
+  
+  .container mat-card-title {
+    color: #2e3192;
+  }
+  
+  .vehicle-container p {
+    font-size: 12px;
+  }
+  
+  .button-container {
+    text-align: right;
+    margin-top: 1rem;
+  }
+  
+  .appointment-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+
+  .header{
+      color: #2E3192;
+  }

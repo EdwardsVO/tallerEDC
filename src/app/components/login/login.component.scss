@@ -1,0 +1,26 @@
+.container {
+    display: inline-block;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    margin-top: 150px;
+  }
+  span {
+    color: #2E3192;
+  }
+  
+  form {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  mat-form-field {
+    margin-top: 1rem;
+  }
+  
+  button {
+    margin-top: 1rem;
+  }
+  
