@@ -19,7 +19,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatToolbarModule} from '@angular/material/toolbar';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
-import { NosotrosComponent } from './components/nosotros/nosotros.component';
+import { AboutComponent } from './components/about/about.component';
 import { TestimoniosComponent } from './components/testimonios/testimonios.component';
 import { LocationComponent } from './components/location/location.component';
 import { LoginComponent } from './components/login/login.component';
@@ -40,7 +40,7 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
     LandingPageComponent,
     ProfileComponent,
     ProfilePageComponent,
-    NosotrosComponent,
+    AboutComponent,
     TestimoniosComponent,
     LocationComponent,
     LoginComponent,
