@@ -1,0 +1,24 @@
+.vehicle-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.container mat-card-title {
+  color: #2e3192;
+}
+
+.vehicle-container p {
+  font-size: 12px;
+}
+
+.button-container {
+  text-align: right;
+  margin-top: 1rem;
+}
+
+.appointment-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}

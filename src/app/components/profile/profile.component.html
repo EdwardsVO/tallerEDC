@@ -1,0 +1,61 @@
+<mat-card class="user-profile">
+    
+    
+    <div class="user-pic-btn">
+         <img src="assets/img/camera-512.png" alt="foto-user" class="user-pic">
+         <button mat-raised-button color="primary" class="pic-btn">Subir Imagen <mat-icon>photo_camera</mat-icon></button> 
+         
+    </div>
+     
+    <div class="datos">
+            
+            <mat-card-content>
+                <table class="user-info" cellspacing="0"><tr>
+                    <td><mat-form-field class="first-name">
+                    <mat-label>*Nombre</mat-label>
+                    <input matInput>
+                    </mat-form-field></td>
+
+                    <td><mat-form-field class="last-name">
+                    <mat-label>*Apellido</mat-label>
+                    <input matInput>
+                    </mat-form-field></td>          
+                </tr></table>
+
+                    <p>
+                        <mat-form-field class="email">
+                            <mat-label>*Email</mat-label>
+                            <textarea matInput placeholder="Ej. talleredc@gmail.com"></textarea>
+                        </mat-form-field>
+                    </p>
+
+                    <p>
+                        <mat-form-field class="tlf">
+                            <mat-label>*Teléfono</mat-label>
+                            <span matPrefix>+58 &nbsp;</span>
+                            <input matInput>
+                        </mat-form-field>
+                    </p>
+
+                    <mat-card-subtitle class="cambio-contra">CAMBIO DE CONTRASEÑA</mat-card-subtitle>
+
+                    <p>
+                        <mat-form-field class="password">
+                            <mat-label>*Nueva Contraseña</mat-label>
+                            <input type="password" matInput placeholder="Password" >
+                        </mat-form-field>
+                    </p>
+
+                    <p>
+                        <mat-form-field class="password2">
+                            <mat-label>*Confirmar Contraseña</mat-label>
+                            <input type="password" matInput placeholder="Password" >
+                        </mat-form-field>
+                    </p>
+
+
+            </mat-card-content>
+       </div>
+
+       
+  </mat-card>
