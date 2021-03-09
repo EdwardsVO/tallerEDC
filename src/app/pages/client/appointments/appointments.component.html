@@ -1,0 +1,52 @@
+<div class="container">
+    <mat-card>
+        <mat-card-title>MIS VEHÍCULOS</mat-card-title>
+        <div class="vehicle-container" *ngFor="let car of cars">
+            <img mat-card-sm-image src="{{car.img}}" alt="client's car1">
+            <mat-card-subtitle>SERIAL
+                <p>{{car.serial}}</p>
+            </mat-card-subtitle>
+            <mat-card-subtitle>MODELO
+                <p>{{car.model}}</p>
+            </mat-card-subtitle>
+            <mat-card-subtitle>AÑO
+                <P>{{car.year}}</P>
+            </mat-card-subtitle>
+            <mat-card-subtitle>PLACA
+                <P>{{car.license_plate}}</P>
+            </mat-card-subtitle>
+            <mat-card-actions>checkbox</mat-card-actions>
+        </div>
+    </mat-card>
+        <div class="button-container">
+            <button mat-raised-button color = "primary">SOLICITAR CITA</button>
+        </div>
+
+    <mat-card>
+        <mat-card-title>CITAS ACTIVAS</mat-card-title>
+        <div class="appointment-container" *ngFor="let appointment of appointments">
+            <img mat-card-sm-image src="{{appointment.img}}" alt="client's car1">
+            
+            <mat-card-subtitle>MODELO
+                <p>{{appointment.model}}</p>
+            </mat-card-subtitle>
+            <mat-card-subtitle>AÑO
+                <P>{{appointment.year}}</P>
+            </mat-card-subtitle>
+            <mat-card-subtitle>PLACA
+                <P>{{appointment.license_plate}}</P>
+            </mat-card-subtitle>
+
+            <mat-card-subtitle>FECHA
+                <p>{{appointment.date}}</p>
+            </mat-card-subtitle>
+            <mat-card-actions>checkbox</mat-card-actions>
+        </div>
+    </mat-card>
+
+    <div class="button-container">
+        <button mat-raised-button color = "basic">CONFIRMAR CITA</button>
+        <button mat-raised-button color = "warn">CANCELAR CITA</button>
+    </div>
+    
+</div>

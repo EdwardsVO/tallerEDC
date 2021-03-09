@@ -1,0 +1,63 @@
+.user-profile {
+    margin: auto;
+    width: 70%;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none !important;
+}
+  
+  
+  
+td {
+    padding-right: 9%;
+    align-items: center;
+    flex-direction: row;
+    position: -webkit-sticky;
+position: sticky;
+
+
+}
+
+.last-name{
+    margin-left: 50%;
+    position: static;
+    
+}
+
+.datos{
+    margin-right:15%;
+    margin-left: -15%;
+}
+
+.email, .password,.password2, .tlf{
+    width: 121%
+}
+
+.cambio-contra, .user-pic{
+    color: #2E3192;
+}
+
+.user-pic{
+    width: 30%;
+    margin-left: 20%;
+    margin-bottom: 35%;
+
+}
+
+.pic-btn{
+    align-items: center;
+    margin-left: -27%;
+    
+    background-color: #2E3192;
+    
+}
+
+.user-pic-btn{
+    background-color: rgb(233, 233, 233);
+    margin-right: 25%;
+    margin-top: 100%;
+}
+
+
+
