@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -11,5 +12,21 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  toHome(){
+    document.getElementById("inicio").scrollIntoView({behavior:"smooth"});
+  }
+  toAbout(){
+    document.getElementById("about").scrollIntoView({behavior:"smooth"});
+
+  }
+toLocation(){
+  document.getElementById("location").scrollIntoView({behavior:"smooth"});
+
+}
+toContact(){
+  document.getElementById("contact").scrollIntoView({behavior:"smooth"});
+
+}
 
 }
