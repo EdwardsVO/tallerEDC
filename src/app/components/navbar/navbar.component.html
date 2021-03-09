@@ -1,12 +1,19 @@
 <mat-toolbar>
- 
-    <img src="assets/img/logo-edc1.png" alt="logo">
-
-    <a (click) ="toHome()" routerLink = "/home" routerLinkActive = "active ">Inicio</a>
-    <a (click) ="toAbout()"li routerLinkActive = "active">Nosotros</a>
-    <a (click) ="toLocation()"li routerLinkActive = "active">Ubicacion</a>
-    <a (click) ="toContact()"li routerLinkActive = "active">Contacto</a>
-    
-    <a routerLink="/login">Login</a>
-    
+    <div class="container">
+        <div class="logo-container">
+            <img src="assets/img/logo-edc1.png" alt="logo">
+        </div>
+        <div class="buttons-container">    
+            <a mat-button (click) ="toHome()" routerLink = "/home" routerLinkActive = "active ">Home</a>
+            <a mat-button (click) ="toAbout()"li routerLinkActive = "active">Nosotros</a>
+            <a mat-button (click) ="toLocation()"li routerLinkActive = "active">Ubicacion</a>
+            <a mat-button (click) ="toContact()"li routerLinkActive = "active">Contacto</a>
+        </div> 
+        <div class="login">       
+            <a class="loging-b" mat-raised-button color="primary" routerLink="/login">Login    
+                <mat-icon aria-hidden="false" aria-label="Example home icon">login
+                </mat-icon>
+            </a>
+        </div>
+    </div>
 </mat-toolbar>
