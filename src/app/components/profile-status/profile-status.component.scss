@@ -1,6 +1,6 @@
 .profile-vehicle{
     margin: 0  15%;
-
+    margin-top: 5%;
     margin-bottom: 5%;
     box-shadow: none !important;
     border-color: rgb(233, 233, 233);
@@ -31,6 +31,7 @@ position: sticky;
     justify-content: space-between;
     padding: 1rem;
     align-items: center;
+    
   }
   
   .container mat-card-title {
@@ -39,6 +40,7 @@ position: sticky;
   
   .vehicle-container p {
     font-size: 12px;
+    align-items: center;
   }
   
   .button-container {
@@ -56,9 +58,16 @@ position: sticky;
       color: #2E3192;
   }
 
-  .info{
-    text-align: center;
+  .status{
+      color: #03A600;
+  }
+
+  .h-status{
+      text-align: center;
       margin-top: 3%;
+    
   }
 
   
+  
+
