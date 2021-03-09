@@ -22,6 +22,9 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 import { NosotrosComponent } from './components/nosotros/nosotros.component';
 import { TestimoniosComponent } from './components/testimonios/testimonios.component';
 import { LocationComponent } from './components/location/location.component';
+import { LoginComponent } from './components/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginPageComponent } from './pages/client/login-page/login-page.component';
 import { ContactComponent } from './components/contact/contact.component';
 import {MatButtonModule} from '@angular/material/button';
 import { AppointmentsComponent } from './pages/client/appointments/appointments.component';
@@ -40,6 +43,8 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
     NosotrosComponent,
     TestimoniosComponent,
     LocationComponent,
+    LoginComponent,
+    LoginPageComponent,
     AppointmentsComponent,
     ContactComponent
   ],
@@ -55,6 +60,9 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
     MatToolbarModule,
     NgbModule,
     RouterModule,
+    ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatButtonModule
   ],
   providers: [],
