@@ -30,7 +30,9 @@ import {MatButtonModule} from '@angular/material/button';
 import { AppointmentsComponent } from './pages/client/appointments/appointments.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { ProfileStatusComponent } from './components/profile-status/profile-status.component';
 import { ProfileVehicleComponent } from './components/profile-vehicle/profile-vehicle.component';
+
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { ProfileVehicleComponent } from './components/profile-vehicle/profile-ve
     LoginPageComponent,
     AppointmentsComponent,
     ContactComponent,
+    ProfileStatusComponent,
     ProfileVehicleComponent
   ],
   imports: [
