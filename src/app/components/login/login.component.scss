@@ -4,7 +4,8 @@
   display: flex;
   justify-content: center;
   position: absolute;
-  margin-top: 260px;
+  margin-top: 200px;
+  display: 100vh;
 }
 
 mat-card {
@@ -34,7 +35,7 @@ span.create {
   color: rgb(78, 78, 78);
 }
 div.register {
-  padding-top: 7px;
+  padding-top: 0.7rem;
 }
 
 span.registrate:hover {

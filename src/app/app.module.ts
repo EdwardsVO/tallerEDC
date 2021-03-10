@@ -64,6 +64,7 @@ import {MatSelectModule} from '@angular/material/select';
     UserSearchComponent,
     UsersComponent
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -83,6 +84,6 @@ import {MatSelectModule} from '@angular/material/select';
     MatSelectModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
