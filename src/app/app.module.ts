@@ -34,6 +34,10 @@ import { ProfileStatusComponent } from './components/profile-status/profile-stat
 import { ProfileVehicleComponent } from './components/profile-vehicle/profile-vehicle.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { RegisterComponent } from './components/register/register.component';
+import { UserPageComponent } from './pages/admin/user-page/user-page.component';
+import { UserSearchComponent } from './components/user-search/user-search.component';
+import { UsersComponent } from './components/users/users.component';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -55,7 +59,10 @@ import { RegisterComponent } from './components/register/register.component';
     ProfileStatusComponent,
     ProfileVehicleComponent,
     RegisterPageComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserPageComponent,
+    UserSearchComponent,
+    UsersComponent
   ],
   
   imports: [
@@ -73,8 +80,8 @@ import { RegisterComponent } from './components/register/register.component';
     ReactiveFormsModule,
     FormsModule,
     ReactiveFormsModule,
-    MatButtonModule
-
+    MatButtonModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent],
