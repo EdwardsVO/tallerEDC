@@ -32,6 +32,9 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { ProfileStatusComponent } from './components/profile-status/profile-status.component';
 import { ProfileVehicleComponent } from './components/profile-vehicle/profile-vehicle.component';
+<<<<<<< src/app/app.module.ts
+import { VehiclePageComponent } from './pages/vehicle-page/vehicle-page.component';
+import { VehiclesComponent } from './components/vehicles/vehicles.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UserPageComponent } from './pages/admin/user-page/user-page.component';
@@ -58,6 +61,8 @@ import {MatSelectModule} from '@angular/material/select';
     ContactComponent,
     ProfileStatusComponent,
     ProfileVehicleComponent,
+    VehiclePageComponent,
+    VehiclesComponent.
     RegisterPageComponent,
     RegisterComponent,
     UserPageComponent,
