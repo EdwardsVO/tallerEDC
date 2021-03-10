@@ -1,0 +1,46 @@
+.profile-vehicle{
+    margin: 0  15%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    box-shadow: none !important;
+    border-color: rgb(233, 233, 233);
+    border-width: 100%;
+    background-color: rgb(233, 233, 233);
+}
+
+.carros{
+    background-color: white;
+    contain: content;
+    box-sizing: content-box;
+    overflow: scroll;
+    
+}
+
+.vehicle-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 1%;
+    align-items: center;
+    
+  }
+
+  .header{
+    color: #2E3192;
+}
+
+.status{
+    color: #03A600;
+}
+
+.v-info{
+    text-align: center;
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-right: 5%;
+  
+}
+
+.agg-btn{
+    margin-top: 3%;
+    float: right;
+}
