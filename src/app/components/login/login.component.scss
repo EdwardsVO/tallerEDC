@@ -8,7 +8,7 @@
 }
 
 mat-card {
-  background: #edebeb;
+  background: #f7f7f7;
 }
 
 span {
@@ -31,7 +31,7 @@ span.forgot:hover {
 }
 
 span.create {
-  color: black;
+  color: rgb(78, 78, 78);
 }
 div.register {
   padding-top: 7px;
@@ -55,7 +55,7 @@ button {
   color: #444;
   width: 100%;
   border-radius: 5px;
-  border: thin solid #888;
+  border: none;
   box-shadow: 1px 1px 1px grey;
   white-space: nowrap;
 }
