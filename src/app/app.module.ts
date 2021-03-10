@@ -57,6 +57,7 @@ import { RegisterComponent } from './components/register/register.component';
     RegisterPageComponent,
     RegisterComponent
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -73,8 +74,9 @@ import { RegisterComponent } from './components/register/register.component';
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule
+
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
