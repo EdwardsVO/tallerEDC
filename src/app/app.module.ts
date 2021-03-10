@@ -32,6 +32,8 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { ProfileStatusComponent } from './components/profile-status/profile-status.component';
 import { ProfileVehicleComponent } from './components/profile-vehicle/profile-vehicle.component';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { RegisterComponent } from './components/register/register.component';
 
 
 @NgModule({
@@ -51,7 +53,9 @@ import { ProfileVehicleComponent } from './components/profile-vehicle/profile-ve
     AppointmentsComponent,
     ContactComponent,
     ProfileStatusComponent,
-    ProfileVehicleComponent
+    ProfileVehicleComponent,
+    RegisterPageComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

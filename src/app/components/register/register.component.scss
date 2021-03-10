@@ -5,6 +5,7 @@
     justify-content: center;
     position: absolute;
     margin-top: 150px;
+    margin-bottom: 100px;
   }
   span {
     color: #2E3192;
@@ -25,5 +26,8 @@
     margin-bottom: 10px;
   }
 
-  
-  
+  button:hover{
+      color: #2E3192;
+      background-color: white;
+  }
+ 
