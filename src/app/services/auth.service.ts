@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
 
   constructor(private _afAuth: AngularFireAuth)  { }
+  
   async loginWithGoogle(): Promise<firebase.User | null> {
     try{  
       const provider = new firebase.auth.GoogleAuthProvider();
