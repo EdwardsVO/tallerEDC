@@ -1,34 +1,4 @@
 .container {
-<<<<<<< HEAD
-    display: inline-block;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    margin-top: 150px;
-  }
-  span {
-    color: #2E3192;
-  }
-  
-  form {
-    width: auto;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  mat-form-field {
-    margin-top: 1rem;
-  }
-  
-  button {
-    margin-top: 1rem;
-    margin-bottom: 10px;
-  }
-
-  
-  
-=======
   display: inline-block;
   width: 100%;
   display: flex;
@@ -38,7 +8,7 @@
 }
 
 mat-card {
-  background: #edebeb;
+  background: #f7f7f7;
 }
 
 span {
@@ -61,7 +31,7 @@ span.forgot:hover {
 }
 
 span.create {
-  color: black;
+  color: rgb(78, 78, 78);
 }
 div.register {
   padding-top: 7px;
@@ -85,7 +55,7 @@ button {
   color: #444;
   width: 100%;
   border-radius: 5px;
-  border: thin solid #888;
+  border: none;
   box-shadow: 1px 1px 1px grey;
   white-space: nowrap;
 }
@@ -122,4 +92,3 @@ span.buttonText {
   /* Use the Roboto font that is loaded in the <head> */
   font-family: "Roboto", sans-serif;
 }
->>>>>>> 043f1f056a721ed87733a1ca8762ce706ec73eda

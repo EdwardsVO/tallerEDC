@@ -7,14 +7,19 @@
     margin-top: 150px;
     margin-bottom: 100px;
   }
-  span {
+  span.taller {
     color: #2E3192;
   }
-  
+  mat-card {
+    background: #f7f7f7;
+  }
   form {
     width: auto;
     display: flex;
     flex-direction: column;
+  }
+  span.create{
+      color: rgb(78, 78, 78);
   }
   
   mat-form-field {
