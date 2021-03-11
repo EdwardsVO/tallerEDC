@@ -4,12 +4,16 @@ import { LoginPageComponent } from './pages/client/login-page/login-page.compone
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { UserPageComponent } from './pages/admin/user-page/user-page.component';
+import { User } from './models/user'
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 
 const routes: Routes = [
   { path: 'home', component: LandingPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
-  { path: 'user', component: UserPageComponent },
+  { path: 'admin', component: UserPageComponent },
+  // { path: 'user', component: UserPageComponent },
+  { path: 'user',  component: ProfilePageComponent },
   { path: '**', redirectTo: '/home' },
 ];
 
