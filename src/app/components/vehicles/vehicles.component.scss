@@ -1,31 +1,29 @@
 .profile-vehicle{
     margin: 0  15%;
-    margin-top: 5%;
+    margin-top: 1%;
     margin-bottom: 5%;
     box-shadow: none !important;
     border-color: rgb(233, 233, 233);
     border-width: 100%;
-    background-color: rgb(233, 233, 233);
+    background-color: white;
 }
 
 .carros{
-    background-color: white;
+    background-color:rgb(233, 233, 233);
     contain: content;
     box-sizing: content-box;
     overflow: scroll;
+
     
 }
 
 .vehicle-container {
     display: flex;
     justify-content: space-between;
-    padding: 1%;
+    padding: 1rem;
     align-items: center;
     
-  }
-
-  .header{
-    color: #2E3192;
+  
 }
 
 .status{
@@ -41,6 +39,27 @@
 }
 
 .agg-btn{
-    margin-top: 3%;
+    margin-top: 1%;
     float: right;
+    width: 17%;
+    height: 40px;
+    font-size: large;
+    margin-bottom: 10%;
+}
+
+h1{
+    color: #2E3192;
+    font-family: "Bree Serif", serif;
+    margin-left: 16%;
+    margin-top: 5%;
+}
+
+button:hover{
+    background-color: white;
+    color: #2E3192;
+}
+
+button{
+    color: white;
+    background-color: #2E3192;
 }
