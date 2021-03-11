@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     let user = this.authService.getCurrentUser().subscribe(
       user => {
         this.user = user;
-        this._router.navigate(['/user:'+user.uid])
+        this._router.navigate(['/user'], {queryParams: {login: 'true'}, queryParamsHandling: 'merge'})
       }
     )
   }
