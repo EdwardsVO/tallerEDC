@@ -41,6 +41,11 @@ import { UserPageComponent } from './pages/admin/user-page/user-page.component';
 import { UserSearchComponent } from './components/user-search/user-search.component';
 import { UsersComponent } from './components/users/users.component';
 import {MatSelectModule} from '@angular/material/select';
+import { MainNavbarComponent } from './components/main-navbar/main-navbar.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -68,7 +73,8 @@ import {MatSelectModule} from '@angular/material/select';
     RegisterComponent,
     UserPageComponent,
     UserSearchComponent,
-    UsersComponent
+    UsersComponent,
+    MainNavbarComponent
   ],
   
   imports: [
@@ -87,7 +93,11 @@ import {MatSelectModule} from '@angular/material/select';
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    LayoutModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent],
