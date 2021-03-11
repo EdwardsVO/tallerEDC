@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
+import firebase from 'firebase';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -7,10 +10,24 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  userLog: firebase.User = null;
 
-  constructor() { }
+  constructor(private _authService: AuthService, private _router: Router) { }
+
 
   ngOnInit(): void {
+    this._authService.getCurrentUser().subscribe( 
+      user => {
+        this.userLog = user;
+      }
+    )
+  }
+
+  logOut():void{
+    this._authService.logOut().then(
+      ()=>{
+        this._router.navigate[''];
+      })
   }
 
   toHome(){
@@ -26,7 +43,8 @@ export class NavbarComponent implements OnInit {
   }
   toContact(){
     document.getElementById("contact").scrollIntoView({behavior:"smooth"});
+}
+
 
 }
 
-}
