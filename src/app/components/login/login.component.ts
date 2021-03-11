@@ -35,13 +35,25 @@ export class LoginComponent implements OnInit {
     })
   }
   
-  handleGoogleLogin():void {
-    this.authService.loginWithGoogle();
-    let user = this.authService.getCurrentUser().subscribe(
-      user => {
-        this.user = user;
-        this._router.navigate(['/user'], {queryParams: {login: 'true'}, queryParamsHandling: 'merge'})
+  async handleGoogleLogin():Promise<void> {
+    try{
+      await this.authService.loginWithGoogle();
+      this.startProfilePage()
+    } catch(err){
+      console.log(err);
+    }
+  }
+  
+  async  startProfilePage(): Promise<void>{
+    try{
+      await this.authService.getCurrentUser().subscribe(
+        user => {
+          this.user = user;
+          this._router.navigate(['/user'], {queryParams: {login: 'true'}, queryParamsHandling: 'merge'
+        })})
       }
-    )
+    catch(err){
+      console.log(err)
+    }
   }
 }
