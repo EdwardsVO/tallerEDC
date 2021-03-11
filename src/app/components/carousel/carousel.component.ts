@@ -11,23 +11,26 @@ export class CarouselComponent implements OnInit {
 
   slides: any [] = [
     {
-      img:"assets/car.jpg",
-      name:"carro 1",
-      desc:"primera foto del carrusel"
+      img:"assets/Screen Shot 2021-02-02 at 5.51.05 PM.png",
+      name:"Mecanico",
+      desc:"Mecanico de nuestra empresa"
     },
     {
-      img:"assets/car2.jpg",
-      name:"carro 2",
-      desc:"segunda foto del carrusel"
+      img:"assets/mechanic.jpeg",
+      name:"Mecanico 2",
+      desc:"Uno de nuestros mecanicos reparando un optra"
     },
     {
-      img:"assets/car3.jpg",
-      name:"carro 3",
-      desc:"tercera foto del carrusel"
+      img:"assets/GettyImages_1166169921.0.jpg.webp",
+      name:"Reparacion",
+      desc:"Reparacion de optra"
+    },
+    {
+      img:"assets/Important-Questions-To-Ask-When-Finding-A-Mechanical-Workshop.jpg",
+      name:"Nuestro taller",
+      desc:"Imagen de nuestro taller"
     }
-
   ]
-
 
   ngOnInit(): void {
   }

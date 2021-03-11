@@ -33,6 +33,14 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { ProfileStatusComponent } from './components/profile-status/profile-status.component';
 import { ProfileVehicleComponent } from './components/profile-vehicle/profile-vehicle.component';
 import { VehicleRegisterComponent } from './components/vehicle-register/vehicle-register.component';
+import { VehiclePageComponent } from './pages/vehicle-page/vehicle-page.component';
+import { VehiclesComponent } from './components/vehicles/vehicles.component';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { RegisterComponent } from './components/register/register.component';
+import { UserPageComponent } from './pages/admin/user-page/user-page.component';
+import { UserSearchComponent } from './components/user-search/user-search.component';
+import { UsersComponent } from './components/users/users.component';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -53,8 +61,16 @@ import { VehicleRegisterComponent } from './components/vehicle-register/vehicle-
     ContactComponent,
     ProfileStatusComponent,
     ProfileVehicleComponent,
-    VehicleRegisterComponent
+    VehicleRegisterComponent,
+    VehiclePageComponent,
+    VehiclesComponent,
+    RegisterPageComponent,
+    RegisterComponent,
+    UserPageComponent,
+    UserSearchComponent,
+    UsersComponent
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -70,9 +86,10 @@ import { VehicleRegisterComponent } from './components/vehicle-register/vehicle-
     ReactiveFormsModule,
     FormsModule,
     ReactiveFormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSelectModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

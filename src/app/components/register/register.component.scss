@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 6rem;
+  padding-bottom: 3rem;
+}
+span.taller {
+  color: #2e3192;
+}
+mat-card {
+  background: #f7f7f7;
+}
+form {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+}
+span.create {
+  color: rgb(78, 78, 78);
+}
+
+mat-form-field {
+  margin-top: 1rem;
+}
+
+button {
+  margin-top: 1rem;
+  margin-bottom: 10px;
+}
+
+button:hover {
+  color: #2e3192;
+  background-color: white;
+}
