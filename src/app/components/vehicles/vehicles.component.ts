@@ -15,9 +15,16 @@ export class VehiclesComponent implements OnInit {
       year: "2020",
       license_plate: "RAL38K"
     },
-  
-  ]
+    {
+      img: "assets/corolla.png",
+      serial: "JHLRD77875C027456",
+      model: "Yaris",
+      year: "2020",
+      license_plate: "RAL38K"
+    },
 
+ 
+  ]
 
   constructor() { }
 
