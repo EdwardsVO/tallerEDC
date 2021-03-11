@@ -18,8 +18,8 @@ const routes: Routes = [
   { path: 'vehicles', component: VehiclePageComponent },
   { path: 'appointments', component: AppointmentsComponent },
   { path: 'vehicles/register', component: VehicleRegisterComponent },
-
-  // { path: 'user', component: UserPageComponent },
+  { path: 'user/vehicles', component: VehiclePageComponent },
+  { path: 'user/calls', component: AppointmentsComponent },
   { path: 'user',  component: ProfilePageComponent },
   { path: '**', redirectTo: '/home' },
 ];
