@@ -32,12 +32,20 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { ProfileStatusComponent } from './components/profile-status/profile-status.component';
 import { ProfileVehicleComponent } from './components/profile-vehicle/profile-vehicle.component';
+import { VehicleRegisterComponent } from './components/vehicle-register/vehicle-register.component';
+import { VehiclePageComponent } from './pages/vehicle-page/vehicle-page.component';
+import { VehiclesComponent } from './components/vehicles/vehicles.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UserPageComponent } from './pages/admin/user-page/user-page.component';
 import { UserSearchComponent } from './components/user-search/user-search.component';
 import { UsersComponent } from './components/users/users.component';
 import {MatSelectModule} from '@angular/material/select';
+import { MainNavbarComponent } from './components/main-navbar/main-navbar.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -58,11 +66,15 @@ import {MatSelectModule} from '@angular/material/select';
     ContactComponent,
     ProfileStatusComponent,
     ProfileVehicleComponent,
+    VehicleRegisterComponent,
+    VehiclePageComponent,
+    VehiclesComponent,
     RegisterPageComponent,
     RegisterComponent,
     UserPageComponent,
     UserSearchComponent,
-    UsersComponent
+    UsersComponent,
+    MainNavbarComponent
   ],
   
   imports: [
@@ -81,7 +93,11 @@ import {MatSelectModule} from '@angular/material/select';
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    LayoutModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent],

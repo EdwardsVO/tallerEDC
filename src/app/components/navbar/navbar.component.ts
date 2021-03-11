@@ -20,12 +20,12 @@ export class NavbarComponent implements OnInit {
     document.getElementById("about").scrollIntoView({behavior:"smooth"});
 
   }
-toLocation(){
-  document.getElementById("location").scrollIntoView({behavior:"smooth"});
+  toLocation(){
+    document.getElementById("location").scrollIntoView({behavior:"smooth"});
 
-}
-toContact(){
-  document.getElementById("contact").scrollIntoView({behavior:"smooth"});
+  }
+  toContact(){
+    document.getElementById("contact").scrollIntoView({behavior:"smooth"});
 
 }
 
