@@ -7,6 +7,7 @@ import { UserPageComponent } from './pages/admin/user-page/user-page.component';
 import { User } from './models/user'
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { VehiclePageComponent } from './pages/vehicle-page/vehicle-page.component';
+import { AppointmentsComponent } from './pages/client/appointments/appointments.component';
 
 const routes: Routes = [
   { path: 'home', component: LandingPageComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterPageComponent },
   { path: 'admin', component: UserPageComponent },
   { path: 'vehicle', component: VehiclePageComponent },
+  { path: 'appointments', component: AppointmentsComponent },
   // { path: 'user', component: UserPageComponent },
   { path: 'user',  component: ProfilePageComponent },
   { path: '**', redirectTo: '/home' },

@@ -2,11 +2,11 @@
   display: flex;
   justify-content: space-between;
   padding: 1rem;
+  background-color: rgb(233, 233, 233);
+  margin-bottom: 10px;
 }
 
-.container mat-card-title {
-  color: #2e3192;
-}
+
 
 .vehicle-container p {
   font-size: 12px;
@@ -15,10 +15,47 @@
 .button-container {
   text-align: right;
   margin-top: 1rem;
+  button{
+    color: white;
+    background-color: #2e3192;
+  }
+  button:hover{
+    color: #2e3192;
+    background-color: white;
+  }
+}
+.buttons-container {
+  text-align: right;
+  margin-top: 1rem;
+  margin-bottom: 30px;
+  button{
+    margin-left: 1%;
+  }
+  .green{
+    background-color: rgb(3, 180, 3);
+    color: white;
+
+  }
+}
+
+
+button{
+  height: 50px;
 }
 
 .appointment-container {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
+  background-color:rgb(233, 233, 233);
+}
+
+h1{
+  color: #2e3192;
+  font-family: "Bree Serif", serif;
+  margin-top: 5%;
+}
+
+mat-card{
+  background-color: rgb(233, 233, 233);
 }
