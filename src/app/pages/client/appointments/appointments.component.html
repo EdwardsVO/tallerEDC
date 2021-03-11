@@ -1,6 +1,6 @@
 <div class="container">
+    <h1>MIS VEHÍCULOS</h1>
     <mat-card>
-        <mat-card-title>MIS VEHÍCULOS</mat-card-title>
         <div class="vehicle-container" *ngFor="let car of cars">
             <img mat-card-sm-image src="{{car.img}}" alt="client's car1">
             <mat-card-subtitle>SERIAL
@@ -19,11 +19,10 @@
         </div>
     </mat-card>
         <div class="button-container">
-            <button mat-raised-button color = "primary">SOLICITAR CITA</button>
+            <button mat-raised-button>SOLICITAR CITA</button>
         </div>
-
+    <h1>CITAS ACTIVAS</h1>
     <mat-card>
-        <mat-card-title>CITAS ACTIVAS</mat-card-title>
         <div class="appointment-container" *ngFor="let appointment of appointments">
             <img mat-card-sm-image src="{{appointment.img}}" alt="client's car1">
             
@@ -44,8 +43,8 @@
         </div>
     </mat-card>
 
-    <div class="button-container">
-        <button mat-raised-button color = "basic">CONFIRMAR CITA</button>
+    <div class="buttons-container">
+        <button mat-raised-button class="green">CONFIRMAR CITA</button>
         <button mat-raised-button color = "warn">CANCELAR CITA</button>
     </div>
     

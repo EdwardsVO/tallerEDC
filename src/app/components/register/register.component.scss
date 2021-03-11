@@ -3,7 +3,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  padding-top: 6rem;
+  padding-top: 5rem;
   padding-bottom: 3rem;
 }
 span.taller {
@@ -28,9 +28,17 @@ mat-form-field {
 button {
   margin-top: 1rem;
   margin-bottom: 10px;
+  color: white;
+  background-color: #2e3192;
 }
 
 button:hover {
   color: #2e3192;
   background-color: white;
+}
+
+.create{
+    a{
+        color: #2e3192;
+    }
 }

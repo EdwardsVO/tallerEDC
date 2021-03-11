@@ -9,6 +9,7 @@ h1{
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-top: 150px;
     ::ng-deep .mat-form-field-underline {
         display: none;
     }
@@ -55,6 +56,10 @@ h1{
     height: 40px;
     margin-top: 2rem;
     margin-bottom: 2rem;
+  }
+  button:hover{
+      color: #2E3192;
+      background-color: white;
   }
   
   

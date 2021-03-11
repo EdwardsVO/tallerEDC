@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   position: absolute;
-  margin-top: 200px;
+  margin-top: 100px;
   display: 100vh;
 }
 
@@ -92,4 +92,18 @@ span.buttonText {
 
   /* Use the Roboto font that is loaded in the <head> */
   font-family: "Roboto", sans-serif;
+}
+button{
+  color: white;
+  background-color: #2e3192;
+}
+button:hover{
+  color: #2e3192;
+  background-color: white;
+}
+
+.register{
+  a{
+    color: #2e3192;
+  }
 }
