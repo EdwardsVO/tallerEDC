@@ -1,69 +1,69 @@
-.profile-vehicle{
-    margin: 0  15%;
-    margin-bottom: 5%;
-    box-shadow: none !important;
-    border-width: 100%;
-    background-color:white;
-
+.profile-vehicle {
+  margin: 0 15%;
+  margin-bottom: 5%;
+  box-shadow: none !important;
+  border-width: 100%;
+  background-color: white;
 }
 
-.agg-btn{
-    margin-top: 2%;
-    float: right;
-    width: 15%;
-    height: 50px;
-    background-color: #2e3192;
+.agg-btn {
+  margin-top: 2%;
+  float: right;
+  width: 15%;
+  height: 50px;
+  background-color: #2e3192;
 }
 
-.carros{
-    background-color: rgb(241, 241, 241);
-    
+.carros {
+  background-color: rgb(241, 241, 241);
 }
 
 td {
-    padding-right: 9%;
-    align-items: center;
-    flex-direction: row;
-    position: -webkit-sticky;
-position: sticky;
+  padding-right: 9%;
+  align-items: center;
+  flex-direction: row;
+  position: -webkit-sticky;
+  position: sticky;
 }
 
 .vehicle-container {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    align-items: center;
-  }
-  
-  .container mat-card-title {
-    color: #2e3192;
-  }
-  
-  .vehicle-container p {
-    font-size: 12px;
-  }
-  
-  .button-container {
-    text-align: right;
-    margin-top: 1rem;
-  }
-  
-  .appointment-container {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-  }
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  align-items: center;
+}
 
+.container mat-card-title {
+  color: #2e3192;
+}
 
+.vehicle-container p {
+  font-size: 12px;
+}
 
-  h1{
-    color: #2E3192;
-    font-family: "Bree Serif", serif;
-    margin-left: 16%;
-    margin-top: 1%;
-  }
+.button-container {
+  text-align: right;
+  margin-top: 1rem;
+}
 
-  button:hover{
-    color: #2e3192;
-    background-color: white;
-  }
+.appointment-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+h1 {
+  color: #2e3192;
+  font-family: "Bree Serif", serif;
+  margin-left: 16%;
+  margin-top: 1%;
+}
+
+button:hover {
+  color: #2e3192;
+  background-color: white;
+}
+
+a.agg-btn {
+  text-decoration: none;
+}

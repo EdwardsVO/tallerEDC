@@ -15,15 +15,16 @@
 
             <div class="menu">
             
-                   <mat-menu #appMenu = "matMenu">
-                       <button mat-menu-item *ngFor="let brand of brands" (click) ="onClick(brand.name)">
-                           {{brand.name | uppercase}}
-                       </button>
-                   </mat-menu>
+         
+                    <mat-menu #appMenu = "matMenu">
+                        <button color = "primary" mat-menu-item *ngFor="let brand of brands" (click) ="onClick(brand.name)">
+                            {{brand.name | uppercase}}
+                        </button>
+                    </mat-menu>
+        
 
-                   <button mat-flat-button [matMenuTriggerFor] = "appMenu" class = "brand">*Marca</button>
-                   <!-- <p>{{carBrand}}</p> -->
-                   <input id = "brandChosen" type="text" name = "brandC">
+                   <button mat-stroked-button color= "primary" [matMenuTriggerFor] = "appMenu" class = "brand">Marca</button>
+                   <input id = "brandChosen" type="text" name = "brandC" readonly>
 
 
             </div>

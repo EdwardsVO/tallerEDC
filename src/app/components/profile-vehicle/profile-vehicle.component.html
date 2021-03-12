@@ -1,7 +1,8 @@
 <h1>MIS VEHÍCULOS</h1>
 <mat-card class="profile-vehicle">
-    <div class='carros'>
-        <div class="vehicle-container" *ngFor="let car of cars">
+
+    <div class='carros' *ngFor="let car of cars">
+        <div class="vehicle-container">
             <img mat-card-sm-image src="{{car.img}}" alt="client's car1">
             <mat-card-subtitle>SERIAL
                 <p>{{car.serial}}</p>
@@ -19,7 +20,9 @@
                 <mat-icon>edit</mat-icon>
             </button>
            
+        </div>
     </div>
-    </div>
-    <button mat-raised-button color="primary" class="agg-btn">Agregar</button> 
+    <a mat-raised-button color="primary" class="agg-btn" [disabled] = "cars.length >= 3" [routerLink]="['/vehicles/register']" routerLinkActive="router-link-active" >
+        Nuevo Vehículo
+    </a> 
 </mat-card>

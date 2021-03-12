@@ -93,11 +93,15 @@ div.menu {
   color: grey;
 }
 
+input#brandChosen {
+  color: black;
+}
+
 button.brand {
-  color: grey;
-  margin-left: -5px;
+  margin-left: 7px;
 }
 
 input#brandChosen {
-  color: black;
+  padding: 6px;
+  margin-left: 10px;
 }
