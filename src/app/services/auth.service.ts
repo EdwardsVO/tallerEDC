@@ -83,6 +83,7 @@ export class AuthService {
   catch (err){
     localStorage.removeItem('user');
     return null;
+    alert('wrong user or password')
   }
   }
 

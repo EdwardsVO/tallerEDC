@@ -6,17 +6,17 @@
     <mat-card-title>Inicia sesion en<span> TalleresEDC</span></mat-card-title>
     <mat-form-field class="example-full-width">
         <mat-label>Introduce tu Correo</mat-label>
-        <input type="email" matInput placeholder="email@example.com">
+        <input type="email" matInput placeholder="email@example.com" id="email" formControlName='email'>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Introduce tu Contraseña</mat-label>
-        <input type="password" matInput>
+        <input type="password" matInput id="password" placeholder="********" formControlName="password">
       </mat-form-field>
 
       <span class="forgot">¿Olvidaste tu contraseña?</span>
  
-        <button mat-raised-button>Ingresar</button>
+        <button type="submit" mat-raised-button (click)="handleMailLogin()">Ingresar</button>
 
         <div id="gSignInWrapper">
           <div id="customBtn" class="customGPlusSignIn">
@@ -29,5 +29,5 @@
         </div>
         </form>
     </mat-card>
-</div>
+</div> 
 
