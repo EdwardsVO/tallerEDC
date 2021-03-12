@@ -9,18 +9,18 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 import { VehiclePageComponent } from './pages/vehicle-page/vehicle-page.component';
 import { AppointmentsComponent } from './components/appointments/appointments.component';
 import { VehicleRegisterComponent } from './components/vehicle-register/vehicle-register.component';
+import { UserGuard } from './guards/user.guard';
 
 const routes: Routes = [
   { path: 'home', component: LandingPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
   { path: 'admin', component: UserPageComponent },
-  { path: 'vehicles', component: VehiclePageComponent },
   { path: 'appointments', component: AppointmentsComponent },
-  { path: 'vehicles/register', component: VehicleRegisterComponent },
-  { path: 'user/vehicles', component: VehiclePageComponent },
-  { path: 'user/calls', component: AppointmentsComponent },
-  { path: 'user',  component: ProfilePageComponent },
+  { path: 'user/vehicles/register', component: VehicleRegisterComponent, canActivate: [UserGuard] },
+  { path: 'user/vehicles', component: VehiclePageComponent, canActivate: [UserGuard] },
+  { path: 'user/calls', component: AppointmentsComponent, canActivate: [UserGuard] },
+  { path: 'user',  component: ProfilePageComponent, canActivate: [UserGuard] },
   { path: '**', redirectTo: '/home' },
 ];
 
