@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user';
+import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 
 @Component({
   selector: 'app-login',
@@ -19,13 +20,9 @@ export class LoginComponent implements OnInit {
   prueba: string;
 
 
-  constructor(private _fb: FormBuilder, private authService: AuthService, private _router: Router) {
-    this.authForm = this.authForm = this._fb.group({
-      displayName: '',
-      email: '',
-      password: ''
-    })
+  constructor(private _fb: FormBuilder, private _authService: AuthService, private _router: Router) {
    }
+   
   ngOnInit(): void {
   this.createAuthForm();
   }
@@ -40,16 +37,25 @@ export class LoginComponent implements OnInit {
   
   async handleGoogleLogin():Promise<void> {
     try{
-      await this.authService.loginWithGoogle();
+      await this._authService.loginWithGoogle();
       this.startProfilePage()
     } catch(err){
+      console.log(err);
+    }
+  }
+
+  async handleMailLogin(): Promise<void>{
+    try{
+      await this._authService.loginWithEmail(this.authForm.get('email').value, this.authForm.get('password').value)
+      this.startProfilePage();
+    }catch(err){
       console.log(err);
     }
   }
   
   async  startProfilePage(): Promise<void>{
     try{
-      await this.authService.getCurrentUser().subscribe(
+      await this._authService.getCurrentUser().subscribe(
         user => {
           this.user = user;
           this.prueba = user.uid;
@@ -59,7 +65,7 @@ export class LoginComponent implements OnInit {
       }
     catch(err){
       console.log(err)
-    }
+    } 
   }
 
 }
