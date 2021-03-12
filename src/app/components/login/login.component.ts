@@ -4,6 +4,8 @@ import firebase from 'firebase'
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/models/user';
 import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 
 @Component({
@@ -15,6 +17,7 @@ export class LoginComponent implements OnInit {
   @Output() sendFormEvent = new EventEmitter;
   authForm: FormGroup 
   user: firebase.User;
+  prueba: string;
 
 
   constructor(private _fb: FormBuilder, private _authService: AuthService, private _router: Router) {
@@ -55,6 +58,8 @@ export class LoginComponent implements OnInit {
       await this._authService.getCurrentUser().subscribe(
         user => {
           this.user = user;
+          this.prueba = user.uid;
+          console.log(this.prueba);
           this._router.navigate(['/user'], {queryParams: {login: 'true'}, queryParamsHandling: 'merge'
         })})
       }
@@ -62,4 +67,5 @@ export class LoginComponent implements OnInit {
       console.log(err)
     } 
   }
+
 }

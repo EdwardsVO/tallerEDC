@@ -6,6 +6,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { BrowserModule } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { RouterModule } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore'
 
 // Bootstrap
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -26,7 +27,7 @@ import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginPageComponent } from './pages/client/login-page/login-page.component';
 import { ContactComponent } from './components/contact/contact.component';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { ProfileStatusComponent } from './components/profile-status/profile-status.component';
@@ -39,7 +40,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { UserPageComponent } from './pages/admin/user-page/user-page.component';
 import { UserSearchComponent } from './components/user-search/user-search.component';
 import { UsersComponent } from './components/users/users.component';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { MainNavbarComponent } from './components/main-navbar/main-navbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -97,9 +98,10 @@ import { AppointmentsComponent } from './components/appointments/appointments.co
     LayoutModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
-  providers: [],
+  providers: [AngularFirestore],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
