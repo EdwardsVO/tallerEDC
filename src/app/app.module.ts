@@ -27,7 +27,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginPageComponent } from './pages/client/login-page/login-page.component';
 import { ContactComponent } from './components/contact/contact.component';
 import {MatButtonModule} from '@angular/material/button';
-import { AppointmentsComponent } from './pages/client/appointments/appointments.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { ProfileStatusComponent } from './components/profile-status/profile-status.component';
@@ -46,6 +45,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { AppointmentsComponent } from './components/appointments/appointments.component';
 
 
 @NgModule({

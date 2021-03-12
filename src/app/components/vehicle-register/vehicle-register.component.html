@@ -8,20 +8,35 @@
            
             <p>
                 <mat-form-field class="tlf">
-                    <mat-label>*Teléfono</mat-label>
-                    <span matPrefix>+58 &nbsp;</span>
+                    <mat-label>*Serial del Motor</mat-label>
                     <input matInput>
                 </mat-form-field>
             </p>
 
+            <div class="menu">
+            
+         
+                    <mat-menu #appMenu = "matMenu">
+                        <button color = "primary" mat-menu-item *ngFor="let brand of brands" (click) ="onClick(brand.name)">
+                            {{brand.name | uppercase}}
+                        </button>
+                    </mat-menu>
+        
+
+                   <button mat-stroked-button color= "primary" [matMenuTriggerFor] = "appMenu" class = "brand">Marca</button>
+                   <input id = "brandChosen" type="text" name = "brandC" readonly>
+
+
+            </div>
+
             <table class="user-info" cellspacing="0"><tr>
                 <td><mat-form-field class="first-name">
-                <mat-label>*Nombre</mat-label>
+                <mat-label>*Modelo</mat-label>
                 <input matInput>
                 </mat-form-field></td>
 
                 <td><mat-form-field class="last-name">
-                <mat-label>*Apellido</mat-label>
+                <mat-label>*Año</mat-label>
                 <input matInput>
                 </mat-form-field></td>          
             </tr></table>
@@ -29,7 +44,6 @@
             <p>
                 <mat-form-field class="placa">
                     <mat-label>*Placa</mat-label>
-                    <span matPrefix>+58 &nbsp;</span>
                     <input matInput>
                 </mat-form-field>
             </p>
