@@ -1,36 +1,42 @@
 <div class="space">
     <div class="container">
         <mat-card>
-            <form>
-        <mat-card-title>Registrate en <span class="taller"> TalleresEDC</span></mat-card-title>
-        <mat-form-field class="example-full-width">
+            <form [formGroup] = "authForm">
+        <mat-card-title>Registrate en <span class="taller"> Talleres EDC</span></mat-card-title>
+
+        <!-- <mat-form-field class="example-full-width">
             <mat-label>Introduce tu Nombre y Apellido</mat-label>
             <input type="name" matInput placeholder="John Doe">
-          </mat-form-field>
+          </mat-form-field> -->
+
         <mat-form-field class="example-full-width">
             <mat-label>Introduce tu Correo</mat-label>
-            <input type="email" matInput placeholder="@Example.com">
+            <input type="email" matInput placeholder="@Example.com" formControlName="email">
           </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <mat-label>Confirma tu Correo</mat-label>
+
+          <!-- <mat-form-field class="example-full-width"> -->
+            <!-- <mat-label>Confirma tu Correo</mat-label>
             <input type="email" matInput placeholder="@Example.com">
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
+          </mat-form-field> -->
+
+          <!-- <mat-form-field class="example-full-width">
             <mat-label>Introduce tu teléfono</mat-label>
             <input type="phone" matInput>
-          </mat-form-field>
+          </mat-form-field> -->
     
           <mat-form-field class="example-full-width">
             <mat-label>Introduce tu Contraseña</mat-label>
-            <input type="password" matInput>
+            <input type="password" matInput formControlName = "password">
           </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <mat-label>Confrima tu Contraseña</mat-label>
+
+          <!-- <mat-form-field class="example-full-width">
+            <mat-label>Confirma tu Contraseña</mat-label>
             <input type="password" matInput>
-          </mat-form-field>
+          </mat-form-field> -->
      
-            <button mat-raised-button >Registrarse</button>
+            <button mat-raised-button (click)="handleRegistration()">Registrarse</button>
             <span class="create">¿Ya tienes cuenta? <a href="login">LOG IN</a></span>
+          
             </form>
         </mat-card>
     </div>

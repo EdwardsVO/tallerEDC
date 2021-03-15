@@ -44,7 +44,6 @@ export class AuthService {
   }
 
   async registerNewUser(
-    displayName: string,
     email: string,
     password: string
   ): Promise <firebase.User | null> {
