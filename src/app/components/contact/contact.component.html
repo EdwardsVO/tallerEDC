@@ -1,27 +1,30 @@
 
 <mat-card>
     <h1>CONTACTO</h1>
-    <form action="">
-    <mat-form-field class="name">
-        <mat-label>Ingresa tu Nombre y Apellido</mat-label>
-        <input type="input" matInput placeholder="Christian Guillen">
-      </mat-form-field>
-    <div class="bi-container">
-        <mat-form-field class="bi">
-            <mat-label>Introduce tu Email</mat-label>
-            <input type="email" matInput>        
+    <form>
+        <mat-form-field class="name">
+            <mat-label>Ingresa tu Nombre y Apellido</mat-label>
+            <input type="input" matInput placeholder="">
         </mat-form-field>
-        <mat-form-field class="bii">
-            <mat-label>Introduce tu Teléfono</mat-label>
+
+        <div class="bi-container">
+            <mat-form-field class="email">
+                <mat-label class = "email_info">Introduce tu Email</mat-label>
+                <input type="email" matInput>        
+            </mat-form-field>
+
+            <mat-form-field class="phone">
+                <mat-label class = "phone_info">Introduce tu Teléfono</mat-label>
+                <input type="text" matInput>
+            </mat-form-field>   
+        </div>
+
+        <mat-form-field class="message">
+            <mat-label class = "message_content">Dejanos un Mensaje!</mat-label>
             <input type="text" matInput>
         </mat-form-field>
-    </div>
-      <mat-form-field class="message">
-        <mat-label>Dejanos un Mensaje!</mat-label>
-        <input type="text" matInput>
-      </mat-form-field>
 
-      <button mat-raised-button>Enviar</button>
+        <button mat-raised-button>Enviar</button>
     </form>
 </mat-card>
 
