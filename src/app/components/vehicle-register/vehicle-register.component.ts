@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
+
 @Component({
   selector: 'app-vehicle-register',
   templateUrl: './vehicle-register.component.html',
@@ -11,8 +12,11 @@ export class VehicleRegisterComponent implements OnInit {
   collection = { count:5, data: []}
   registrarVehiculoForm: FormGroup;
 
+  
+
   constructor(
-    public fb: FormBuilder
+    public fb: FormBuilder,
+    
   ) { }
 
   ngOnInit(): void {
@@ -22,7 +26,8 @@ export class VehicleRegisterComponent implements OnInit {
       marca: ['', Validators.required],
       modelo: ['', Validators.required],
       year: ['', Validators.required],
-      placa: ['', Validators.required]
+      placa: ['', Validators.required],
+      foto: ['', Validators.required]
     })
 
     for(var i = 0; i < this.collection.count; i++){
@@ -31,7 +36,8 @@ export class VehicleRegisterComponent implements OnInit {
         marca: "marca"+i,
         modelo: "modelo" +i,
         year: "year" +i,
-        placa: "placa" +i
+        placa: "placa" +i,
+        foto: "foto" +i
       })
     }
   }
@@ -69,6 +75,8 @@ export class VehicleRegisterComponent implements OnInit {
   //   }
     
   // }
+
+  
 
   brands = [
     {

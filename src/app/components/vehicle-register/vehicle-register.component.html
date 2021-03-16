@@ -34,11 +34,11 @@
                         <div class="menu">
                         
                     
-                                <mat-menu #appMenu = "matMenu">
-                                    <button color = "primary" mat-menu-item *ngFor="let brand of brands" (click) ="onClick(brand.name)">
-                                        {{brand.name | uppercase}}
-                                    </button>
-                                </mat-menu>
+                            <mat-menu #appMenu = "matMenu">
+                                <button color = "primary" mat-menu-item *ngFor="let brand of brands" (click) ="onClick(brand.name)">
+                                    {{brand.name | uppercase}}
+                                </button>
+                            </mat-menu>
                     
 
                             <button mat-stroked-button color= "primary" [matMenuTriggerFor] = "appMenu" class = "brand">Marca</button>
@@ -110,5 +110,7 @@
       </tbody>
     </table>
 </div>
+
+
   
 

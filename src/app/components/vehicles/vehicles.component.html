@@ -1,26 +1,118 @@
 <h1>MIS VEHÍCULOS</h1>
 <mat-card class="profile-vehicle">
     <div class='carros'>
-        <div class="vehicle-container" *ngFor="let car of cars">
-            <img mat-card-sm-image src="{{car.img}}" alt="client's car1">
+        <div class="vehicle-container" *ngFor="let item of collection.data">
+            <img mat-card-sm-image src="{{item.foto}}" alt="client's car1">
            
             <mat-card-subtitle class="v-info">SERIAL
-                <p>{{car.serial}}</p>
+                <p>{{item.serial}}</p>
             </mat-card-subtitle>
             <mat-card-subtitle class="v-info">MODELO
-                <p>{{car.model}}</p>
+                <p>{{item.model}}</p>
             </mat-card-subtitle>
             <mat-card-subtitle class="v-info">AÑO
-                <P>{{car.year}}</P>
+                <P>{{item.year}}</P>
             </mat-card-subtitle>
             <mat-card-subtitle class="v-info">PLACA
-                <P>{{car.license_plate}}</P>
+                <P>{{item.placa}}</P>
             </mat-card-subtitle> 
              <button mat-fab color="primary" class = "delete" title="Eliminar">
                 <mat-icon>delete</mat-icon>
               </button>
         </div>
     </div>
-    <a mat-raised-button class="agg-btn" color= "primary" [disabled] = "cars.length >= 3" routerLink='/user/vehicles/register' routerLinkActive="router-link-active" >Nuevo Vehículo</a> 
+    <!-- <a mat-raised-button class="agg-btn" color= "primary" [disabled] = "cars.length >= 3" routerLink='/user/vehicles/register' routerLinkActive="router-link-active"  >Nuevo Vehículo</a> -->
+    <a mat-raised-button class="agg-btn" color= "primary" [disabled] = "cars.length >= 3" (click)="open(content)">Nuevo Vehículo</a>
+    
+    
 
 </mat-card>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Registrar carro</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="registrarVehiculoForm">
+            <div class="vehicle">
+                <mat-card class="example-card">
+                    <div  class="info-card">
+                    
+                        <mat-card-content>
+                        
+                            <p>
+                                <mat-form-field class="tlf">
+                                    <mat-label>*Serial del Motor</mat-label>
+                                    <input matInput type="text" formControlName="serial" class="form-control">
+                                    <!--<input matInput>-->
+                                </mat-form-field>
+                            </p>
+    
+                            <div class="form-group">
+                            
+                        
+                                <!-- <mat-menu #appMenu = "matMenu">
+                                    <button color = "primary" mat-menu-item *ngFor="let brand of brands" (click) ="onClick(brand.name)">
+                                        {{brand.name | uppercase}}
+                                    </button>
+                                </mat-menu> -->
+                        
+                                <mat-form-field class="tlf">
+                                    <mat-label>Marca</mat-label>
+                                    <input matInput type="text" formControlName="marca" class="form-control">
+                                    <!--<input matInput>-->
+                                </mat-form-field>
+                                <!--<button mat-stroked-button color= "primary" [matMenuTriggerFor] = "appMenu" class = "brand">Marca</button> 
+                                <input id = "brandChosen" type="text" formControlName="marca" name = "brandC" > <!-- readonly-->
+    
+    
+                            </div>
+    
+                            <table class="user-info" cellspacing="0"><tr>
+                                <td><mat-form-field class="first-name">
+                                <mat-label>*Modelo</mat-label>
+                                <input matInput type="text" formControlName="modelo" class="form-control">
+                                <!-- <input matInput> -->
+                                </mat-form-field></td>
+    
+                                <td><mat-form-field class="last-name">
+                                <mat-label>*Año</mat-label>
+                                <input matInput type="text" formControlName="year" class="form-control">
+                                <!--<input matInput>-->
+                                </mat-form-field></td>          
+                            </tr></table>
+                            
+                            <p>
+                                <mat-form-field class="placa">
+                                    <mat-label>*Placa</mat-label>
+                                    <input matInput type="text" formControlName="placa" class="form-control">
+                                    <!--<input matInput >-->
+                                </mat-form-field>
+                            </p>
+                    
+                    
+                
+    
+                            <button mat-raised-button color="primary" class="re-btn" (click)="saveCar()">REGISTRAR</button> 
+    
+                        </mat-card-content>
+                    </div>
+    
+                    <mat-card-actions>
+                
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </form>
+    </div>
+    <!--<div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    </div> -->
+  </ng-template>
+  
+  
+  
+  
