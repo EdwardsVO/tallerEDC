@@ -1,0 +1,33 @@
+h1{
+    color: #2e3192;
+    font-family: "Bree Serif", serif;
+}
+
+mat-form-field{
+    color: #2e3192;
+    width: 80%;
+}
+
+.calendar{
+    margin-top: 3rem;
+    display: inline-block;
+    margin-left: 15%;
+    
+}
+
+.vehicle-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: rgb(233, 233, 233);
+    margin-bottom: 15px;
+    width: 70%;
+    margin-left: 14%;
+  } 
+.vehicle-container p {
+font-size: 12px;
+}
+
+.material-icons{
+    color: green;
+}
