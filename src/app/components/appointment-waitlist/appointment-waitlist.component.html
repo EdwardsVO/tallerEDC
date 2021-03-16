@@ -2,9 +2,6 @@
 <mat-card>
     <div class="vehicle-container" *ngFor="let car of cars">
         <img mat-card-sm-image src="{{car.img}}" alt="client's car1">
-        <mat-card-subtitle>SERIAL
-            <p>{{car.serial}}</p>
-        </mat-card-subtitle>
         <mat-card-subtitle>MODELO
             <p>{{car.model}}</p>
         </mat-card-subtitle>
@@ -14,12 +11,23 @@
         <mat-card-subtitle>PLACA
             <P>{{car.license_plate}}</P>
         </mat-card-subtitle>
-        <mat-card-subtitle>HORA
-            <P>{{car.time}}</P>
-        </mat-card-subtitle>
-        <mat-card-actions><div class="ngx-timepicker-field-example">
-            <ngx-timepicker-field [defaultTime]="'11:11 am'"></ngx-timepicker-field>
-        </div>
+        
+        <mat-card-actions>  <div class="12hr-example">
+            <input class="input" placeholder="HORA" aria-label="12hr format" [ngxTimepicker]="default" readonly>
+            <ngx-material-timepicker #default></ngx-material-timepicker>
+       </div>
            </mat-card-actions>
+           <mat-card-actions>
+            <mat-form-field appearance="fill">
+                <mat-label>Elige una Fecha</mat-label>
+                <input matInput [matDatepicker]="picker">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+           </mat-card-actions>
+           <mat-card-actions>
+               <button mat-raised-button>CONFIRMAR</button>
+           </mat-card-actions>
+
     </div>
 </mat-card>

@@ -18,3 +18,34 @@ h1{
 .vehicle-container p {
 font-size: 12px;
 }
+.ngx-timepicker-field-example{
+    width: 60%;
+   
+    
+}
+
+mat-form-field{
+    width: 80%;
+    height: 30px;
+}
+
+.input{
+    width: 70%;
+    text-align: center;
+    height: 40px;
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: #2e3192;
+    background-color: rgb(233, 233, 233);
+
+}
+
+button{
+    color: white;
+    background-color: #2e3192 ;
+    height: 50px;
+}
+button:hover{
+    color: #2e3192;
+    background-color: white;
+}
