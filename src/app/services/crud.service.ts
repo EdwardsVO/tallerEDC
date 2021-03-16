@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../models/user';
+import firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,34 @@ export class CrudService {
 
   url = 'https://talleredc-8704c-default-rtdb.firebaseio.com/users'
   users: Observable<User[]>;
+  userDatabase = firebase.database().ref('users/');
+  data: any;
 
   private usersCollection: AngularFirestoreCollection<User>;
 
   constructor(private readonly afs: AngularFirestore) { 
     this.usersCollection = afs.collection<User>('users')
+  }
+
+    async writeUserData(name, email): Promise<void> {
+      try{
+        this.userDatabase.push({
+          username: name,
+          email: email,
+          });
+      }catch(err){
+        console.log(err)
+      }
+  }
+
+  async readUsers(): Promise<void>{
+    try{
+      await this.userDatabase.on('value', (snapshot) => {
+        return console.log(this.data = snapshot.val());
+      });
+    }catch(err){
+      console.log(err);
+    }
   }
 
   onDeleteUser(userId: string): Promise<void>{
@@ -48,4 +72,5 @@ export class CrudService {
       map(actions => actions.map(a => a.payload.doc.data() as User))
     );
   }
+
 }
