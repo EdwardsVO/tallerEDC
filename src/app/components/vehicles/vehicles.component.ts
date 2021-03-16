@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {VehiclesCrudService} from '../../services/vehicles-crud.service'
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-vehicles',
@@ -9,24 +11,24 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class VehiclesComponent implements OnInit {
 
-  cars = [
-    {
-      img: "assets/corolla.png",
-      serial: "JHLRD77875C027456",
-      model: "Corolla",
-      year: "2020",
-      license_plate: "RAL38K"
-    },
-    {
-      img: "assets/corolla.png",
-      serial: "JHLRD77875C027456",
-      model: "Yaris",
-      year: "2020",
-      license_plate: "RAL38K"
-    },
+  // cars = [
+  //   {
+  //     img: "assets/corolla.png",
+  //     serial: "JHLRD77875C027456",
+  //     model: "Corolla",
+  //     year: "2020",
+  //     license_plate: "RAL38K"
+  //   },
+  //   {
+  //     img: "assets/corolla.png",
+  //     serial: "JHLRD77875C027456",
+  //     model: "Yaris",
+  //     year: "2020",
+  //     license_plate: "RAL38K"
+  //   },
 
  
-  ]
+  // ]
 
   
 
@@ -34,16 +36,24 @@ export class VehiclesComponent implements OnInit {
 
   closeResult = '';
   registrarVehiculoForm: FormGroup;
+  idFirebaseActualizar: string;
+  actualizar: boolean
   collection = { count:2, data: []};
   carBrand: string;
 
   constructor(
     private modalService: NgbModal,
-    public fb: FormBuilder
+    public fb: FormBuilder,
+    private vehiclesCrudService: VehiclesCrudService
   ) { }
 
   ngOnInit(): void {
+
+    this.idFirebaseActualizar = '';
+    this.actualizar = false;
+
     this.registrarVehiculoForm = this.fb.group({
+      id: ['', Validators.required],
       serial: ['', Validators.required],
       marca: ['', Validators.required],
       modelo: ['', Validators.required],
@@ -51,32 +61,71 @@ export class VehiclesComponent implements OnInit {
       placa: ['', Validators.required]
     })
 
-    for(var i = 0; i < this.collection.count; i++){
-      this.collection.data.push({
-        serial: i,
-        marca: "marca" +i,
-        modelo: "modelo" +i,
-        year: "year" +i,
-        placa: "placa" +i
+    this.vehiclesCrudService.getCars().subscribe(resp => {
+      this.collection.data = resp.map((e:any) => {
+        return {
+          id: e.payload.doc.data().id,
+          serial: e.payload.doc.data().serial,
+          marca: e.payload.doc.data().marca,
+          modelo: e.payload.doc.data().marca,
+          year: e.payload.doc.data().marca,
+          placa: e.payload.doc.data().marca,
+          idFirebase: e.payload.doc.id
+        }
       })
-    }
+    })
+
+   
+
+    // for(var i = 0; i < this.collection.count; i++){
+    //   this.collection.data.push({
+    //     serial: i,
+    //     marca: "marca" +i,
+    //     modelo: "modelo" +i,
+    //     year: "year" +i,
+    //     placa: "placa" +i
+    //   })
+    // }
 
     
   }
 
   saveCar():void {
 
-    // this.firebaseServiceService.createEstudiante(this.estudianteForm.value).then(resp => {
-    //   this.estudianteForm.reset();
-    //   this.modalService.dismissAll();
-    // }).catch(error => {
-    //   console.error(error)
-    // })
+    this.vehiclesCrudService.createCar(this.registrarVehiculoForm.value).then(resp => {
+      this.registrarVehiculoForm.reset();
+      this.modalService.dismissAll();
+    }).catch(error => {
+      console.error(error)
+    })
 
-    this.collection.data.push(this.registrarVehiculoForm.value);
-    this.registrarVehiculoForm.reset();
-    this.modalService.dismissAll();
+    // this.collection.data.push(this.registrarVehiculoForm.value);
+    // this.registrarVehiculoForm.reset();
+    // this.modalService.dismissAll();
   }
+
+  actualizarCar(){
+
+    if(!isNullOrUndefined(this.idFirebaseActualizar)){
+      this.vehiclesCrudService.updateCar(this.idFirebaseActualizar, this.registrarVehiculoForm.value).then(resp => {
+      this.registrarVehiculoForm.reset();
+      this.modalService.dismissAll();
+      }).catch(error => {
+        console.error(error)
+      })
+
+    }
+    
+  }
+
+  delete(item:any):void{
+
+    this.vehiclesCrudService.deleteCar(item.idFirebase);
+
+    //this.collection.data.pop();
+  }
+
+
 
   onClick (name: string): string {
 
