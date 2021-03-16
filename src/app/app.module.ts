@@ -47,6 +47,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { AppointmentsComponent } from './components/appointments/appointments.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AppointmentCalendarComponent } from './components/appointment-calendar/appointment-calendar.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { AppointmentsManagerComponent } from './pages/manager/appointments-manager/appointments-manager.component';
+import {MatNativeDateModule} from '@angular/material/core';
+import { AppointmentWaitlistComponent } from './components/appointment-waitlist/appointment-waitlist.component';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+ 
+
+
+
 
 @NgModule({
   declarations: [
@@ -74,7 +84,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UserPageComponent,
     UserSearchComponent,
     UsersComponent,
-    MainNavbarComponent
+    MainNavbarComponent,
+    AppointmentCalendarComponent,
+    AppointmentsManagerComponent,
+    AppointmentWaitlistComponent
   ],
   
   imports: [
@@ -98,8 +111,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    NgbModule
+    NgbModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgxMaterialTimepickerModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [AngularFirestore],
   bootstrap: [AppComponent],

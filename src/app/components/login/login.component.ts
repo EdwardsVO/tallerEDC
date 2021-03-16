@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
+import { CrudService } from 'src/app/services/crud.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   prueba: string;
 
 
-  constructor(private _fb: FormBuilder, private _authService: AuthService, private _router: Router) {
+  constructor(private _fb: FormBuilder, private _authService: AuthService, private _router: Router, private _db: CrudService) {
    }
    
   ngOnInit(): void {
@@ -55,6 +56,7 @@ export class LoginComponent implements OnInit {
   
   async  startProfilePage(): Promise<void>{
     try{
+      this._db.readUsers();
       await this._authService.getCurrentUser().subscribe(
         user => {
           this.user = user;
