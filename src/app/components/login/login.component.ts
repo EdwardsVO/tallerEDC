@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
   
   async  startProfilePage(): Promise<void>{
     try{
-      this._db.readUsers();
+      // this._db.readUsers();
       await this._authService.getCurrentUser().subscribe(
         user => {
           this.user = user;
