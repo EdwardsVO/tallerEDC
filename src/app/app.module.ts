@@ -51,6 +51,9 @@ import { AppointmentCalendarComponent } from './components/appointment-calendar/
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AppointmentsManagerComponent } from './pages/manager/appointments-manager/appointments-manager.component';
 import {MatNativeDateModule} from '@angular/material/core';
+import { AppointmentWaitlistComponent } from './components/appointment-waitlist/appointment-waitlist.component';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+ 
 
 
 
@@ -83,7 +86,8 @@ import {MatNativeDateModule} from '@angular/material/core';
     UsersComponent,
     MainNavbarComponent,
     AppointmentCalendarComponent,
-    AppointmentsManagerComponent
+    AppointmentsManagerComponent,
+    AppointmentWaitlistComponent
   ],
   
   imports: [
@@ -109,6 +113,7 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatListModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    NgxMaterialTimepickerModule,
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [AngularFirestore],
