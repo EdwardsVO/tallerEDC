@@ -13,7 +13,7 @@ export class CrudService {
 
   url = 'https://talleredc-8704c-default-rtdb.firebaseio.com/users'
   users: Observable<User[]>;
-  starCountRef = firebase.database().ref('users/');
+  userDatabase = firebase.database().ref('users/');
   data: any;
 
   private usersCollection: AngularFirestoreCollection<User>;
@@ -22,9 +22,20 @@ export class CrudService {
     this.usersCollection = afs.collection<User>('users')
   }
 
+    async writeUserData(name, email): Promise<void> {
+      try{
+        this.userDatabase.push({
+          username: name,
+          email: email,
+          });
+      }catch(err){
+        console.log(err)
+      }
+  }
+
   async readUsers(): Promise<void>{
     try{
-      await this.starCountRef.on('value', (snapshot) => {
+      await this.userDatabase.on('value', (snapshot) => {
         return console.log(this.data = snapshot.val());
       });
     }catch(err){

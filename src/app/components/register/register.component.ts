@@ -11,8 +11,11 @@ import { CrudService } from "src/app/services/crud.service";
 })
 export class RegisterComponent implements OnInit {
   authForm: FormGroup;
+  email: string;
+  name: string ='sebas';
+  id: string;
 
-  constructor(private _fb: FormBuilder ,private _authService: AuthService) { }
+  constructor(private _fb: FormBuilder ,private _authService: AuthService, private _db: CrudService) { }
 
   ngOnInit(): void {
     this.createRegistrationForm();
@@ -28,6 +31,7 @@ export class RegisterComponent implements OnInit {
   async handleRegistration(): Promise<void> {
     try{
       await this._authService.registerNewUser(this.authForm.get('email').value, this.authForm.get('password').value)
+      this._db.writeUserData(this.name, this.authForm.get('email').value)
     }
     catch(err) {
       console.log(err);
