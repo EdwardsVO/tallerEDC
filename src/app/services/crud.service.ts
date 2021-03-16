@@ -1,76 +1,42 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { AngularFirestore, AngularFirestoreCollection, DocumentSnapshot } from '@angular/fire/firestore';
 import { User } from '../models/user';
 import firebase from 'firebase';
+import { UsersComponent } from '../components/users/users.component';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CrudService {
 
-  url = 'https://talleredc-8704c-default-rtdb.firebaseio.com/users'
-  users: Observable<User[]>;
-  userDatabase = firebase.database().ref('users/');
-  data: any;
+  url = 'https://talleredc-8704c-default-rtdb.firebaseio.com/users';
+  db = firebase.firestore();
+  
 
   private usersCollection: AngularFirestoreCollection<User>;
 
-  constructor(private readonly afs: AngularFirestore) { 
-    this.usersCollection = afs.collection<User>('users')
+  constructor(private _afs: AngularFirestore) {  
   }
 
-    async writeUserData(name, email): Promise<void> {
-      try{
-        this.userDatabase.push({
-          username: name,
-          email: email,
-          });
-      }catch(err){
-        console.log(err)
-      }
-  }
-
-  async readUsers(): Promise<void>{
+  async newUser(name, email, phone, role): Promise<void>{
     try{
-      await this.userDatabase.on('value', (snapshot) => {
-        return console.log(this.data = snapshot.val());
-      });
+      await this.db.collection('users').doc(email).set({
+        name: name,
+        email: email,
+        phone: phone,
+        role: role,
+        cars: {
+          car1: {},
+          car2: {},
+          car3: {}
+        }
+      })
     }catch(err){
       console.log(err);
     }
-  }
-
-  onDeleteUser(userId: string): Promise<void>{
-    return new Promise (async (resolve, reject) => {
-      try {
-        const result =  await this.usersCollection.doc(userId).delete();
-        resolve(result)
-      } catch (err) {
-        reject(err.message)
-      }
-    });
-  }  
-
-  onCreateUser(user: User, userId: string): Promise<void>{
-    return new Promise( async (resolve, reject) => {
-      try {
-        const id = userId || this.afs.createId();
-        const data = {id, ...user};
-        const result = this.usersCollection.doc(id).set(data);
-        resolve(result);
-      } catch (err) {
-        reject(err.message);
-      }
-    })
-  }  
-
-  getUser(userId: string): void{  
-    this.users = this.usersCollection.snapshotChanges().pipe(
-      map(actions => actions.map(a => a.payload.doc.data() as User))
-    );
   }
 
 }
