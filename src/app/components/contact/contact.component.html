@@ -1,30 +1,32 @@
 
 <mat-card>
     <h1>CONTACTO</h1>
-    <form>
+    
+    <form #contact = "ngForm"  (ngSubmit)="getValues(contact.value)">
         <mat-form-field class="name">
             <mat-label>Ingresa tu Nombre y Apellido</mat-label>
-            <input type="input" matInput placeholder="">
+            <input type="text" [(ngModel)] = "name" name="name" matInput placeholder="">
         </mat-form-field>
 
         <div class="bi-container">
             <mat-form-field class="email">
                 <mat-label class = "email_info">Introduce tu Email</mat-label>
-                <input type="email" matInput>        
+                <input type="text" [(ngModel)] = "email" class="form-control" name="email" matInput>        
             </mat-form-field>
 
             <mat-form-field class="phone">
                 <mat-label class = "phone_info">Introduce tu Teléfono</mat-label>
-                <input type="text" matInput>
+                <input type="text" class="form-control" [(ngModel)] = "phone"  name="phone"  matInput>
             </mat-form-field>   
         </div>
 
         <mat-form-field class="message">
             <mat-label class = "message_content">Dejanos un Mensaje!</mat-label>
-            <input type="text" matInput>
+            <input type="text" [(ngModel)] = "mensaje" class="form-control"  name="mensaje"  matInput>
         </mat-form-field>
-
-        <button mat-raised-button>Enviar</button>
+        <div class="form-group">
+            <button  type="submit" [disabled]="!name || !email || !phone || !mensaje" mat-raised-button>Enviar</button>
+        </div>
     </form>
 </mat-card>
 

@@ -47,7 +47,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { AppointmentsComponent } from './components/appointments/appointments.component';
-
+import {CrudContactService} from './services/crud-contact.service';
 
 @NgModule({
   declarations: [
