@@ -58,6 +58,8 @@ import { AppointmentsManagerComponent } from './pages/manager/appointments-manag
 import {MatNativeDateModule} from '@angular/material/core';
 import { AppointmentWaitlistComponent } from './components/appointment-waitlist/appointment-waitlist.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { OrdersPageComponent } from './pages/manager/orders-page/orders-page.component';
+import { OrdersComponent } from './components/orders/orders.component';
 
 
 
@@ -92,7 +94,9 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
     MainNavbarComponent,
     AppointmentCalendarComponent,
     AppointmentsManagerComponent,
-    AppointmentWaitlistComponent
+    AppointmentWaitlistComponent,
+    OrdersPageComponent,
+    OrdersComponent
   ],
 
   imports: [

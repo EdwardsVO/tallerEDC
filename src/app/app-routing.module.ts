@@ -10,6 +10,8 @@ import { AppointmentsComponent } from './components/appointments/appointments.co
 import { VehicleRegisterComponent } from './components/vehicle-register/vehicle-register.component';
 import { UserGuard } from './guards/user.guard';
 import { AppointmentsManagerComponent } from './pages/manager/appointments-manager/appointments-manager.component';
+import { OrdersPageComponent } from './pages/manager/orders-page/orders-page.component';
+
 
 const routes: Routes = [
   { path: 'home', component: LandingPageComponent },
@@ -18,6 +20,7 @@ const routes: Routes = [
   { path: 'admin', component: UserPageComponent },
   { path: 'appointments', component: AppointmentsComponent },
   { path: 'manager',  component: AppointmentsManagerComponent},
+  { path: 'manager/orders',  component: OrdersPageComponent},
   { path: 'user/vehicles/register', component: VehicleRegisterComponent, canActivate: [UserGuard] },
   { path: 'user/vehicles', component: VehiclePageComponent, canActivate: [UserGuard] },
   { path: 'user/appointments', component: AppointmentsComponent, canActivate: [UserGuard] },
