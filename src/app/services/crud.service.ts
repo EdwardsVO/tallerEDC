@@ -26,7 +26,7 @@ export class CrudService {
 
   async newUser(id, name, email, phone, role): Promise<void>{
     try{
-      await this.db.collection('users').add({
+      await this.db.collection('users').doc(id).set({
         id: id,
         name: name,
         email: email,
