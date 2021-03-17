@@ -46,6 +46,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { AppointmentsComponent } from './components/appointments/appointments.component';
+import {CrudContactService} from './services/crud-contact.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppointmentCalendarComponent } from './components/appointment-calendar/appointment-calendar.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
