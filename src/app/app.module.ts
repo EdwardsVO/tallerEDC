@@ -9,7 +9,6 @@ import { RouterModule } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore'
 
 // Bootstrap
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -47,6 +46,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { AppointmentsComponent } from './components/appointments/appointments.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppointmentCalendarComponent } from './components/appointment-calendar/appointment-calendar.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AppointmentsManagerComponent } from './pages/manager/appointments-manager/appointments-manager.component';
@@ -111,6 +111,7 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    NgbModule,
     MatDatepickerModule,
     MatNativeDateModule,
     NgxMaterialTimepickerModule,

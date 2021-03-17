@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+
 
 @Component({
   selector: 'app-vehicle-register',
@@ -7,10 +9,74 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VehicleRegisterComponent implements OnInit {
 
-  constructor() { }
+  collection = { count:5, data: []}
+  registrarVehiculoForm: FormGroup;
+
+  
+
+  constructor(
+    public fb: FormBuilder,
+    
+  ) { }
 
   ngOnInit(): void {
+
+    this.registrarVehiculoForm = this.fb.group({
+      serial: ['', Validators.required],
+      marca: ['', Validators.required],
+      modelo: ['', Validators.required],
+      year: ['', Validators.required],
+      placa: ['', Validators.required],
+      foto: ['', Validators.required]
+    })
+
+    for(var i = 0; i < this.collection.count; i++){
+      this.collection.data.push({
+        serial: i,
+        marca: "marca"+i,
+        modelo: "modelo" +i,
+        year: "year" +i,
+        placa: "placa" +i,
+        foto: "foto" +i
+      })
+    }
   }
+
+  delete(item:any):void{
+
+    //this.firebaseServiceService.deleteEstudiante(item.idFirebase);
+
+    this.collection.data.pop();
+  }
+
+  saveCar():void {
+
+    // this.firebaseServiceService.createEstudiante(this.estudianteForm.value).then(resp => {
+    //   this.estudianteForm.reset();
+    //   this.modalService.dismissAll();
+    // }).catch(error => {
+    //   console.error(error)
+    // })
+
+    this.collection.data.push(this.registrarVehiculoForm.value);
+    this.registrarVehiculoForm.reset();
+  }
+
+  // actualizarStudent(){
+
+  //   if(!isNullOrUndefined(this.idFirebaseActualizar)){
+  //     this.firebaseServiceService.updateEstudiante(this.idFirebaseActualizar, this.estudianteForm.value).then(resp => {
+  //     this.estudianteForm.reset();
+  //     this.modalService.dismissAll();
+  //     }).catch(error => {
+  //       console.error(error)
+  //     })
+
+  //   }
+    
+  // }
+
+  
 
   brands = [
     {
