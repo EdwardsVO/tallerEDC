@@ -27,7 +27,7 @@
                    
                     <table class="user-info"><tr>
                         <td><mat-form-field class="first-name">
-                        <mat-label>*Nombre</mat-label>
+                        <mat-label aria-placeholder="*Username">*Nombre</mat-label>
                         <input matInput>
                         </mat-form-field></td>
         
@@ -73,5 +73,17 @@
                 </mat-card-content>
             </div>
 
-       
-  </mat-card>
+
+            <div *ngIf="users?.length > 0; else noUsers">
+                <ul *ngFor = "let user of users">
+                    <li>{{user.name}}</li>
+                    <li>{{user.email}}</li>
+
+                </ul>
+            </div>
+
+            <ng-template #noUsers >
+
+                <hr>
+                <h5>There are no Users to list</h5>
+            </ng-template>

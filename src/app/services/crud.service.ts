@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection, DocumentSnapshot } from '
 import { User } from '../models/user';
 import firebase from 'firebase';
 import { UsersComponent } from '../components/users/users.component';
+import { Observable } from 'rxjs';
 
 
 
@@ -17,26 +18,28 @@ export class CrudService {
   
 
   private usersCollection: AngularFirestoreCollection<User>;
+  users: Observable<User[]>
 
-  constructor(private _afs: AngularFirestore) {  
+  constructor(private _afs: AngularFirestore) { 
+    this.users = this._afs.collection('users').valueChanges(); 
   }
 
-  async newUser(name, email, phone, role): Promise<void>{
+  async newUser(id, name, email, phone, role): Promise<void>{
     try{
-      await this.db.collection('users').doc(email).set({
+      await this.db.collection('users').add({
+        id: id,
         name: name,
         email: email,
         phone: phone,
         role: role,
-        cars: {
-          car1: {},
-          car2: {},
-          car3: {}
-        }
       })
     }catch(err){
       console.log(err);
     }
+  }
+
+  getUsers(){
+    return this.users;
   }
 
 }
