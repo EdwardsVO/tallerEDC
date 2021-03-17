@@ -8,7 +8,13 @@ import { environment } from 'src/environments/environment';
 import { RouterModule } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore'
 
+// Google Maps
+import { AgmCoreModule } from '@agm/core';
+
+
 // Bootstrap
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,15 +52,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { AppointmentsComponent } from './components/appointments/appointments.component';
-import {CrudContactService} from './services/crud-contact.service';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppointmentCalendarComponent } from './components/appointment-calendar/appointment-calendar.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AppointmentsManagerComponent } from './pages/manager/appointments-manager/appointments-manager.component';
 import {MatNativeDateModule} from '@angular/material/core';
 import { AppointmentWaitlistComponent } from './components/appointment-waitlist/appointment-waitlist.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
- 
+
 
 
 
@@ -90,7 +94,7 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
     AppointmentsManagerComponent,
     AppointmentWaitlistComponent
   ],
-  
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -116,7 +120,10 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
     MatDatepickerModule,
     MatNativeDateModule,
     NgxMaterialTimepickerModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBByzbHz4Z4lQ8uJdqRGXcXM2BRxKJhkvM'
+    })
   ],
   providers: [AngularFirestore],
   bootstrap: [AppComponent],
