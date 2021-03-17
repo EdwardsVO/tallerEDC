@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "talleredc-8704c": {
+      "hosting": {
+        "tallerEDC": [
+          "talleredc-8704c"
+        ]
+      }
+    }
+  }
+}

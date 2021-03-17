@@ -40,4 +40,10 @@ export class AppointmentsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  selectAppointment(){
+    console.log(
+      "this was clicked"
+    );
+  }
+
 }

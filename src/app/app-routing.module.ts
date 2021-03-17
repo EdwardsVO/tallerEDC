@@ -4,7 +4,6 @@ import { LoginPageComponent } from './pages/client/login-page/login-page.compone
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { UserPageComponent } from './pages/admin/user-page/user-page.component';
-import { User } from './models/user'
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { VehiclePageComponent } from './pages/vehicle-page/vehicle-page.component';
 import { AppointmentsComponent } from './components/appointments/appointments.component';
@@ -21,7 +20,7 @@ const routes: Routes = [
   { path: 'manager',  component: AppointmentsManagerComponent},
   { path: 'user/vehicles/register', component: VehicleRegisterComponent, canActivate: [UserGuard] },
   { path: 'user/vehicles', component: VehiclePageComponent, canActivate: [UserGuard] },
-  { path: 'user/calls', component: AppointmentsComponent, canActivate: [UserGuard] },
+  { path: 'user/appointments', component: AppointmentsComponent, canActivate: [UserGuard] },
   { path: 'user',  component: ProfilePageComponent, canActivate: [UserGuard] },
   { path: '**', redirectTo: '/home' },
 ];

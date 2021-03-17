@@ -35,18 +35,19 @@ export class RegisterComponent implements OnInit {
   async handleRegistration(): Promise<void> {
     try{
       await this._authService.registerNewUser(this.authForm.get('email').value, this.authForm.get('password').value)
-      this._db.newUser(
+      this._authService.getCurrentUser().subscribe( res => {
+        this.id = res.uid
+        this._db.newUser(
+        this.id,
         this.authForm.get('name').value, 
         this.authForm.get('email').value,
         this.authForm.get('phone').value,
         this.role,
-        
-      )}
-    catch(err) {
+      )
+    })
+    }catch(err) {
       console.log(err);
       console.log(this.authForm.get('email'));
-      
     }
   }
-
 }
