@@ -3,7 +3,6 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {VehiclesCrudService} from '../../services/vehicles-crud.service'
 import { isNullOrUndefined } from 'util';
-import { map } from 'rxjs/operators';
 import {AngularFirestore} from '@angular/fire/firestore';
 
 @Component({
@@ -13,30 +12,6 @@ import {AngularFirestore} from '@angular/fire/firestore';
 })
 export class VehiclesComponent implements OnInit {
 
-  // cars = [
-  //   {
-  //     img: "assets/corolla.png",
-  //     serial: "JHLRD77875C027456",
-  //     model: "Corolla",
-  //     year: "2020",
-  //     license_plate: "RAL38K"
-  //   },
-  //   {
-  //     img: "assets/corolla.png",
-  //     serial: "JHLRD77875C027456",
-  //     model: "Yaris",
-  //     year: "2020",
-  //     license_plate: "RAL38K"
-  //   },
-
- 
-  // ]
-
-  
-
-  
-
-  closeResult = '';
   registrarVehiculoForm: FormGroup;
   idFirebaseActualizar: string;
   actualizar: boolean
@@ -58,7 +33,6 @@ export class VehiclesComponent implements OnInit {
     
 
     this.registrarVehiculoForm = this.fb.group({
-      id: ['', Validators.required],
       serial: ['', Validators.required],
       marca: ['', Validators.required],
       modelo: ['', Validators.required],
@@ -71,13 +45,13 @@ export class VehiclesComponent implements OnInit {
     this.vehiclesCrudService.getCars().subscribe(resp => {
       this.collection.data = resp.map((e: any) => {
         return {
-          id: e.payload.doc.data().id,
+          owner: e.payload.doc.data().owner,
           serial: e.payload.doc.data().serial,
           marca: e.payload.doc.data().marca,
           modelo: e.payload.doc.data().modelo, 
           year: e.payload.doc.data().year,
           placa: e.payload.doc.data().placa,
-          idFirebase: e.payload.doc.id
+          idFirebase: e.payload.doc.owner
         }
       })
     },
