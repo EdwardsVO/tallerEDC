@@ -3,7 +3,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {VehiclesCrudService} from '../../services/vehicles-crud.service'
 import { isNullOrUndefined } from 'util';
-import {AngularFirestore} from '@angular/fire/firestore';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-vehicles',
@@ -17,13 +17,13 @@ export class VehiclesComponent implements OnInit {
   actualizar: boolean
   collection = { count:2, data: []};
   carBrand: string;
- 
+  closeResult = '';
 
   constructor(
     private modalService: NgbModal,
     public fb: FormBuilder,
     private vehiclesCrudService: VehiclesCrudService,
-    private firestore: AngularFirestore
+    private login: LoginComponent
   ) { }
 
   ngOnInit(): void {
@@ -45,7 +45,7 @@ export class VehiclesComponent implements OnInit {
     this.vehiclesCrudService.getCars().subscribe(resp => {
       this.collection.data = resp.map((e: any) => {
         return {
-          owner: e.payload.doc.data().owner,
+          owner: e.payload.doc.data().login.id,
           serial: e.payload.doc.data().serial,
           marca: e.payload.doc.data().marca,
           modelo: e.payload.doc.data().modelo, 
