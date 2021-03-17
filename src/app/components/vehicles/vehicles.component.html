@@ -1,20 +1,20 @@
 <h1>MIS VEHÍCULOS</h1>
 <mat-card class="profile-vehicle">
     <div class='carros'>
-        <div class="vehicle-container" *ngFor="let item of collection.data">
-            <img mat-card-sm-image src="{{item.foto}}" alt="client's car1">
+        <div class="vehicle-container" *ngFor="let car of cars">
+            <img mat-card-sm-image src="{{car.foto}}" alt="client's car1">
            
             <mat-card-subtitle class="v-info">SERIAL
-                <p>{{item.serial}}</p>
+                <p>{{car.serial}}</p>
             </mat-card-subtitle>
             <mat-card-subtitle class="v-info">MODELO
-                <p>{{item.model}}</p>
+                <p>{{car.modelo}}</p>
             </mat-card-subtitle>
             <mat-card-subtitle class="v-info">AÑO
-                <P>{{item.year}}</P>
+                <P>{{car.year}}</P>
             </mat-card-subtitle>
             <mat-card-subtitle class="v-info">PLACA
-                <P>{{item.placa}}</P>
+                <P>{{car.placa}}</P>
             </mat-card-subtitle> 
              <button mat-fab color="primary" class = "delete" title="Eliminar" (click)="delete(item)">
                 <mat-icon>delete</mat-icon>
@@ -43,13 +43,13 @@
                     
                         <mat-card-content>
 
-                            <p>
+                            <!-- <p>
                                 <mat-form-field class="tlf">
                                     <mat-label>*Id</mat-label>
                                     <input matInput type="number" formControlName="id" class="form-control">
-                                    <!--<input matInput>-->
-                                </mat-form-field>
-                            </p>
+                                    <!-- <input matInput> -->
+                                <!-- </mat-form-field> 
+                            </p> --> 
                         
                             <p>
                                 <mat-form-field class="tlf">
@@ -104,7 +104,7 @@
                     
                 
     
-                            <button mat-raised-button color="primary" class="re-btn" (click)="saveCar()">REGISTRAR</button> 
+                            <button mat-raised-button color="primary" class="re-btn" (click)="addNewCar()">REGISTRAR</button> 
     
                         </mat-card-content>
                     </div>

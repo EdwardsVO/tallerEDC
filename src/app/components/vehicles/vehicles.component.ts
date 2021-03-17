@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {VehiclesCrudService} from '../../services/vehicles-crud.service'
+import {VehiclesCrudService} from '../../services/vehicles-crud.service';
 import { isNullOrUndefined } from 'util';
-//import { LoginComponent } from '../login/login.component';
+import { CrudService } from 'src/app/services/crud.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { Vehicle } from 'src/app/models/vehicle';
+
+
+
+
 
 @Component({
   selector: 'app-vehicles',
@@ -18,18 +24,28 @@ export class VehiclesComponent implements OnInit {
   collection = { count:2, data: []};
   carBrand: string;
   closeResult = '';
+  owner: string;
+  cars: Vehicle[];
 
   constructor(
     private modalService: NgbModal,
     public fb: FormBuilder,
     private vehiclesCrudService: VehiclesCrudService,
-    //private login: LoginComponent
+    private _crudservice: CrudService,
+    private _vehicleservice: VehiclesCrudService,
+    private _authservice: AuthService
   ) { }
 
   ngOnInit(): void {
+   
+  
 
     this.idFirebaseActualizar = '';
     this.actualizar = false;
+
+    this._vehicleservice.getCars().subscribe(cars => {
+      this.cars = cars;
+    })
     
 
     this.registrarVehiculoForm = this.fb.group({
@@ -40,33 +56,31 @@ export class VehiclesComponent implements OnInit {
       placa: ['', Validators.required]
     })
 
-   
-
-    this.vehiclesCrudService.getCars().subscribe(resp => {
-      this.collection.data = resp.map((e: any) => {
-        return {
-          owner: e.payload.doc.data().owner,
-          serial: e.payload.doc.data().serial,
-          marca: e.payload.doc.data().marca,
-          modelo: e.payload.doc.data().modelo, 
-          year: e.payload.doc.data().year,
-          placa: e.payload.doc.data().placa,
-          idFirebase: e.payload.doc.owner
-        }
-      })
-    },
-      error => {
-        console.error(error);
-      }
-    );
-      
-  
-    
-  
-    
   }
 
- 
+
+  
+  
+
+  async addNewCar(): Promise <void> {
+    try{
+      await this._authservice.getCurrentUser().subscribe(resp => {
+        this.owner = resp.uid
+        this._vehicleservice.newCar(
+          this.owner, 
+          this.registrarVehiculoForm.get('serial').value, 
+          this.registrarVehiculoForm.get('marca').value, 
+          this.registrarVehiculoForm.get('modelo').value, 
+          this.registrarVehiculoForm.get('year').value, 
+          this.registrarVehiculoForm.get('placa').value
+        )
+        this.registrarVehiculoForm.reset();
+        this.modalService.dismissAll();
+      })
+    }catch(error){
+      console.log(error)
+    }
+  }
 
 
 
