@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
   authForm: FormGroup;
   email: string;
   id: string;
-  role: string = 'user';
+  role: string = 'client';
   
 
   constructor(private _fb: FormBuilder ,private _authService: AuthService, private _db: CrudService, private _firestore: AngularFirestore) { }
