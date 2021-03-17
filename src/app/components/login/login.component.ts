@@ -19,6 +19,12 @@ export class LoginComponent implements OnInit {
   authForm: FormGroup 
   user: firebase.User;
   prueba: string;
+  name: string;
+  email: string;
+  id: string;
+  phone: string = '';
+  role: string = 'client';
+
 
 
   constructor(private _fb: FormBuilder, private _authService: AuthService, private _router: Router, private _db: CrudService) {
@@ -39,6 +45,25 @@ export class LoginComponent implements OnInit {
   async handleGoogleLogin():Promise<void> {
     try{
       await this._authService.loginWithGoogle();
+
+      this._authService.getCurrentUser().subscribe(
+        user => {
+
+          this.id = user.uid;
+          this.name = user.displayName;
+          this.email = user.email;
+          this.phone = user.phoneNumber;
+          this.role
+
+          this._db.newUser(
+            this.id, 
+            this.name, 
+            this.email, 
+            this.phone, 
+            this.role)
+        }
+      )
+
       this.startProfilePage()
     } catch(err){
       console.log(err);
@@ -56,7 +81,6 @@ export class LoginComponent implements OnInit {
   
   async  startProfilePage(): Promise<void>{
     try{
-      this._db.readUsers();
       await this._authService.getCurrentUser().subscribe(
         user => {
           this.user = user;
@@ -69,5 +93,7 @@ export class LoginComponent implements OnInit {
       console.log(err)
     } 
   }
+
+  
 
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {CrudContactService} from './services/crud-contact.service';
-
+CrudContactService
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AngularFirestore} from '@angular/fire/firestore';
+import { CrudContactService } from 'src/app/services/crud-contact.service';
 
 
 
@@ -25,11 +25,34 @@ export class ContactComponent implements OnInit {
   phone: number  ;
   mensaje: string;
 
-  
+  message: string;
 
-  constructor(crudcontactservice:CrudContactService){}
+  constructor( public crudcontactservice:CrudContactService){}
 
+  createMsj(){
 
+   let Get ={};
+   Get ['name'] = this.name;
+   Get['email'] = this.email;
+   Get['phone'] = this.phone;
+   Get['mensaje'] = this.mensaje;
+
+    this.crudcontactservice.contactMsj(Get).then(res => {
+
+      this.name = "";
+      this.email = "";
+      this.phone = undefined;
+      this.mensaje = "";
+
+      console.log(res);
+
+      this.message = "Enviado";
+
+    }).catch(error => {
+      console.log(error);
+    });
+
+  }
    
 
   ngOnInit(): void {

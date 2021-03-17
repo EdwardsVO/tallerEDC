@@ -41,7 +41,7 @@
         <div class="login" *ngIf="userLog" >
           <button routerLink='/user' class="profile-data" mat-flat-button *ngIf="userLog">{{userLog.displayName}} <img src="{{userLog.photoURL}}" alt="" mat-card-avatar> </button>
           <a mat-button routerLink='user/vehicles' >Vehículos</a>
-          <a mat-button routerLink = 'user/calls'>Citas</a>
+          <a mat-button routerLink = 'user/appointments'>Citas</a>
           <a href="/home" class="loging-b" mat-raised-button color="primary" (click) = "logOut()">Salir
             <mat-icon aria-hidden="false" aria-label="Example home icon" *ngIf="userLog">logout</mat-icon>
         </a>

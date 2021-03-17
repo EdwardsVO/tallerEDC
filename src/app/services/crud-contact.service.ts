@@ -6,11 +6,12 @@ import {AngularFirestore} from '@angular/fire/firestore'
 })
 export class CrudContactService {
 
-  constructor(fireservices:AngularFirestore) { }
+  constructor(public fireservices:AngularFirestore) { }
 
-  contactMsj(){
+  contactMsj(Get){
 
-    
+
+    return this.fireservices.collection('contact').add(Get);
 
   }
 
