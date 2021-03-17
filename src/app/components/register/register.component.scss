@@ -1,21 +1,30 @@
+.dialog{
+  width: 180%;
+}
+
 .container {
   display: flex;
-  width: 100%;
+  width: 180%;
   display: flex;
   justify-content: center;
   padding-top: 5rem;
   padding-bottom: 3rem;
+
 }
 span.taller {
   color: #2e3192;
+  
 }
 mat-card {
   background: #f7f7f7;
+ 
 }
 form {
   width: auto;
   display: flex;
   flex-direction: column;
+  
+ 
 }
 span.create {
   color: rgb(78, 78, 78);
@@ -35,10 +44,13 @@ button {
 button:hover {
   color: #2e3192;
   background-color: white;
+
 }
 
 .create{
+
     a{
         color: #2e3192;
     }
 }
+
