@@ -28,11 +28,7 @@ export class CrudService {
         email: email,
         phone: phone,
         role: role,
-        cars: {
-          car1: {},
-          car2: {},
-          car3: {}
-        }
+        cars: {}
       })
     }catch(err){
       console.log(err);

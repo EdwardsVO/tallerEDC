@@ -3,6 +3,8 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {VehiclesCrudService} from '../../services/vehicles-crud.service'
 import { isNullOrUndefined } from 'util';
+import { map } from 'rxjs/operators';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-vehicles',
@@ -40,17 +42,20 @@ export class VehiclesComponent implements OnInit {
   actualizar: boolean
   collection = { count:2, data: []};
   carBrand: string;
+ 
 
   constructor(
     private modalService: NgbModal,
     public fb: FormBuilder,
-    private vehiclesCrudService: VehiclesCrudService
+    private vehiclesCrudService: VehiclesCrudService,
+    private firestore: AngularFirestore
   ) { }
 
   ngOnInit(): void {
 
     this.idFirebaseActualizar = '';
     this.actualizar = false;
+    
 
     this.registrarVehiculoForm = this.fb.group({
       id: ['', Validators.required],
@@ -61,34 +66,35 @@ export class VehiclesComponent implements OnInit {
       placa: ['', Validators.required]
     })
 
+   
+
     this.vehiclesCrudService.getCars().subscribe(resp => {
-      this.collection.data = resp.map((e:any) => {
+      this.collection.data = resp.map((e: any) => {
         return {
           id: e.payload.doc.data().id,
           serial: e.payload.doc.data().serial,
           marca: e.payload.doc.data().marca,
-          modelo: e.payload.doc.data().marca,
-          year: e.payload.doc.data().marca,
-          placa: e.payload.doc.data().marca,
+          modelo: e.payload.doc.data().modelo, 
+          year: e.payload.doc.data().year,
+          placa: e.payload.doc.data().placa,
           idFirebase: e.payload.doc.id
         }
       })
-    })
-
-   
-
-    // for(var i = 0; i < this.collection.count; i++){
-    //   this.collection.data.push({
-    //     serial: i,
-    //     marca: "marca" +i,
-    //     modelo: "modelo" +i,
-    //     year: "year" +i,
-    //     placa: "placa" +i
-    //   })
-    // }
-
+    },
+      error => {
+        console.error(error);
+      }
+    );
+      
+  
+    
+  
     
   }
+
+ 
+
+
 
   saveCar():void {
 
@@ -118,7 +124,7 @@ export class VehiclesComponent implements OnInit {
     
   }
 
-  delete(item:any):void{
+  delete(item: any):void{
 
     this.vehiclesCrudService.deleteCar(item.idFirebase);
 

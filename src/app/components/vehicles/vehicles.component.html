@@ -16,7 +16,7 @@
             <mat-card-subtitle class="v-info">PLACA
                 <P>{{item.placa}}</P>
             </mat-card-subtitle> 
-             <button mat-fab color="primary" class = "delete" title="Eliminar">
+             <button mat-fab color="primary" class = "delete" title="Eliminar" (click)="delete(item)">
                 <mat-icon>delete</mat-icon>
               </button>
         </div>
@@ -42,6 +42,14 @@
                     <div  class="info-card">
                     
                         <mat-card-content>
+
+                            <p>
+                                <mat-form-field class="tlf">
+                                    <mat-label>*Id</mat-label>
+                                    <input matInput type="number" formControlName="id" class="form-control">
+                                    <!--<input matInput>-->
+                                </mat-form-field>
+                            </p>
                         
                             <p>
                                 <mat-form-field class="tlf">
