@@ -91,6 +91,8 @@ form {
 div.menu {
   margin-left: -10px;
   color: grey;
+  z-index: 1;
+  position: absolute;
 }
 
 input#brandChosen {
