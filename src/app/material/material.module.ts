@@ -8,6 +8,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 
 @NgModule({
@@ -21,6 +23,7 @@ import {MatMenuModule} from '@angular/material/menu';
         MatCardModule,
         MatDividerModule,
         MatMenuModule,
+        MatCheckboxModule,
     ],
     exports: [
         MatToolbarModule,
@@ -31,7 +34,8 @@ import {MatMenuModule} from '@angular/material/menu';
         MatCardModule,
         MatIconModule,
         MatDividerModule,
-        MatMenuModule
+        MatMenuModule,
+        MatCheckboxModule,
     ]
 })
 
