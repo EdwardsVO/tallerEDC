@@ -1,0 +1,49 @@
+h1 {
+    color: #2e3192;
+    font-family: "Bree Serif", serif;
+    margin-left: 10%;
+    margin-top: 5%;
+  }
+
+.requirements{
+    display: row;
+    margin-bottom: auto;
+    margin-left: 30%;
+    margin-right: 30%;    
+}
+
+.r1{
+    float:left;
+}
+
+.r2{
+    float:right;
+}
+
+
+
+  .buttons-container {
+    text-align: right;
+    
+    position:absolute;
+    margin-bottom: 5%;
+    button{
+      margin-left: 90%;
+      margin-right: 100%;
+    }
+}
+
+button{
+    margin-top: 5%;
+    margin-left: 75%;
+    width: 10%;
+    height: 50px;
+    background-color: #2e3192;
+    color: white;
+}
+
+mat-selection-list {
+    max-height: 400px;
+    overflow-y:scroll;
+    //overflow-x: scroll;
+  }

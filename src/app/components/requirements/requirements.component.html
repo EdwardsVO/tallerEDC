@@ -1,0 +1,28 @@
+
+  
+<h1>SELECCIONAR SI EXISTE:</h1>
+
+
+
+<div class="requirements">
+
+    <mat-selection-list #requirements class="r1">
+        <mat-list-option color = "primary" *ngFor="let requirement of typesRequirements">
+        {{requirement}}
+        </mat-list-option>
+    </mat-selection-list>
+
+    <mat-selection-list #requirements2 class="r2">
+        <mat-list-option  color = "primary" *ngFor="let requirement2 of typesRequirements2">
+        {{requirement2}}
+        </mat-list-option>
+        
+    </mat-selection-list>
+
+    
+</div>
+
+<div class="button-container">
+    <button mat-raised-button class="agg-btn" >ACEPTAR</button>
+</div>
+
