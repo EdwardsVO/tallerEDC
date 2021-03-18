@@ -16,7 +16,10 @@
             <mat-card-subtitle class="v-info">PLACA
                 <P>{{car.placa}}</P>
             </mat-card-subtitle> 
-             <button mat-fab color="primary" class = "delete" title="Eliminar" (click)="delete(item)">
+            <button mat-fab color="primary" class = "delete" title="Eliminar" (click)="openEditar(content,item)">
+                <mat-icon>edit</mat-icon>
+              </button>
+             <button mat-fab color="primary" class = "delete" title="Eliminar" (click)="delete(car)">
                 <mat-icon>delete</mat-icon>
               </button>
         </div>

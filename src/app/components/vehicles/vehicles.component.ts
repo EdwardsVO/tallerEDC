@@ -6,6 +6,7 @@ import { isNullOrUndefined } from 'util';
 import { CrudService } from 'src/app/services/crud.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Vehicle } from 'src/app/models/vehicle';
+import { catchError } from 'rxjs/operators';
 
 
 
@@ -48,6 +49,7 @@ export class VehiclesComponent implements OnInit {
     })
     
 
+
     this.registrarVehiculoForm = this.fb.group({
       serial: ['', Validators.required],
       marca: ['', Validators.required],
@@ -82,42 +84,54 @@ export class VehiclesComponent implements OnInit {
     }
   }
 
-
-
-  saveCar():void {
-
-    this.vehiclesCrudService.createCar(this.registrarVehiculoForm.value).then(resp => {
-      this.registrarVehiculoForm.reset();
-      this.modalService.dismissAll();
-    }).catch(error => {
-      console.error(error)
-    })
-
-    // this.collection.data.push(this.registrarVehiculoForm.value);
-    // this.registrarVehiculoForm.reset();
-    // this.modalService.dismissAll();
-  }
-
-  actualizarCar(){
-
-    if(!isNullOrUndefined(this.idFirebaseActualizar)){
-      this.vehiclesCrudService.updateCar(this.idFirebaseActualizar, this.registrarVehiculoForm.value).then(resp => {
-      this.registrarVehiculoForm.reset();
-      this.modalService.dismissAll();
-      }).catch(error => {
-        console.error(error)
+  getOwnerId(){
+    try{
+      this._authservice.getCurrentUser().subscribe(resp => {
+        return this.owner = resp.uid
+        //console.log(this.owner)
       })
-
+    }catch(error){
+      console.log(error)
     }
+  }
+
+
+  // actualizarCar(){
+
+  //   //let id = this.getOwnerId();
+
+  //   this.vehiclesCrudService.updateCar(this.getOwnerId(), this.registrarVehiculoForm.value).then(resp => {
+  //     this.registrarVehiculoForm.reset();
+  //     this.modalService.dismissAll();
+  //   }).catch(error => {
+  //     console.error(error);
+  //   });
+  // }
+
+  
     
+  
+
+
+
+
+  delete(car):void{
+
+      this.vehiclesCrudService.deleteCar(car);
+   
   }
 
-  delete(item: any):void{
-
-    this.vehiclesCrudService.deleteCar(item.idFirebase);
-
-    //this.collection.data.pop();
-  }
+  // delete(){
+  //   try{
+  //     this._authservice.getCurrentUser().subscribe(resp => {
+  //       this.owner = resp.uid
+  //       this._vehicleservice.deleteCar(
+  //         this.owner)
+  //     })
+  //   }catch(error){
+  //     console.log(error)
+  //   }
+  // }
 
 
 
@@ -134,6 +148,25 @@ export class VehiclesComponent implements OnInit {
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+  }
+
+  openEditar(content, item: any) {
+
+    //llenar form para editar
+    //this.registrarVehiculoForm.setValue({
+  //     this.registrarVehiculoForm.setValue(item.serial), 
+  //     this.registrarVehiculoForm.setValue(item.marca), 
+  //     this.registrarVehiculoForm.setValue(item.modelo), 
+  //     this.registrarVehiculoForm.setValue(item.year), 
+  //     this.registrarVehiculoForm.setValue(item.placa)
+  //  // });
+  //   // this.idFirabaseActualizar = item.idFirebase;
+  //   // this.actualizar = true;
+  //   this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+  //     this.closeResult = `Closed with: ${result}`;
+  //   }, (reason) => {
+  //     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  //   });
   }
 
   private getDismissReason(reason: any): string {
