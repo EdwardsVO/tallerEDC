@@ -1,1 +1,26 @@
-<p>vehicle-reports works!</p>
+<h1>VEHÍCULOS</h1>
+<div class="search-space">
+    <form action="search">
+        <input type="Search" placeholder="Search">
+        <button mat-raised-button>Search</button>
+    </form>
+    
+</div>
+<mat-card>
+    <div class="vehicle-container" *ngFor="let car of cars">
+        <img mat-card-sm-image src="{{car.img}}" alt="client's car1">
+        <mat-card-subtitle>MODELO
+            <p>{{car.model}}</p>
+        </mat-card-subtitle>
+        <mat-card-subtitle>AÑO
+            <p>{{car.year}}</p>
+        </mat-card-subtitle>
+        <mat-card-subtitle>PLACA
+            <p>{{car.license_plate}}</p>
+        </mat-card-subtitle>
+        <mat-card-actions><button mat-raised-button>DATOS DE REPARACIÓN</button></mat-card-actions>
+        <mat-card-actions><button mat-raised-button>SUBIR REPORTE  <span class="material-icons">
+            backup
+            </span></button></mat-card-actions>
+    </div>
+</mat-card>

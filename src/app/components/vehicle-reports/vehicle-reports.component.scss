@@ -1,0 +1,64 @@
+h1{
+    color: #2e3192;
+    font-family: "Bree Serif", serif;
+    margin-top: 5%;
+    margin-left: 14%;
+}
+
+.search-space{
+    text-align: left;
+    margin-left: 13.5%;
+    
+
+    input{
+        width: 25%;
+        align-items: center;
+        height: 50px;
+        margin-top: 2%;
+        border: 1px solid rgb(151, 151, 151);
+    
+    }
+    button{
+        height: 50px;
+        color: white;
+        background-color: #2E3192;
+        margin-bottom: 25px;
+    
+    }
+    button:hover{
+        color:#2E3192;
+        background-color: white;
+    }
+}
+
+.vehicle-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: rgb(233, 233, 233);
+    margin-bottom: 10px;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  
+  
+  .vehicle-container p {
+    font-size: 12px;
+  }
+button{
+    height: 50px;
+    color:#2E3192;
+    background-color: white;
+    margin-bottom: 25px;
+
+}
+button:hover{
+    color: white;
+    background-color: #2E3192;
+}
+
+img{
+    border-radius: 50%;
+}
