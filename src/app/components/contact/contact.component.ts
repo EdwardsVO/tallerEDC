@@ -46,7 +46,8 @@ export class ContactComponent implements OnInit {
 
       console.log(res);
 
-      this.message = "Enviado";
+      this.message = "Mensaje enviado!";
+      alert(this.message)
 
     }).catch(error => {
       console.log(error);
