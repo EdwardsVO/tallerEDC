@@ -1,67 +1,50 @@
 <div class="user-space">
     <div class="user">
-        <div class="user-container">
+        <div class="user-container" *ngFor="let user of users">
             <img mat-card-sm-image src="assets/img/placeholder.jpg" alt="client's car1">
+
             <mat-card-subtitle>NOMBRE
-                <p>Francesca Marinuzzi</p>
+                <p>{{user.name}}</p>
             </mat-card-subtitle>
             <mat-card-subtitle>TELÉFONO
-                <p>414-101-3177</p>
+                <p>{{user.phone}}</p>
             </mat-card-subtitle>
-            <mat-form-field appearance="fill">
-                <mat-label>Funcion</mat-label>
-                <select matNativeControl required>
-                  <option value="Cliente">Cliente</option>
-                  <option value="Mecanico">Mecanico</option>
-                  <option value="Gerente">Gerente</option>
-                </select>
-              </mat-form-field>
-            
+            <mat-card-subtitle>EMAIL
+                <p>{{user.email}}</p>
+            </mat-card-subtitle>
+            <mat-card-subtitle>Role
+                <p>{{user.role}}</p>
+            </mat-card-subtitle>
+
+
+
             <button mat-mini-fab class="edit"color="primary">
-                <mat-icon>edit</mat-icon>
+                <mat-icon (click) = "updateRoleForm(user)">edit</mat-icon>
             </button>
-        </div>
-        <div class="user-container">
-            <img mat-card-sm-image src="assets/img/placeholder.jpg" alt="client's car1">
-            <mat-card-subtitle>NOMBRE
-                <p>Francesca Marinuzzi</p>
-            </mat-card-subtitle>
-            <mat-card-subtitle>TELÉFONO
-                <p>414-101-3177</p>
-            </mat-card-subtitle>
-            <mat-form-field appearance="fill">
-                <mat-label>Funcion</mat-label>
-                <select matNativeControl required>
-                  <option value="Cliente">Cliente</option>
-                  <option value="Mecanico">Mecanico</option>
-                  <option value="Gerente">Gerente</option>
-                </select>
-              </mat-form-field>
-            
-            <button mat-mini-fab class="edit"color="primary">
-                <mat-icon>edit</mat-icon>
+            <button mat-mini-fab class = "" color = "primary" *ngIf="editState && userToEdit.id == user.id">
+                <mat-icon (click) = "clearState()"></mat-icon>
             </button>
+
+            <div *ngIf="editState && userToEdit.id == user.id">
+                <form (ngSubmit)= "updateUser(user)">
+                   <div class="row">
+                       <div class="input-field col s6">
+                           <input type="text" placeholder="Nombre del usuario" [(ngModel)] = "user.name" name = "Nombre">
+                       </div>
+
+                       <div class="input-field col s6">
+                        <input type="text" placeholder="Telefono" [(ngModel)] = "user.phone" name = "Telefono">
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input type="text" placeholder="Rol" [(ngModel)] = "user.role" name = "Role">
+                    </div>
+                    <button mat-raised-button color = "primary" type="submit" class = "btn" (click) = "updateUser(user)">Actualizar</button>
+                   </div>
+                </form>
+            </div>
+
         </div>
-        <div class="user-container">
-            <img mat-card-sm-image src="assets/img/placeholder.jpg" alt="client's car1">
-            <mat-card-subtitle>NOMBRE
-                <p>Francesa Marinuzzi</p>
-            </mat-card-subtitle>
-            <mat-card-subtitle>TELÉFONO
-                <p>414-101-3177</p>
-            </mat-card-subtitle>
-            <mat-form-field appearance="fill">
-                <mat-label>Funcion</mat-label>
-                <select matNativeControl required>
-                  <option value="Cliente">Cliente</option>
-                  <option value="Mecanico">Mecanico</option>
-                  <option value="Gerente">Gerente</option>
-                </select>
-              </mat-form-field>
-            
-            <button mat-mini-fab class="edit"color="primary">
-                <mat-icon>edit</mat-icon>
-            </button>
-        </div>
+       
     </div>
 </div>
