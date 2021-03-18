@@ -143,7 +143,10 @@ export class LoginComponent implements OnInit {
         this.authForm.get('email').value,
         this.authForm.get('phone').value,
         this.role,
-      )
+        )
+        this._router.navigate(['/user'], {queryParams: {login: 'true'}, queryParamsHandling: 'merge'})
+        this.modalService.dismissAll()
+    
     })
     }catch(err) {
       console.log(err);

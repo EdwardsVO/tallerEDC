@@ -46,7 +46,5 @@ export class CrudService {
     }
   }
 
-  async getUser(idUser) {
-    return this._afs.collection('users').doc(idUser)
-}
+ 
 }
