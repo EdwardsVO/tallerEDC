@@ -16,8 +16,13 @@ export class CarInfoMComponent implements OnInit {
   kilometraje: string;
   tanque:string;
   extra:string;
+  
 
-  constructor(private _fb: FormBuilder) { }
+  constructor() { 
+   }
+
+  
+
 
   ngOnInit(): void {
   }
