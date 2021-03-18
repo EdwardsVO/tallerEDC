@@ -1,183 +1,175 @@
 .user-profile {
-    margin: auto;
-    width: 70%;
-    display: flex;
+  margin: auto;
+  width: 70%;
+  display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: none !important;
 }
-  
-  
-  
+
+textarea.textarea {
+  resize: none;
+}
+
 td {
-    padding-right: 9%;
-    align-items: center;
-    flex-direction: row;
-    position: -webkit-sticky;
-    position: sticky;
-
-
+  padding-right: 9%;
+  align-items: center;
+  flex-direction: row;
+  position: -webkit-sticky;
+  position: sticky;
 }
 
-.last-name{
-    margin-left: 50%;
-    position: static;
-    
+.last-name {
+  margin-left: 50%;
+  position: static;
 }
 
-.datos{
-    margin-right:15%;
-    margin-left: -15%;
-    
-    display: flex;
-    align-items: center;
-    flex-flow: row wrap;
-    width: auto;
-    
-    display: inline-block;
-    align-items: center;
+.datos {
+  margin-right: 15%;
+  margin-left: -15%;
+
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  width: auto;
+
+  display: inline-block;
+  align-items: center;
 }
 
-.email, .password,.password2, .tlf{
-    width: 95%
+.email,
+.password,
+.password2,
+.tlf {
+  width: 95%;
 }
 
-.cambio-contra, .user-pic{
-    color: #2E3192;
+.cambio-contra,
+.user-pic {
+  color: #2e3192;
 }
 
-.user-pic{
-    width: 30%;
-    margin-left: 20%;
-    margin-bottom: 35%;
-
+.user-pic {
+  width: 30%;
+  margin-left: 20%;
+  margin-bottom: 35%;
 }
 
-.pic-btn{
-    align-items: center;
-    margin-left: -27%;
-    height: 50px;
-    width: 60%;
-    
-    background-color: #2E3192;
-    
+.pic-btn {
+  align-items: center;
+  margin-left: -27%;
+  height: 50px;
+  width: 60%;
+
+  background-color: #2e3192;
 }
 
-button:hover{
-    background-color: white;
-    color: #2E3192;
+button:hover {
+  background-color: white;
+  color: #2e3192;
 }
 
-.user-pic-btn{
-    background-color: rgb(233, 233, 233);
-    margin-right: 15%;
-    margin-top: 100%;
-    
+.user-pic-btn {
+  background-color: rgb(233, 233, 233);
+  margin-right: 15%;
+  margin-top: 100%;
 }
 
-.avatar{
-   
-    display: flex;
-    align-items: center;
-    flex-flow: row wrap;
-    
-    float: left;
-    
-    margin-bottom: 10%;
-    float: right;
-    margin-right: 15%;
-   
+.avatar {
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+
+  float: left;
+
+  margin-bottom: 10%;
+  float: right;
+  margin-right: 15%;
 }
 
-img{
-    border-radius: 50%;
-    width: 60%;
-    display: block;
-    margin-left: 20%;
-    margin-right: auto;
-    
+img {
+  border-radius: 50%;
+  width: 60%;
+  display: block;
+  margin-left: 20%;
+  margin-right: auto;
 }
 
-.pic-btn{
-    align-items: center;
-    display: block;
-    margin: auto;
-    margin-top: 8%;
-    
-  }
-
-  mat-card{
-    width: 100%;
-    //display: flex;
-    align-items: center;
-    contain: content;
-    flex-direction:row;
-    
-    
-   
-  }
-
-  mat-form-field{
-    //margin-top: 1rem;
-    text-decoration: none;
-  }
-  
-  form{
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-.foto{
-    background-color: white;
-    border: none;
-    height: 400px;
-    margin-left: 2%;
-    margin-right: 20%;
-    margin-top: 12%;
-    box-shadow: none;
-    
+.pic-btn {
+  align-items: center;
+  display: block;
+  margin: auto;
+  margin-top: 8%;
 }
 
-.info-card{
-    height: 400px;
-    margin-bottom: 0;
-    box-shadow: none;
+mat-card {
+  width: 100%;
+  //display: flex;
+  align-items: center;
+  contain: content;
+  flex-direction: row;
 }
 
-.last-name{
-    margin-left: 5%;
+mat-form-field {
+  //margin-top: 1rem;
+  text-decoration: none;
 }
 
-.last-name,.first-name{
-    width: 100%;
+form {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.example-card{
-    box-shadow: none;
-    width: 150%;
+.foto {
+  background-color: white;
+  border: none;
+  height: 400px;
+  margin-left: 2%;
+  margin-right: 20%;
+  margin-top: 12%;
+  box-shadow: none;
 }
 
-.data-title{
-    color: #2E3192;
-    margin-bottom: 10%;
-  
+.info-card {
+  height: 400px;
+  margin-bottom: 0;
+  box-shadow: none;
 }
 
-.edit-btn{
-    color: white;
-    background-color: #2E3192;
-    margin-left: 75%;
-    margin-top: 30%;
+.last-name {
+  margin-left: 5%;
 }
 
-.icon{
-    color: #2E3192;
+.last-name,
+.first-name {
+  width: 100%;
 }
 
-.done-btn{
-    color: white;
-    background-color: #2E3192;
+.example-card {
+  box-shadow: none;
+  width: 150%;
+}
+
+.data-title {
+  color: #2e3192;
+  margin-bottom: 10%;
+}
+
+.edit-btn {
+  color: white;
+  background-color: #2e3192;
+  margin-left: 75%;
+  margin-top: 30%;
+}
+
+.icon {
+  color: #2e3192;
+}
+
+.done-btn {
+  color: white;
+  background-color: #2e3192;
 }
