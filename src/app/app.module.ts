@@ -60,6 +60,7 @@ import { AppointmentWaitlistComponent } from './components/appointment-waitlist/
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { OrdersPageComponent } from './pages/manager/orders-page/orders-page.component';
 import { OrdersComponent } from './components/orders/orders.component';
+import { CarInfoMComponent } from './components/car-info-m/car-info-m.component';
 
 
 
@@ -96,7 +97,8 @@ import { OrdersComponent } from './components/orders/orders.component';
     AppointmentsManagerComponent,
     AppointmentWaitlistComponent,
     OrdersPageComponent,
-    OrdersComponent
+    OrdersComponent,
+    CarInfoMComponent
   ],
 
   imports: [
