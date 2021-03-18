@@ -15,6 +15,7 @@ export class CrudService {
 
   url = 'https://talleredc-8704c-default-rtdb.firebaseio.com/users';
   db = firebase.firestore();
+  user: any;
   
 
   private usersCollection: AngularFirestoreCollection<User>;
@@ -45,8 +46,7 @@ export class CrudService {
     }
   }
 
-  getUsers(){
-    return this.users;
-  }
-
+  async getUser(idUser) {
+    return this._afs.collection('users').doc(idUser)
+}
 }

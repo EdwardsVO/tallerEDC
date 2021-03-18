@@ -1,41 +1,47 @@
 <mat-card class="user-profile">
-    
-    
+
+
     <div class="avatar">
         <mat-card class="foto">
-            
+
             <mat-card-content>
-               
-                <img src="assets/img/placeholder.jpg"  alt="Avatar">
-    
-                <button mat-raised-button color="primary" class="pic-btn">Subir Imagen <mat-icon>photo_camera</mat-icon></button> 
-                
+
+                <img src="assets/img/placeholder.jpg" alt="Avatar">
+
+                <button mat-raised-button color="primary" class="pic-btn">Subir Imagen <mat-icon>photo_camera</mat-icon>
+                    </button>
+
             </mat-card-content>
-                
+
         </mat-card>
     </div>
-     
+
 
 
     <div class="datos">
         <mat-card class="example-card">
-        
-            
-            <div  class="info-card">
-            
-                <mat-card-content>
-                   
-                    <table class="user-info"><tr>
-                        <td><mat-form-field class="first-name">
-                        <mat-label aria-placeholder="*Username">*Nombre</mat-label>
-                        <input matInput>
-                        </mat-form-field></td>
-        
-                        <td><mat-form-field class="last-name">
-                        <mat-label>*Apellido</mat-label>
-                        <input matInput>
-                        </mat-form-field></td>          
-                    </tr></table>
+
+            <div class="info-card">
+
+                <mat-card-content *ngIf="editInfo">
+
+                    <table class="user-info">
+                        <tr>
+                            <td>
+                                <mat-form-field class="first-name">
+                                    <mat-label aria-placeholder="*Username">*Nombre</mat-label>
+                                    <input matInput>
+                                </mat-form-field>
+                            </td>
+
+                            <td>
+                                <mat-form-field class="last-name">
+                                    <mat-label>*Apellido</mat-label>
+                                    <input matInput>
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                    </table>
 
                     <p>
                         <mat-form-field class="email">
@@ -43,8 +49,8 @@
                             <textarea matInput placeholder="Ej. example@gmail.com"></textarea>
                         </mat-form-field>
                     </p>
-        
-                    
+
+
                     <p>
                         <mat-form-field class="tlf">
                             <mat-label>*Teléfono</mat-label>
@@ -58,32 +64,42 @@
                     <p>
                         <mat-form-field class="password">
                             <mat-label>*Nueva Contraseña</mat-label>
-                            <input type="password" matInput placeholder="Password" >
+                            <input type="password" matInput placeholder="Password">
                         </mat-form-field>
                     </p>
 
                     <p>
                         <mat-form-field class="password2">
                             <mat-label>*Confirmar Contraseña</mat-label>
-                            <input type="password" matInput placeholder="Password" >
+                            <input type="password" matInput placeholder="Password">
                         </mat-form-field>
                     </p>
-                    
-                        
+
+                    <button mat-raised-button (click)="updateInfo()"> Done<mat-icon>done</mat-icon> </button>
+                        <mat-icon>home</mat-icon>
+             
+
                 </mat-card-content>
+
+                <mat-card>
+                <mat-card-content *ngIf="!editInfo">
+                    <mat-card-content *ngIf="dataUploaded">
+                        <mat-card-title>Perfil de Usuario</mat-card-title>
+                        <mat-card-subtitle>Nombre: {{userName}}</mat-card-subtitle>
+                        <mat-card-subtitle>Email: {{userEmail}}</mat-card-subtitle>
+                        <mat-card-subtitle>Phone: +58 {{userPhone}}</mat-card-subtitle>
+
+                    
+                </mat-card-content>
+                    <button mat-raised-button (click)="updateInfo()"> Edit<mat-icon>edit</mat-icon> </button>
+                </mat-card-content>
+                </mat-card>
             </div>
 
 
-            <div *ngIf="users?.length > 0; else noUsers">
-                <ul *ngFor = "let user of users">
-                    <li>{{user.name}}</li>
-                    <li>{{user.email}}</li>
-                    <li>{{user.id}}</li>
 
-                </ul>
-            </div>
 
-            <ng-template #noUsers >
+            <ng-template #noUsers>
 
                 <hr>
                 <h5>There are no Users to list</h5>
