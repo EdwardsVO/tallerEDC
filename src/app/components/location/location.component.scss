@@ -1,8 +1,8 @@
 h1{
     text-align: center;
     color: #2E3192;
-    margin-top: 80px;
-    margin-bottom: 30px;
+    margin-top: 50px;
+    margin-bottom: 20px;
     font-family: 'Bree Serif', serif;
 }
 img{
@@ -20,10 +20,16 @@ img{
 }
 
 .div {
-margin-left: 210px;
+margin-left: 23%;
+align-items: center;
+height: 200px; 
+width :50%; 
+margin-bottom: 25%; 
+margin-right:  210px;;
 }
 
 agm-map {
-    height: 600px;
-    width: 1000px;
+    height: 480px;
+    width: 700px;
+    
 }

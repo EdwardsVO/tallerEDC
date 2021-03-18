@@ -38,18 +38,18 @@ export class MainNavbarComponent {
   }
 
   toHome(){
-    document.getElementById("inicio").scrollIntoView({behavior:"smooth"});
+    document.getElementById("inicio").scrollIntoView({block: 'end',behavior:"smooth"});
   }
   toAbout(){
-    document.getElementById("about").scrollIntoView({behavior:"smooth"});
+    document.getElementById("about").scrollIntoView({block: 'end',behavior:"smooth"});
 
   }
   toLocation(){
-    document.getElementById("location").scrollIntoView({behavior:"smooth"});
+    document.getElementById("location").scrollIntoView({block: 'center',behavior:"smooth"});
 
   }
   toContact(){
-    document.getElementById("contact").scrollIntoView({behavior:"smooth"});
+    document.getElementById("contact").scrollIntoView({block: 'center',behavior:"smooth"});
 
   }
 
