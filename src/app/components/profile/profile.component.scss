@@ -70,7 +70,7 @@ button:hover{
 
 .user-pic-btn{
     background-color: rgb(233, 233, 233);
-    margin-right: 25%;
+    margin-right: 15%;
     margin-top: 100%;
     
 }
@@ -91,9 +91,9 @@ button:hover{
 
 img{
     border-radius: 50%;
-    width: 100%;
+    width: 60%;
     display: block;
-    margin-left: auto;
+    margin-left: 20%;
     margin-right: auto;
     
 }
@@ -158,4 +158,26 @@ img{
 .example-card{
     box-shadow: none;
     width: 150%;
+}
+
+.data-title{
+    color: #2E3192;
+    margin-bottom: 10%;
+  
+}
+
+.edit-btn{
+    color: white;
+    background-color: #2E3192;
+    margin-left: 75%;
+    margin-top: 30%;
+}
+
+.icon{
+    color: #2E3192;
+}
+
+.done-btn{
+    color: white;
+    background-color: #2E3192;
 }

@@ -75,8 +75,8 @@
                         </mat-form-field>
                     </p>
 
-                    <button mat-raised-button (click)="updateInfo()"> Done<mat-icon>done</mat-icon> </button>
-                        <mat-icon>home</mat-icon>
+                    <button mat-raised-button (click)="updateInfo()" class="done-btn"> Done<mat-icon>done</mat-icon> </button>
+                        <mat-icon class="icon">home</mat-icon>
              
 
                 </mat-card-content>
@@ -84,14 +84,14 @@
                 <mat-card>
                 <mat-card-content *ngIf="!editInfo">
                     <mat-card-content *ngIf="dataUploaded">
-                        <mat-card-title>Perfil de Usuario</mat-card-title>
+                        <mat-card-title class="data-title">Perfil de Usuario</mat-card-title>
                         <mat-card-subtitle>Nombre: {{userName}}</mat-card-subtitle>
                         <mat-card-subtitle>Email: {{userEmail}}</mat-card-subtitle>
                         <mat-card-subtitle>Phone: +58 {{userPhone}}</mat-card-subtitle>
 
                     
                 </mat-card-content>
-                    <button mat-raised-button (click)="updateInfo()"> Edit<mat-icon>edit</mat-icon> </button>
+                    <button mat-raised-button (click)="updateInfo()" class="edit-btn"> Edit<mat-icon>edit</mat-icon> </button>
                 </mat-card-content>
                 </mat-card>
             </div>
