@@ -23,7 +23,6 @@
 
             <div class="info-card">
 
-<<<<<<< HEAD
                 <form [formGroup]="authForm">
 
                     <mat-card-content *ngIf="editInfo">
@@ -32,7 +31,7 @@
                             <tr>
                                 <td>
                                     <mat-form-field class="first-name">
-                                        <mat-label aria-placeholder="*Username"> {{userName}}</mat-label>
+                                        <mat-label aria-placeholder="*Username">{{userName}}</mat-label>
                                         <input matInput formControlName="name" placeholder="Nombre Completo">
                                     </mat-form-field>
                                 </td>
@@ -42,7 +41,7 @@
                         <p>
                             <mat-form-field class="email">
                                 <mat-label>{{userEmail}}</mat-label>
-                                <textarea matInput placeholder="Ej. example@gmail.com" formControlName="email"></textarea>
+                                <textarea matInput readonly class = "textarea"></textarea>
                             </mat-form-field>
                         </p>
 
@@ -71,11 +70,9 @@
                             </mat-form-field>
                         </p>
 
-                        <button mat-raised-button (click) = "handleUpdateProfile()"
-                        (click)="updateInfo()"> Done<mat-icon>done</mat-icon> </button>
+                        <button mat-raised-button (click) = "handleUpdateProfile()" (click)="updateInfo()" color = "primary" class = "donebtn">Done<mat-icon>done</mat-icon></button>
                     </mat-card-content>
                 </form>
-=======
                 <mat-card-content *ngIf="editInfo">
 
                     <table class="user-info">
@@ -133,7 +130,6 @@
              
 
                 </mat-card-content>
->>>>>>> e1f4cb13854d1ea3abf8e1751385287f9546e941
 
                 <mat-card>
                 <mat-card-content *ngIf="!editInfo">

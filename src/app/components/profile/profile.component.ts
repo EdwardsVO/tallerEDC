@@ -54,20 +54,21 @@ export class ProfileComponent implements OnInit {
 
   updateProfileForm(): void {
     this.authForm = this._fb.group({
-      email: ['', Validators.required],
+     
       name: ['', Validators.required],
+      email: [this.userEmail],
       phone: ['', Validators.required]
     })
   }
 
   handleUpdateProfile(){
+    
     this._db.updateUserProfile(
       this.userID,
       this.authForm.get('name').value,
-      this.authForm.get('email').value,
+      this.userEmail,
       this.authForm.get('phone').value,
       )
-  }
-
+    } 
 
 }
