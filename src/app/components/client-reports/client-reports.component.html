@@ -1,1 +1,23 @@
-<p>client-reports works!</p>
+<h1>CLIENTES</h1>
+<div class="search-space">
+    <form action="search">
+        <input type="Search" placeholder="Search">
+        <button mat-raised-button>Search</button>
+    </form>
+    
+</div>
+<mat-card>
+    <div class="vehicle-container" *ngFor="let client of clients">
+        <img mat-card-sm-image src="{{client.img}}" alt="client's car1">
+        <mat-card-subtitle>NOMBRE
+            <p>{{client.name}}</p>
+        </mat-card-subtitle>
+        <mat-card-subtitle>TELÉFONO
+            <p>{{client.phone}}</p>
+        </mat-card-subtitle>
+        <mat-card-actions><button mat-raised-button>VER VEHÍCULOS</button></mat-card-actions>
+        <mat-card-actions><button mat-raised-button>SUBIR REPORTE  <span class="material-icons">
+            backup
+            </span></button></mat-card-actions>
+    </div>
+</mat-card>
