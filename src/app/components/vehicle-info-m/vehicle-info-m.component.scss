@@ -1,0 +1,48 @@
+h1{
+    color: #2e3192;
+  font-family: "Bree Serif", serif;
+  margin-left: 16%;
+  margin-top: 5%;
+}
+
+button{
+    margin-left: 16%;
+    margin-bottom: 2%;
+}
+
+mat-form-field{
+    color: #2e3192;
+    width: 80%;   
+}
+
+.vehicle-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: rgb(233, 233, 233);
+    margin-bottom: 15px;
+    width: 70%;
+    margin-left: 16%;
+    text-align: center;
+    justify-content: space-around;
+    align-items: center;
+    
+  } 
+.vehicle-container p {
+font-size: 12px;
+}
+
+.v-info {
+    text-align: center;
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-right: 5%;
+
+  }
+
+  .vehicle{
+      width: 35%;
+     
+  }
+
+  
