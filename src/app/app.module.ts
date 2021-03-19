@@ -60,6 +60,7 @@ import { AppointmentWaitlistComponent } from './components/appointment-waitlist/
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { OrdersPageComponent } from './pages/manager/orders-page/orders-page.component';
 import { OrdersComponent } from './components/orders/orders.component';
+import { RequirementsComponent } from './components/requirements/requirements.component';
 import { ReportsPageComponent } from './pages/manager/reports-page/reports-page.component';
 import { ClientReportsComponent } from './components/client-reports/client-reports.component';
 import { VehicleReportsComponent } from './components/vehicle-reports/vehicle-reports.component';
@@ -102,6 +103,7 @@ import { GarageStatisticsComponent } from './components/garage-statistics/garage
     AppointmentWaitlistComponent,
     OrdersPageComponent,
     OrdersComponent,
+    RequirementsComponent,
     ReportsPageComponent,
     ClientReportsComponent,
     VehicleReportsComponent,
