@@ -1,28 +1,75 @@
 
-  
-<h1>SELECCIONAR SI EXISTE:</h1>
 
+<h2>SELECCIONAR SI EXISTE:</h2>
 
+<div class="list">
 
-<div class="requirements">
-
-    <mat-selection-list #requirements class="r1">
-        <mat-list-option color = "primary" *ngFor="let requirement of typesRequirements">
-        {{requirement}}
+    <mat-selection-list #list class="r1">
+        <mat-list-option color = "primary" *ngFor="let list of typesLists">
+        {{list}}
         </mat-list-option>
     </mat-selection-list>
 
-    <mat-selection-list #requirements2 class="r2">
-        <mat-list-option  color = "primary" *ngFor="let requirement2 of typesRequirements2">
-        {{requirement2}}
+    <mat-selection-list #list2 class="r2">
+        <mat-list-option  color = "primary" *ngFor="let list2 of typesLists2">
+        {{list2}}
         </mat-list-option>
         
     </mat-selection-list>
 
-    
 </div>
-
 <div class="button-container">
-    <button mat-raised-button class="agg-btn" >ACEPTAR</button>
+    <button mat-raised-button >ACEPTAR</button>
 </div>
 
+<h2>REQUERIMIENTOS</h2>
+<div class="requirements">
+    <mat-card>
+
+        <mat-card-content>
+            <mat-list role="list">
+                <mat-list-item role="listitem">Item 1</mat-list-item>
+                <mat-list-item role="listitem">Item 2</mat-list-item>
+                <mat-list-item role="listitem">Item 3</mat-list-item>
+              </mat-list>              
+        </mat-card-content>
+        
+      </mat-card>
+</div>
+
+
+<h1>REPUESTOS NECESARIOS / PROCEDIMIENTO APLICADO</h1>
+<div class="resp-pro">
+    <mat-card>
+
+        <mat-card-content>
+            <mat-list role="list">
+                <mat-list-item role="listitem">Item 1</mat-list-item>
+                <mat-list-item role="listitem">Item 2</mat-list-item>
+                <mat-list-item role="listitem">Item 3</mat-list-item>
+              </mat-list>              
+        </mat-card-content>
+
+        <button mat-raised-button class="agg-btn">AGREGAR</button>
+        
+      </mat-card>
+</div>
+
+<h1>DIAGNOSTICO</h1>
+<div class="diagnostico">
+    <mat-card class="example-card">
+        
+            <mat-card-content>
+                <mat-list role="list" class="info-diagnostico">
+                    <mat-list-item role="listitem">Item 1</mat-list-item>
+                </mat-list> 
+                
+            
+            <button mat-raised-button class="subir-btn" >SUBIR <br/>DIAGNOSTICO<br/><mat-icon>backup</mat-icon></button>
+            </mat-card-content>
+
+            
+        
+        
+      </mat-card>
+</div>

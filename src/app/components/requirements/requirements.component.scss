@@ -1,14 +1,18 @@
-h1 {
+h1, h2 {
     color: #2e3192;
     font-family: "Bree Serif", serif;
     margin-left: 10%;
     margin-top: 5%;
   }
+h2{
+  font-weight: 80;
+}
+  
 
-.requirements{
+.list{
     display: row;
     margin-bottom: auto;
-    margin-left: 30%;
+    margin-left: 25%;
     margin-right: 30%;    
 }
 
@@ -36,14 +40,67 @@ h1 {
 button{
     margin-top: 5%;
     margin-left: 75%;
-    width: 10%;
+    width: auto;
     height: 50px;
     background-color: #2e3192;
     color: white;
+    font-size: large;
 }
 
 mat-selection-list {
     max-height: 400px;
     overflow-y:scroll;
-    //overflow-x: scroll;
+  
+  }
+
+  mat-card{
+      background-color: rgb(233, 233, 233);
+      width: 85%;
+      overflow: auto;
+  }
+
+  .requirements, .resp-pro, .diagnostico{
+     margin-left: 10%;
+     height: 50%;
+  }
+
+  mat-list-item{
+    background-color: white;
+    padding: auto;
+    margin-bottom: 2%;
+  }
+
+  .agg-btn{
+    margin-top: 1%;
+  float: right;
+  width: auto;
+  height: 40px;
+  font-size: large;
+  margin-bottom: 10%;
+  }
+
+  .info-diagnostico{
+    width: 70%;
+    flex-direction: row;
+    overflow-y: scroll;
+    height: fit-content;
+    
+
+  }
+
+  .subir-btn{
+    width: fit-content;
+    font-size: 20px;
+    //padding: 32px 16px;
+    text-align:inherit;
+    height: fit-content;
+    margin-top: 0;
+    
+  }
+
+  .diagnostico{
+    object-fit: contain;
+    text-align: center;
+    flex-direction: row;
+    
   }
