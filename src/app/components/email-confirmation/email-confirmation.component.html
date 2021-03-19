@@ -1,0 +1,24 @@
+
+<div class="card mt-5">
+    <div class="card-body">
+       
+        <h2 class="card-title text text-center">Gracias por Registrarte!</h2> 
+       <div class="form-group">
+           <p class="text-center">
+               Hemos enviado un correo de confirmación a su <strong>EMAIL</strong>
+           </p>
+           <p class="text-center">
+               Porfavor revise el correo y haga click en el link para verificar la dirección de correo electrónico
+           </p>
+       </div>
+       <div class="form-group text-center">
+           <button mat-raised-button (click)="onSentEmail()"> Reenviar correo de verificación </button>
+       </div>
+    </div>
+</div> 
+
+<ng-template #loading>
+
+    loading...
+
+</ng-template>
