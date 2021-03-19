@@ -67,15 +67,18 @@ export class LoginComponent implements OnInit {
           this.phone = user.phoneNumber;
           this.role
 
-          this._db.newUser(
-            this.id,
-            this.name,
-            this.email,
-            this.phone,
-            this.role)
-        }
+          this._afs.collection('users').doc(this.id).ref.get().then((docSnapshot) => {
+            if (!docSnapshot.exists) {
+              this._db.newUser(
+                this.id,
+                this.name,
+                this.email,
+                this.phone,
+                this.role)
+            }
+          });
+          }
       )
-
       this.startProfilePage()
     } catch (err) {
       console.log(err);
@@ -116,6 +119,12 @@ export class LoginComponent implements OnInit {
           }
           if (this.currentRole === 'admin') {
             this._router.navigate(['/admin'], { queryParams: { login: 'true' }, queryParamsHandling: 'merge' })
+          }
+          if (this.currentRole === 'machanic') {
+            this._router.navigate(['/machanic'], { queryParams: { login: 'true' }, queryParamsHandling: 'merge' })
+          }
+          if (this.currentRole === 'manager') {
+            this._router.navigate(['/manager'], { queryParams: { login: 'true' }, queryParamsHandling: 'merge' })
           }
         })
     }
