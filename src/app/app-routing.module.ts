@@ -11,6 +11,7 @@ import { VehicleRegisterComponent } from './components/vehicle-register/vehicle-
 import { UserGuard } from './guards/user.guard';
 import { AppointmentsManagerComponent } from './pages/manager/appointments-manager/appointments-manager.component';
 import { OrdersPageComponent } from './pages/manager/orders-page/orders-page.component';
+import { ReportsPageComponent } from './pages/manager/reports-page/reports-page.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'appointments', component: AppointmentsComponent },
   { path: 'manager',  component: AppointmentsManagerComponent},
   { path: 'manager/orders',  component: OrdersPageComponent},
+  { path: 'manager/reports',  component: ReportsPageComponent},
   { path: 'user/vehicles/register', component: VehicleRegisterComponent, canActivate: [UserGuard] },
   { path: 'user/vehicles', component: VehiclePageComponent, canActivate: [UserGuard] },
   { path: 'user/appointments', component: AppointmentsComponent, canActivate: [UserGuard] },

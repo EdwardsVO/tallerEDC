@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from 'src/app/models/user';
+import { AdminCrudService } from 'src/app/services/admin-crud.service';
+import { CrudService } from 'src/app/services/crud.service';
 
 interface selection {
   value: string;
@@ -12,14 +16,39 @@ interface selection {
 })
 export class UsersComponent implements OnInit {
 
-  users: selection[] = [
-    {value: 'op-0', viewValue: 'Cliente'},
-    {value: 'op-1', viewValue: 'Gerente'},
-    {value: 'op-2', viewValue: 'Mecanico'}
-  ];
-  constructor() { }
+  users: User[];
+  authForm = FormGroup;
+  userToEdit: User;
+  editState: boolean = false;
+  editInfo: boolean = false;
+
+  updateInfo(): boolean {
+    return this.editInfo = !this.editInfo
+  }
+
+  constructor(private _db: CrudService, private _fb: FormBuilder, private _adminService: AdminCrudService) { }
 
   ngOnInit(): void {
+
+    this._db.getUsers().subscribe(users => {
+      this.users = users;
+    });
+
+}
+
+  updateRoleForm(user){
+    this.editState = true;
+    this.userToEdit = user;
+  }
+
+  clearState() {
+    this.editState = false;
+    this.userToEdit = null;
+  }
+
+  updateUser(user){
+    this._adminService.updateUser(user);
+    this.clearState();
   }
 
 }

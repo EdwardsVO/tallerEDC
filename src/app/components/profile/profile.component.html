@@ -23,6 +23,56 @@
 
             <div class="info-card">
 
+                <form [formGroup]="authForm">
+
+                    <mat-card-content *ngIf="editInfo">
+
+                        <table class="user-info">
+                            <tr>
+                                <td>
+                                    <mat-form-field class="first-name">
+                                        <mat-label aria-placeholder="*Username">{{userName}}</mat-label>
+                                        <input matInput formControlName="name" placeholder="Nombre Completo">
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <p>
+                            <mat-form-field class="email">
+                                <mat-label>{{userEmail}}</mat-label>
+                                <textarea matInput readonly class = "textarea"></textarea>
+                            </mat-form-field>
+                        </p>
+
+
+                        <p>
+                            <mat-form-field class="tlf">
+                                <mat-label>{{userPhone}}</mat-label>
+                                <span matPrefix>+58 &nbsp;</span>
+                                <input matInput formControlName="phone" placeholder="4141234567">
+                            </mat-form-field>
+                        </p>
+
+                        <mat-card-subtitle class="cambio-contra">CAMBIO DE CONTRASEÑA</mat-card-subtitle>
+
+                        <p>
+                            <mat-form-field class="password">
+                                <mat-label>*Nueva Contraseña</mat-label>
+                                <input type="password" matInput placeholder="Password">
+                            </mat-form-field>
+                        </p>
+
+                        <p>
+                            <mat-form-field class="password2">
+                                <mat-label>*Confirmar Contraseña</mat-label>
+                                <input type="password" matInput placeholder="Password">
+                            </mat-form-field>
+                        </p>
+
+                        <button mat-raised-button (click) = "handleUpdateProfile()" (click)="updateInfo()" color = "primary" class = "donebtn">Done<mat-icon>done</mat-icon></button>
+                    </mat-card-content>
+                </form>
                 <mat-card-content *ngIf="editInfo">
 
                     <table class="user-info">
@@ -95,12 +145,3 @@
                 </mat-card-content>
                 </mat-card>
             </div>
-
-
-
-
-            <ng-template #noUsers>
-
-                <hr>
-                <h5>There are no Users to list</h5>
-            </ng-template>
