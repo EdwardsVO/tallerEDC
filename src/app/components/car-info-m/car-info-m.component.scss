@@ -1,0 +1,46 @@
+.car-info{
+    flex-direction: row;
+    display: flex;
+    margin-left: 15%;
+
+}
+
+.car-profile, .car-profile-pic{
+    margin-top: 2%;
+    margin-bottom: 3%;
+}
+
+.car-profile{
+    margin-left: 3%;
+    margin-top: 6%;
+    width: 30%;
+    height: 35%;
+}
+
+.car-profile-pic{
+    width: 40%;
+    box-shadow: none;
+    //height: 200px;
+}
+
+
+mat-card-subtitle{
+    margin-top: 30%;
+}
+
+
+  img {
+    border-radius: 50%;
+    width: 60%;
+    display: block;
+    margin-left: 20%;
+    margin-right: auto;
+  }
+
+  .pic-btn {
+    align-items: center;
+    display: block;
+    margin: auto;
+    margin-top: 8%;
+  }
+
