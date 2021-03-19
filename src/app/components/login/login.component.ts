@@ -10,7 +10,8 @@ import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 import { CrudService } from 'src/app/services/crud.service';
 import { MatDialog } from '@angular/material/dialog';
 import { RegisterComponent } from '../register/register.component';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 
 @Component({
@@ -20,7 +21,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class LoginComponent implements OnInit {
   @Output() sendFormEvent = new EventEmitter;
-  authForm: FormGroup 
+  authForm: FormGroup
   user: firebase.User;
   prueba: string;
   name: string;
@@ -29,20 +30,22 @@ export class LoginComponent implements OnInit {
   phone: string = '';
   role: string = 'client';
   closeResult = '';
+  currentUser: string;
+  currentRole: string;
+  roleLoad: boolean = false;
 
 
-
-  constructor(private _fb: FormBuilder, private _router: Router,private modalService: NgbModal ,private _authService: AuthService, private _db: CrudService) {
-   }
-   
-   
-
-  ngOnInit(): void {
-  this.createAuthForm();
-  this.createRegistrationForm();
+  constructor(private _fb: FormBuilder, private _router: Router, private modalService: NgbModal, private _authService: AuthService, private _db: CrudService, private _afs: AngularFirestore) {
   }
 
-  
+
+
+  ngOnInit(): void {
+    this.createAuthForm();
+    this.createRegistrationForm();
+  }
+
+
   createAuthForm(): void {
     this.authForm = this._fb.group({
       displayName: '',
@@ -50,9 +53,9 @@ export class LoginComponent implements OnInit {
       password: ''
     })
   }
-  
-  async handleGoogleLogin():Promise<void> {
-    try{
+
+  async handleGoogleLogin(): Promise<void> {
+    try {
       await this._authService.loginWithGoogle();
 
       this._authService.getCurrentUser().subscribe(
@@ -64,49 +67,76 @@ export class LoginComponent implements OnInit {
           this.phone = user.phoneNumber;
           this.role
 
-          this._db.newUser(
-            this.id, 
-            this.name, 
-            this.email, 
-            this.phone, 
-            this.role)
-        }
+          this._afs.collection('users').doc(this.id).ref.get().then((docSnapshot) => {
+            if (!docSnapshot.exists) {
+              this._db.newUser(
+                this.id,
+                this.name,
+                this.email,
+                this.phone,
+                this.role)
+            }
+          });
+          }
       )
-
       this.startProfilePage()
-    } catch(err){
+    } catch (err) {
       console.log(err);
     }
   }
 
-  async handleMailLogin(): Promise<void>{
-    try{
+  async getCurrentRole(): Promise<void> {
+    await this._authService.getCurrentUser().subscribe(x => {
+      this.currentUser = x.uid;
+      this._afs.collection('users').doc(this.currentUser).snapshotChanges().subscribe(x => {
+        this.currentRole = x.payload.get('role')
+        this.roleLoad = true;
+        this.startProfilePage();
+      })
+    })
+
+  }
+
+  async handleMailLogin(): Promise<void> {
+    try {
       await this._authService.loginWithEmail(this.authForm.get('email').value, this.authForm.get('password').value)
-      this.startProfilePage();
-    }catch(err){
+      this.getCurrentRole();
+    } catch (err) {
       console.log(err);
     }
   }
-  
-  async  startProfilePage(): Promise<void>{
-    try{
+
+  async startProfilePage(): Promise<void> {
+
+
+    try {
       await this._authService.getCurrentUser().subscribe(
         user => {
           this.user = user;
           this.prueba = user.uid;
-          console.log(this.prueba);
-          this._router.navigate(['/user'], {queryParams: {login: 'true'}, queryParamsHandling: 'merge'
-        })})
-      }
-    catch(err){
+          if (this.currentRole === 'client') {
+            this._router.navigate(['/user'], { queryParams: { login: 'true' }, queryParamsHandling: 'merge' })
+          }
+          if (this.currentRole === 'admin') {
+            this._router.navigate(['/admin'], { queryParams: { login: 'true' }, queryParamsHandling: 'merge' })
+          }
+          if (this.currentRole === 'machanic') {
+            this._router.navigate(['/machanic'], { queryParams: { login: 'true' }, queryParamsHandling: 'merge' })
+          }
+          if (this.currentRole === 'manager') {
+            this._router.navigate(['/manager'], { queryParams: { login: 'true' }, queryParamsHandling: 'merge' })
+          }
+        })
+    }
+    catch (err) {
       console.log(err)
-    } 
+    }
   }
 
 
 
   open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -128,27 +158,27 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required],
       name: ['', Validators.required],
-      phone: ['', Validators.required] 
+      phone: ['', Validators.required]
     })
   }
 
   async handleRegistration(): Promise<void> {
-    try{
+    try {
       await this._authService.registerNewUser(this.authForm.get('email').value, this.authForm.get('password').value)
-      this._authService.getCurrentUser().subscribe( res => {
+      this._authService.getCurrentUser().subscribe(res => {
         this.id = res.uid
         this._db.newUser(
-        this.id,
-        this.authForm.get('name').value, 
-        this.authForm.get('email').value,
-        this.authForm.get('phone').value,
-        this.role,
+          this.id,
+          this.authForm.get('name').value,
+          this.authForm.get('email').value,
+          this.authForm.get('phone').value,
+          this.role,
         )
-        this._router.navigate(['/user'], {queryParams: {login: 'true'}, queryParamsHandling: 'merge'})
+        this._router.navigate(['/user'], { queryParams: { login: 'true' }, queryParamsHandling: 'merge' })
         this.modalService.dismissAll()
-    
-    })
-    }catch(err) {
+
+      })
+    } catch (err) {
       console.log(err);
       console.log(this.authForm.get('email'));
     }
