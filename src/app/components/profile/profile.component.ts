@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { CrudService } from 'src/app/services/crud.service';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-profile',
@@ -11,6 +13,7 @@ import { CrudService } from 'src/app/services/crud.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  closeResult = '';
   userID: string;
   userName: string;
   userEmail: string;
@@ -20,8 +23,19 @@ export class ProfileComponent implements OnInit {
   userToEdit: User;
   authForm: FormGroup;
 
-  constructor(private _db: CrudService, private _auth: AuthService, private _afs: AngularFirestore, private _fb: FormBuilder) { }
+  constructor(private _db: CrudService, private _auth: AuthService, private _afs: AngularFirestore, private _fb: FormBuilder, private modalService: NgbModal) { }
 
+  path:String;
+  
+  upload($event){
+    this.path = $event.target.files[0]
+  }
+  
+  uploadImg(){
+
+  }
+
+  
   ngOnInit(): void {
     this.getCurrentUser();
     this.updateProfileForm();
@@ -70,5 +84,23 @@ export class ProfileComponent implements OnInit {
       this.authForm.get('phone').value,
       )
     } 
+
+    open(content) {
+      this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+    }
+  
+    private getDismissReason(reason: any): string {
+      if (reason === ModalDismissReasons.ESC) {
+        return 'by pressing ESC';
+      } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+        return 'by clicking on a backdrop';
+      } else {
+        return `with: ${reason}`;
+      }
+    }
 
 }
