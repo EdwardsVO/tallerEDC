@@ -67,15 +67,18 @@ export class LoginComponent implements OnInit {
           this.phone = user.phoneNumber;
           this.role
 
-          this._db.newUser(
-            this.id,
-            this.name,
-            this.email,
-            this.phone,
-            this.role)
-        }
+          this._afs.collection('users').doc(this.id).ref.get().then((docSnapshot) => {
+            if (!docSnapshot.exists) {
+              this._db.newUser(
+                this.id,
+                this.name,
+                this.email,
+                this.phone,
+                this.role)
+            }
+          });
+          }
       )
-
       this.startProfilePage()
     } catch (err) {
       console.log(err);
