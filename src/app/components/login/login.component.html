@@ -14,7 +14,7 @@
         <input type="password" matInput id="password" placeholder="********" formControlName="password">
       </mat-form-field>
 
-      <span class="forgot">¿Olvidaste tu contraseña?</span>
+      <span class="forgot" [routerLink]="['/forgotPassword']" >¿Olvidaste tu contraseña?</span>
  
         <button type="submit" mat-raised-button (click)="handleMailLogin()">Ingresar</button>
 

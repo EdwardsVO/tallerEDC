@@ -5,6 +5,7 @@ import firebase from 'firebase'
 import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { User } from '../models/user';
+import { promise } from 'selenium-webdriver';
 
 
 @Injectable({
@@ -13,9 +14,20 @@ import { User } from '../models/user';
 export class AuthService {
 
   private usersCollection: AngularFirestoreCollection<User>;
+  
 
 
-  constructor(private _afAuth: AngularFireAuth, private _afs: AngularFirestore)  { }
+  constructor(private _afAuth: AngularFireAuth, private _afs: AngularFirestore,private afAuth: AngularFireAuth)  { }
+
+  
+
+  
+  async resetPassword(email:string):Promise<void>{
+    try{
+      return this.afAuth.sendPasswordResetEmail(email);
+    }
+    catch(error){console.log(error)}
+  }
 
   async loginWithGoogle(): Promise<firebase.User | null> {
     try{
