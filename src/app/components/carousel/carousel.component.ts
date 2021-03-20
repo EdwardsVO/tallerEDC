@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import firebase from 'firebase'
 
 @Component({
   selector: 'app-carousel',
@@ -9,30 +10,28 @@ export class CarouselComponent implements OnInit {
 
   constructor() { }
 
-  slides: any [] = [
-    {
-      img:"assets/Screen Shot 2021-02-02 at 5.51.05 PM.png",
-      name:"Mecanico",
-      desc:"Mecanico de nuestra empresa"
-    },
-    {
-      img:"assets/mechanic.jpeg",
-      name:"Mecanico 2",
-      desc:"Uno de nuestros mecanicos reparando un optra"
-    },
-    {
-      img:"assets/GettyImages_1166169921.0.jpg.webp",
-      name:"Reparacion",
-      desc:"Reparacion de optra"
-    },
-    {
-      img:"assets/Important-Questions-To-Ask-When-Finding-A-Mechanical-Workshop.jpg",
-      name:"Nuestro taller",
-      desc:"Imagen de nuestro taller"
-    }
-  ]
-
+  slides: any [] = []
+  storage = firebase.storage();
+  storageRef = this.storage.ref();
+  carouselImg = this.storageRef.child('page/carousel').listAll();
+  imageURL: string;
   ngOnInit(): void {
+    this.getCarouselImages();
   }
 
+  async getCarouselImages() {
+    try {
+      await
+      this.carouselImg.then((res) => {
+       res.items.forEach((folderRef) => {
+         folderRef.getDownloadURL().then((url => {
+           this.imageURL = url;
+           this.slides.push(this.imageURL);
+         }))
+       })
+     })
+       } catch (err) {
+         console.log(err);
+       }
+  }
 }

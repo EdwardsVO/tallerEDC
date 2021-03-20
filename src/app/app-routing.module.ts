@@ -12,13 +12,15 @@ import { UserGuard } from './guards/user.guard';
 import { AppointmentsManagerComponent } from './pages/manager/appointments-manager/appointments-manager.component';
 import { OrdersPageComponent } from './pages/manager/orders-page/orders-page.component';
 import { ReportsPageComponent } from './pages/manager/reports-page/reports-page.component';
+import { AdminGuard } from './guards/admin.guard';
+import { Error404Component } from './pages/error404/error404.component';
 
 
 const routes: Routes = [
   { path: 'home', component: LandingPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
-  { path: 'admin', component: UserPageComponent },
+  { path: 'admin', component: UserPageComponent, canActivate: [AdminGuard]},
   { path: 'appointments', component: AppointmentsComponent },
   { path: 'manager',  component: AppointmentsManagerComponent},
   { path: 'manager/orders',  component: OrdersPageComponent},
@@ -28,6 +30,7 @@ const routes: Routes = [
   { path: 'user/appointments', component: AppointmentsComponent, canActivate: [UserGuard] },
   { path: 'user',  component: ProfilePageComponent, canActivate: [UserGuard] },
   { path: 'forgotPassword', loadChildren: () => import('./components/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule) },
+  { path: 'error404', component: Error404Component },
   { path: '**', redirectTo: '/home' },
 ];
 
