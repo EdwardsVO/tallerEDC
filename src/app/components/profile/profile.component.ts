@@ -40,6 +40,8 @@ export class ProfileComponent implements OnInit {
     this.userName = x.payload.get('name')
     this.userEmail = x.payload.get('email')
     this.userPhone = x.payload.get('phone')
+    this.userGender = x.payload.get('gender')
+    this.userAge = x.payload.get('age')
 
   })
   this.dataUploaded = true;

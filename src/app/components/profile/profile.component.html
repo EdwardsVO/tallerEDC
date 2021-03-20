@@ -16,8 +16,6 @@
         </mat-card>
     </div>
 
-
-
     <div class="datos">
         <mat-card class="example-card">
 
@@ -84,67 +82,10 @@
                             </mat-form-field>
                         </p>
 
-                        <button mat-raised-button (click) = "handleUpdateProfile()" (click)="updateInfo()" color ="primary" class="donebtn">Done<mat-icon>done</mat-icon>Done</button>
+                        <button mat-raised-button (click) = "handleUpdateProfile()" (click)="updateInfo()" color ="primary" class="don-ebtn">Guardar<mat-icon class = "doneBtn">done</mat-icon></button>
 
                     </mat-card-content>
                 </form>
-                <mat-card-content *ngIf="editInfo">
-
-                    <table class="user-info">
-                        <tr>
-                            <td>
-                                <mat-form-field class="first-name">
-                                    <mat-label aria-placeholder="*Username">*Nombre</mat-label>
-                                    <input matInput>
-                                </mat-form-field>
-                            </td>
-
-                            <td>
-                                <mat-form-field class="last-name">
-                                    <mat-label>*Apellido</mat-label>
-                                    <input matInput>
-                                </mat-form-field>
-                            </td>
-                        </tr>
-                    </table>
-
-                    <p>
-                        <mat-form-field class="email">
-                            <mat-label>*Email</mat-label>
-                            <textarea matInput placeholder="Ej. example@gmail.com"></textarea>
-                        </mat-form-field>
-                    </p>
-
-
-                    <p>
-                        <mat-form-field class="tlf">
-                            <mat-label>*Teléfono</mat-label>
-                            <span matPrefix>+58 &nbsp;</span>
-                            <input matInput>
-                        </mat-form-field>
-                    </p>
-
-                    <mat-card-subtitle class="cambio-contra">CAMBIO DE CONTRASEÑA</mat-card-subtitle>
-
-                    <p>
-                        <mat-form-field class="password">
-                            <mat-label>*Nueva Contraseña</mat-label>
-                            <input type="password" matInput placeholder="Password">
-                        </mat-form-field>
-                    </p>
-
-                    <p>
-                        <mat-form-field class="password2">
-                            <mat-label>*Confirmar Contraseña</mat-label>
-                            <input type="password" matInput placeholder="Password">
-                        </mat-form-field>
-                    </p>
-
-                    <button mat-raised-button (click)="updateInfo()" class="done-btn"> Done<mat-icon>done</mat-icon> </button>
-                        <mat-icon class="icon">home</mat-icon>
-
-
-                </mat-card-content>
 
                 <mat-card>
                 <mat-card-content *ngIf="!editInfo">
@@ -153,6 +94,8 @@
                         <mat-card-subtitle>Nombre: {{userName}}</mat-card-subtitle>
                         <mat-card-subtitle>Email: {{userEmail}}</mat-card-subtitle>
                         <mat-card-subtitle>Phone: +58 {{userPhone}}</mat-card-subtitle>
+                        <mat-card-subtitle>Sexo: {{userGender}}</mat-card-subtitle>
+                        <mat-card-subtitle>Edad: {{userAge}}</mat-card-subtitle>
 
 
                 </mat-card-content>
