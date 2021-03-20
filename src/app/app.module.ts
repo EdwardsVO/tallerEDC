@@ -73,6 +73,7 @@ import { GarageStatisticsComponent } from './components/garage-statistics/garage
 import { Error404Component } from './pages/error404/error404.component';
 import { ClientNavbarComponent } from './components/navbar/client-navbar/client-navbar.component';
 import { AdminNavbarComponent } from './components/navbar/admin-navbar/admin-navbar.component';
+import { MechNavbarComponent } from './components/navbar/mech-navbar/mech-navbar.component';
 
 
 @NgModule({
@@ -118,7 +119,8 @@ import { AdminNavbarComponent } from './components/navbar/admin-navbar/admin-nav
     GarageStatisticsComponent,
     Error404Component,
     ClientNavbarComponent,
-    AdminNavbarComponent
+    AdminNavbarComponent,
+    MechNavbarComponent
   ],
 
   imports: [
