@@ -40,6 +40,7 @@ export class AuthService {
     try{
       await this._afAuth.signOut();
       localStorage.removeItem('user');
+      localStorage.removeItem('role');
     } catch(err){
 
     }
