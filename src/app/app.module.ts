@@ -71,6 +71,8 @@ import { VehicleReportsComponent } from './components/vehicle-reports/vehicle-re
 import { MechanicReportsComponent } from './components/mechanic-reports/mechanic-reports.component';
 import { GarageStatisticsComponent } from './components/garage-statistics/garage-statistics.component';
 import { Error404Component } from './pages/error404/error404.component';
+import { ClientNavbarComponent } from './components/navbar/client-navbar/client-navbar.component';
+import { AdminNavbarComponent } from './components/navbar/admin-navbar/admin-navbar.component';
 
 
 @NgModule({
@@ -114,7 +116,9 @@ import { Error404Component } from './pages/error404/error404.component';
     VehicleReportsComponent,
     MechanicReportsComponent,
     GarageStatisticsComponent,
-    Error404Component
+    Error404Component,
+    ClientNavbarComponent,
+    AdminNavbarComponent
   ],
 
   imports: [
