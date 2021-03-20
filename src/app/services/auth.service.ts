@@ -3,21 +3,27 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase'
 import { Observable } from 'rxjs';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { User } from '../models/user';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private _afAuth: AngularFireAuth)  { }
-  
+  private usersCollection: AngularFirestoreCollection<User>;
+
+
+  constructor(private _afAuth: AngularFireAuth, private _afs: AngularFirestore)  { }
+
   async loginWithGoogle(): Promise<firebase.User | null> {
-    try{  
+    try{
       const provider = new firebase.auth.GoogleAuthProvider();
       const response = await this._afAuth.signInWithPopup(provider);
 
       if(response.user){
-        localStorage.setItem('user', response.user.uid) 
+        localStorage.setItem('user', response.user.uid)
         return response.user;
       }
       else{
@@ -40,7 +46,7 @@ export class AuthService {
     }
   }
 
-  
+
   getCurrentUser(): Observable<firebase.User>{
     return this._afAuth.user;
   }
@@ -53,13 +59,13 @@ export class AuthService {
       const response = await this._afAuth.createUserWithEmailAndPassword(email, password);
 
       if(response.user){
-        localStorage.setItem('user', response.user.uid) 
+        localStorage.setItem('user', response.user.uid)
         return response.user;
       }
       else{
         return null;
       }
-  } 
+  }
   catch (err){
     localStorage.removeItem('user');
     return null;
@@ -74,13 +80,13 @@ export class AuthService {
       const response = await this._afAuth.signInWithEmailAndPassword(email,password);
 
       if(response.user){
-        localStorage.setItem('user', response.user.uid) 
+        localStorage.setItem('user', response.user.uid)
         return response.user;
       }
       else{
         return null;
       }
-  } 
+  }
   catch (err){
     localStorage.removeItem('user');
     return null;
@@ -90,9 +96,4 @@ export class AuthService {
   isAuth(): boolean{
     return !!localStorage.getItem('user');
   }
-
-  
-
 }
-
- 
