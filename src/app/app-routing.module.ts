@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: 'forgotPassword', loadChildren: () => import('./components/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule) },
   { path:'mechanic', component: MechanicPageComponent},
   { path: 'error404', component: Error404Component },
-  { path: '**', redirectTo: '/home' },
+  { path: '**', component: Error404Component },
 ];
 
 @NgModule({
