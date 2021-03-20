@@ -1,5 +1,5 @@
 .profile-vehicle {
-  margin: 0 15%;
+  margin: 0 10% 0 10%;
   margin-top: 1%;
   margin-bottom: 5%;
   box-shadow: none !important;
@@ -78,4 +78,9 @@ button.brand {
 input#brandChosen {
   padding: 6px;
   margin-left: 10px;
+}
+
+ng-template {
+  z-index: -1;
+  position:relative;
 }

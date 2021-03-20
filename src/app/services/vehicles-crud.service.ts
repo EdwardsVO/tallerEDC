@@ -12,7 +12,6 @@ export class VehiclesCrudService {
 
 
   cars: Observable<Vehicle[]>
-  //vehicle: Observable<Vehicle[]>
   vehicleDoc: AngularFirestoreDocument<Vehicle>
 
 
@@ -30,15 +29,17 @@ export class VehiclesCrudService {
 
   }
 
-  async newCar(owner, serial, marca, modelo, year, placa): Promise<void>{
+  async newCar(id, owner, serial, marca, modelo, year, placa, fecha): Promise<void>{
     try{
-      await this.firestore.collection('cars').add({
+      await this.firestore.collection('cars').doc(id).set({
+        id: id,
         owner: owner,
         serial: serial,
         marca: marca,
         modelo: modelo,
         year: year,
-        placa: placa
+        placa: placa,
+        fecha: fecha,
       })
     }catch(err){
       console.log(err);
@@ -53,24 +54,19 @@ export class VehiclesCrudService {
 
   }
 
-  // updateCar(id:any, car:Vehicle){
-  //   this.vehicleDoc = this.firestore.doc(`cars/${car.owner}`);
-  //   return this.vehicleDoc.update(car);
-  //   //return this.firestore.collection("cars").doc(car).update(id);
-  // }
-  // updateCar(id:any, car:any){
-  //   return this.firestore.collection("cars").doc(id).update(car);
-  // }
-
-  // deleteCar(id){
-  //   return this.firestore.collection("cars").doc(id).delete();
-
-  // }
-
-  deleteCar(car:Vehicle){
-    this.vehicleDoc = this.firestore.doc(`cars/${car.owner}`);
-    this.vehicleDoc.delete();
+  
+  updateCar(id:any, car:any){
+    return this.firestore.collection("cars").doc(id).update(car);
   }
+
+  
+
+  // deleteCar(car:Vehicle){
+  //   this.vehicleDoc = this.firestore.doc(`cars/${car.owner}`);
+  //   this.vehicleDoc.delete();
+  // }
+
+  
 
 
 }

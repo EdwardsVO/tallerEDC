@@ -7,6 +7,9 @@
             <mat-card-subtitle class="v-info">SERIAL
                 <p>{{car.serial}}</p>
             </mat-card-subtitle>
+            <mat-card-subtitle class="v-info">MARCA
+                <p>{{car.marca}}</p>
+            </mat-card-subtitle>
             <mat-card-subtitle class="v-info">MODELO
                 <p>{{car.modelo}}</p>
             </mat-card-subtitle>
@@ -16,11 +19,14 @@
             <mat-card-subtitle class="v-info">PLACA
                 <P>{{car.placa}}</P>
             </mat-card-subtitle> 
-            <button mat-fab color="primary" class = "delete" title="Eliminar" (click)="openEditar(content,item)">
+            <mat-card-subtitle class="v-info">FECHA DE INGRESO
+                <P>{{car.fecha}}</P>
+            </mat-card-subtitle> 
+            <button mat-fab color="primary" class = "edit" title="Edit" (click)="openEditar(content, car)" >
                 <mat-icon>edit</mat-icon>
               </button>
-             <button mat-fab color="primary" class = "delete" title="Eliminar" (click)="delete(car)">
-                <mat-icon>delete</mat-icon>
+             <button mat-fab color="primary" class = "delete" title="Eliminar" (click)="disableCar(car)">
+                <mat-icon>disabled_by_default</mat-icon>
               </button>
         </div>
     </div>
@@ -103,11 +109,21 @@
                                     <!--<input matInput >-->
                                 </mat-form-field>
                             </p>
-                    
+                            
+                            <p>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>*Fecha de Ingreso</mat-label>
+                                    <input matInput [matDatepicker]="dp2" formControlName="fecha" class="form-control">
+                                    <mat-datepicker-toggle matSuffix [for]="dp2" disabled></mat-datepicker-toggle>
+                                    <mat-datepicker #dp2></mat-datepicker>
+                                  </mat-form-field>
+                            </p>
                     
                 
     
-                            <button mat-raised-button color="primary" class="re-btn" (click)="addNewCar()">REGISTRAR</button> 
+                            <button mat-raised-button color="primary" class="re-btn" (click)="addNewCar()"*ngIf="!actualizar" [disabled] = "cars.length >= 3">REGISTRAR</button> 
+                            <button mat-raised-button color="primary" class="re-btn" (click)="updateCar(car)" *ngIf="actualizar">EDITAR</button>
+                            
     
                         </mat-card-content>
                     </div>
