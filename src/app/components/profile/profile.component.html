@@ -8,13 +8,14 @@
 
                 <img src="assets/img/placeholder.jpg" alt="Avatar">
 
-                <button mat-raised-button color="primary" class="pic-btn">Subir Imagen <mat-icon>photo_camera</mat-icon>
+                <button mat-raised-button (click)="open(content)"color="primary" class="pic-btn">Subir Imagen <mat-icon>photo_camera</mat-icon>
                     </button>
 
             </mat-card-content>
 
         </mat-card>
     </div>
+
 
     <div class="datos">
         <mat-card class="example-card">
@@ -103,3 +104,29 @@
                 </mat-card-content>
                 </mat-card>
             </div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form>
+        <div class="form-group">
+            <label for="dateOfBirth">Selecciona Imagen</label>
+            <div class="input-group">
+            <input type="file" change="upload($event)" accept=".png,.jpg,.jpeg">
+            <progress max="100" [value]="(uploadProgress | async)"></progress>
+            <div class="result" *ngIf="downloadURL | async; let uploadSrc">
+                <a [href]="uploadSrc">You just uploaded this file!</a>
+              </div>
+            </div>
+        </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" (click)="uploadImg()" mat-raised-button>SUBIR</button>
+    </div>
+</ng-template>     
