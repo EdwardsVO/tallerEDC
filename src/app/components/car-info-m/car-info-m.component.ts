@@ -13,7 +13,7 @@ export class CarInfoMComponent implements OnInit {
   authForm: FormGroup;
   marca: string;
   color:string;
-  año: string;
+  year: string;
   modelo:string;
   placa: string;
   kilometraje: string;
