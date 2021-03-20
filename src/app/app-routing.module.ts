@@ -29,6 +29,7 @@ const routes: Routes = [
   { path: 'user/vehicles', component: VehiclePageComponent, canActivate: [UserGuard] },
   { path: 'user/appointments', component: AppointmentsComponent, canActivate: [UserGuard] },
   { path: 'user',  component: ProfilePageComponent, canActivate: [UserGuard] },
+  { path: 'forgotPassword', loadChildren: () => import('./components/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule) },
   { path: 'error404', component: Error404Component },
   { path: '**', redirectTo: '/home' },
 ];
