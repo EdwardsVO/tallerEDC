@@ -65,6 +65,7 @@ import { ClientReportsComponent } from './components/client-reports/client-repor
 import { VehicleReportsComponent } from './components/vehicle-reports/vehicle-reports.component';
 import { MechanicReportsComponent } from './components/mechanic-reports/mechanic-reports.component';
 import { GarageStatisticsComponent } from './components/garage-statistics/garage-statistics.component';
+import { Error404Component } from './pages/error404/error404.component';
 
 
 
@@ -106,7 +107,8 @@ import { GarageStatisticsComponent } from './components/garage-statistics/garage
     ClientReportsComponent,
     VehicleReportsComponent,
     MechanicReportsComponent,
-    GarageStatisticsComponent
+    GarageStatisticsComponent,
+    Error404Component
   ],
 
   imports: [

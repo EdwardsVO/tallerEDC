@@ -85,6 +85,7 @@ export class LoginComponent implements OnInit {
   async getCurrentRole(): Promise<void> {
     await this._authService.getCurrentUser().subscribe(x => {
       this.currentUser = x.uid;
+      this._db.saveUserRole(this.currentUser);
       this._afs.collection('users').doc(this.currentUser).snapshotChanges().subscribe(x => {
         this.currentRole = x.payload.get('role')
         this.roleLoad = true;

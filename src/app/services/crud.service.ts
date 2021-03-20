@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { ComponentFactoryResolver, Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { User } from '../models/user';
 import firebase from 'firebase';
@@ -62,6 +62,18 @@ export class CrudService {
     })
     } catch(err) {
       console.log(err);
+    }
+  }
+
+  async saveUserRole(userID){
+    try{
+      await this._afs.collection('users').doc(userID).snapshotChanges().subscribe(x =>{
+        localStorage.setItem('role', x.payload.get('role'));
+      }) 
+    } 
+    catch(err){
+      console.log(err);
+      localStorage.removeItem('role');
     }
   }
 
