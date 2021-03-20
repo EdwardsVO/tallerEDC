@@ -22,7 +22,7 @@ export class AdminGuard implements CanActivate {
         return true;
       }
       else{
-        return this._router.parseUrl('/error404');
+        return this._router.parseUrl('**');
       }
   }
 }
