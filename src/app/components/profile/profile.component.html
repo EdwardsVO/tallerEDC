@@ -157,7 +157,11 @@
         <div class="form-group">
             <label for="dateOfBirth">Selecciona Imagen</label>
             <div class="input-group">
-            <input type="file" change="upload($event)" accept="*.png.jpg.jpeg">
+            <input type="file" change="upload($event)" accept=".png,.jpg,.jpeg">
+            <progress max="100" [value]="(uploadProgress | async)"></progress>
+            <div class="result" *ngIf="downloadURL | async; let uploadSrc">
+                <a [href]="uploadSrc">You just uploaded this file!</a>
+              </div>
             </div>
         </div>
         </form>

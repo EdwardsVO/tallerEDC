@@ -4,7 +4,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { CrudService } from 'src/app/services/crud.service';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
+import { map, finalize } from 'rxjs/operators';
+import { Observable } from 'rxjs/internal/Observable';
 
 
 @Component({
@@ -22,17 +25,30 @@ export class ProfileComponent implements OnInit {
   dataUploaded: boolean = false;
   userToEdit: User;
   authForm: FormGroup;
+  ref: AngularFireStorageReference;
+  task: AngularFireUploadTask;
+  uploadProgress: Observable<number>;
+  downloadURL: string;
 
-  constructor(private _db: CrudService, private _auth: AuthService, private _afs: AngularFirestore, private _fb: FormBuilder, private modalService: NgbModal) { }
+  constructor(private _db: CrudService, private _auth: AuthService, private _afs: AngularFirestore, private _fb: FormBuilder, private modalService: NgbModal, private af:AngularFireStorage) { }
 
   path:String;
   
-  upload($event){
-    this.path = $event.target.files[0]
-  }
-  
-  uploadImg(){
-
+  // function to upload file
+  upload = (event) => {
+    // create a random id
+    const randomId = Math.random().toString(36).substring(2);
+    // create a reference to the storage bucket location
+    this.ref = this.af.ref('/images/' + randomId);
+    // the put method creates an AngularFireUploadTask
+    // and kicks off the upload
+    this.task = this.ref.put(event.target.files[0]);
+    this.uploadProgress = this.task.snapshotChanges()
+    .pipe(map(s => (s.bytesTransferred / s.totalBytes) * 100));
+    this.task.snapshotChanges().pipe(
+      //finalize(() => this.downloadURL = this.ref.getDownloadURL())
+    )
+    .subscribe();
   }
 
   
