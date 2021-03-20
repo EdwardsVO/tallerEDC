@@ -28,9 +28,8 @@ td {
   margin-right: 15%;
   margin-left: -15%;
 
-  display: flex;
   align-items: center;
-  flex-flow: row wrap;
+  flex-flow: nowrap;
   width: auto;
 
   display: inline-block;
@@ -103,15 +102,13 @@ img {
 }
 
 mat-card {
-  width: 100%;
-  //display: flex;
+  width: auto;
   align-items: center;
   contain: content;
   flex-direction: row;
 }
 
 mat-form-field {
-  //margin-top: 1rem;
   text-decoration: none;
 }
 
@@ -134,7 +131,9 @@ form {
 }
 
 .info-card {
-  height: 400px;
+  padding: 1rem;
+  margin-top: 10px;
+  height: 560.38px;
   margin-bottom: 0;
   box-shadow: none;
 }
