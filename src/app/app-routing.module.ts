@@ -15,6 +15,8 @@ import { ReportsPageComponent } from './pages/manager/reports-page/reports-page.
 import { AdminGuard } from './guards/admin.guard';
 import { Error404Component } from './pages/error404/error404.component';
 import { MechanicPageComponent } from './pages/mechanic-page/mechanic-page.component';
+import { MechGuard } from './guards/mech.guard';
+import { ManagerGuard } from './guards/manager.guard';
 
 
 const routes: Routes = [
@@ -23,16 +25,15 @@ const routes: Routes = [
   { path: 'register', component: RegisterPageComponent },
   { path: 'admin', component: UserPageComponent, canActivate: [AdminGuard]},
   { path: 'appointments', component: AppointmentsComponent },
-  { path: 'manager',  component: AppointmentsManagerComponent},
-  { path: 'manager/orders',  component: OrdersPageComponent},
-  { path: 'manager/reports',  component: ReportsPageComponent},
+  { path: 'manager',  component: AppointmentsManagerComponent, canActivate: [ManagerGuard]},
+  { path: 'manager/orders',  component: OrdersPageComponent, canActivate: [ManagerGuard]},
+  { path: 'manager/reports',  component: ReportsPageComponent, canActivate: [ManagerGuard]},
   { path: 'user/vehicles/register', component: VehicleRegisterComponent, canActivate: [UserGuard] },
   { path: 'user/vehicles', component: VehiclePageComponent, canActivate: [UserGuard] },
   { path: 'user/appointments', component: AppointmentsComponent, canActivate: [UserGuard] },
   { path: 'user',  component: ProfilePageComponent, canActivate: [UserGuard] },
   { path: 'forgotPassword', loadChildren: () => import('./components/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule) },
-  { path:'mechanic', component: MechanicPageComponent},
-  { path: 'error404', component: Error404Component },
+  { path:'mechanic', component: MechanicPageComponent, canActivate: [MechGuard]},
   { path: '**', component: Error404Component },
 ];
 
