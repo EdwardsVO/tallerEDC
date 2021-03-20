@@ -1,24 +1,11 @@
-<mat-toolbar>
-    <div class="container">
-        <div class="logo-container">
-            <img src="assets/img/logo-edc1.png" alt="logo">
-        </div>
-        <div class="buttons-container">    
-            <a mat-button (click) ="toHome()" routerLink = "/home" routerLinkActive = "active ">Home</a>
-            <a mat-button (click) ="toAbout()"li routerLinkActive = "active">Nosotrosss</a>
-            <a mat-button (click) ="toLocation()"li routerLinkActive = "active">Ubicacion</a>
-            <a mat-button (click) ="toContact()"li routerLinkActive = "active">Contacto</a>
-        </div> 
-        <div class="login" *ngIf ="!userLog">       
-            <a class="loging-b" mat-raised-button color="primary" routerLink="/login">Login    
-                <mat-icon aria-hidden="false" aria-label="Example home icon">login
-                </mat-icon>
-            </a>
-        </div>
-        <div class="logout" *ngIf="userLog" >
-            <button mat-raised-button color="primary" (click) = "logOut()">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" *ngIf="userLog">logout</mat-icon>
-            </button>
-        </div>
-    </div>
-</mat-toolbar>
+
+<a routerLink="user">
+<button mat-flat-button>
+    {{userName}}
+</button></a>
+    <app-client-navbar *ngIf = "clientNav"></app-client-navbar>
+    <app-admin-navbar *ngIf = "adminNav"></app-admin-navbar>
+    <a href="/home" class="loging-b" mat-raised-button color="primary" (click) = "logOut()">Salir
+        <mat-icon aria-hidden="false" aria-label="Example home icon">logout</mat-icon>
+    </a>
+

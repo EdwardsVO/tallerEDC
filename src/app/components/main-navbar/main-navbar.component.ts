@@ -5,6 +5,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import firebase from 'firebase';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-main-navbar',
@@ -13,6 +14,7 @@ import firebase from 'firebase';
 })
 export class MainNavbarComponent {
   userLog: firebase.User = null;
+  useRole: string;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -20,22 +22,16 @@ export class MainNavbarComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, private _authService: AuthService, private _router: Router) {}
+  constructor(private breakpointObserver: BreakpointObserver, private _authService: AuthService, private _router: Router, private _afs: AngularFirestore) {}
 
   ngOnInit(): void {
     this._authService.getCurrentUser().subscribe( 
       user => {
         this.userLog = user;
       }
-    )
+      )
   }
 
-  logOut():void{
-    this._authService.logOut().then(
-      ()=>{
-        this._router.navigate[''];
-      })
-  }
 
   toHome(){
     document.getElementById("inicio").scrollIntoView({block: 'end',behavior:"smooth"});
