@@ -6,9 +6,6 @@ import { isNullOrUndefined } from 'util';
 import { CrudService } from 'src/app/services/crud.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Vehicle } from 'src/app/models/vehicle';
-import { catchError } from 'rxjs/operators';
-
-
 
 
 
@@ -21,18 +18,18 @@ export class VehiclesComponent implements OnInit {
 
   registrarVehiculoForm: FormGroup;
   idFirebaseActualizar: string;
-  actualizar: boolean
-  collection = { count:2, data: []};
+  actualizar: boolean;
   carBrand: string;
   closeResult = '';
   owner: string;
+  id: string;
   cars: Vehicle[];
+  disable: boolean;
 
   constructor(
     private modalService: NgbModal,
     public fb: FormBuilder,
     private vehiclesCrudService: VehiclesCrudService,
-    private _crudservice: CrudService,
     private _vehicleservice: VehiclesCrudService,
     private _authservice: AuthService
   ) { }
@@ -40,8 +37,7 @@ export class VehiclesComponent implements OnInit {
   ngOnInit(): void {
    
   
-
-    this.idFirebaseActualizar = '';
+    this.disable = false;
     this.actualizar = false;
 
     this._vehicleservice.getCars().subscribe(cars => {
@@ -55,7 +51,8 @@ export class VehiclesComponent implements OnInit {
       marca: ['', Validators.required],
       modelo: ['', Validators.required],
       year: ['', Validators.required],
-      placa: ['', Validators.required]
+      placa: ['', Validators.required],
+      fecha: ['', Validators.required]
     })
 
   }
@@ -68,13 +65,16 @@ export class VehiclesComponent implements OnInit {
     try{
       await this._authservice.getCurrentUser().subscribe(resp => {
         this.owner = resp.uid
+        this.id = resp.uid
         this._vehicleservice.newCar(
           this.owner, 
+          this.id,
           this.registrarVehiculoForm.get('serial').value, 
           this.registrarVehiculoForm.get('marca').value, 
           this.registrarVehiculoForm.get('modelo').value, 
           this.registrarVehiculoForm.get('year').value, 
-          this.registrarVehiculoForm.get('placa').value
+          this.registrarVehiculoForm.get('placa').value,
+          this.registrarVehiculoForm.get('fecha').value,
         )
         this.registrarVehiculoForm.reset();
         this.modalService.dismissAll();
@@ -84,54 +84,49 @@ export class VehiclesComponent implements OnInit {
     }
   }
 
-  getOwnerId(){
-    try{
-      this._authservice.getCurrentUser().subscribe(resp => {
-        return this.owner = resp.uid
-        //console.log(this.owner)
-      })
-    }catch(error){
-      console.log(error)
-    }
+  
+
+  updateCar(){
+    this.vehiclesCrudService.updateCar(this.idFirebaseActualizar, this.registrarVehiculoForm.value).then(resp => {
+      this.registrarVehiculoForm.reset();
+      this.modalService.dismissAll();
+    }).catch(error => {
+      console.error(error);
+    });
   }
 
+  openEditar(content, car: any) {
 
-  // actualizarCar(){
+    //llenar form para editar
+    this.registrarVehiculoForm.setValue({
+      //owner: car.owner,
+      serial: car.serial,
+      marca: car.marca,
+      modelo: car.modelo,
+      year: car.year,
+      placa: car.placa,
+      fecha: car.fecha,
+    });
+    this.idFirebaseActualizar = car.id;
+    this.actualizar = true;
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
 
-  //   //let id = this.getOwnerId();
+  // delete(car):void{
 
-  //   this.vehiclesCrudService.updateCar(this.getOwnerId(), this.registrarVehiculoForm.value).then(resp => {
-  //     this.registrarVehiculoForm.reset();
-  //     this.modalService.dismissAll();
-  //   }).catch(error => {
-  //     console.error(error);
-  //   });
-  // }
-
-  
-    
-  
-
-
-
-
-  delete(car):void{
-
-      this.vehiclesCrudService.deleteCar(car);
+  //     this.vehiclesCrudService.deleteCar(car);
    
+  // }
+
+  disableCar(car):void {
+    this.disable = true;
   }
 
-  // delete(){
-  //   try{
-  //     this._authservice.getCurrentUser().subscribe(resp => {
-  //       this.owner = resp.uid
-  //       this._vehicleservice.deleteCar(
-  //         this.owner)
-  //     })
-  //   }catch(error){
-  //     console.log(error)
-  //   }
-  // }
+  
 
 
 
@@ -143,6 +138,7 @@ export class VehiclesComponent implements OnInit {
  }
 
   open(content) {
+    this.actualizar = false;
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -150,25 +146,7 @@ export class VehiclesComponent implements OnInit {
     });
   }
 
-  openEditar(content, item: any) {
-
-    //llenar form para editar
-    //this.registrarVehiculoForm.setValue({
-  //     this.registrarVehiculoForm.setValue(item.serial), 
-  //     this.registrarVehiculoForm.setValue(item.marca), 
-  //     this.registrarVehiculoForm.setValue(item.modelo), 
-  //     this.registrarVehiculoForm.setValue(item.year), 
-  //     this.registrarVehiculoForm.setValue(item.placa)
-  //  // });
-  //   // this.idFirabaseActualizar = item.idFirebase;
-  //   // this.actualizar = true;
-  //   this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-  //     this.closeResult = `Closed with: ${result}`;
-  //   }, (reason) => {
-  //     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-  //   });
-  }
-
+  
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
