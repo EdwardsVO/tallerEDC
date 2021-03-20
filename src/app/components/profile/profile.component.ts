@@ -15,6 +15,8 @@ export class ProfileComponent implements OnInit {
   userName: string;
   userEmail: string;
   userPhone: string;
+  userGender: string;
+  userAge: number;
   editInfo: boolean = false;
   dataUploaded: boolean = false;
   userToEdit: User;
@@ -26,8 +28,8 @@ export class ProfileComponent implements OnInit {
     this.getCurrentUser();
     this.updateProfileForm();
     };
-    
-  
+
+
 
   updateInfo(): boolean {
     return this.editInfo = !this.editInfo;
@@ -38,14 +40,14 @@ export class ProfileComponent implements OnInit {
     this.userName = x.payload.get('name')
     this.userEmail = x.payload.get('email')
     this.userPhone = x.payload.get('phone')
-    
+
   })
   this.dataUploaded = true;
   }
-  
+
 
   async getCurrentUser(): Promise<void>{
-    
+
     await this._auth.getCurrentUser().subscribe(user => {
        this.userID = user.uid;
        this.getLoggedUser();
@@ -54,21 +56,26 @@ export class ProfileComponent implements OnInit {
 
   updateProfileForm(): void {
     this.authForm = this._fb.group({
-     
+
       name: ['', Validators.required],
       email: [this.userEmail],
-      phone: ['', Validators.required]
+      phone: ['', Validators.required],
+      gender: ['', Validators.required],
+      age: ['', Validators.required]
     })
   }
 
   handleUpdateProfile(){
-    
+
     this._db.updateUserProfile(
       this.userID,
       this.authForm.get('name').value,
       this.userEmail,
       this.authForm.get('phone').value,
+      this.authForm.get('gender').value,
+      this.authForm.get('age').value,
+
       )
-    } 
+    }
 
 }

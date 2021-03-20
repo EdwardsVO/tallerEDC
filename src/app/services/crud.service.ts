@@ -16,13 +16,13 @@ export class CrudService {
 
   url = 'https://talleredc-8704c-default-rtdb.firebaseio.com/users';
   db = firebase.firestore();
-  
+
 
   private usersCollection: AngularFirestoreCollection<User>;
   users: Observable<User[]>
   userDoc: AngularFirestoreDocument<User>;
 
-  constructor(private _afs: AngularFirestore) { 
+  constructor(private _afs: AngularFirestore) {
 
     this.usersCollection = this._afs.collection('users');
 
@@ -53,17 +53,19 @@ export class CrudService {
     return this.users;
   }
 
-  async updateUserProfile(id, name, email, phone){
+  async updateUserProfile(id, name, email, phone,gender,age){
     try{
     await this.db.collection('users').doc(id).update({
       name: name,
       email: email,
-      phone: phone
+      phone: phone,
+      gender: gender,
+      age: age
     })
     } catch(err) {
       console.log(err);
     }
   }
 
-} 
+}
 
