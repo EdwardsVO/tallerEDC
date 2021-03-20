@@ -21,9 +21,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   onReset(){
-    if(Input.length == 0){
-      alert("Ingrese el correo electronico")
-    }else{try{
+    try{
       const email = this.userEmail.value;
       this.authSvc.resetPassword(email);
       window.alert('El correo ha sido enviado');
@@ -32,5 +30,5 @@ export class ForgotPasswordComponent implements OnInit {
       console.log(error)
     }
   }
-  }
+  
 }
