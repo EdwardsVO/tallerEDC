@@ -110,15 +110,6 @@ export class VehiclesComponent implements OnInit {
     }).catch(error => {
       console.error(error);
     });
-    // this.registrarVehiculoForm.reset();
-    // this.modalService.dismissAll();
-    //this.clearState();
-    // this.vehiclesCrudService.updateCar(this.idFirabaseActualizar, this.registrarVehiculoForm.value).then(resp => {
-    //   this.registrarVehiculoForm.reset();
-    //   this.modalService.dismissAll();
-    // }).catch(error => {
-    //   console.error(error);
-    // });
   }
 
   openEditar(content, car: any) {
