@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Vehicle } from '../models/vehicle';
 import {map} from 'rxjs/operators';
+import { AngularFireAuth } from '@angular/fire/auth';
+
 
 
 @Injectable({
@@ -12,8 +14,9 @@ export class VehiclesCrudService {
 
 
   cars: Observable<Vehicle[]>
-  //vehicle: Observable<Vehicle[]>
   vehicleDoc: AngularFirestoreDocument<Vehicle>
+  carId: string;
+  carsCollection: AngularFirestoreCollection<Vehicle>;
 
 
 
@@ -28,29 +31,85 @@ export class VehiclesCrudService {
       })
     }))
 
+    // this.carsCollection = firestore.collection<Vehicle>('cars');
+    // this.cars = this.carsCollection.valueChanges();
+
+    //const racesCollection: AngularFirestoreCollection<Race>;
+    
+
+    
+
   }
 
-  async newCar(owner, serial, marca, modelo, year, placa): Promise<void>{
+  async newCar(id2, owner, serial, marca, modelo, year, placa): Promise<void>{
     try{
-      await this.firestore.collection('cars').add({
-        owner: owner,
-        serial: serial,
-        marca: marca,
-        modelo: modelo,
-        year: year,
-        placa: placa
-      })
+      const {id} = await this.firestore.collection('cars').add({
+        //await this.firestore.collection('cars').add({
+          id2: id2,
+          owner: owner,
+          serial: serial,
+          marca: marca,
+          modelo: modelo,
+          year: year,
+          placa: placa,
+        })
+        
+        this.carId = id
+        this.getCarId2(this.carId)
+        
+        
+      // this.getCarId()
+      //console.log(id)
     }catch(err){
       console.log(err);
     }
   }
 
   getCars(){
-    //return this.firestore.collection("cars").snapshotChanges();
-    return this.cars;
-    // this.vehicleDoc = this.firestore.doc(`cars/${car.owner}`);
-    // this.vehicleDoc.get();
+    //return this.cars;
+    return this.firestore.collection("cars").snapshotChanges();
+  }
 
+  // getCarId() {
+
+    
+
+    
+    
+  //   // return this.firestore.collection("cars").snapshotChanges().pipe(map(changes => {    
+  //   //   return changes.map(a => {
+  //   //     const data = a.payload.doc.data() as Vehicle;
+  //   //     data.id2 = a.payload.doc.id;
+  //   //     return data;
+  //   //   });
+  //   // }))
+    
+    
+  // }
+
+  getCarId2(id){
+    this.firestore.collection("cars").doc(id).update({
+      id2: id
+    })
+    //return id;
+  }
+
+  // async updateCar(car:any){
+  //   try{
+  //   await this.firestore.collection('cars').doc(car.id2).update({
+  //     serial: car.serial,
+  //     marca: car.marca,
+  //     modelo: car.modelo,
+  //     year: car.year,
+  //     placa: car.placa,
+  //   })
+  //   } catch(err) {
+  //     console.log(err);
+  //   }
+  // }
+
+  updateCar(car:any, id: any){
+    return this.firestore.collection("cars").doc(id).update(car);
   }
 
   // updateCar(id:any, car:Vehicle){

@@ -1,11 +1,14 @@
 <h1>MIS VEHÍCULOS</h1>
 <mat-card class="profile-vehicle">
     <div class='carros'>
-        <div class="vehicle-container" *ngFor="let car of cars">
+        <div class="vehicle-container" *ngFor="let car of collection.data">
             <img mat-card-sm-image src="{{car.foto}}" alt="client's car1">
            
             <mat-card-subtitle class="v-info">SERIAL
                 <p>{{car.serial}}</p>
+            </mat-card-subtitle>
+            <mat-card-subtitle class="v-info">MARCA
+                <p>{{car.marca}}</p>
             </mat-card-subtitle>
             <mat-card-subtitle class="v-info">MODELO
                 <p>{{car.modelo}}</p>
@@ -16,7 +19,7 @@
             <mat-card-subtitle class="v-info">PLACA
                 <P>{{car.placa}}</P>
             </mat-card-subtitle> 
-            <button mat-fab color="primary" class = "delete" title="Eliminar" (click)="openEditar(content,item)">
+            <button mat-fab color="primary" class = "delete" title="Eliminar" (click)="openEditar(content,car)">
                 <mat-icon>edit</mat-icon>
               </button>
              <button mat-fab color="primary" class = "delete" title="Eliminar" (click)="delete(car)">
@@ -107,7 +110,9 @@
                     
                 
     
-                            <button mat-raised-button color="primary" class="re-btn" (click)="addNewCar()">REGISTRAR</button> 
+                            <!--<button mat-raised-button color="primary" class="re-btn" (click)="addNewCar()">REGISTRAR</button> -->
+                            <button type="button" class="btn btn-outline-dark" (click)="addNewCar()" *ngIf="!actualizar">REGISTRAR</button>
+                            <button type="button" class="btn btn-outline-dark" (click)="updateCar()" *ngIf="actualizar">Actualizar</button>
     
                         </mat-card-content>
                     </div>
