@@ -19,6 +19,7 @@ import { MechGuard } from './guards/mech.guard';
 import { ManagerGuard } from './guards/manager.guard';
 
 
+
 const routes: Routes = [
   { path: 'home', component: LandingPageComponent },
   { path: 'login', component: LoginPageComponent },

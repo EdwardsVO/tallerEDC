@@ -76,6 +76,7 @@ import { AdminNavbarComponent } from './components/navbar/admin-navbar/admin-nav
 import { MechNavbarComponent } from './components/navbar/mech-navbar/mech-navbar.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
