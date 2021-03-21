@@ -13,16 +13,7 @@ import { RegisterComponent } from '../register/register.component';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFirestore } from '@angular/fire/firestore';
 
-import {FormControl, FormGroupDirective, NgForm} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
 
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
 
 @Component({
   selector: 'app-login',
@@ -44,13 +35,6 @@ export class LoginComponent implements OnInit {
   currentRole: string;
   roleLoad: boolean = false;
 
-
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-
-  matcher = new MyErrorStateMatcher();
 
   constructor(private _fb: FormBuilder, private _router: Router, private modalService: NgbModal, private _authService: AuthService, private _db: CrudService, private _afs: AngularFirestore) {
   }
