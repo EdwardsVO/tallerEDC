@@ -19,12 +19,14 @@ import { MechGuard } from './guards/mech.guard';
 import { ManagerGuard } from './guards/manager.guard';
 
 
+
 const routes: Routes = [
   { path: 'home', component: LandingPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
   { path: 'admin', component: UserPageComponent, canActivate: [AdminGuard]},
   { path: 'appointments', component: AppointmentsComponent },
+  { path: 'error', component: Error404Component },
   { path: 'manager',  component: AppointmentsManagerComponent, canActivate: [ManagerGuard]},
   { path: 'manager/orders',  component: OrdersPageComponent, canActivate: [ManagerGuard]},
   { path: 'manager/reports',  component: ReportsPageComponent, canActivate: [ManagerGuard]},
