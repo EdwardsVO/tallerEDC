@@ -116,7 +116,7 @@ export class LoginComponent implements OnInit {
           this.user = user;
           this.prueba = user.uid;
           if (this.currentRole === 'client') {
-            this._router.navigate(['/user'], { queryParams: { login: 'true' }, queryParamsHandling: 'merge' })
+            this._router.navigate(['/client/vehicles'], { queryParams: { login: 'true' }, queryParamsHandling: 'merge' })
           }
           if (this.currentRole === 'admin') {
             this._router.navigate(['/admin'], { queryParams: { login: 'true' }, queryParamsHandling: 'merge' })

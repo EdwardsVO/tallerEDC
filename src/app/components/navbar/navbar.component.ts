@@ -42,9 +42,7 @@ export class NavbarComponent implements OnInit {
     })
   }
 
-  print(){
-    console.log(this.userRole)  
-  }
+  
   logOut():void{
     this._authService.logOut().then(
       ()=>{
