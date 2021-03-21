@@ -22,7 +22,7 @@ export class VehiclesCrudService {
 
   constructor(
     private firestore: AngularFirestore
-  ) { 
+  ) {
     this.cars = this.firestore.collection('cars').snapshotChanges().pipe(map(changes => {
       return changes.map(e => {
         const data = e.payload.doc.data() as Vehicle;
@@ -35,9 +35,9 @@ export class VehiclesCrudService {
     // this.cars = this.carsCollection.valueChanges();
 
     //const racesCollection: AngularFirestoreCollection<Race>;
-    
 
-    
+
+
 
   }
 
@@ -53,11 +53,11 @@ export class VehiclesCrudService {
           year: year,
           placa: placa,
         })
-        
+
         this.carId = id
         this.getCarId2(this.carId)
-        
-        
+
+
       // this.getCarId()
       //console.log(id)
     }catch(err){
@@ -72,19 +72,19 @@ export class VehiclesCrudService {
 
   // getCarId() {
 
-    
 
-    
-    
-  //   // return this.firestore.collection("cars").snapshotChanges().pipe(map(changes => {    
+
+
+
+  //   // return this.firestore.collection("cars").snapshotChanges().pipe(map(changes => {
   //   //   return changes.map(a => {
   //   //     const data = a.payload.doc.data() as Vehicle;
   //   //     data.id2 = a.payload.doc.id;
   //   //     return data;
   //   //   });
   //   // }))
-    
-    
+
+
   // }
 
   getCarId2(id){
@@ -130,6 +130,11 @@ export class VehiclesCrudService {
     this.vehicleDoc = this.firestore.doc(`cars/${car.owner}`);
     this.vehicleDoc.delete();
   }
+
+  getUsersCars(userId) {
+    const search = this.firestore.collection('cars', ref => ref.where("owner", "==", userId));
+    return search;
+    }
 
 
 }
