@@ -75,6 +75,8 @@ import { ClientNavbarComponent } from './components/navbar/client-navbar/client-
 import { AdminNavbarComponent } from './components/navbar/admin-navbar/admin-navbar.component';
 import { MechNavbarComponent } from './components/navbar/mech-navbar/mech-navbar.component';
 import { ErrorComponent } from './components/error/error.component';
+import { UsPageComponent } from './pages/us-page/us-page.component';
+import { OurTeamComponent } from './components/our-team/our-team.component';
 
 
 
@@ -123,7 +125,9 @@ import { ErrorComponent } from './components/error/error.component';
     ClientNavbarComponent,
     AdminNavbarComponent,
     MechNavbarComponent,
-    ErrorComponent
+    ErrorComponent,
+    UsPageComponent,
+    OurTeamComponent
   ],
 
   imports: [
