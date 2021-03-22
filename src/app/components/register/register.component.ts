@@ -46,7 +46,9 @@ export class RegisterComponent implements OnInit {
           this.authForm.get('phone').value,
           this.role,
           )
+        
     })
+    
     }catch(err) {
       console.log(err);
       console.log(this.authForm.get('email'));

@@ -17,6 +17,7 @@ import { Error404Component } from './pages/error404/error404.component';
 import { MechanicPageComponent } from './pages/mechanic-page/mechanic-page.component';
 import { MechGuard } from './guards/mech.guard';
 import { ManagerGuard } from './guards/manager.guard';
+import { EmailConfirmationComponent } from './components/email-confirmation/email-confirmation.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'client/appointments', component: AppointmentsComponent, canActivate: [UserGuard] },
   { path: 'profile',  component: ProfilePageComponent, canActivate: [UserGuard] },
   { path: 'forgotPassword', loadChildren: () => import('./components/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule) },
+  { path: 'email-confirmation', component: EmailConfirmationComponent, canActivate: [UserGuard] },
   { path:'mechanic', component: MechanicPageComponent, canActivate: [MechGuard]},
   { path: '**', component: Error404Component },
 ];
