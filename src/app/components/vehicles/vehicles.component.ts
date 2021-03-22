@@ -19,7 +19,12 @@ export class VehiclesComponent implements OnInit {
   closeResult = '';
   owner: string;
   cars = [];
-  id2 = ''
+  id2 = '';
+  needsReparation: boolean;
+  appointmentConfirmed: boolean;
+  fecha: string;
+  serial: string;
+  repaired: boolean;
 
 
   constructor(
@@ -35,6 +40,9 @@ export class VehiclesComponent implements OnInit {
 
     this.id2 = '';
     this.actualizar = false;
+    this.needsReparation = false;
+    this.appointmentConfirmed = false;
+    this.repaired = false;
 
 
     this.registrarVehiculoForm = this.fb.group({
@@ -66,15 +74,21 @@ export class VehiclesComponent implements OnInit {
     try{
       await this._authservice.getCurrentUser().subscribe(resp => {
         this.owner = resp.uid
+
         this._vehicleservice.newCar(
           this.carId = '',
           this.owner,
-          this.registrarVehiculoForm.get('serial').value,
+          this.serial = this.registrarVehiculoForm.get('serial').value,
           this.registrarVehiculoForm.get('marca').value,
           this.registrarVehiculoForm.get('modelo').value,
           this.registrarVehiculoForm.get('year').value,
-          this.registrarVehiculoForm.get('placa').value
+          this.registrarVehiculoForm.get('placa').value,
+          this.fecha = this.formatDate(),
+          this.needsReparation,
+          this.appointmentConfirmed,
+          this.repaired
         )
+        //this.checkCar(this.serial);
         this.registrarVehiculoForm.reset();
         this.modalService.dismissAll();
       })
@@ -83,6 +97,15 @@ export class VehiclesComponent implements OnInit {
     }
   }
 
+  formatDate(){
+    const timeElapsed = Date.now();
+    const today = new Date(timeElapsed);
+    return today.toDateString()
+  }
+
+  checkCar(){
+    this.vehiclesCrudService.getSerial(this.registrarVehiculoForm.get('serial').value)
+  }
 
   updateCar(){
     this.vehiclesCrudService.updateCar(this.registrarVehiculoForm.value, this.id2)

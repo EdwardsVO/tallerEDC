@@ -26,6 +26,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.createRegistrationForm();
+    
   }
 
   createRegistrationForm(): void {
@@ -37,8 +38,11 @@ export class RegisterComponent implements OnInit {
     })
   }
 
+
+
   async handleRegistration(): Promise<void> {
     console.log('es aaqui')
+    
     try{
       await this._authService.registerNewUser(this.authForm.get('email').value, this.authForm.get('password').value)
       this._authService.getCurrentUser().subscribe( res => {
@@ -50,7 +54,11 @@ export class RegisterComponent implements OnInit {
           this.authForm.get('phone').value,
           this.role,
           )
+          
+
+        
     })
+    
     }catch(err) {
       console.log(err);
       console.log(this.authForm.get('email'));

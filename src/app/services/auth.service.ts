@@ -11,6 +11,8 @@ import { User } from '../models/user';
 export class AuthService {
 
   private usersCollection: AngularFirestoreCollection<User>;
+  user: Observable<any>;
+  
 
 
 
@@ -65,21 +67,28 @@ export class AuthService {
     password: string
   ): Promise <firebase.User | null> {
     try{
-      const response = await this._afAuth.createUserWithEmailAndPassword(email, password);
+      const response = await this._afAuth.createUserWithEmailAndPassword(email, password).then();
 
       if(response.user){
         localStorage.setItem('user', response.user.uid)
+        await response.user.sendEmailVerification();
         return response.user;
+       
       }
       else{
         return null;
       }
+       
+      
+
   }
   catch (err){
     localStorage.removeItem('user');
     return null;
   }
   }
+
+  
 
   async loginWithEmail(
     email: string,

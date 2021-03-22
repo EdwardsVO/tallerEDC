@@ -31,7 +31,7 @@ export class VehiclesCrudService {
 
   }
 
-  async newCar(id2, owner, serial, marca, modelo, year, placa): Promise<void>{
+  async newCar(id2, owner, serial, marca, modelo, year, placa, fecha, needsReparation, appointmentConfirmed, repaired): Promise<void>{
     try{
       const {id} = await this.firestore.collection('cars').add({
           id2: id2,
@@ -41,6 +41,10 @@ export class VehiclesCrudService {
           modelo: modelo,
           year: year,
           placa: placa,
+          fecha: fecha,
+          needsReparation: needsReparation,
+          appointmentConfirmed: appointmentConfirmed,
+          repaired: repaired
         })
 
         this.carId = id
@@ -58,6 +62,26 @@ export class VehiclesCrudService {
     this.firestore.collection("cars").doc(id).update({
       id2: id
     })
+  }
+
+  getSerial(serial){
+  
+    this.firestore.collection("cars", ref => ref.where("serial", "==", serial))
+    .get()
+    .subscribe((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          if (doc.exists) {
+              //console.log("Document data:", doc.data());
+              return true
+          } else {
+              // doc.data() will be undefined in this case
+              console.log("No such document!");
+          }
+           
+        });
+    })
+
+    
   }
 
   updateCar(car:any, id: any){
