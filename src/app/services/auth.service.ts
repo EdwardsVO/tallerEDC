@@ -1,12 +1,9 @@
-import { stringify } from '@angular/compiler/src/util';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase'
 import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { User } from '../models/user';
-import { promise } from 'selenium-webdriver';
-
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +11,14 @@ import { promise } from 'selenium-webdriver';
 export class AuthService {
 
   private usersCollection: AngularFirestoreCollection<User>;
-  
+
 
 
   constructor(private _afAuth: AngularFireAuth, private _afs: AngularFirestore,private afAuth: AngularFireAuth)  { }
 
-  
 
-  
+
+
   async resetPassword(email:string):Promise<void>{
     try{
       return this.afAuth.sendPasswordResetEmail(email);
@@ -108,4 +105,5 @@ export class AuthService {
   isAuth(): boolean{
     return !!localStorage.getItem('user');
   }
+
 }

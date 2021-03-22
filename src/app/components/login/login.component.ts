@@ -64,8 +64,7 @@ export class LoginComponent implements OnInit {
           this.id = user.uid;
           this.name = user.displayName;
           this.email = user.email;
-          this.phone = user.phoneNumber;
-          this.role
+          this.role;
 
           this._afs.collection('users').doc(this.id).ref.get().then((docSnapshot) => {
             if (!docSnapshot.exists) {
@@ -77,9 +76,10 @@ export class LoginComponent implements OnInit {
                 this.role)
             }
           });
-          }
-      )
-      this.startProfilePage()
+        }
+        )
+
+        this.startProfilePage()
     } catch (err) {
       console.log(err);
     }
@@ -124,7 +124,7 @@ export class LoginComponent implements OnInit {
           if (this.currentRole === 'mechanic') {
             this._router.navigate(['/mechanic'], { queryParams: { login: 'true' }, queryParamsHandling: 'merge' })
           }
-          
+
           if (this.currentRole === 'manager') {
             this._router.navigate(['/manager'], { queryParams: { login: 'true' }, queryParamsHandling: 'merge' })
           }

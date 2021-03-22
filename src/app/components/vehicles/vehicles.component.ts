@@ -2,16 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {VehiclesCrudService} from '../../services/vehicles-crud.service';
-import { isNullOrUndefined } from 'util';
-import { CrudService } from 'src/app/services/crud.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { Vehicle } from 'src/app/models/vehicle';
-import { catchError } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
-
-
-
-
 
 @Component({
   selector: 'app-vehicles',
@@ -26,8 +18,7 @@ export class VehiclesComponent implements OnInit {
   carBrand: string;
   closeResult = '';
   owner: string;
-  cars: Vehicle[];
-  collection = { count: 0, data: [] }
+  cars = [];
   id2 = ''
 
 
@@ -35,16 +26,12 @@ export class VehiclesComponent implements OnInit {
     private modalService: NgbModal,
     public fb: FormBuilder,
     private vehiclesCrudService: VehiclesCrudService,
-    private _crudservice: CrudService,
     private _vehicleservice: VehiclesCrudService,
     private _authservice: AuthService,
     private firestore: AngularFirestore
   ) { }
 
   ngOnInit(): void {
-
-
-    this.getUsersCars()
 
     this.id2 = '';
     this.actualizar = false;
@@ -58,8 +45,8 @@ export class VehiclesComponent implements OnInit {
       placa: ['', Validators.required]
     })
 
-    this.vehiclesCrudService.getCars().subscribe(resp => {
-      this.collection.data = resp.map((e: any) => {
+    this.firestore.collection('cars', ref => ref.where("owner", "==", localStorage.getItem('user'))).snapshotChanges().subscribe(res => {
+      this.cars = res.map((e: any) => {
         return {
           id: e.payload.doc.id,
           serial: e.payload.doc.data().serial,
@@ -70,9 +57,7 @@ export class VehiclesComponent implements OnInit {
         }
       })
     })
-
   }
-
 
 
 
@@ -99,7 +84,6 @@ export class VehiclesComponent implements OnInit {
   }
 
 
-
   updateCar(){
     this.vehiclesCrudService.updateCar(this.registrarVehiculoForm.value, this.id2)
     .then(resp => {
@@ -112,7 +96,6 @@ export class VehiclesComponent implements OnInit {
 
   openEditar(content, car: any) {
 
-    //llenar form para editar
     this.registrarVehiculoForm.setValue({
       serial: car.serial,
       marca: car.marca,
@@ -129,44 +112,12 @@ export class VehiclesComponent implements OnInit {
     });
   }
 
-  // actualizarCar(){
-
-  //   //let id = this.getOwnerId();
-
-  //   this.vehiclesCrudService.updateCar(this.getOwnerId(), this.registrarVehiculoForm.value).then(resp => {
-  //     this.registrarVehiculoForm.reset();
-  //     this.modalService.dismissAll();
-  //   }).catch(error => {
-  //     console.error(error);
-  //   });
-  // }
-
-
-
-
-
-
-
 
   delete(car):void{
 
       this.vehiclesCrudService.deleteCar(car);
 
   }
-
-  // delete(){
-  //   try{
-  //     this._authservice.getCurrentUser().subscribe(resp => {
-  //       this.owner = resp.uid
-  //       this._vehicleservice.deleteCar(
-  //         this.owner)
-  //     })
-  //   }catch(error){
-  //     console.log(error)
-  //   }
-  // }
-
-
 
   onClick (name: string): string {
 
@@ -193,18 +144,6 @@ export class VehiclesComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
-  }
-
-  getUsersCars() {
-    this._vehicleservice.getUsersCars(this.currentUserId()).get().subscribe(res => {
-      res.forEach(data => {
-        console.log(data.data());
-      })
-    })
-}
-
-  currentUserId() {
-    return localStorage.getItem('user');
   }
 
 }
