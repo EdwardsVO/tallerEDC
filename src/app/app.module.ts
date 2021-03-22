@@ -77,6 +77,7 @@ import { MechNavbarComponent } from './components/navbar/mech-navbar/mech-navbar
 import { ErrorComponent } from './components/error/error.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

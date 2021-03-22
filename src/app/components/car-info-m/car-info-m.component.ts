@@ -20,6 +20,9 @@ export class CarInfoMComponent implements OnInit {
   tanque:string;
   extra:string;
   
+  typesLists: string[] = ['Caucho de Repuesto', 'Llaves', 'Gato'];
+  typesLists2: string[] = ['Herramiebtas', 'Reproductor', 'Otros'];
+  
 
   constructor() { 
    }
