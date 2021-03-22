@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit {
         }
         )
 
-        this.startProfilePage()
+        this.getCurrentRole();
     } catch (err) {
       console.log(err);
     }
