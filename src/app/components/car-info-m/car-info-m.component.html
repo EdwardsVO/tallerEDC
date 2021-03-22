@@ -5,10 +5,10 @@
     <mat-card-content class="pic">
 
         <img src="assets/img/placeholder.jpg" alt="Avatar">
-
+<!--
         <button mat-raised-button color="primary" class="pic-btn">Subir Imagen <mat-icon>photo_camera</mat-icon>
             </button>
-
+          -->
     </mat-card-content>
 
     
@@ -39,3 +39,25 @@
 
 </div>
 
+<h2>SELECCIONAR SI EXISTE:</h2>
+
+<div class="list">
+
+    <mat-selection-list #list class="r1">
+        <mat-list-option color = "primary" *ngFor="let list of typesLists">
+        {{list}}
+        </mat-list-option>
+    </mat-selection-list>
+
+    <mat-selection-list #list2 class="r2">
+        <mat-list-option  color = "primary" *ngFor="let list2 of typesLists2">
+        {{list2}}
+        </mat-list-option>
+        
+    </mat-selection-list>
+
+</div>
+
+<div class="button-container">
+  <button mat-raised-button >ACEPTAR</button>
+</div>

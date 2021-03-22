@@ -74,6 +74,8 @@ import { Error404Component } from './pages/error404/error404.component';
 import { ClientNavbarComponent } from './components/navbar/client-navbar/client-navbar.component';
 import { AdminNavbarComponent } from './components/navbar/admin-navbar/admin-navbar.component';
 import { MechNavbarComponent } from './components/navbar/mech-navbar/mech-navbar.component';
+import { ErrorComponent } from './components/error/error.component';
+
 
 
 @NgModule({
@@ -120,7 +122,8 @@ import { MechNavbarComponent } from './components/navbar/mech-navbar/mech-navbar
     Error404Component,
     ClientNavbarComponent,
     AdminNavbarComponent,
-    MechNavbarComponent
+    MechNavbarComponent,
+    ErrorComponent
   ],
 
   imports: [

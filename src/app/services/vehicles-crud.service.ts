@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Vehicle } from '../models/vehicle';
 import {map} from 'rxjs/operators';
@@ -12,14 +12,15 @@ export class VehiclesCrudService {
 
 
   cars: Observable<Vehicle[]>
-  //vehicle: Observable<Vehicle[]>
   vehicleDoc: AngularFirestoreDocument<Vehicle>
+  carId: string;
+  carsCollection: AngularFirestoreCollection<Vehicle>;
 
 
 
   constructor(
     private firestore: AngularFirestore
-  ) { 
+  ) {
     this.cars = this.firestore.collection('cars').snapshotChanges().pipe(map(changes => {
       return changes.map(e => {
         const data = e.payload.doc.data() as Vehicle;
@@ -30,47 +31,46 @@ export class VehiclesCrudService {
 
   }
 
-  async newCar(owner, serial, marca, modelo, year, placa): Promise<void>{
+  async newCar(id2, owner, serial, marca, modelo, year, placa): Promise<void>{
     try{
-      await this.firestore.collection('cars').add({
-        owner: owner,
-        serial: serial,
-        marca: marca,
-        modelo: modelo,
-        year: year,
-        placa: placa
-      })
+      const {id} = await this.firestore.collection('cars').add({
+          id2: id2,
+          owner: owner,
+          serial: serial,
+          marca: marca,
+          modelo: modelo,
+          year: year,
+          placa: placa,
+        })
+
+        this.carId = id
+        this.getCarId2(this.carId)
     }catch(err){
       console.log(err);
     }
   }
 
   getCars(){
-    //return this.firestore.collection("cars").snapshotChanges();
-    return this.cars;
-    // this.vehicleDoc = this.firestore.doc(`cars/${car.owner}`);
-    // this.vehicleDoc.get();
-
+    return this.firestore.collection("cars").snapshotChanges();
   }
 
-  // updateCar(id:any, car:Vehicle){
-  //   this.vehicleDoc = this.firestore.doc(`cars/${car.owner}`);
-  //   return this.vehicleDoc.update(car);
-  //   //return this.firestore.collection("cars").doc(car).update(id);
-  // }
-  // updateCar(id:any, car:any){
-  //   return this.firestore.collection("cars").doc(id).update(car);
-  // }
+  getCarId2(id){
+    this.firestore.collection("cars").doc(id).update({
+      id2: id
+    })
+  }
 
-  // deleteCar(id){
-  //   return this.firestore.collection("cars").doc(id).delete();
-
-  // }
+  updateCar(car:any, id: any){
+    return this.firestore.collection("cars").doc(id).update(car);
+  }
 
   deleteCar(car:Vehicle){
     this.vehicleDoc = this.firestore.doc(`cars/${car.owner}`);
     this.vehicleDoc.delete();
   }
 
+  getUsersCars(userId) {
+    return this.firestore.collection('cars', ref => ref.where("owner", "==", userId));
 
+    }
 }

@@ -5,6 +5,6 @@ export interface Vehicle {
     modelo?: string;
     year?: string;
     placa?: string;
-    id?: string;
+    id2?: string;
 
 }

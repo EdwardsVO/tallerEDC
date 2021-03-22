@@ -20,12 +20,14 @@ import { ManagerGuard } from './guards/manager.guard';
 import { EmailConfirmationComponent } from './components/email-confirmation/email-confirmation.component';
 
 
+
 const routes: Routes = [
   { path: 'home', component: LandingPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
   { path: 'admin', component: UserPageComponent, canActivate: [AdminGuard]},
   { path: 'appointments', component: AppointmentsComponent },
+  { path: 'error', component: Error404Component },
   { path: 'manager',  component: AppointmentsManagerComponent, canActivate: [ManagerGuard]},
   { path: 'manager/orders',  component: OrdersPageComponent, canActivate: [ManagerGuard]},
   { path: 'manager/reports',  component: ReportsPageComponent, canActivate: [ManagerGuard]},
@@ -34,7 +36,7 @@ const routes: Routes = [
   { path: 'client/appointments', component: AppointmentsComponent, canActivate: [UserGuard] },
   { path: 'profile',  component: ProfilePageComponent, canActivate: [UserGuard] },
   { path: 'forgotPassword', loadChildren: () => import('./components/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule) },
-  { path: 'email-confirmation', component: EmailConfirmationComponent, canActivate: [UserGuard] },
+  { path: 'email-confirmation', component: EmailConfirmationComponent},
   { path:'mechanic', component: MechanicPageComponent, canActivate: [MechGuard]},
   { path: '**', component: Error404Component },
 ];

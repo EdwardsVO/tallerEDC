@@ -1,7 +1,7 @@
 
 <mat-card class="contact">
     <h1>CONTACTO</h1>
-    
+
     <form #contact = "ngForm"  (ngSubmit)="getValues(contact.value)">
         <mat-form-field class="name">
             <mat-label>Ingresa tu Nombre y Apellido</mat-label>
@@ -11,13 +11,13 @@
         <div class="bi-container">
             <mat-form-field class="email">
                 <mat-label class = "email_info">Introduce tu Email</mat-label>
-                <input type="text" [(ngModel)] = "email" class="form-control" name="email" matInput>        
+                <input type="text" [(ngModel)] = "email" class="form-control" name="email" matInput>
             </mat-form-field>
 
             <mat-form-field class="phone">
                 <mat-label class = "phone_info">Introduce tu Teléfono</mat-label>
                 <input type="text" class="form-control" [(ngModel)] = "phone"  name="phone"  matInput>
-            </mat-form-field>   
+            </mat-form-field>
         </div>
 
         <mat-form-field class="message">
@@ -25,8 +25,8 @@
             <input type="text" [(ngModel)] = "mensaje" class="form-control"  name="mensaje"  matInput>
         </mat-form-field>
         <div class="form-group">
-            <button  type="submit" (click)="createMsj()" [disabled]="!name || !email || !phone || !mensaje" mat-raised-button>Enviar</button>
-            
+            <button  type="submit" (click)="createMsj()" [disabled]="!name || !email || !phone || !mensaje" mat-raised-button class ="sendMessage">Enviar</button>
+
         </div>
         <div class = "form-group">
             <h4><b>{{message}}</b></h4>
@@ -44,7 +44,7 @@
             <label for="name">* Nombre y Apellido</label><br>
             <input type="text" id="name" name="name" class="name">
         </div>
-        
+
         <div class="second">
             <div class="one">
                 <label for="email">* Email</label><br>
@@ -60,7 +60,7 @@
         </div>
         <input type="checkbox" name="cb" id="cb">
         <label for="cb">Acepto las politicas de privacidad</label>
-        
+
         <button mat-raised-button>ENVIAR</button>
     </div>
 </form> -->

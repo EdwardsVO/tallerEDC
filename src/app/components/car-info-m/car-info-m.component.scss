@@ -12,7 +12,7 @@
 
 .car-profile{
     margin-left: 3%;
-    margin-top: 6%;
+    margin-top: 4%;
     width: 30%;
     height: 35%;
 }
@@ -44,3 +44,48 @@ mat-card-subtitle{
     margin-top: 8%;
   }
 
+h2{
+  color: #2e3192;
+    font-family: "Bree Serif", serif;
+    margin-left: 10%;
+    margin-top: 5%;
+    font-weight: 80;
+}
+
+.list{
+  display: row;
+  margin-bottom: auto;
+  margin-left: 25%;
+  margin-right: 30%;    
+}
+
+.r1{
+  float:left;
+}
+
+.r2{
+  float:right;
+}
+
+.buttons-container {
+  text-align: right;
+  position:absolute;
+  margin-bottom: 5%;
+  
+}
+
+button{
+  margin-top: 5%;
+  margin-left: 70%;
+  width: auto;
+  height: 50px;
+  background-color: #2e3192;
+  color: white;
+  font-size: large;
+}
+
+mat-selection-list {
+  max-height: 400px;
+  overflow-y:scroll;
+
+}

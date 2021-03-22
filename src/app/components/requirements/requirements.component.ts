@@ -7,8 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequirementsComponent implements OnInit {
 
-  typesLists: string[] = ['Caucho de Repuesto', 'Llaves', 'Gato'];
-  typesLists2: string[] = ['Herramiebtas', 'Reproductor', 'Otros'];
   
   constructor() { 
 

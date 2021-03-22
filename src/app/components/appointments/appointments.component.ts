@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-appointments',
@@ -7,43 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppointmentsComponent implements OnInit {
 
-  cars = [
-    {
-      img: "assets/corolla.png",
-      serial: "JHLRD77875C027456",
-      model: "Corolla",
-      year: "2020",
-      license_plate: "RAL38K"
-    },
-    {
-      img: "assets/yaris.png",
-      serial: "VIHRD19374C048203",
-      model: "Yaris",
-      year: "2018",
-      license_plate: "RJA27C"
-    },
-  ]
 
-  appointments = [
-    {
-      img: "assets/corolla.png",
-      model: "Corolla",
-      year: "2020",
-      license_plate: "RAL38K",
-      date: "17/04/2021"
-    },
-    
-  ]
+  cars = []
+  appointments = []
 
-  constructor() { }
+  constructor(private _firestore: AngularFirestore) { }
 
   ngOnInit(): void {
-  }
 
-  selectAppointment(){
-    console.log(
-      "this was clicked"
-    );
+    this._firestore.collection('cars', ref => ref.where("owner", "==", localStorage.getItem('user'))).snapshotChanges().subscribe(res => {
+      this.cars = res.map((e: any) => {
+        return {
+          id: e.payload.doc.id,
+          serial: e.payload.doc.data().serial,
+          marca: e.payload.doc.data().marca,
+          modelo: e.payload.doc.data().modelo,
+          year: e.payload.doc.data().year,
+          placa: e.payload.doc.data().placa,
+        }
+      })
+    })
   }
 
 }

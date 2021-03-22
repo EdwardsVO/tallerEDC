@@ -7,7 +7,8 @@
 
          <mat-form-field class="example-full-width">
             <mat-label>Introduce tu Nombre y Apellido</mat-label>
-            <input type="name" matInput placeholder="John Doe" formControlName="name" >
+            <input type="name" matInput placeholder="John Doe" formControlName="name">
+            \
           </mat-form-field> 
 
         <mat-form-field class="example-full-width">
@@ -35,9 +36,11 @@
             <input type="password" matInput>
 
           </mat-form-field>  -->
-        
-            <button mat-raised-button (click)="handleRegistration()" >Registrarse</button>
-          
+         
+            
+            <a [routerLink]="['/email-confirmation']"
+            > <button mat-raised-button (click)="handleRegistration()" >Registrarse</button>
+          </a>
 
             <span class="create">¿Ya tienes cuenta? <a href="login">LOG IN</a></span>
           
