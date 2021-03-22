@@ -6,6 +6,9 @@ import {LoginComponent} from 'src/app/components/login/login.component'
 import { AuthService } from 'src/app/services/auth.service';
 import { CrudService } from "src/app/services/crud.service";
 
+
+
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -16,6 +19,7 @@ export class RegisterComponent implements OnInit {
   email: string;
   id: string;
   role: string = 'client';
+
   
 
   constructor(private _fb: FormBuilder ,private _authService: AuthService, private _db: CrudService, private _firestore: AngularFirestore, private _router: Router) { }
