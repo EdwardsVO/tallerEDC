@@ -51,17 +51,33 @@ h1{
 .reject{
     color: white;
     background-color: red;
-  
 
 }
 
 .green{
   background-color:  rgb(3, 180, 3);
   color: white;
-  
+
 
 }
 
 mat-card-subtitle{
   text-align: center;
+}
+
+.invisible {
+  display: none;
+}
+
+input {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  background-color: #eee;
+  font-size: 12px;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  color: grey;
+  text-decoration-style: none;
 }

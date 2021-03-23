@@ -1,9 +1,9 @@
 <div class="container">
     <h1>MIS VEHÍCULOS</h1>
-    
+
 
     <div *ngFor="let car of cars" class="car-container">
-       
+
             <mat-card>
 
                 <img mat-card-sm-image src="{{car.img}}" alt="client's car1">
@@ -30,13 +30,13 @@
 
                 <button mat-raised-button color = "primary" (click) = "makeAppointment(car.id)" [disabled]= "car.reparation"> SOLICITAR CITA</button>
             </mat-card>
-        
+
     </div>
-    
+
 
     <h1>CITAS ACTIVAS</h1>
-    
-    <div *ngFor="let appointment of appointments" >
+
+    <!-- <div *ngFor="let appointment of appointments" >
         <div *ngIf = "appointment.reparation" class="appointment-container">
             <mat-card>
                 <img mat-card-sm-image src="{{appointment.img}}" alt="client's car1">
@@ -52,23 +52,78 @@
                 <mat-card-subtitle>FECHA CITA
                     <P>{{appointment.appointmentDate}} - {{appointment.appointmentHour}}</P>
                 </mat-card-subtitle>
-    
+
                 <button mat-raised-button class="green" [disabled] ="!appointment.appointmentDate" (click) = "confirmAppointment(appointment.id)" *ngIf = "!appointment.appointmentConfirmed"><span class="material-icons">
                     done
                     </span></button>
-    
+
                 <button mat-raised-button class="reject" [disabled] ="!appointment.appointmentDate" *ngIf = "!appointment.appointmentConfirmed" (click) = "rejectAppointment(appointment.id)" ><span color="warn" class="material-icons">
                     clear
                     </span></button>
-    
+
                 <button class="trash" mat-raised-button (click) = "deleteAppointment(appointment.id)" *ngIf="!appointment.appointmentConfirmed"><mat-icon color="primary">delete</mat-icon></button>
             </mat-card>
-        
-        </div>
-    </div>
-   
 
-    <div class="buttons-container">
+        </div>
+    </div> -->
+
+    <div *ngFor="let appointment of appointments" class="appointment-container">
+
+        <div *ngIf = "appointment.reparation" class="appointment-container">
+
+
+            <form (submit) = "sendEmail($event)" >
+                <mat-card>
+
+                    <mat-input class="invisible">
+                        <mat-card-subtitle>CLIENTE</mat-card-subtitle>
+                            <input type="text" value = "{{appointment.ownerName}}" name = "name" readonly>
+                    </mat-input>
+
+                    <mat-input class="invisible">
+                        <mat-card-subtitle class="invisible">EMAIL</mat-card-subtitle>
+                            <input type="text" value = "{{appointment.ownerEmail}}" name = "ownerEmail" readonly>
+                    </mat-input>
+
+                    <mat-input>
+                        <mat-card-subtitle>MARCA</mat-card-subtitle>
+                            <input type="text" value = "{{appointment.brand}}" name = "carBrand" readonly>
+                    </mat-input>
+
+                    <mat-input>
+                        <mat-card-subtitle>MODELO</mat-card-subtitle>
+                            <input type="text" value = "{{appointment.model}}" name = "carModel" readonly>
+                    </mat-input>
+
+                    <mat-input>
+                        <mat-card-subtitle>AÑO</mat-card-subtitle>
+                            <input type="text" value = "{{appointment.year}}" readonly>
+                    </mat-input>
+
+                    <mat-input>
+                        <mat-card-subtitle>PLACA</mat-card-subtitle>
+                            <input type="text" value = "{{appointment.plate}}" readonly>
+                    </mat-input>
+
+                    <mat-input>
+                        <mat-card-subtitle>FECHA</mat-card-subtitle>
+                            <input type="text" value = "{{appointment.appointmentDate}} - {{appointment.appointmentHour}}" name = "carAppointmentDate" readonly>
+                    </mat-input>
+
+
+                    <button type = "submit" mat-raised-button class="green" [disabled] ="!appointment.appointmentDate" (click) = "confirmAppointment(appointment.id)" *ngIf = "!appointment.appointmentConfirmed"><span class="material-icons">
+                        done
+                        </span></button>
+
+                    <button mat-raised-button class="reject" [disabled] ="!appointment.appointmentDate" *ngIf = "!appointment.appointmentConfirmed" (click) = "rejectAppointment(appointment.id)" ><span color="warn" class="material-icons">
+                        clear
+                        </span></button>
+
+                    <button class="trash" mat-raised-button (click) = "deleteAppointment(appointment.id)" *ngIf="!appointment.appointmentConfirmed"><mat-icon color="primary">delete</mat-icon></button>
+                </mat-card>
+            </form>
+        <div>
+
     </div>
 
 </div>

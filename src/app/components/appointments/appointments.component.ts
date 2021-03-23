@@ -2,8 +2,7 @@ import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { VehiclesCrudService } from '../../services/vehicles-crud.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 
 
 
@@ -105,10 +104,22 @@ export class AppointmentsComponent implements OnInit {
                 appointmentDate: e.payload.doc.data().appointmentDate,
                 appointmentConfirmed: e.payload.doc.data().appointmentConfirmed,
                 appointmentHour: e.payload.doc.data().appointmentHour,
+                ownerName: e.payload.doc.data().ownerName,
+                ownerEmail: e.payload.doc.data().ownerEmail,
                 alertManager: e.payload.doc.data().alertManager
               }
             })
           })
+        }
+
+        public sendEmail(e: Event) {
+          e.preventDefault();
+          emailjs.sendForm('service_pwcf60n', 'template_gsog4jn', e.target as HTMLFormElement, 'user_WiVZBumT4YhIFxwiixzgr')
+            .then((result: EmailJSResponseStatus) => {
+              console.log(result.text);
+            }, (error) => {
+              console.log(error.text);
+            });
         }
 }
 
