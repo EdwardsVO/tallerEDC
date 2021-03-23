@@ -34,7 +34,8 @@ export class AppointmentWaitlistComponent implements OnInit {
           appointmentDate: e.payload.doc.data().appointmentDate,
           appointmentHour: e.payload.doc.data().appointmentHour,
           appointmentConfirmed: e.payload.doc.data().appointmentConfirmed,
-          owner: e.payload.doc.data().owner        
+          owner: e.payload.doc.data().owner,        
+          alertManager: e.payload.doc.data().alertManager
         }
       })
     })
