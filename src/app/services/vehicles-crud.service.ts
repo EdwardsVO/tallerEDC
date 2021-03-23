@@ -65,7 +65,7 @@ export class VehiclesCrudService {
   }
 
   getSerial(serial){
-  
+
     this.firestore.collection("cars", ref => ref.where("serial", "==", serial))
     .get()
     .subscribe((querySnapshot) => {
@@ -77,11 +77,11 @@ export class VehiclesCrudService {
               // doc.data() will be undefined in this case
               console.log("No such document!");
           }
-           
+
         });
     })
 
-    
+
   }
 
   updateCar(car:any, id: any){
@@ -95,6 +95,11 @@ export class VehiclesCrudService {
 
   getUsersCars(userId) {
     return this.firestore.collection('cars', ref => ref.where("owner", "==", userId));
+    }
 
+    updateCarStatus(id: string, needsReparation) {
+      this.firestore.collection('cars').doc(id).update({
+        needsReparation: needsReparation
+      })
     }
 }
