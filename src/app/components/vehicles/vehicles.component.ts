@@ -29,6 +29,7 @@ export class VehiclesComponent implements OnInit {
   appointmentDate: any='';
   appointmentHour: any='';
   alertManager: boolean;
+  ownerEmail: string;
 
 
   constructor(
@@ -79,6 +80,7 @@ export class VehiclesComponent implements OnInit {
     try{
       await this._authservice.getCurrentUser().subscribe(resp => {
         this.owner = resp.uid;
+        this.ownerEmail = resp.email;
 
         this.firestore.collection('users').doc(localStorage.getItem('user')).snapshotChanges().subscribe(res => {
           this.ownerName = res.payload.get('name')
@@ -86,6 +88,7 @@ export class VehiclesComponent implements OnInit {
           this.carId = '',
           this.owner,
           this.ownerName,
+          this.ownerEmail,
           this.serial = this.registrarVehiculoForm.get('serial').value,
           this.registrarVehiculoForm.get('brand').value,
           this.registrarVehiculoForm.get('model').value,
