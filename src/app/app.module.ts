@@ -78,6 +78,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { UsPageComponent } from './pages/us-page/us-page.component';
 import { OurTeamComponent } from './components/our-team/our-team.component';
 import { ManagerNavbarComponent } from './components/navbar/manager-navbar/manager-navbar.component';
+import { IconsMeaningComponent } from './components/icons-meaning/icons-meaning.component';
 
 
 
@@ -130,6 +131,7 @@ import { ManagerNavbarComponent } from './components/navbar/manager-navbar/manag
     UsPageComponent,
     OurTeamComponent,
     ManagerNavbarComponent,
+    IconsMeaningComponent,
   ],
 
   imports: [
