@@ -31,7 +31,7 @@ export class VehiclesCrudService {
 
   }
 
-  async newCar(id2, owner, serial, marca, modelo, year, placa, fecha, needsReparation, appointmentConfirmed, repaired, appointmentDate, appointmentHour): Promise<void> {
+  async newCar(id2, owner, serial, marca, modelo, year, placa, fecha, needsReparation, appointmentConfirmed, repaired, appointmentDate, appointmentHour, alertManager): Promise<void> {
     try {
       const { id } = await this.firestore.collection('cars').add({
         id2: id2,
@@ -46,7 +46,8 @@ export class VehiclesCrudService {
         appointmentConfirmed: appointmentConfirmed,
         repaired: repaired,
         appointmentDate: appointmentDate,
-        appointmentHour: appointmentHour
+        appointmentHour: appointmentHour,
+        alertManager: alertManager,
       })
 
       this.carId = id
@@ -124,4 +125,11 @@ export class VehiclesCrudService {
       appointmentConfirmed: status
     })
   }
+
+  alertManager(id: string, alert) {
+    this.firestore.collection('cars').doc(id).update({
+      alertManager: alert
+    })
+  }
+
 }

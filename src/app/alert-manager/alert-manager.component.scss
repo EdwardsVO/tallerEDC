@@ -1,0 +1,51 @@
+h1{
+    color: #2e3192;
+    font-family: "Bree Serif", serif;
+    margin-left: 15%;
+    margin-top: 5rem;
+}
+
+.vehicle-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: rgb(233, 233, 233);
+    margin-bottom: 15px;
+    width: 70%;
+    margin-left: 14%;
+
+  }
+.vehicle-container p {
+font-size: 12px;
+}
+.ngx-timepicker-field-example{
+    width: 60%;
+
+
+}
+
+mat-form-field{
+    width: 80%;
+    height: 30px;
+}
+
+.input{
+    width: 70%;
+    text-align: center;
+    height: 40px;
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: #2e3192;
+    background-color: rgb(233, 233, 233);
+
+}
+
+button{
+    color: white;
+    background-color: #2e3192 ;
+    height: 50px;
+}
+button:hover{
+    color: #2e3192;
+    background-color: white;
+}
