@@ -31,11 +31,6 @@
   button{
     margin-left: 1%;
   }
-  .green{
-    background-color: rgb(3, 180, 3);
-    color: white;
-
-  }
 }
 
 
@@ -58,4 +53,18 @@ h1{
 
 mat-card{
   background-color: rgb(233, 233, 233);
+}
+
+.reject{
+    color: white;
+    background-color: red;
+  
+
+}
+
+.green{
+  background-color:  rgb(3, 180, 3);
+  color: white;
+  
+
 }
