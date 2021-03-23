@@ -8,8 +8,8 @@
     </mat-form-field>
 </div>
 <mat-card>
-    <div class="vehicle-container" *ngFor="let car of cars">
-        <div *ngIf="car.appointmentConfirmed">
+    <div *ngFor="let car of cars">
+        <div class="vehicle-container"  *ngIf="car.appointmentConfirmed">
             <img mat-card-sm-image src="{{car.img}}" alt="client's car1">
             <mat-card-subtitle>SERIAL
                 <p>{{car.serial}}</p>
