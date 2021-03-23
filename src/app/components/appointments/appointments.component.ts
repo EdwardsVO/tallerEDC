@@ -12,16 +12,12 @@ import { VehiclesCrudService } from '../../services/vehicles-crud.service';
 })
 export class AppointmentsComponent implements OnInit {
 
-
+// ARRAYS TO STORE FIRESTORE DATA AND FETCH IT
   cars = [];
   appointments = [];
-  carChecked = false;
-  carsCheckedList = [];
+
   carId: string;
   userId: string;
-  carsData: [];
-
-  data: any;
 
 
 
@@ -35,6 +31,8 @@ export class AppointmentsComponent implements OnInit {
 
   }
 
+  // FUNCTION TO GET THE CARS THAT BELONG TO THE CURRENT USER
+
   getCars() {
 
     this._firestore.collection('cars', ref => ref.where("owner", "==", localStorage.getItem('user'))).snapshotChanges().subscribe(res => {
@@ -42,29 +40,34 @@ export class AppointmentsComponent implements OnInit {
         return {
           id: e.payload.doc.id,
           serial: e.payload.doc.data().serial,
-          marca: e.payload.doc.data().marca,
-          modelo: e.payload.doc.data().modelo,
+          brand: e.payload.doc.data().marca,
+          model: e.payload.doc.data().modelo,
           year: e.payload.doc.data().year,
-          placa: e.payload.doc.data().placa,
+          plate: e.payload.doc.data().placa,
           reparation: e.payload.doc.data().needsReparation,
         }
       })
     })
   }
 
-  makeAppointment(carId: string) {
+  // FUNCTION TO MAKE AN APPOINTMENT. SETS "needsReparation" ATTRIBUTE TO TRUE IN THE DATABASE
 
-    this._vehicleSvc.updateCarStatus(carId, true)
+    makeAppointment(carId: string) {
+      this._vehicleSvc.updateCarStatus(carId, true);
     }
+
+// FUNCTION TO CANCEL AN APPOINTMENT. SETS "needsReparation" ATTRIBUTE TO FALSE IN THE DATABASE
 
     cancelAppointment(carId) {
-        this._vehicleSvc.updateCarStatus(carId, false);
+      this._vehicleSvc.updateCarStatus(carId, false);
     }
+
+// FUNCTION TO GET ALL APPOINTMENT FROM THE DATABASE
 
     getAppointments() {
 
-           this.userId = localStorage.getItem('user');
-          this._firestore.collection('cars', ref => ref.where("owner", "==", this.userId)).snapshotChanges().subscribe(res => {
+      this.userId = localStorage.getItem('user');
+      this._firestore.collection('cars', ref => ref.where("owner", "==", this.userId)).snapshotChanges().subscribe(res => {
             this.appointments = res.map((e: any) => {
               return {
                 id: e.payload.doc.id,
@@ -73,10 +76,18 @@ export class AppointmentsComponent implements OnInit {
                 model: e.payload.doc.data().modelo,
                 year: e.payload.doc.data().year,
                 plate: e.payload.doc.data().placa,
-                reparation: e.payload.doc.data().needsReparation
+                reparation: e.payload.doc.data().needsReparation,
+                appointmentDate: e.payload.doc.data().appointmentDate,
+                appointmentConfirmed: e.payload.doc.data().appointmentConfirmed,
+                appointmentHour: e.payload.doc.data().appointmentHour,
               }
             })
           })
         }
+
+
+      appointmentConfirmed(carId) {
+        this._vehicleSvc.appointmentConfirmed(carId, true);
+      }
 }
 
