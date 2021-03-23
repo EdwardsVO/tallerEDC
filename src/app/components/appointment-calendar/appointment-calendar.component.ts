@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-appointment-calendar',
@@ -6,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./appointment-calendar.component.scss']
 })
 export class AppointmentCalendarComponent implements OnInit {
-  @Input() cars = []
+  @Input() cars: Observable<any[]>
 
   
   constructor() { }
