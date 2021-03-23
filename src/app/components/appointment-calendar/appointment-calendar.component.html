@@ -7,9 +7,10 @@
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 </div>
-<mat-card>
-    <div *ngFor="let car of cars">
-        <div class="vehicle-container"  *ngIf="car.appointmentConfirmed">
+
+<div *ngFor="let car of cars">
+    <div class="vehicle-container"  *ngIf="car.appointmentConfirmed">
+        <mat-card>
             <img mat-card-sm-image src="{{car.img}}" alt="client's car1">
             <mat-card-subtitle>CLIENTE
                 <p>{{car.ownerName}}</p>
@@ -32,6 +33,6 @@
             <mat-card-actions><span class="material-icons">
                     task_alt
                 </span></mat-card-actions>
-        </div>
+        </mat-card>
     </div>
-</mat-card>
+</div>
