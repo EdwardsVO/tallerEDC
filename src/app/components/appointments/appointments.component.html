@@ -1,9 +1,10 @@
 <div class="container">
     <h1>MIS VEHÍCULOS</h1>
-    <mat-card>
+    
 
-        <div *ngFor="let car of cars">
-            <div class="vehicle-container">
+    <div *ngFor="let car of cars" class="car-container">
+       
+            <mat-card>
 
                 <img mat-card-sm-image src="{{car.img}}" alt="client's car1">
 
@@ -27,44 +28,45 @@
                     <p>{{car.plate}}</p>
                 </mat-card-subtitle>
 
-            <button mat-raised-button color = "primary" (click) = "makeAppointment(car.id)" [disabled]= "car.reparation"> SOLICITAR CITA</button>
-
-            </div>
-        </div>
-    </mat-card>
+                <button mat-raised-button color = "primary" (click) = "makeAppointment(car.id)" [disabled]= "car.reparation"> SOLICITAR CITA</button>
+            </mat-card>
+        
+    </div>
+    
 
     <h1>CITAS ACTIVAS</h1>
-    <mat-card>
-        <div *ngFor="let appointment of appointments">
-            <div *ngIf = "appointment.reparation" class="appointment-container">
-
-            <img mat-card-sm-image src="{{appointment.img}}" alt="client's car1">
-
-            <mat-card-subtitle>MODELO
-                <p>{{appointment.model}}</p>
-            </mat-card-subtitle>
-            <mat-card-subtitle>AÑO
-                <P>{{appointment.year}}</P>
-            </mat-card-subtitle>
-            <mat-card-subtitle>PLACA
-                <P>{{appointment.plate}}</P>
-            </mat-card-subtitle>
-            <mat-card-subtitle>FECHA CITA
-                <P>{{appointment.appointmentDate}} - {{appointment.appointmentHour}}</P>
-            </mat-card-subtitle>
-
-            <button mat-raised-button class="green" [disabled] ="!appointment.appointmentDate" (click) = "confirmAppointment(appointment.id)" *ngIf = "!appointment.appointmentConfirmed"><span class="material-icons">
-                done
-                </span></button>
-
-            <button mat-raised-button class="reject" [disabled] ="!appointment.appointmentDate" *ngIf = "!appointment.appointmentConfirmed" (click) = "rejectAppointment(appointment.id)" ><span color="warn" class="material-icons">
-                clear
-                </span></button>
-
-            <button class="trash" mat-raised-button (click) = "deleteAppointment(appointment.id)" *ngIf="!appointment.appointmentConfirmed"><mat-icon color="primary">delete</mat-icon></button>
-            </div>
+    
+    <div *ngFor="let appointment of appointments" >
+        <div *ngIf = "appointment.reparation" class="appointment-container">
+            <mat-card>
+                <img mat-card-sm-image src="{{appointment.img}}" alt="client's car1">
+                <mat-card-subtitle>MODELO
+                    <p>{{appointment.model}}</p>
+                </mat-card-subtitle>
+                <mat-card-subtitle>AÑO
+                    <P>{{appointment.year}}</P>
+                </mat-card-subtitle>
+                <mat-card-subtitle>PLACA
+                    <P>{{appointment.plate}}</P>
+                </mat-card-subtitle>
+                <mat-card-subtitle>FECHA CITA
+                    <P>{{appointment.appointmentDate}} - {{appointment.appointmentHour}}</P>
+                </mat-card-subtitle>
+    
+                <button mat-raised-button class="green" [disabled] ="!appointment.appointmentDate" (click) = "confirmAppointment(appointment.id)" *ngIf = "!appointment.appointmentConfirmed"><span class="material-icons">
+                    done
+                    </span></button>
+    
+                <button mat-raised-button class="reject" [disabled] ="!appointment.appointmentDate" *ngIf = "!appointment.appointmentConfirmed" (click) = "rejectAppointment(appointment.id)" ><span color="warn" class="material-icons">
+                    clear
+                    </span></button>
+    
+                <button class="trash" mat-raised-button (click) = "deleteAppointment(appointment.id)" *ngIf="!appointment.appointmentConfirmed"><mat-icon color="primary">delete</mat-icon></button>
+            </mat-card>
+        
         </div>
-    </mat-card>
+    </div>
+   
 
     <div class="buttons-container">
     </div>
