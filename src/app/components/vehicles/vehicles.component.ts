@@ -25,6 +25,8 @@ export class VehiclesComponent implements OnInit {
   fecha: string;
   serial: string;
   repaired: boolean;
+  appointmentDate: any='';
+  appointmentHour: any='';
 
 
   constructor(
@@ -86,7 +88,9 @@ export class VehiclesComponent implements OnInit {
           this.fecha = this.formatDate(),
           this.needsReparation,
           this.appointmentConfirmed,
-          this.repaired
+          this.repaired,
+          this.appointmentDate,
+          this.appointmentHour
         )
         //this.checkCar(this.serial);
         this.registrarVehiculoForm.reset();

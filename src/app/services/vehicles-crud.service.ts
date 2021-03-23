@@ -31,20 +31,22 @@ export class VehiclesCrudService {
 
   }
 
-  async newCar(id2, owner, serial, marca, modelo, year, placa, fecha, needsReparation, appointmentConfirmed, repaired): Promise<void>{
+  async newCar(id2, owner, serial, marca, modelo, year, placa, fecha, needsReparation, appointmentConfirmed, repaired, appointmentDate, appointmentHour): Promise<void>{
     try{
       const {id} = await this.firestore.collection('cars').add({
           id2: id2,
           owner: owner,
           serial: serial,
-          marca: marca,
-          modelo: modelo,
+          brand: marca,
+          model: modelo,
           year: year,
-          placa: placa,
-          fecha: fecha,
+          plate: placa,
+          initDate: fecha,
           needsReparation: needsReparation,
           appointmentConfirmed: appointmentConfirmed,
-          repaired: repaired
+          repaired: repaired,
+          appointmentDate: appointmentDate,
+          appoitnmentHour: appointmentHour
         })
 
         this.carId = id

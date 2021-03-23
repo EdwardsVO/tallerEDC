@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-appointment-waitlist',
@@ -6,35 +7,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./appointment-waitlist.component.scss']
 })
 export class AppointmentWaitlistComponent implements OnInit {
-  cars = [
-    {
-      img: "assets/corolla.png",
-      serial: "JHLRD77875C027456",
-      model: "Corolla",
-      year: "2020",
-      license_plate: "RAL38K",
-      time: "8:15am"
-    },
-    {
-      img: "assets/yaris.png",
-      serial: "VIHRD19374C048203",
-      model: "Yaris",
-      year: "2018",
-      license_plate: "RJA27C",
-      time: "7:15am"
-    },
-    {
-      img: "assets/yaris.png",
-      serial: "VIHRD19374C048203",
-      model: "Yaris",
-      year: "2018",
-      license_plate: "RJA27C",
-      time: "9:25am"
-    },
-  ]
-  constructor() { }
+  ownerName: string;
+  cars = [];
+
+  constructor(private _firestore: AngularFirestore) { }
 
   ngOnInit(): void {
+    this.getCarsToRepair();
   }
+
+  getCarsToRepair(){
+    this._firestore.collection('cars', ref => ref.where("needsReparation", "==", true )).snapshotChanges().subscribe(res => {
+      this.cars = res.map((e: any) => {
+        return {
+          id: e.payload.doc.id,
+          serial: e.payload.doc.data().serial,
+          marca: e.payload.doc.data().marca,
+          modelo: e.payload.doc.data().modelo,
+          year: e.payload.doc.data().year,
+          placa: e.payload.doc.data().placa,
+          reparation: e.payload.doc.data().needsReparation,
+          owner: e.payload.doc.data().owner        
+        }
+        
+      })
+    })
+  }
+
+  confirmAppointment(){
+    console.log('mamawebo')
+  }
+
+
 
 }
