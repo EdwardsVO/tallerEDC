@@ -2,14 +2,15 @@ mat-card{
   display: flex;
   justify-content: space-between;
   padding: 1rem;
-  background-color: rgb(233, 233, 233);
+  background-color: rgb(243, 243, 243);
   margin-bottom: 1.5%;
 }
 
 
 
-.vehicle-container p {
+p {
   font-size: 12px;
+  font-family: "Roboto", sans-serif;
 }
 
 .button-container {
@@ -46,9 +47,6 @@ h1{
   margin-top: 5%;
 }
 
-mat-card{
-  background-color: rgb(233, 233, 233);
-}
 
 .reject{
     color: white;
@@ -62,4 +60,8 @@ mat-card{
   color: white;
   
 
+}
+
+mat-card-subtitle{
+  text-align: center;
 }
