@@ -1,37 +1,29 @@
-.profile-vehicle {
-  margin: 0 15%;
-  margin-top: 1%;
-  margin-bottom: 5%;
-  box-shadow: none !important;
-  border-color: rgb(233, 233, 233);
-  border-width: 100%;
-  background-color: white;
-}
-
-.carros {
-  background-color: rgb(233, 233, 233);
-  contain: content;
-  box-sizing: content-box;
-  overflow: scroll;
-}
-
-.vehicle-container {
+.mat-card-class{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 1rem;
-  align-items: center;
+  background-color: rgb(243, 243, 243);
+  margin-bottom: 1.5%;
+  width: 75%;
+  margin-left: 13%;
+  text-align: center;
+  
 }
+
+p {
+  font-size: 12px;
+  font-family: "Roboto", sans-serif;
+}
+.carros{
+  width: 100%;
+  margin-bottom: 10%;
+}
+
 
 .status {
   color: #03a600;
 }
 
-.v-info {
-  text-align: center;
-  margin-top: 3%;
-  margin-left: 5%;
-  margin-right: 5%;
-}
 
 a.agg-btn {
   margin-top: 1%;
@@ -40,15 +32,20 @@ a.agg-btn {
   height: 40px;
   font-size: large;
   margin-bottom: 10%;
+  background-color: #2e3192;
+  color: white;
+  margin-right: 12%;
 }
 
 a.agg-btn:hover {
   text-decoration: none;
+  color: #2e3192;
+  background-color: white;
 }
 h1 {
   color: #2e3192;
   font-family: "Bree Serif", serif;
-  margin-left: 16%;
+  margin-left: 13%;
   margin-top: 5%;
 }
 
@@ -57,9 +54,11 @@ button:hover {
   color: #2e3192;
 }
 
-button.delete {
+.delete{
   margin-right: 1rem;
   margin-bottom: 1.1rem;
+  color: white;
+  background-color: #2e3192;
 }
 
 div.menu {
@@ -80,6 +79,3 @@ input#brandChosen {
   margin-left: 10px;
 }
 
-.mat-card-class {
-  background-color:  rgb(233, 233, 233);
-}
