@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { VehiclesCrudService } from 'src/app/services/vehicles-crud.service';
 
@@ -11,7 +11,8 @@ export class AppointmentWaitlistComponent implements OnInit {
   ownerName: string;
   appointmentDate: string;
   appointmentHour: string;
-  cars = [];
+  cars = []
+  @Output() carsAppointmet = new EventEmitter <any[]>();
 
   constructor(private _firestore: AngularFirestore, private _crudVeh: VehiclesCrudService) { }
 
@@ -32,6 +33,7 @@ export class AppointmentWaitlistComponent implements OnInit {
           reparation: e.payload.doc.data().needsReparation,
           appointmentDate: e.payload.doc.data().appointmentDate,
           appointmentHour: e.payload.doc.data().appointmentHour,
+          appointmentConfirmed: e.payload.doc.data().appointmentConfirmed,
           owner: e.payload.doc.data().owner        
         }
       })
@@ -42,7 +44,7 @@ export class AppointmentWaitlistComponent implements OnInit {
     this._crudVeh.updateCarAppointmentDate(carId, this.appointmentDate)
     this._crudVeh.updateCarAppointmentHour(carId, this.appointmentHour)
     this._crudVeh.updateCarAppointmentStatus(carId, true);
-
+    this.carsAppointmet.emit(this.cars)
   }
 
 
