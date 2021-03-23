@@ -11,23 +11,25 @@
         <mat-card-subtitle>
             <P>{{car.plate}}</P>
         </mat-card-subtitle>
-        
-        <mat-card-actions>  <div class="12hr-example">
-            <input class="input" placeholder="HORA" aria-label="12hr format" [ngxTimepicker]="default" readonly>
-            <ngx-material-timepicker #default></ngx-material-timepicker>
-       </div>
-           </mat-card-actions>
-           <mat-card-actions>
+
+        <mat-card-actions>
+            <div class="12hr-example">
+                <input class="input" placeholder="HORA" aria-label="12hr format" [(ngModel)]="appointmentHour"
+                    [ngxTimepicker]="default" readonly>
+                <ngx-material-timepicker #default></ngx-material-timepicker>
+            </div>
+        </mat-card-actions>
+        <mat-card-actions>
             <mat-form-field appearance="fill">
                 <mat-label>Elige una Fecha</mat-label>
-                <input matInput [matDatepicker]="picker">
+                <input matInput [(ngModel)]="appointmentDate" [matDatepicker]="picker" readonly>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
-           </mat-card-actions>
-           <mat-card-actions>
-               <button mat-raised-button (click)="confirmAppointment()">CONFIRMAR</button>
-           </mat-card-actions>
+        </mat-card-actions>
+        <mat-card-actions>
+            <button mat-raised-button (click)="confirmAppointment(car.id)">CONFIRMAR</button>
+        </mat-card-actions>
 
     </div>
 </mat-card>
