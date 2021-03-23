@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-appointment-calendar',
@@ -10,7 +9,7 @@ import { Observable } from 'rxjs';
 export class AppointmentCalendarComponent implements OnInit {
   cars = [];
 
-  
+
   constructor(private _firestore: AngularFirestore) { }
 
   ngOnInit(): void {
@@ -30,7 +29,8 @@ export class AppointmentCalendarComponent implements OnInit {
           appointmentDate: e.payload.doc.data().appointmentDate,
           appointmentHour: e.payload.doc.data().appointmentHour,
           appointmentConfirmed: e.payload.doc.data().appointmentConfirmed,
-          owner: e.payload.doc.data().owner        
+          owner: e.payload.doc.data().owner,
+          ownerName: e.payload.doc.data().ownerName,
         }
       })
     })
