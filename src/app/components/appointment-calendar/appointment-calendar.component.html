@@ -8,28 +8,27 @@
     </mat-form-field>
 </div>
 <mat-card>
-    <div class="vehicle-container" *ngFor="let car of cars">
-        <img mat-card-sm-image src="{{car.img}}" alt="client's car1">
-        <mat-card-subtitle>SERIAL
-            <p>{{car.serial}}</p>
-        </mat-card-subtitle>
-        <mat-card-subtitle>MODELO
-            <p>{{car.model}}</p>
-        </mat-card-subtitle>
-        <mat-card-subtitle>AÑO
-            <P>{{car.year}}</P>
-        </mat-card-subtitle>
-        <mat-card-subtitle>PLACA
-            <P>{{car.license_plate}}</P>
-        </mat-card-subtitle>
-        <mat-card-subtitle>HORA
-            <P>{{car.time}}</P>
-        </mat-card-subtitle>
-        <mat-card-actions><span class="material-icons">
-            task_alt
-            </span></mat-card-actions>
+    <div *ngFor="let car of cars">
+        <div class="vehicle-container"  *ngIf="car.appointmentConfirmed">
+            <img mat-card-sm-image src="{{car.img}}" alt="client's car1">
+            <mat-card-subtitle>SERIAL
+                <p>{{car.serial}}</p>
+            </mat-card-subtitle>
+            <mat-card-subtitle>MODELO
+                <p>{{car.model}}</p>
+            </mat-card-subtitle>
+            <mat-card-subtitle>AÑO
+                <P>{{car.year}}</P>
+            </mat-card-subtitle>
+            <mat-card-subtitle>PLACA
+                <P>{{car.license_plate}}</P>
+            </mat-card-subtitle>
+            <mat-card-subtitle>HORA
+                <P>{{car.time}}</P>
+            </mat-card-subtitle>
+            <mat-card-actions><span class="material-icons">
+                    task_alt
+                </span></mat-card-actions>
+        </div>
     </div>
 </mat-card>
-
-
-

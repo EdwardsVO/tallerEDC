@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./appointments-manager.component.scss']
 })
 export class AppointmentsManagerComponent implements OnInit {
+  carsAppointment = []
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  getCarsAppointmets(listCarAppointment){
+    this.carsAppointment = listCarAppointment;
+  }
 }
