@@ -133,7 +133,7 @@ export class VehiclesCrudService {
     })
   }
 
-  cancelAppointment(id: string, appointmentConfirmed, appointmentDate, appointmentHour, needsReparation) {
+  closeAppointments(id: string, appointmentConfirmed, appointmentDate, appointmentHour, needsReparation) {
     this.firestore.collection('cars').doc(id).update({
       appointmentConfirmed: appointmentConfirmed,
       appointmentDate: appointmentDate,

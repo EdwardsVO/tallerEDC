@@ -27,7 +27,7 @@ export class OrdersComponent implements OnInit {
   // GET ALL THE CARS WHICH APPOINTMENTS WERE CONFIRMED BY THE CLIENT
 
   getConfirmedAppointments() {
-    this._firestore.collection('cars', ref => ref.where("appointmentConfirmed", "==", true)).snapshotChanges().subscribe(res => {
+    this._firestore.collection('cars', ref => ref.where("repaired", "==", true)).snapshotChanges().subscribe(res => {
       this.appointments = res.map((e: any) => {
         return {
           id: e.payload.doc.id,
@@ -47,10 +47,12 @@ export class OrdersComponent implements OnInit {
     })
   }
 
-  // CANCEL APPOINTMENT THAT WAS PREVIOUSLY CONFIRMED BY THE CLIENT
+  // CLOSE APPOINTMENT THAT WAS PREVIOUSLY MARKED AS REPAIRED BY THE MECHANIC
 
-  cancelAppointment(appointmentId) {
-    this._vehicleSvc.cancelAppointment(appointmentId, false, '', '', false);
+  closeAppointment(appointmentId) {
+    this._vehicleSvc.closeAppointments(appointmentId, false, '', '', false);
+    // AQUI FALTA ENVIAR EL REPORTE DE REPARACION
+    // .......
   }
 
   open(content) {
