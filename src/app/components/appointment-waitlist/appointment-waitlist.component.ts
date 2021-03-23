@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { FormControl } from '@angular/forms';
 import { VehiclesCrudService } from 'src/app/services/vehicles-crud.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { VehiclesCrudService } from 'src/app/services/vehicles-crud.service';
 })
 export class AppointmentWaitlistComponent implements OnInit {
   ownerName: string;
-  appointmentDate: string;
+  appointmentDate: any;
   appointmentHour: string;
   cars = []
   @Output() carsAppointmet = new EventEmitter <any[]>();
@@ -19,6 +20,8 @@ export class AppointmentWaitlistComponent implements OnInit {
   ngOnInit(): void {
     this.getCarsToRepair();
   }
+
+
 
   getCarsToRepair(){
     this._firestore.collection('cars', ref => ref.where("needsReparation", "==", true )).snapshotChanges().subscribe(res => {
@@ -42,7 +45,7 @@ export class AppointmentWaitlistComponent implements OnInit {
   }
 
   confirmAppointment(carId: string){
-    this._crudVeh.updateCarAppointmentDate(carId, this.appointmentDate)
+    this._crudVeh.updateCarAppointmentDate(carId, this.appointmentDate.toDateString())
     this._crudVeh.updateCarAppointmentHour(carId, this.appointmentHour)
     this._crudVeh.updateCarAppointmentStatus(carId, true);
     this.carsAppointmet.emit(this.cars)
