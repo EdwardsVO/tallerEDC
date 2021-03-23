@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { FormControl } from '@angular/forms';
 import { VehiclesCrudService } from 'src/app/services/vehicles-crud.service';
 
 @Component({
