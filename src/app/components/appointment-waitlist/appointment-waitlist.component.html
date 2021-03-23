@@ -4,7 +4,8 @@
         <div class="vehicle-container"  *ngIf="!car.appointmentConfirmed">
             <mat-label>STATUS</mat-label>
             <mat-icon *ngIf="car.alertManager" color="warn" >warning</mat-icon>
-            <mat-icon *ngIf="!car.alertManager" color ="primary">alarm_on</mat-icon>
+            <mat-icon *ngIf="!car.alertManager && !car.appointmentDate" >alarm</mat-icon>
+            <mat-icon *ngIf="car.appointmentDate && !car.alertManager" color="primary">alarm_on</mat-icon>
 
 
             <mat-card-subtitle>CLIENTE

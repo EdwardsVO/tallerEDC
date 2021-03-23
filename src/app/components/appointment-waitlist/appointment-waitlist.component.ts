@@ -48,8 +48,9 @@ export class AppointmentWaitlistComponent implements OnInit {
   }
 
   confirmAppointment(carId: string){
-    this._crudVeh.updateCarAppointmentDate(carId, this.appointmentDate.toDateString())
-    this._crudVeh.updateCarAppointmentHour(carId, this.appointmentHour)
+    this._crudVeh.updateCarAppointmentDate(carId, this.appointmentDate.toDateString());
+    this._crudVeh.updateCarAppointmentHour(carId, this.appointmentHour);
+    this._crudVeh.alertManager(carId, false);
     // this._crudVeh.updateCarAppointmentStatus(carId, true);
     this.carsAppointmet.emit(this.cars)
   }
