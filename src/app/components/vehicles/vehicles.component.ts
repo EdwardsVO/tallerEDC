@@ -4,6 +4,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {VehiclesCrudService} from '../../services/vehicles-crud.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+import firebase from 'firebase';
+import { isNullOrUndefined } from 'util';
+import { Vehicle } from '../../models/vehicle';
 
 @Component({
   selector: 'app-vehicles',
@@ -23,11 +26,14 @@ export class VehiclesComponent implements OnInit {
   needsReparation: boolean;
   appointmentConfirmed: boolean;
   fecha: string;
-  serial: string;
+  serial: boolean;
   repaired: boolean;
   appointmentDate: any='';
   appointmentHour: any='';
   alertManager: boolean;
+  repeated: boolean;
+  carConverter
+  
 
 
   constructor(
@@ -47,6 +53,9 @@ export class VehiclesComponent implements OnInit {
     this.appointmentConfirmed = false;
     this.repaired = false;
     this.alertManager = false;
+    this.repeated = false;
+    this.serial = false;
+    
 
 
     this.registrarVehiculoForm = this.fb.group({
@@ -69,6 +78,19 @@ export class VehiclesComponent implements OnInit {
         }
       })
     })
+
+      // Firestore data converter
+    this.carConverter = {
+      toFirestore: function(car) {
+          return {
+              serial: car.serial
+              };
+      },
+      fromFirestore: function(snapshot, options){
+          const data = snapshot.data(options);
+          return new Vehicle(data.serial);
+      }
+    };
   }
 
 
@@ -104,14 +126,76 @@ export class VehiclesComponent implements OnInit {
     }
   }
 
+  
+
   formatDate(){
     const timeElapsed = Date.now();
     const today = new Date(timeElapsed);
     return today.toDateString()
   }
 
+  
+
+  
+
   checkCar(){
-    this.vehiclesCrudService.getSerial(this.registrarVehiculoForm.get('serial').value)
+    var db = firebase.firestore()
+
+    db.collection("cars").where("serial", "==", this.registrarVehiculoForm.get('serial').value)
+    .withConverter(this.carConverter)
+    .get().then((doc) => {
+      if (doc.empty){
+        console.log("carro no existe!");
+        this.addNewCar()
+        
+      } else {
+        var car = doc.isEqual(doc);
+        console.log(car);
+        console.log('carro ya existe!')
+
+      }}).catch((error) => {
+        console.log("Error getting document:", error);
+      });
+
+    // db.collection('cars').where("serial", "==", this.registrarVehiculoForm.get('serial').value)
+    // .get()
+    // .then((querySnapshot) => {
+    //     querySnapshot.forEach((doc) => {
+    //       if (doc.exists){
+    //         // doc.data() is never undefined for query doc snapshots
+    //         console.log(doc.id, " => ", doc.data());
+    //         this.repeated = true;
+    //       }
+
+    //       console.log(this.repeated)
+    //       console.log(doc.exists)
+    //       if (this.repeated) {
+    //         console.log('el carro ya existe');
+    //       } 
+
+    //       if(!this.repeated) {
+    //         console.log('no carro')
+    //       }
+         
+            
+    //     });
+    // })
+  
+    // this.firestore.collection('cars', ref => ref.where("serial", "==", this.registrarVehiculoForm.get('serial').value)).snapshotChanges().subscribe(res => {
+    //   this.cars = res.map((e: any) => {
+    //     console.log(e.payload.doc.data().serial)
+    //     return {
+    //       serial: e.payload.doc.data().serial
+         
+    //     }
+        //console.log(this.serial)
+        //return this.serial
+       
+        
+    //   })
+    // })
+
+
   }
 
   updateCar(){

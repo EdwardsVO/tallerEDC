@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Vehicle } from '../models/vehicle';
-import { map } from 'rxjs/operators';
+import {map} from 'rxjs/operators';
+import firebase from 'firebase';
+
 
 
 @Injectable({
@@ -67,23 +69,6 @@ export class VehiclesCrudService {
     })
   }
 
-  getSerial(serial) {
-
-    this.firestore.collection("cars", ref => ref.where("serial", "==", serial))
-      .get()
-      .subscribe((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          if (doc.exists) {
-            //console.log("Document data:", doc.data());
-            return true
-          } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-          }
-
-        });
-      })
-  }
 
   updateCar(car: any, id: any) {
     return this.firestore.collection("cars").doc(id).update(car);

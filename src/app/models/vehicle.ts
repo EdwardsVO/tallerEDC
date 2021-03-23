@@ -8,3 +8,12 @@ export interface Vehicle {
     id2?: string;
 
 }
+
+export class Vehicle {
+    constructor (serial) {
+        this.serial = serial
+    }
+    toString() {
+        return this.serial;
+    }
+}
