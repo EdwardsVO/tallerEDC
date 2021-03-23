@@ -5,12 +5,15 @@ import { VehiclesCrudService } from '../../services/vehicles-crud.service';
 
 
 
+
 @Component({
   selector: 'app-appointments',
   templateUrl: './appointments.component.html',
   styleUrls: ['./appointments.component.scss']
 })
 export class AppointmentsComponent implements OnInit {
+  
+  
 
 // ARRAYS TO STORE FIRESTORE DATA AND FETCH IT
   cars = [];

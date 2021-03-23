@@ -14,6 +14,8 @@ export class AppointmentWaitlistComponent implements OnInit {
   appointmentHour: string;
   cars = []
   @Output() carsAppointmet = new EventEmitter <any[]>();
+  
+ 
 
   constructor(private _firestore: AngularFirestore, private _crudVeh: VehiclesCrudService) { }
 
@@ -23,6 +25,7 @@ export class AppointmentWaitlistComponent implements OnInit {
 
 
 
+  
   getCarsToRepair(){
     this._firestore.collection('cars', ref => ref.where("needsReparation", "==", true )).snapshotChanges().subscribe(res => {
       this.cars = res.map((e: any) => {
@@ -30,9 +33,9 @@ export class AppointmentWaitlistComponent implements OnInit {
           id: e.payload.doc.id,
           serial: e.payload.doc.data().serial,
           brand: e.payload.doc.data().marca,
-          model: e.payload.doc.data().modelo,
+          modelo: e.payload.doc.data().model,
           year: e.payload.doc.data().year,
-          plate: e.payload.doc.data().placa,
+          plate: e.payload.doc.data().plate,
           reparation: e.payload.doc.data().needsReparation,
           appointmentDate: e.payload.doc.data().appointmentDate,
           appointmentHour: e.payload.doc.data().appointmentHour,

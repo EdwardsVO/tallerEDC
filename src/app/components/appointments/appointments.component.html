@@ -35,12 +35,6 @@
 
             <img mat-card-sm-image src="{{appointment.img}}" alt="client's car1">
 
-            <mat-card-subtitle>SERIAL
-                <P>{{appointment.serial}}</P>
-            </mat-card-subtitle>
-            <mat-card-subtitle>MARCA
-                <p>{{appointment.brand}}</p>
-            </mat-card-subtitle>
             <mat-card-subtitle>MODELO
                 <p>{{appointment.model}}</p>
             </mat-card-subtitle>
@@ -54,11 +48,15 @@
                 <P>{{appointment.appointmentDate}} - {{appointment.appointmentHour}}</P>
             </mat-card-subtitle>
 
-            <button mat-raised-button class="green" [disabled] ="!appointment.appointmentDate" (click) = "appointmentConfirmed(appointment.id)">CONFIRMAR CITA</button>
+            <button mat-raised-button class="green" [disabled] ="!appointment.appointmentDate" (click) = "appointmentConfirmed(appointment.id)"><span class="material-icons">
+                done
+                </span></button>
 
-            <button mat-raised-button color = "warn" [disabled] ="!appointment.appointmentDate"  (click) = "rejectAppointment(appointment.id)">RECHAZAR CITA</button>
+            <button mat-raised-button class="reject" [disabled] ="!appointment.appointmentDate"  (click) = "rejectAppointment(appointment.id)" ><span color="warn" class="material-icons">
+                clear
+                </span></button>
 
-            <button mat-raised-button (click) = "deleteAppointment(appointment.id)"><mat-icon color = "warn">delete</mat-icon></button>
+            <button class="trash" mat-raised-button (click) = "deleteAppointment(appointment.id)"><mat-icon color="primary">delete</mat-icon></button>
             </div>
         </div>
     </mat-card>
