@@ -2,6 +2,7 @@ import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { VehiclesCrudService } from '../../services/vehicles-crud.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -12,8 +13,8 @@ import { VehiclesCrudService } from '../../services/vehicles-crud.service';
   styleUrls: ['./appointments.component.scss']
 })
 export class AppointmentsComponent implements OnInit {
-  
-  
+
+
 
 // ARRAYS TO STORE FIRESTORE DATA AND FETCH IT
   cars = [];
@@ -43,10 +44,10 @@ export class AppointmentsComponent implements OnInit {
         return {
           id: e.payload.doc.id,
           serial: e.payload.doc.data().serial,
-          brand: e.payload.doc.data().marca,
-          model: e.payload.doc.data().modelo,
+          brand: e.payload.doc.data().brand,
+          model: e.payload.doc.data().model,
           year: e.payload.doc.data().year,
-          plate: e.payload.doc.data().placa,
+          plate: e.payload.doc.data().plate,
           reparation: e.payload.doc.data().needsReparation,
         }
       })
@@ -82,6 +83,10 @@ export class AppointmentsComponent implements OnInit {
       this._vehicleSvc.appointmentConfirmed(appointmentId, false);
     }
 
+    confirmAppointment(appointmentId) {
+      this._vehicleSvc.appointmentConfirmed(appointmentId, true);
+    }
+
 // FUNCTION TO GET ALL APPOINTMENT FROM THE DATABASE
 
     getAppointments() {
@@ -92,10 +97,10 @@ export class AppointmentsComponent implements OnInit {
               return {
                 id: e.payload.doc.id,
                 serial: e.payload.doc.data().serial,
-                brand: e.payload.doc.data().marca,
-                model: e.payload.doc.data().modelo,
+                brand: e.payload.doc.data().brand,
+                model: e.payload.doc.data().model,
                 year: e.payload.doc.data().year,
-                plate: e.payload.doc.data().placa,
+                plate: e.payload.doc.data().plate,
                 reparation: e.payload.doc.data().needsReparation,
                 appointmentDate: e.payload.doc.data().appointmentDate,
                 appointmentConfirmed: e.payload.doc.data().appointmentConfirmed,
@@ -105,10 +110,5 @@ export class AppointmentsComponent implements OnInit {
             })
           })
         }
-
-
-      appointmentConfirmed(carId) {
-        this._vehicleSvc.appointmentConfirmed(carId, true);
-      }
 }
 
