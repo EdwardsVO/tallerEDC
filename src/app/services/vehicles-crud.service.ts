@@ -102,4 +102,10 @@ export class VehiclesCrudService {
         needsReparation: needsReparation
       })
     }
+
+    appointmentConfirmed(id: string, appointmentConfirmed) {
+      this.firestore.collection('cars').doc(id).update({
+        appointmentConfirmed: appointmentConfirmed
+      })
+    }
 }
