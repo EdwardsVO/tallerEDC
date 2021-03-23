@@ -1,31 +1,34 @@
 <h1>MIS VEHÍCULOS</h1>
 <mat-card class="profile-vehicle">
     <div class='carros'>
-        <div class="vehicle-container" *ngFor="let car of cars">
-            <img mat-card-sm-image src="{{car.foto}}" alt="client's car1">
+        <mat-card class = "mat-card-class">
+            <div class="vehicle-container" *ngFor="let car of cars" mat-card>
 
-            <mat-card-subtitle class="v-info">SERIAL
-                <p>{{car.serial}}</p>
-            </mat-card-subtitle>
-            <mat-card-subtitle class="v-info">MARCA
-                <p>{{car.marca}}</p>
-            </mat-card-subtitle>
-            <mat-card-subtitle class="v-info">MODELO
-                <p>{{car.modelo}}</p>
-            </mat-card-subtitle>
-            <mat-card-subtitle class="v-info">AÑO
-                <P>{{car.year}}</P>
-            </mat-card-subtitle>
-            <mat-card-subtitle class="v-info">PLACA
-                <P>{{car.placa}}</P>
-            </mat-card-subtitle>
-            <button mat-fab color="primary" class = "delete" title="Eliminar" (click)="openEditar(content,car)">
-                <mat-icon>edit</mat-icon>
-              </button>
-             <button mat-fab color="primary" class = "delete" title="Eliminar" (click)="delete(car)">
-                <mat-icon>delete</mat-icon>
-              </button>
-        </div>
+                <img mat-card-sm-image src="{{car.foto}}" alt="client's car1">
+
+                <mat-card-subtitle class="v-info">SERIAL
+                    <p>{{car.serial}}</p>
+                </mat-card-subtitle>
+                <mat-card-subtitle class="v-info">MARCA
+                    <p>{{car.marca}}</p>
+                </mat-card-subtitle>
+                <mat-card-subtitle class="v-info">MODELO
+                    <p>{{car.modelo}}</p>
+                </mat-card-subtitle>
+                <mat-card-subtitle class="v-info">AÑO
+                    <P>{{car.year}}</P>
+                </mat-card-subtitle>
+                <mat-card-subtitle class="v-info">PLACA
+                    <P>{{car.placa}}</P>
+                </mat-card-subtitle>
+                <button mat-fab color="primary" class = "delete" title="Eliminar" (click)="openEditar(content,car)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-fab color="primary" class = "delete" title="Eliminar" (click)="delete(car)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </mat-card>
     </div>
 
     <a mat-raised-button class="agg-btn" color= "primary"  (click)= "cars.length < 3 && open(content)" [disabled] = "cars.length >= 3 ">Nuevo Vehículo</a>
