@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Vehicle } from '../models/vehicle';
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -31,70 +31,105 @@ export class VehiclesCrudService {
 
   }
 
-  async newCar(id2, owner, serial, marca, modelo, year, placa, fecha, needsReparation, appointmentConfirmed, repaired): Promise<void>{
-    try{
-      const {id} = await this.firestore.collection('cars').add({
-          id2: id2,
-          owner: owner,
-          serial: serial,
-          marca: marca,
-          modelo: modelo,
-          year: year,
-          placa: placa,
-          fecha: fecha,
-          needsReparation: needsReparation,
-          appointmentConfirmed: appointmentConfirmed,
-          repaired: repaired
-        })
+  async newCar(id2, owner, serial, marca, modelo, year, placa, fecha, needsReparation, appointmentConfirmed, repaired, appointmentDate, appointmentHour, alertManager): Promise<void> {
+    try {
+      const { id } = await this.firestore.collection('cars').add({
+        id2: id2,
+        owner: owner,
+        serial: serial,
+        brand: marca,
+        model: modelo,
+        year: year,
+        plate: placa,
+        initDate: fecha,
+        needsReparation: needsReparation,
+        appointmentConfirmed: appointmentConfirmed,
+        repaired: repaired,
+        appointmentDate: appointmentDate,
+        appointmentHour: appointmentHour,
+        alertManager: alertManager,
+      })
 
-        this.carId = id
-        this.getCarId2(this.carId)
-    }catch(err){
+      this.carId = id
+      this.getCarId2(this.carId)
+    } catch (err) {
       console.log(err);
     }
   }
 
-  getCars(){
+  getCars() {
     return this.firestore.collection("cars").snapshotChanges();
   }
 
-  getCarId2(id){
+  getCarId2(id) {
     this.firestore.collection("cars").doc(id).update({
       id2: id
     })
   }
 
-  getSerial(serial){
-  
+  getSerial(serial) {
+
     this.firestore.collection("cars", ref => ref.where("serial", "==", serial))
-    .get()
-    .subscribe((querySnapshot) => {
+      .get()
+      .subscribe((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           if (doc.exists) {
-              //console.log("Document data:", doc.data());
-              return true
+            //console.log("Document data:", doc.data());
+            return true
           } else {
-              // doc.data() will be undefined in this case
-              console.log("No such document!");
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
           }
-           
-        });
-    })
 
-    
+        });
+      })
   }
 
-  updateCar(car:any, id: any){
+  updateCar(car: any, id: any) {
     return this.firestore.collection("cars").doc(id).update(car);
   }
 
-  deleteCar(car:Vehicle){
+  deleteCar(car: Vehicle) {
     this.vehicleDoc = this.firestore.doc(`cars/${car.owner}`);
     this.vehicleDoc.delete();
   }
 
   getUsersCars(userId) {
     return this.firestore.collection('cars', ref => ref.where("owner", "==", userId));
+  }
 
+    updateCarStatus(id: string, needsReparation) {
+      this.firestore.collection('cars').doc(id).update({
+        needsReparation: needsReparation
+      })
     }
+
+    appointmentConfirmed(id: string, appointmentConfirmed) {
+      this.firestore.collection('cars').doc(id).update({
+        appointmentConfirmed: appointmentConfirmed
+      })
+    }
+
+  updateCarAppointmentDate(id: string, aDate) {
+    this.firestore.collection('cars').doc(id).update({
+      appointmentDate: aDate
+    })
+  }
+  updateCarAppointmentHour(id: string, aHour) {
+    this.firestore.collection('cars').doc(id).update({
+      appointmentHour: aHour
+    })
+  }
+  updateCarAppointmentStatus(id: string, status) {
+    this.firestore.collection('cars').doc(id).update({
+      appointmentConfirmed: status
+    })
+  }
+
+  alertManager(id: string, alert) {
+    this.firestore.collection('cars').doc(id).update({
+      alertManager: alert
+    })
+  }
+
 }

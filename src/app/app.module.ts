@@ -77,6 +77,7 @@ import { MechNavbarComponent } from './components/navbar/mech-navbar/mech-navbar
 import { ErrorComponent } from './components/error/error.component';
 import { UsPageComponent } from './pages/us-page/us-page.component';
 import { OurTeamComponent } from './components/our-team/our-team.component';
+import { ManagerNavbarComponent } from './components/navbar/manager-navbar/manager-navbar.component';
 
 
 
@@ -127,7 +128,8 @@ import { OurTeamComponent } from './components/our-team/our-team.component';
     MechNavbarComponent,
     ErrorComponent,
     UsPageComponent,
-    OurTeamComponent
+    OurTeamComponent,
+    ManagerNavbarComponent,
   ],
 
   imports: [
@@ -144,14 +146,12 @@ import { OurTeamComponent } from './components/our-team/our-team.component';
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    ReactiveFormsModule,
     MatButtonModule,
     MatSelectModule,
     LayoutModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    NgbModule,
     MatDatepickerModule,
     MatNativeDateModule,
     NgxMaterialTimepickerModule,

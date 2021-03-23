@@ -1,31 +1,46 @@
 <div class="container">
     <h1>MIS VEHÍCULOS</h1>
     <mat-card>
-        <div class="vehicle-container" *ngFor="let car of cars">
-            <img mat-card-sm-image src="{{car.img}}" alt="client's car1">
-            <mat-card-subtitle>SERIAL
-                <p>{{car.serial}}</p>
-            </mat-card-subtitle>
-            <mat-card-subtitle>MODELO
-                <p>{{car.modelo}}</p>
-            </mat-card-subtitle>
-            <mat-card-subtitle>AÑO
-                <P>{{car.year}}</P>
-            </mat-card-subtitle>
-            <mat-card-subtitle>PLACA
-                <P>{{car.placa}}</P>
-            </mat-card-subtitle>
-            <mat-checkbox class="checkbox" color = "primary" (click) = "selectAppointment()"></mat-checkbox>
+
+        <div *ngFor="let car of cars">
+            <div class="vehicle-container" *ngIf="!car.reparation">
+
+                <img mat-card-sm-image src="{{car.img}}" alt="client's car1">
+                <mat-card-subtitle>SERIAL
+                    <p>{{car.serial}}</p>
+                </mat-card-subtitle>
+                <mat-card-subtitle>MARCA
+                    <p>{{car.brand}}</p>
+                </mat-card-subtitle>
+                <mat-card-subtitle>MODELO
+                    <p>{{car.model}}</p>
+                </mat-card-subtitle>
+                <mat-card-subtitle>AÑO
+                    <p>{{car.year}}</p>
+                </mat-card-subtitle>
+                <mat-card-subtitle>PLACA
+                    <p>{{car.plate}}</p>
+                </mat-card-subtitle>
+
+            <button mat-raised-button color = "primary" (click) = "makeAppointment(car.id)"> SOLICITAR CITA</button>
+
+            </div>
         </div>
     </mat-card>
-        <div class="button-container">
-            <button mat-raised-button>SOLICITAR CITA</button>
-        </div>
+
     <h1>CITAS ACTIVAS</h1>
     <mat-card>
-        <div class="appointment-container" *ngFor="let appointment of appointments">
+        <div *ngFor="let appointment of appointments">
+            <div *ngIf = "appointment.reparation" class="appointment-container">
+
             <img mat-card-sm-image src="{{appointment.img}}" alt="client's car1">
 
+            <mat-card-subtitle>SERIAL
+                <P>{{appointment.serial}}</P>
+            </mat-card-subtitle>
+            <mat-card-subtitle>MARCA
+                <p>{{appointment.brand}}</p>
+            </mat-card-subtitle>
             <mat-card-subtitle>MODELO
                 <p>{{appointment.model}}</p>
             </mat-card-subtitle>
@@ -33,19 +48,22 @@
                 <P>{{appointment.year}}</P>
             </mat-card-subtitle>
             <mat-card-subtitle>PLACA
-                <P>{{appointment.license_plate}}</P>
+                <P>{{appointment.plate}}</P>
+            </mat-card-subtitle>
+            <mat-card-subtitle>FECHA CITA
+                <P>{{appointment.appointmentDate}} - {{appointment.appointmentHour}}</P>
             </mat-card-subtitle>
 
-            <mat-card-subtitle>FECHA
-                <p>{{appointment.date}}</p>
-            </mat-card-subtitle>
-            <mat-checkbox class="checkbox" color = "primary" (click) = "selectAppointment()"></mat-checkbox>
+            <button mat-raised-button class="green" [disabled] ="!appointment.appointmentDate" (click) = "appointmentConfirmed(appointment.id)">CONFIRMAR CITA</button>
+
+            <button mat-raised-button color = "warn" [disabled] ="!appointment.appointmentDate"  (click) = "rejectAppointment(appointment.id)">RECHAZAR CITA</button>
+
+            <button mat-raised-button (click) = "deleteAppointment(appointment.id)"><mat-icon color = "warn">delete</mat-icon></button>
+            </div>
         </div>
     </mat-card>
 
     <div class="buttons-container">
-        <button mat-raised-button class="green">CONFIRMAR CITA</button>
-        <button mat-raised-button color = "warn">CANCELAR CITA</button>
     </div>
 
 </div>
