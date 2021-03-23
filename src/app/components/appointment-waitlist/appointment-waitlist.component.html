@@ -1,7 +1,8 @@
 <h1>LISTA DE ESPERA</h1>
-<mat-card>
-    <div *ngFor="let car of cars">
-        <div class="vehicle-container"  *ngIf="!car.appointmentConfirmed">
+
+<div *ngFor="let car of cars">
+    <div class="vehicle-container"  *ngIf="!car.appointmentConfirmed">
+        <mat-card>
             <mat-label>STATUS</mat-label>
             <mat-icon *ngIf="car.alertManager" color="warn" >warning</mat-icon>
             <mat-icon *ngIf="!car.alertManager && !car.appointmentDate" >alarm</mat-icon>
@@ -40,6 +41,6 @@
             <mat-card-actions>
                 <button mat-raised-button (click)="confirmAppointment(car.id)">CONFIRMAR</button>
             </mat-card-actions>
-        </div>
+        </mat-card>
     </div>
-</mat-card>
+</div>
