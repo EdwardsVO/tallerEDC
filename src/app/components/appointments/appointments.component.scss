@@ -1,9 +1,9 @@
-.vehicle-container {
+mat-card{
   display: flex;
   justify-content: space-between;
   padding: 1rem;
   background-color: rgb(233, 233, 233);
-  margin-bottom: 10px;
+  margin-bottom: 1.5%;
 }
 
 
@@ -38,12 +38,7 @@ button{
   height: 50px;
 }
 
-.appointment-container {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
-  background-color:rgb(233, 233, 233);
-}
+
 
 h1{
   color: #2e3192;
