@@ -11,20 +11,25 @@
                 <p>{{car.modelo}}</p>
             </mat-card-subtitle>
             <mat-card-subtitle>AÑO
-                <P>{{car.year}}</P>
+                <p>{{car.year}}</p>
             </mat-card-subtitle>
             <mat-card-subtitle>PLACA
-                <P>{{car.placa}}</P>
+                <p>{{car.placa}}</p>
             </mat-card-subtitle>
 
-            <input type="checkbox" id="selectBox" (change) = "onCheckBoxChange($event, car.id)">
+            <mat-card-subtitle>ID
+                <p>{{car.id}}</p>
+            </mat-card-subtitle>
+
+            <!-- <input type="checkbox" id="selectBox" (change) = "onCheckBoxChange($event, car.id)"> -->
+            <button mat-raised-button color = "primary" (click) = "makeAppointment(car.id)"> Solicitar Cita</button>
+
             </div>
         </div>
     </mat-card>
 
-
         <div class="button-container">
-            <button mat-raised-button (click) ="makeAppointment()">SOLICITAR CITA</button>
+            <!-- <button mat-raised-button (click) ="makeAppointment()">SOLICITAR CITA</button> -->
         </div>
 
     <h1>CITAS ACTIVAS</h1>
@@ -46,14 +51,17 @@
             <mat-card-subtitle>Necesita Reparacion
                 <p>{{appointment.reparation}}</p>
             </mat-card-subtitle>
-            <input type="checkbox"  id="checkbox" (change) = "onCheckBoxChange($event, appointment.id)">
+            <!-- <input type="checkbox"  id="checkbox" (change) = "onCheckBoxChange($event, appointment.id)"> -->
+
+            <button mat-raised-button class="green">CONFIRMAR CITA</button>
+            <button mat-raised-button color = "warn" (click) = "cancelAppointment(appointment.id)">CANCELAR CITA</button>
+
+
             </div>
         </div>
     </mat-card>
 
     <div class="buttons-container">
-        <button mat-raised-button class="green">CONFIRMAR CITA</button>
-        <button mat-raised-button color = "warn" (click) = "cancelAppointment()">CANCELAR CITA</button>
     </div>
 
 </div>
