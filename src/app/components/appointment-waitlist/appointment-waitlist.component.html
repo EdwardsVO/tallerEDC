@@ -2,7 +2,9 @@
 <mat-card>
     <div *ngFor="let car of cars">
         <div class="vehicle-container"  *ngIf="!car.appointmentConfirmed">
-            <img mat-card-sm-image src="{{car.img}}" alt="client's car1">
+            <mat-label>STATUS</mat-label>
+            <mat-icon *ngIf="car.alertManager" color="warn" >warning</mat-icon>
+            <mat-icon *ngIf="!car.alertManager" color ="primary">alarm_on</mat-icon>
             <mat-card-subtitle>
                 <p>{{car.modelo}}</p>
             </mat-card-subtitle>

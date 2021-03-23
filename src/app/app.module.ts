@@ -76,7 +76,6 @@ import { AdminNavbarComponent } from './components/navbar/admin-navbar/admin-nav
 import { MechNavbarComponent } from './components/navbar/mech-navbar/mech-navbar.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ManagerNavbarComponent } from './components/navbar/manager-navbar/manager-navbar.component';
-import { AlertManagerComponent } from './alert-manager/alert-manager.component';
 
 
 
@@ -127,7 +126,6 @@ import { AlertManagerComponent } from './alert-manager/alert-manager.component';
     MechNavbarComponent,
     ErrorComponent,
     ManagerNavbarComponent,
-    AlertManagerComponent
   ],
 
   imports: [
