@@ -27,6 +27,7 @@ export class VehiclesComponent implements OnInit {
   repaired: boolean;
   appointmentDate: any='';
   appointmentHour: any='';
+  alertManager: boolean;
 
 
   constructor(
@@ -45,14 +46,15 @@ export class VehiclesComponent implements OnInit {
     this.needsReparation = false;
     this.appointmentConfirmed = false;
     this.repaired = false;
+    this.alertManager = false;
 
 
     this.registrarVehiculoForm = this.fb.group({
       serial: ['', Validators.required],
-      marca: ['', Validators.required],
-      modelo: ['', Validators.required],
+      brand: ['', Validators.required],
+      model: ['', Validators.required],
       year: ['', Validators.required],
-      placa: ['', Validators.required]
+      plate: ['', Validators.required]
     })
 
     this.firestore.collection('cars', ref => ref.where("owner", "==", localStorage.getItem('user'))).snapshotChanges().subscribe(res => {
@@ -60,10 +62,10 @@ export class VehiclesComponent implements OnInit {
         return {
           id: e.payload.doc.id,
           serial: e.payload.doc.data().serial,
-          marca: e.payload.doc.data().marca,
-          modelo: e.payload.doc.data().modelo,
+          brand: e.payload.doc.data().brand,
+          model: e.payload.doc.data().model,
           year: e.payload.doc.data().year,
-          placa: e.payload.doc.data().placa,
+          plate: e.payload.doc.data().plate,
         }
       })
     })
@@ -81,16 +83,17 @@ export class VehiclesComponent implements OnInit {
           this.carId = '',
           this.owner,
           this.serial = this.registrarVehiculoForm.get('serial').value,
-          this.registrarVehiculoForm.get('marca').value,
-          this.registrarVehiculoForm.get('modelo').value,
+          this.registrarVehiculoForm.get('brand').value,
+          this.registrarVehiculoForm.get('model').value,
           this.registrarVehiculoForm.get('year').value,
-          this.registrarVehiculoForm.get('placa').value,
+          this.registrarVehiculoForm.get('plate').value,
           this.fecha = this.formatDate(),
           this.needsReparation,
           this.appointmentConfirmed,
           this.repaired,
           this.appointmentDate,
-          this.appointmentHour
+          this.appointmentHour,
+          this.alertManager
         )
         //this.checkCar(this.serial);
         this.registrarVehiculoForm.reset();
@@ -125,10 +128,10 @@ export class VehiclesComponent implements OnInit {
 
     this.registrarVehiculoForm.setValue({
       serial: car.serial,
-      marca: car.marca,
-      modelo: car.modelo,
+      brand: car.brand,
+      model: car.model,
       year: car.year,
-      placa: car.placa,
+      plate: car.plate,
     });
     this.id2 = car.id;
     this.actualizar = true;

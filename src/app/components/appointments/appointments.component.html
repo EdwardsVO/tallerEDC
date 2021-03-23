@@ -55,7 +55,10 @@
             </mat-card-subtitle>
 
             <button mat-raised-button class="green" [disabled] ="!appointment.appointmentDate" (click) = "appointmentConfirmed(appointment.id)">CONFIRMAR CITA</button>
-            <button mat-raised-button color = "warn" [disabled] ="appointment.appointmendConfirmed" (click) = "cancelAppointment(appointment.id)">CANCELAR CITA</button>
+
+            <button mat-raised-button color = "warn" [disabled] ="!appointment.appointmentDate"  (click) = "rejectAppointment(appointment.id)">RECHAZAR CITA</button>
+
+            <button mat-raised-button (click) = "deleteAppointment(appointment.id)"><mat-icon color = "warn">delete</mat-icon></button>
             </div>
         </div>
     </mat-card>
