@@ -98,9 +98,10 @@ export class AuthService {
       const response = await this._afAuth.signInWithEmailAndPassword(email, password)
         .then(res => {
           if (res.user) {
-            localStorage.setItem('user', response.user.uid)
-            return response.user;
+            localStorage.setItem('user', res.user.uid)
+            return res.user;
           } else {
+            console.log("peito");
             return null;
           }
         }).catch(err => {
