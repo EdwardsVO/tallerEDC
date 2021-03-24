@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ToastrModule, ToastrService} from 'ngx-toastr'
+
 
 @Component({
   selector: 'app-vehicle-register',
@@ -15,7 +15,7 @@ export class VehicleRegisterComponent implements OnInit {
   
 
   constructor(
-    public fb: FormBuilder, private toastr: ToastrService
+    public fb: FormBuilder,
     
   ) { }
 
@@ -47,10 +47,7 @@ export class VehicleRegisterComponent implements OnInit {
     //this.firebaseServiceService.deleteEstudiante(item.idFirebase);
 
     this.collection.data.pop();
-    
   }
-
- 
 
   saveCar():void {
 
@@ -63,8 +60,6 @@ export class VehicleRegisterComponent implements OnInit {
 
     this.collection.data.push(this.registrarVehiculoForm.value);
     this.registrarVehiculoForm.reset();
-    
-
   }
 
   // actualizarStudent(){
