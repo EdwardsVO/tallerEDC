@@ -6,8 +6,8 @@
     </form>
     
 </div>
-<mat-card>
-    <div class="vehicle-container" *ngFor="let client of clients">
+<div class="vehicle-container" *ngFor="let client of clients">
+    <mat-card>
         <img mat-card-sm-image src="{{client.img}}" alt="client's car1">
         <mat-card-subtitle>NOMBRE
             <p>{{client.name}}</p>
@@ -19,5 +19,5 @@
         <mat-card-actions><button mat-raised-button>SUBIR REPORTE  <span class="material-icons">
             backup
             </span></button></mat-card-actions>
-    </div>
-</mat-card>
+    </mat-card>
+</div>
