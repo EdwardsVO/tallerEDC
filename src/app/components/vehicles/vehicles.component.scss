@@ -1,4 +1,4 @@
-.mat-card-class{
+.mat-card-class {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
@@ -7,23 +7,20 @@
   width: 75%;
   margin-left: 13%;
   text-align: center;
-  
 }
 
 p {
   font-size: 12px;
   font-family: "Roboto", sans-serif;
 }
-.carros{
+.carros {
   width: 100%;
   margin-bottom: 10%;
 }
 
-
 .status {
   color: #03a600;
 }
-
 
 a.agg-btn {
   margin-top: 1%;
@@ -42,6 +39,7 @@ a.agg-btn:hover {
   color: #2e3192;
   background-color: white;
 }
+
 h1 {
   color: #2e3192;
   font-family: "Bree Serif", serif;
@@ -54,7 +52,7 @@ button:hover {
   color: #2e3192;
 }
 
-.delete{
+.delete {
   margin-right: 1rem;
   margin-bottom: 1.1rem;
   color: white;

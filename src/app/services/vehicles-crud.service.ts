@@ -99,17 +99,17 @@ export class VehiclesCrudService {
     return this.firestore.collection('cars', ref => ref.where("owner", "==", userId));
   }
 
-    updateCarStatus(id: string, needsReparation) {
-      this.firestore.collection('cars').doc(id).update({
-        needsReparation: needsReparation
-      })
-    }
+  updateCarStatus(id: string, needsReparation) {
+    this.firestore.collection('cars').doc(id).update({
+      needsReparation: needsReparation
+    })
+  }
 
-    appointmentConfirmed(id: string, appointmentConfirmed) {
-      this.firestore.collection('cars').doc(id).update({
-        appointmentConfirmed: appointmentConfirmed
-      })
-    }
+  appointmentConfirmed(id: string, appointmentConfirmed) {
+    this.firestore.collection('cars').doc(id).update({
+      appointmentConfirmed: appointmentConfirmed
+    })
+  }
 
   updateCarAppointmentDate(id: string, aDate) {
     this.firestore.collection('cars').doc(id).update({
@@ -142,4 +142,22 @@ export class VehiclesCrudService {
     })
   }
 
+  async newAppointment(mechName,carYear, carBrand, carModel, carPlate, initConditions, repairs, totalPriceService): Promise<void> {
+    try {
+      await this.firestore.collection('appointments').add({
+        mechName: mechName,
+        carYear: carYear,
+        carBrand: carBrand,
+        carModel: carModel,
+        carPlate: carPlate,
+        initConditions: initConditions,
+        repairs: repairs,
+        totalPriceService: totalPriceService,
+      })
+    }
+    catch {
+
+    }
+  }
 }
+

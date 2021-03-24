@@ -30,8 +30,8 @@
                             <tr>
                                 <td>
                                     <mat-form-field class="first-name">
-                                        <mat-label aria-placeholder="*Username">{{userName}}</mat-label>
-                                        <input matInput formControlName="name" placeholder="Nombre Completo">
+                                        <mat-label aria-placeholder="*Username">Nombre Completo</mat-label>
+                                        <input matInput formControlName="name" placeholder="Nombre Completo" value = "{{userName}}">
                                     </mat-form-field>
                                 </td>
                             </tr>
@@ -47,14 +47,14 @@
                         <p>
                             <mat-form-field class="age">
                                 <mat-label aria-placeholder="Edad">Edad: {{userEdad}}</mat-label>
-                                <input matInput formControlName = "age" placeholder = "Edad">
+                                <input matInput formControlName = "age" placeholder = "Edad" value = "{{userEdad}}">
                             </mat-form-field>
                         </p>
 
                         <p>
                             <mat-form-field class="gender">
-                                <mat-label aria-placeholder="Sexo">Sexo: {{userGender}}</mat-label>
-                                <input matInput formControlName = "gender" placeholder= "Masculino o Femenino">
+                            <mat-label aria-placeholder="Sexo">Sexo: {{userGender}}</mat-label>
+                                <input matInput formControlName = "gender" placeholder= "Masculino o Femenino" value = "{{userGender}}">
                             </mat-form-field>
                         </p>
 
@@ -63,7 +63,7 @@
                             <mat-form-field class="tlf">
                                 <mat-label>{{userPhone}}</mat-label>
                                 <span matPrefix>+58 &nbsp;</span>
-                                <input matInput formControlName="phone" placeholder="4141234567">
+                                <input matInput formControlName="phone" placeholder="4141234567" value = "{{userPhone}}">
                             </mat-form-field>
                         </p>
 

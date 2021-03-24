@@ -72,7 +72,9 @@
         <div *ngIf = "appointment.reparation" class="appointment-container">
 
 
-            <form (submit) = "sendEmail($event)" >
+            <!-- <form (submit) = "sendEmail($event)" > -->
+            <form  >
+            
                 <mat-card>
 
                     <mat-input class="invisible">
@@ -111,7 +113,7 @@
                     </mat-input>
 
 
-                    <button type = "submit" mat-raised-button class="green" [disabled] ="!appointment.appointmentDate" (click) = "confirmAppointment(appointment.id)" *ngIf = "!appointment.appointmentConfirmed"><span class="material-icons">
+                    <button type = "submit" mat-raised-button class="green" [disabled] ="!appointment.appointmentDate" (click) = "newAppointment(appointment.brand, appointment.year, appointment.model, appointment.plate, appointment.id)" *ngIf = "!appointment.appointmentConfirmed"><span class="material-icons">
                         done
                         </span></button>
 

@@ -1,0 +1,33 @@
+<div class="container">
+    <h1>MIS TRABAJOS PENDIENTES</h1>
+
+        <div class='carros'>
+            <div class="vehicle-container" *ngFor="let appointment of appointments" mat-card>
+
+                <mat-card class = "mat-card-class">
+
+                    <mat-card-subtitle>MARCA
+                        <p>{{appointment.brand}}</p>
+                    </mat-card-subtitle>
+
+                    <mat-card-subtitle>MODELO
+                        <p>{{appointment.model}}</p>
+                    </mat-card-subtitle>
+
+                    <!-- <mat-card-subtitle>AÑO
+                        <P>{{appointment.year}}</P>
+                    </mat-card-subtitle> -->
+
+                    <mat-card-subtitle>PLACA
+                        <P>{{appointment.plate}}</P>
+                    </mat-card-subtitle>
+
+                    <button mat-raised-button class="green" (click) = "scanQR()">ESCANEAR QR</button>
+
+                    <button class="trash" mat-raised-button (click) = "rejectWork(appointment.id)"><mat-icon color="primary" title="Rechazar Trabajo">delete</mat-icon></button>
+
+                </mat-card>
+            </div>
+
+        </div>
+</div>
