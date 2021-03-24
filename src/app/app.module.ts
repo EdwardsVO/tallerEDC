@@ -79,6 +79,7 @@ import { UsPageComponent } from './pages/us-page/us-page.component';
 import { OurTeamComponent } from './components/our-team/our-team.component';
 import { ManagerNavbarComponent } from './components/navbar/manager-navbar/manager-navbar.component';
 import { IconsMeaningComponent } from './components/icons-meaning/icons-meaning.component';
+import { MechanicAppointmentsListComponent } from './components/mechanic-appointments-list/mechanic-appointments-list.component';
 
 
 
@@ -132,6 +133,7 @@ import { IconsMeaningComponent } from './components/icons-meaning/icons-meaning.
     OurTeamComponent,
     ManagerNavbarComponent,
     IconsMeaningComponent,
+    MechanicAppointmentsListComponent,
   ],
 
   imports: [
