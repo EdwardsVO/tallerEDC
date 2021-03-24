@@ -6,33 +6,27 @@
 
             <mat-card>
 
-        <mat-card>
+                <img mat-card-sm-image src="{{car.img}}" alt="client's car1">
 
-            <img mat-card-sm-image src="{{car.img}}" alt="client's car1">
+                <mat-card-subtitle>SERIAL
+                    <p>{{car.serial}}</p>
+                </mat-card-subtitle>
 
-            <mat-card-subtitle>SERIAL
-                <p>{{car.serial}}</p>
-            </mat-card-subtitle>
+                <mat-card-subtitle>MARCA
+                    <p>{{car.brand}}</p>
+                </mat-card-subtitle>
 
-            <mat-card-subtitle>MARCA
-                <p>{{car.brand}}</p>
-            </mat-card-subtitle>
+                <mat-card-subtitle>MODELO
+                    <p>{{car.model}}</p>
+                </mat-card-subtitle>
 
-            <mat-card-subtitle>MODELO
-                <p>{{car.model}}</p>
-            </mat-card-subtitle>
+                <mat-card-subtitle>AÑO
+                    <p>{{car.year}}</p>
+                </mat-card-subtitle>
 
-            <mat-card-subtitle>AÑO
-                <p>{{car.year}}</p>
-            </mat-card-subtitle>
-
-            <mat-card-subtitle>PLACA
-                <p>{{car.plate}}</p>
-            </mat-card-subtitle>
-
-            <button mat-raised-button color="primary" (click)="makeAppointment(car.id)" [disabled]="car.reparation">
-                SOLICITAR CITA</button>
-        </mat-card>
+                <mat-card-subtitle>PLACA
+                    <p>{{car.plate}}</p>
+                </mat-card-subtitle>
 
                 <button mat-raised-button color = "primary" (click) = "makeAppointment(car.id)" [disabled]= "car.reparation"> SOLICITAR CITA</button>
             </mat-card>

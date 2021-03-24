@@ -86,12 +86,6 @@ export class AppointmentsComponent implements OnInit {
       this._vehicleSvc.appointmentConfirmed(appointmentId, true);
     }
 
-    //FUNCTION MADE TO CREATE NEW APPOINTMENT IN FIREBASE APOINMENTS COLLECTION 
-    newAppointment(carBrand, carModel, carPlate, carId){
-      this.confirmAppointment(carId);
-      this._vehicleSvc.newAppointment("", carBrand, carModel, carPlate, "", "", "");
-    }
-
 // FUNCTION TO GET ALL APPOINTMENT FROM THE DATABASE
 
     getAppointments() {
