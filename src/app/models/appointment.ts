@@ -1,4 +1,3 @@
-import { NumberLiteralType } from "typescript";
 
 export interface Appointment {
     appointmentId?: string,
