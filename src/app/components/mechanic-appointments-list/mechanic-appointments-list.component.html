@@ -18,7 +18,10 @@
                         <P>{{appointment.plate}}</P>
                     </mat-card-subtitle>
 
-                    <button mat-raised-button class="green" (click) = "confirmWork(appointment.id)" title="Aceptar Trabajo"><span class="material-icons">done</span></button>
+                    <div class="btn-container">
+                        <button mat-raised-button class="green" (click) = "confirmWork(appointment.id)" title="Aceptar Trabajo"><span class="material-icons">done</span></button>
+                        <button mat-raised-button class="green" (click) = "scanQR()">QR</button>
+                    </div>
 
                 </mat-card>
             </div>

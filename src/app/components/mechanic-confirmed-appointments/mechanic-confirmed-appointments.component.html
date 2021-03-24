@@ -14,20 +14,96 @@
                         <p>{{appointment.model}}</p>
                     </mat-card-subtitle>
 
-                    <!-- <mat-card-subtitle>AÑO
+                    <mat-card-subtitle>AÑO
                         <P>{{appointment.year}}</P>
-                    </mat-card-subtitle> -->
+                    </mat-card-subtitle>
 
                     <mat-card-subtitle>PLACA
                         <P>{{appointment.plate}}</P>
                     </mat-card-subtitle>
 
-                    <button mat-raised-button class="green" (click) = "scanQR()">ESCANEAR QR</button>
+                    <button mat-mini-fab class="edit"color="primary" title="Añadir informacion adicional">
+                        <mat-icon (click) = "addCarInfo(appointment)">add</mat-icon>
+                    </button>
+
+                    <button mat-mini-fab class = "" color = "primary" *ngIf="editState && carToEdit.id == appointment.id">
+                        <mat-icon (click) = "clearState()"></mat-icon>
+                    </button>
 
                     <button class="trash" mat-raised-button (click) = "rejectWork(appointment.id)"><mat-icon color="primary" title="Rechazar Trabajo">delete</mat-icon></button>
 
                 </mat-card>
+
+                <div *ngIf="editState && carToEdit.id == appointment.id">
+
+                    <form (ngSubmit) = "updateAppointment(appointment)">
+                        <div class="row">
+                            <div class="input-field col s6">
+
+                               <mat-card>
+
+                                    <mat-input>
+
+                                    <mat-card-subtitle>COLOR
+                                        <input type="text" [(ngModel)] = "appointment.carColor" name = "COLOR">
+                                    </mat-card-subtitle>
+
+                                    <mat-card-subtitle>Km de Ingreso
+                                        <input type="text" [(ngModel)] = "appointment.carKm" name = "Km">
+                                    </mat-card-subtitle>
+
+                                    <mat-card-subtitle>Nivel de Gasolina
+                                        <input type="text" [(ngModel)] = "appointment.carGas" name = "GAS">
+                                    </mat-card-subtitle>
+
+                                    <mat-card-subtitle>Caucho de Repuesto
+                                        <input type="checkbox" [(ngModel)] = "appointment.extraTire" value = "false" name = "Caucho" id="extraTire"(change) = "print($event, appointment.extraTire)">
+                                    </mat-card-subtitle>
+
+                                    <mat-card-subtitle>Llaves
+                                        <input type="checkbox" [(ngModel)] = "appointment.keys" value= "false" name = "Herramientas" id= "keys" (change) = "print($event, appointment.keys)">
+                                    </mat-card-subtitle>
+
+                                    <mat-card-subtitle>Herramientas
+                                        <input type="checkbox" [(ngModel)] = "appointment.tools" value = "false" name = "Herramientas" id= "tools" (change) = "print($event, appointment.tools)">
+                                    </mat-card-subtitle>
+
+                                    <mat-card-subtitle>Gato
+                                        <input type="checkbox" [(ngModel)] = "appointment.gato" value = "false" (change) = "print($event, appointment.gato)" name = "Gato" id= "gato">
+                                    </mat-card-subtitle>
+
+                                    <mat-card-subtitle>Reproductor
+                                        <input type="checkbox" [(ngModel)] = "appointment.stereo" name = "Herramientas" id= "stereo" (change) = "print($event, appointment.stereo)" value = "false">
+                                    </mat-card-subtitle>
+
+                                    <mat-card-subtitle>Rayones
+                                        <input type="checkbox" [(ngModel)] = "appointment.scratches" value = "false" name = "Rayones" id="scratches" (change) = "print($event, appointment.scratches)">
+                                    </mat-card-subtitle>
+
+                                    <!-- <mat-input> -->
+                                        <mat-card-subtitle>Diagnostico</mat-card-subtitle>
+
+                                            <textarea name="diagnostico" [(ngModel)] = "appointment.diagnostic"  cols="80" rows="5"></textarea>
+                                        
+                                    </mat-input>
+
+                                    <button mat-raised-button color = "primary" type="submit" class = "btn" (click) = "updateAppointment(appointment)">Confirmar</button>
+
+                            </mat-card>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+
+
             </div>
 
+
         </div>
+
+    </div>
+
 </div>

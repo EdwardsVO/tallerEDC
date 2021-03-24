@@ -42,5 +42,9 @@ export class MechanicAppointmentsListComponent implements OnInit {
     console.log(`Cita: ${appointmentId} ha sido asignada a ${this.mechanicName}! A chambear`);
   }
 
+  scanQR() {
+    console.log("aqui se abre el escaner y toma foto del QR del cliente.");
+  }
+
 
 }
