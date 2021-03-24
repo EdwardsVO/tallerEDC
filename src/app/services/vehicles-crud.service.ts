@@ -142,4 +142,21 @@ export class VehiclesCrudService {
     })
   }
 
+  async newAppointment(mechName, carBrand, carModel, carPlate,initConditions, repairs, totalPriceService): Promise<void> {
+
+    try {
+       await this.firestore.collection('appointments').add({
+        mechName: mechName,
+        carBrand: carBrand,
+        carModel: carModel,
+        carPlate: carPlate,
+        initConditions: initConditions,
+        repairs: repairs,
+        totalPriceService: totalPriceService,
+      })}
+      catch{
+
+      }
+
+  }
 }
