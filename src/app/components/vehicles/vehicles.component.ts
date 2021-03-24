@@ -5,8 +5,12 @@ import {VehiclesCrudService} from '../../services/vehicles-crud.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import firebase from 'firebase';
-import { isNullOrUndefined } from 'util';
 import { Vehicle } from '../../models/vehicle';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
+import { Observable } from 'rxjs';
+import { map, finalize} from 'rxjs/operators';
+
+
 
 @Component({
   selector: 'app-vehicles',
@@ -32,8 +36,16 @@ export class VehiclesComponent implements OnInit {
   appointmentHour: any='';
   alertManager: boolean;
   repeated: boolean;
-  carConverter
-  
+  carConverter;
+  photo;
+ 
+
+  ref: AngularFireStorageReference;
+  task: AngularFireUploadTask;
+  uploadProgress: Observable<number>;
+  downloadURL;
+  uploadState: Observable<string>;
+  path: string;
 
 
   constructor(
@@ -42,8 +54,12 @@ export class VehiclesComponent implements OnInit {
     private vehiclesCrudService: VehiclesCrudService,
     private _vehicleservice: VehiclesCrudService,
     private _authservice: AuthService,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private af: AngularFireStorage,
+
   ) { }
+
+  
 
   ngOnInit(): void {
 
@@ -55,6 +71,7 @@ export class VehiclesComponent implements OnInit {
     this.alertManager = false;
     this.repeated = false;
     this.serial = false;
+
     
 
 
@@ -63,7 +80,8 @@ export class VehiclesComponent implements OnInit {
       brand: ['', Validators.required],
       model: ['', Validators.required],
       year: ['', Validators.required],
-      plate: ['', Validators.required]
+      plate: ['', Validators.required],
+      photo: ['', Validators.required]
     })
 
     this.firestore.collection('cars', ref => ref.where("owner", "==", localStorage.getItem('user'))).snapshotChanges().subscribe(res => {
@@ -75,6 +93,7 @@ export class VehiclesComponent implements OnInit {
           model: e.payload.doc.data().model,
           year: e.payload.doc.data().year,
           plate: e.payload.doc.data().plate,
+          photo: e.payload.doc.data().photo
         }
       })
     })
@@ -93,7 +112,45 @@ export class VehiclesComponent implements OnInit {
     };
   }
 
+ 
+  //this.path = $event.target.files[0]
+  //console.log(this.path) 
+  upload = (event) => {
+    // create a random id
+    const randomId = Math.random().toString(36).substring(2);
+    // create a reference to the storage bucket location
+    //this.path = '/images/' + randomId;
+    this.ref = this.af.ref(this.registrarVehiculoForm.get('photo').value);
+    
+    //console.log(this.ref)
+    // the put method creates an AngularFireUploadTask
+    // and kicks off the upload
+    this.task = this.ref.put(event.target.files[0]);
+    // this.path = event.target.files[0]
+    // console.log(this.path)
 
+    // AngularFireUploadTask provides observable
+    // to get uploadProgress value
+    this.uploadProgress = this.task.snapshotChanges()
+    .pipe(map(s => (s.bytesTransferred / s.totalBytes) * 100));
+
+    // observe upload progress
+    this.uploadProgress = this.task.percentageChanges();
+    // get notified when the download URL is available
+    this.task.snapshotChanges().pipe(
+      finalize(() => this.downloadURL = this.ref.getDownloadURL())
+      
+    )
+    .subscribe();
+    
+
+    this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
+    
+    //console.log(this.downloadURL = this.af.ref('/images/' + this.path).getDownloadURL())
+  }
+
+ 
+   
 
 
   async addNewCar(): Promise <void> {
@@ -110,6 +167,7 @@ export class VehiclesComponent implements OnInit {
           this.registrarVehiculoForm.get('year').value,
           this.registrarVehiculoForm.get('plate').value,
           this.fecha = this.formatDate(),
+          this.photo = this.registrarVehiculoForm.get('photo').value,
           this.needsReparation,
           this.appointmentConfirmed,
           this.repaired,
@@ -117,7 +175,6 @@ export class VehiclesComponent implements OnInit {
           this.appointmentHour,
           this.alertManager
         )
-        //this.checkCar(this.serial);
         this.registrarVehiculoForm.reset();
         this.modalService.dismissAll();
       })
@@ -134,9 +191,6 @@ export class VehiclesComponent implements OnInit {
     return today.toDateString()
   }
 
-  
-
-  
 
   checkCar(){
     var db = firebase.firestore()
@@ -156,45 +210,6 @@ export class VehiclesComponent implements OnInit {
       }}).catch((error) => {
         console.log("Error getting document:", error);
       });
-
-    // db.collection('cars').where("serial", "==", this.registrarVehiculoForm.get('serial').value)
-    // .get()
-    // .then((querySnapshot) => {
-    //     querySnapshot.forEach((doc) => {
-    //       if (doc.exists){
-    //         // doc.data() is never undefined for query doc snapshots
-    //         console.log(doc.id, " => ", doc.data());
-    //         this.repeated = true;
-    //       }
-
-    //       console.log(this.repeated)
-    //       console.log(doc.exists)
-    //       if (this.repeated) {
-    //         console.log('el carro ya existe');
-    //       } 
-
-    //       if(!this.repeated) {
-    //         console.log('no carro')
-    //       }
-         
-            
-    //     });
-    // })
-  
-    // this.firestore.collection('cars', ref => ref.where("serial", "==", this.registrarVehiculoForm.get('serial').value)).snapshotChanges().subscribe(res => {
-    //   this.cars = res.map((e: any) => {
-    //     console.log(e.payload.doc.data().serial)
-    //     return {
-    //       serial: e.payload.doc.data().serial
-         
-    //     }
-        //console.log(this.serial)
-        //return this.serial
-       
-        
-    //   })
-    // })
-
 
   }
 
@@ -216,7 +231,9 @@ export class VehiclesComponent implements OnInit {
       model: car.model,
       year: car.year,
       plate: car.plate,
+      photo: car.photo
     });
+    //car: car.photo
     this.id2 = car.id;
     this.actualizar = true;
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -232,6 +249,8 @@ export class VehiclesComponent implements OnInit {
       this.vehiclesCrudService.deleteCar(car);
 
   }
+
+  
 
   onClick (name: string): string {
 
