@@ -80,6 +80,7 @@ import { OurTeamComponent } from './components/our-team/our-team.component';
 import { ManagerNavbarComponent } from './components/navbar/manager-navbar/manager-navbar.component';
 import { IconsMeaningComponent } from './components/icons-meaning/icons-meaning.component';
 import { MechanicAppointmentsListComponent } from './components/mechanic-appointments-list/mechanic-appointments-list.component';
+import { MechanicConfirmedAppointmentsComponent } from './components/mechanic-confirmed-appointments/mechanic-confirmed-appointments.component';
 
 
 
@@ -134,6 +135,7 @@ import { MechanicAppointmentsListComponent } from './components/mechanic-appoint
     ManagerNavbarComponent,
     IconsMeaningComponent,
     MechanicAppointmentsListComponent,
+    MechanicConfirmedAppointmentsComponent,
   ],
 
   imports: [
