@@ -39,7 +39,7 @@
                 </mat-form-field>
             </mat-card-actions>
             <mat-card-actions>
-                <button mat-raised-button (click)="confirmAppointment(car.id)">CONFIRMAR</button>
+                <button mat-raised-button [disabled]='car.appointmentHour != ""' (click)="confirmAppointment(car.id)">CONFIRMAR</button>
             </mat-card-actions>
         </mat-card>
     </div>
