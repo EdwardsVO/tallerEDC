@@ -113,7 +113,7 @@
                     </mat-input>
 
 
-                    <button type = "submit" mat-raised-button class="green" [disabled] ="!appointment.appointmentDate" (click) = "newAppointment(appointment.brand, appointment.year, appointment.model, appointment.plate, appointment.id)" *ngIf = "!appointment.appointmentConfirmed"><span class="material-icons">
+                    <button type = "submit" mat-raised-button class="green" [disabled] ="!appointment.appointmentDate" (click) = "newAppointment(appointment.id, appointment.brand, appointment.model, appointment.plate, appointment.year)" *ngIf = "!appointment.appointmentConfirmed"><span class="material-icons">
                         done
                         </span></button>
 
