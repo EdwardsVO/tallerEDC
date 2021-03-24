@@ -34,13 +34,11 @@ td {
 
   display: inline-block;
   align-items: center;
+
 }
 
-.email,
-.password,
-.password2,
-.tlf {
-  width: 95%;
+.age, .gender,.password,.password2,.tlf, .user-info, .email {
+  width: 200%;
 }
 
 .cambio-contra,
