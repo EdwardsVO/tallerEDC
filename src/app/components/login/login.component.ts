@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { RegisterComponent } from '../register/register.component';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -34,11 +35,13 @@ export class LoginComponent implements OnInit {
   currentUser: string;
   currentRole: string;
   roleLoad: boolean = false;
+  title = 'titulo';
 
-
-  constructor(private _fb: FormBuilder, private _router: Router, private modalService: NgbModal, private _authService: AuthService, private _db: CrudService, private _afs: AngularFirestore) {
+  constructor(private toastr: ToastrService, private _fb: FormBuilder, private _router: Router, private modalService: NgbModal, private _authService: AuthService, private _db: CrudService, private _afs: AngularFirestore) {
   }
 
+
+  
 
 
   ngOnInit(): void {
@@ -46,6 +49,7 @@ export class LoginComponent implements OnInit {
     this.createRegistrationForm();
   }
 
+  
 
   createAuthForm(): void {
     this.authForm = this._fb.group({

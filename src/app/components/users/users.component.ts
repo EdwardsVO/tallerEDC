@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user';
 import { AdminCrudService } from 'src/app/services/admin-crud.service';
 import { CrudService } from 'src/app/services/crud.service';
+import { ToastrModule, ToastrService} from 'ngx-toastr'
 
 interface selection {
   value: string;
@@ -26,7 +27,7 @@ export class UsersComponent implements OnInit {
     return this.editInfo = !this.editInfo
   }
 
-  constructor(private _db: CrudService, private _fb: FormBuilder, private _adminService: AdminCrudService) { }
+  constructor(private _db: CrudService, private _fb: FormBuilder, private _adminService: AdminCrudService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -49,6 +50,11 @@ export class UsersComponent implements OnInit {
   updateUser(user){
     this._adminService.updateUser(user);
     this.clearState();
+    this.showSucces(`Actualizado exitosamente.`,'LISTO');
+  }
+
+  showSucces(message,title){
+    this.toastr.success(message, title)
   }
 
 }
