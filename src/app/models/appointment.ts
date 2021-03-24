@@ -17,4 +17,6 @@ export interface Appointment {
     repairs?: number,
     totalPriceService?: number,
     diagnostic?: string;
+    procedure?: string;
+    repuestos?: string;
 }

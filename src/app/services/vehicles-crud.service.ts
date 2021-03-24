@@ -31,7 +31,7 @@ export class VehiclesCrudService {
 
   }
 
-  async newCar(id2, owner, ownerName, ownerEmail, serial, marca, modelo, year, placa, fecha, needsReparation, appointmentConfirmed, repaired, appointmentDate, appointmentHour, alertManager): Promise<void> {
+  async newCar(id2, owner, ownerName, ownerEmail, serial, marca, modelo, year, placa, fecha, needsReparation, appointmentConfirmed, timesRepaired, repaired, appointmentDate, appointmentHour, alertManager): Promise<void> {
     try {
       const { id } = await this.firestore.collection('cars').add({
         id2: id2,
@@ -47,6 +47,7 @@ export class VehiclesCrudService {
         needsReparation: needsReparation,
         appointmentConfirmed: appointmentConfirmed,
         repaired: repaired,
+        timesRepaired: timesRepaired,
         appointmentDate: appointmentDate,
         appointmentHour: appointmentHour,
         alertManager: alertManager,
@@ -143,10 +144,11 @@ export class VehiclesCrudService {
     })
   }
 
-  async newAppointment(carBrand, carModel, carPlate, carYear, carColor, carKm, carGas,
-    extraTire, keys, tools, stereo, mechName, repairs, totalPriceService): Promise<void> {
+  async newAppointment(carId, carBrand, carModel, carPlate, carYear, carColor, carKm, carGas,
+    extraTire, keys, gato,  tools, stereo, scratches, mechName, repairs, diagnostic, procedures, repuestos, totalPriceService): Promise<void> {
     try {
       await this.firestore.collection('appointments').add({
+        carId: carId,
         carBrand: carBrand,
         carModel: carModel,
         carPlate: carPlate,
@@ -157,9 +159,14 @@ export class VehiclesCrudService {
         extraTire: extraTire,
         keys: keys,
         tools: tools,
+        gato: gato,
+        scratches: scratches,
         stereo: stereo,
         mechName: mechName,
         repairs: repairs,
+        diagnostic: diagnostic,
+        procedures: procedures,
+        repuestos: repuestos,
         totalPriceService: totalPriceService
       })
     }
@@ -167,5 +174,7 @@ export class VehiclesCrudService {
 
     }
   }
+
+
 }
 

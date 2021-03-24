@@ -56,6 +56,7 @@ export class AppointmentsComponent implements OnInit {
   // FUNCTION TO MAKE AN APPOINTMENT. SETS "needsReparation" ATTRIBUTE TO TRUE IN THE DATABASE
 
     makeAppointment(carId: string) {
+      this.carId = carId
       this._vehicleSvc.updateCarStatus(carId, true);
       this._vehicleSvc.alertManager(carId, false);
 
@@ -88,7 +89,7 @@ export class AppointmentsComponent implements OnInit {
 
     newAppointment(carId, carBrand, carModel, carPlate, carYear){
       this.confirmAppointment(carId);
-      this._vehicleSvc.newAppointment(carBrand, carModel, carPlate, carYear, "", "", "", false, false, false, false, "", 0,0);
+      this._vehicleSvc.newAppointment(carId, carBrand, carModel, carPlate, carYear, "", "", "", false, false, false, false, false, false, "", 0,0, "","","");
     }
 
 // FUNCTION TO GET ALL APPOINTMENT FROM THE DATABASE

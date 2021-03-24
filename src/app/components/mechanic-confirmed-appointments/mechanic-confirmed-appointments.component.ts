@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { CheckboxControlValueAccessor } from '@angular/forms';
 import { Appointment } from 'src/app/models/appointment';
 import { AuthService } from 'src/app/services/auth.service';
+import { VehiclesCrudService } from 'src/app/services/vehicles-crud.service';
 import { MechanicCrudService } from '../../services/mechanic-crud.service';
 
 @Component({
@@ -26,7 +27,7 @@ export class MechanicConfirmedAppointmentsComponent implements OnInit {
   scratches: boolean= false;
 
 
-  constructor(private firestore: AngularFirestore, private _authSvc: AuthService, private _mechSvc: MechanicCrudService) { }
+  constructor(private firestore: AngularFirestore, private _authSvc: AuthService, private _mechSvc: MechanicCrudService, private _vehicleSvc: VehiclesCrudService) { }
 
   ngOnInit(): void {
 
@@ -42,6 +43,7 @@ export class MechanicConfirmedAppointmentsComponent implements OnInit {
 
           // Appointment document ID
           id: e.payload.doc.id,
+          carId: e.payload.doc.data().carId,
           brand: e.payload.doc.data().carBrand,
           model: e.payload.doc.data().carModel,
           plate: e.payload.doc.data().carPlate,
@@ -85,6 +87,9 @@ export class MechanicConfirmedAppointmentsComponent implements OnInit {
     }
   }
 
+  finishWork(carId){
+    this._mechSvc.finisWork(carId)
+  }
 
 }
 
