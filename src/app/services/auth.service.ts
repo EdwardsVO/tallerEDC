@@ -12,106 +12,123 @@ export class AuthService {
 
   private usersCollection: AngularFirestoreCollection<User>;
   user: Observable<any>;
-  
-
-
-
-  constructor(private _afAuth: AngularFireAuth, private _afs: AngularFirestore,private afAuth: AngularFireAuth)  { }
 
 
 
 
-  async resetPassword(email:string):Promise<void>{
-    try{
+  constructor(private _afAuth: AngularFireAuth, private _afs: AngularFirestore, private afAuth: AngularFireAuth) { }
+
+
+
+
+  async resetPassword(email: string): Promise<void> {
+    try {
       return this.afAuth.sendPasswordResetEmail(email);
     }
-    catch(error){console.log(error)}
+    catch (error) { console.log(error) }
   }
 
   async loginWithGoogle(): Promise<firebase.User | null> {
-    try{
+    try {
       const provider = new firebase.auth.GoogleAuthProvider();
       const response = await this._afAuth.signInWithPopup(provider);
 
-      if(response.user){
+      if (response.user) {
         localStorage.setItem('user', response.user.uid)
         return response.user;
       }
-      else{
+      else {
         return null;
       }
     }
-    catch(err){
+    catch (err) {
       localStorage.removeItem('user')
       return null;
     }
   }
 
   async logOut(): Promise<void> {
-    try{
+    try {
       await this._afAuth.signOut();
       localStorage.removeItem('user');
       localStorage.removeItem('role');
-    } catch(err){
+    } catch (err) {
 
     }
   }
 
 
-  getCurrentUser(): Observable<firebase.User>{
+  getCurrentUser(): Observable<firebase.User> {
     return this._afAuth.user;
   }
 
   async registerNewUser(
     email: string,
     password: string
-  ): Promise <firebase.User | null> {
-    try{
+  ): Promise<firebase.User | null> {
+    try {
       const response = await this._afAuth.createUserWithEmailAndPassword(email, password).then();
 
-      if(response.user){
+      if (response.user) {
         localStorage.setItem('user', response.user.uid)
         await response.user.sendEmailVerification();
         return response.user;
-       
+
       }
-      else{
+      else {
         return null;
       }
-       
-      
 
-  }
-  catch (err){
-    localStorage.removeItem('user');
-    return null;
-  }
+
+
+    }
+    catch (err) {
+      localStorage.removeItem('user');
+      return null;
+    }
   }
 
-  
+
 
   async loginWithEmail(
     email: string,
     password: string
-  ): Promise<firebase.User | null>{
-    try{
-      const response = await this._afAuth.signInWithEmailAndPassword(email,password);
+  ): Promise<firebase.User | null> {
+    try {
+      const response = await this._afAuth.signInWithEmailAndPassword(email, password)
+        .then(res => {
+          if (res.user) {
+            localStorage.setItem('user', response.user.uid)
+            return response.user;
+          } else {
+            return null;
+          }
+        }).catch(err => {
+          switch (err.code) {
+            case 'auth/too-many-requests':
+              alert(`Acceso temporalmente registringido. Intente de nuevo mas tarde`);
+              break;
+            case "auth/wrong-password":
+              alert(`Contrasenia o email incorrecto.`);
+              break
+            case 'auth/operation-not-allowed':
+              alert(`Error during sign up.`);
+            case 'auth/weak-password':
+              alert('Password is not strong enough. Add additional characters including special characters and numbers.');
+            default:
+            // alert(err.message);
+          }
+        })
 
-      if(response.user){
-        localStorage.setItem('user', response.user.uid)
-        return response.user;
-      }
-      else{
-        return null;
-      }
-  }
-  catch (err){
-    localStorage.removeItem('user');
-    return null;
-  }
+
+    }
+    catch (err) {
+      localStorage.removeItem('user');
+      return null;
+    }
   }
 
-  isAuth(): boolean{
+  isAuth(): boolean {
     return !!localStorage.getItem('user');
   }
 
