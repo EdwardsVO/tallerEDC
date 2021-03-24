@@ -4,8 +4,6 @@ import firebase from 'firebase'
 import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { User } from '../models/user';
-import { ToastrService } from 'ngx-toastr';
-
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +12,11 @@ export class AuthService {
 
   private usersCollection: AngularFirestoreCollection<User>;
   user: Observable<any>;
-  
 
 
 
 
-  constructor(private toastr: ToastrService,private _afAuth: AngularFireAuth, private _afs: AngularFirestore, private afAuth: AngularFireAuth) { }
+  constructor(private _afAuth: AngularFireAuth, private _afs: AngularFirestore, private afAuth: AngularFireAuth) { }
 
 
 
@@ -75,31 +72,22 @@ export class AuthService {
       if (response.user) {
         localStorage.setItem('user', response.user.uid)
         await response.user.sendEmailVerification();
-        this.showSucces(`Registrado exitosamente.`,'LISTO');
         return response.user;
 
       }
       else {
         return null;
       }
-    }catch(err) {
-      switch (err.code) {
-        case 'auth/email-already-in-use':
-          this.showError(`El correo que intenta registrar ya existe.`,'ERROR');
-          break;
-          default:
-            // alert(err.message);
-          }
-        }
+
+
+
+    }
+    catch (err) {
+      localStorage.removeItem('user');
+      return null;
+    }
   }
 
-showError(message,title){
-  this.toastr.error(message, title)
-}
-
-showSucces(message,title){
-  this.toastr.success(message, title)
-}
 
 
   async loginWithEmail(
@@ -119,16 +107,15 @@ showSucces(message,title){
         }).catch(err => {
           switch (err.code) {
             case 'auth/too-many-requests':
-              this.showError(`Acceso temporalmente registringido. Intente de nuevo mas tarde`,'ERROR');
+              alert(`Acceso temporalmente registringido. Intente de nuevo mas tarde`);
               break;
             case "auth/wrong-password":
-              this.showError('Contrasenia o email incorrecto.', 'ERROR');
+              alert(`Contrasenia o email incorrecto.`);
               break
             case 'auth/operation-not-allowed':
-              this.showError('Error during sign up.', 'ERROR');
+              alert(`Error during sign up.`);
             case 'auth/weak-password':
-              this.showError('Password is not strong enough. Add additional characters including special characters and numbers.', 'ERROR');
-          
+              alert('Password is not strong enough. Add additional characters including special characters and numbers.');
             default:
             // alert(err.message);
           }
