@@ -1,0 +1,32 @@
+<div class="container">
+    <h1>CITAS POR ACEPTAR</h1>
+
+        <div class='carros'>
+            <div class="vehicle-container" *ngFor="let appointment of appointments" mat-card>
+                <mat-card class = "mat-card-class">
+
+                    <mat-card-subtitle>MARCA
+                        <p>{{appointment.brand}}</p>
+                    </mat-card-subtitle>
+                    <mat-card-subtitle>MODELO
+                        <p>{{appointment.model}}</p>
+                    </mat-card-subtitle>
+                    <!-- <mat-card-subtitle>AÑO
+                        <P>{{appointment.year}}</P>
+                    </mat-card-subtitle> -->
+                    <mat-card-subtitle>PLACA
+                        <P>{{appointment.plate}}</P>
+                    </mat-card-subtitle>
+
+                    <button mat-raised-button class="green" (click) = "confirmWork(appointment.id)" title="Aceptar Trabajo"><span class="material-icons">done</span></button>
+
+                </mat-card>
+            </div>
+
+        </div>
+</div>
+
+
+
+
+
