@@ -20,7 +20,7 @@
                 <mat-card-subtitle>PLACA
                     <P>{{car.plate}}</P>
                 </mat-card-subtitle>
-                <button mat-fab class = "delete" title="Eliminar" (click)="openEditar(content,car)">
+                <button mat-fab class = "delete" title="Editar" (click)="openEditar(content,car)">
                     <mat-icon>edit</mat-icon>
                 </button>
             </mat-card>
@@ -48,7 +48,7 @@
                             <p>
                                 <mat-form-field class="tlf">
                                     <mat-label>*Serial del Motor</mat-label>
-                                    <input matInput type="text" formControlName="serial" class="form-control">
+                                    <input matInput type="text" formControlName="serial" class="form-control" readonly>
 
                                 </mat-form-field>
                             </p>
