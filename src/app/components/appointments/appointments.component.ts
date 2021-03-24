@@ -86,6 +86,11 @@ export class AppointmentsComponent implements OnInit {
       this._vehicleSvc.appointmentConfirmed(appointmentId, true);
     }
 
+    newAppointment(carBrand, carYear, carModel, carPlate, carId){
+      this.confirmAppointment(carId);
+      this._vehicleSvc.newAppointment("", carYear,carBrand, carModel, carPlate, "", "", "");
+    }
+
 // FUNCTION TO GET ALL APPOINTMENT FROM THE DATABASE
 
     getAppointments() {
