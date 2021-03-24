@@ -32,7 +32,25 @@ export class MechanicCrudService {
 
         // Diagnostico
         diagnostic: appointment.diagnostic,
+        repuestos: appointment.repuestos,
+        procedure: appointment.procedure,
 
+      })
+    } catch(err) {
+      console.log(err);
+    }
+  }
+
+  async finisWork(carId) {
+    try {
+      await this._firestore.collection('cars').doc(carId).update({
+        repaired: true,
+        alertManager: false,
+        needsReparation: false,
+        appointmentConfirmed: false,
+        appointmentDate: '',
+        appointmentHour: '',
+        timesRepaired: +1,
       })
     } catch(err) {
       console.log(err);

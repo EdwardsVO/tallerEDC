@@ -22,12 +22,16 @@
                         <P>{{appointment.plate}}</P>
                     </mat-card-subtitle>
 
-                    <button mat-mini-fab class="edit"color="primary" title="Añadir informacion adicional">
+                    <button mat-mini-fab class="done"color="primary" title="Finalizar reparacion">
+                        <mat-icon (click) = "finishWork(appointment.carId)">done</mat-icon>
+                    </button>
+
+                    <button mat-mini-fab class="edit"color="primary" title="Añadir informacion adicional" *ngIf="!editState">
                         <mat-icon (click) = "addCarInfo(appointment)">add</mat-icon>
                     </button>
 
-                    <button mat-mini-fab class = "" color = "primary" *ngIf="editState && carToEdit.id == appointment.id">
-                        <mat-icon (click) = "clearState()"></mat-icon>
+                    <button mat-mini-fab class = "edit" color = "primary" *ngIf="editState && carToEdit.id == appointment.id">
+                        <mat-icon (click) = "clearState()">close</mat-icon>
                     </button>
 
                     <button class="trash" mat-raised-button (click) = "rejectWork(appointment.id)"><mat-icon color="primary" title="Rechazar Trabajo">delete</mat-icon></button>
@@ -80,7 +84,21 @@
                                         <input type="checkbox" [(ngModel)] = "appointment.scratches" value = "false" name = "Rayones" id="scratches" (change) = "print($event, appointment.scratches)">
                                     </mat-card-subtitle>
 
-                                    <!-- <mat-input> -->
+                                    
+
+                                        <mat-card-subtitle>Repuestos Necesarios</mat-card-subtitle>
+
+                                        <textarea name="repuestos" [(ngModel)] = "appointment.repuestos"  cols="80" rows="5"></textarea>
+                                    
+                                        
+
+
+                                        <mat-card-subtitle>Procedimiento Aplicado</mat-card-subtitle>
+
+                                            <textarea name="procedimiento" [(ngModel)] = "appointment.procedure"  cols="80" rows="5"></textarea>
+                                        
+                                        
+
                                         <mat-card-subtitle>Diagnostico</mat-card-subtitle>
 
                                             <textarea name="diagnostico" [(ngModel)] = "appointment.diagnostic"  cols="80" rows="5"></textarea>

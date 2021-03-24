@@ -30,6 +30,7 @@ export class VehiclesComponent implements OnInit {
   appointmentHour: any='';
   alertManager: boolean;
   ownerEmail: string;
+  timesRepaired: any;
 
 
   constructor(
@@ -98,6 +99,7 @@ export class VehiclesComponent implements OnInit {
           this.needsReparation,
           this.appointmentConfirmed,
           this.repaired,
+          this.timesRepaired,
           this.appointmentDate,
           this.appointmentHour,
           this.alertManager
