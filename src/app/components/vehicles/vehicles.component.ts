@@ -28,6 +28,7 @@ export class VehiclesComponent implements OnInit {
   ownerName: string;
   cars = [];
   id2 = '';
+  id3 = '';
   needsReparation: boolean;
   appointmentConfirmed: boolean;
   fecha: string;
@@ -39,6 +40,9 @@ export class VehiclesComponent implements OnInit {
   repeated: boolean;
   carConverter;
   photo;
+  disabled: boolean;
+  disabled2: '';
+  url2;
  
 
   ref: AngularFireStorageReference;
@@ -73,6 +77,7 @@ export class VehiclesComponent implements OnInit {
     this.alertManager = false;
     this.repeated = false;
     this.serial = false;
+    this.disabled = false;
 
     
 
@@ -83,22 +88,49 @@ export class VehiclesComponent implements OnInit {
       model: ['', Validators.required],
       year: ['', Validators.required],
       plate: ['', Validators.required],
-      photo: ['', Validators.required]
+      //photo: ['', Validators.required]
     })
 
-    this.firestore.collection('cars', ref => ref.where("owner", "==", localStorage.getItem('user'))).snapshotChanges().subscribe(res => {
-      this.cars = res.map((e: any) => {
-        return {
-          id: e.payload.doc.id,
-          serial: e.payload.doc.data().serial,
-          brand: e.payload.doc.data().brand,
-          model: e.payload.doc.data().model,
-          year: e.payload.doc.data().year,
-          plate: e.payload.doc.data().plate,
-          photo: e.payload.doc.data().photo
-        }
+    
+    //if (!this.disabled2){
+      this.firestore.collection('cars', ref => ref.where("owner", "==", localStorage.getItem('user'))) //,'cars', ref => ref.where("disabled", "==", false)
+      .snapshotChanges().subscribe(res => {
+        this.cars = res.map((e: any) => {
+          this.downloadURL = this.af.ref(e.payload.doc.data().photo).getDownloadURL();
+          this.id3 = e.payload.doc.id;
+          this.disabled2 = e.payload.doc.data().disabled
+          return {
+            id: e.payload.doc.id,
+            serial: e.payload.doc.data().serial,
+            brand: e.payload.doc.data().brand,
+            model: e.payload.doc.data().model,
+            year: e.payload.doc.data().year,
+            plate: e.payload.doc.data().plate,
+            photo: e.payload.doc.data().photo,
+            disabled: e.payload.doc.data().disabled
+          }
+        })
+        
       })
-    })
+
+    // }else {
+    //   console.log('carro deshabilitado')
+    // }
+    // this.firestore.collection('cars', ref => ref.where("owner", "==", localStorage.getItem('user'))).snapshotChanges().subscribe(res => {
+    //   this.cars = res.map((e: any) => {
+    //     this.downloadURL = this.af.ref(e.payload.doc.data().photo).getDownloadURL();
+    //     return {
+    //       id: e.payload.doc.id,
+    //       serial: e.payload.doc.data().serial,
+    //       brand: e.payload.doc.data().brand,
+    //       model: e.payload.doc.data().model,
+    //       year: e.payload.doc.data().year,
+    //       plate: e.payload.doc.data().plate,
+    //       photo: e.payload.doc.data().photo
+    //     }
+    //   })
+      
+    // })
 
       // Firestore data converter
     this.carConverter = {
@@ -109,20 +141,19 @@ export class VehiclesComponent implements OnInit {
       },
       fromFirestore: function(snapshot, options){
           const data = snapshot.data(options);
-          return new Vehicle(data.serial);
+          return new Vehicle(data.serial)
       }
     };
   }
 
  
-  //this.path = $event.target.files[0]
-  //console.log(this.path) 
   upload = (event) => {
     // create a random id
+    //this.actualizar = false;
     const randomId = Math.random().toString(36).substring(2);
     // create a reference to the storage bucket location
-    //this.path = '/images/' + randomId;
-    this.ref = this.af.ref(this.registrarVehiculoForm.get('photo').value);
+    this.path = '/images/' + randomId;
+    this.ref = this.af.ref(this.path);
     
     //console.log(this.ref)
     // the put method creates an AngularFireUploadTask
@@ -144,17 +175,16 @@ export class VehiclesComponent implements OnInit {
       
     )
     .subscribe();
+
+
+    console.log(this.url2)
     
 
     this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
     
-    //console.log(this.downloadURL = this.af.ref('/images/' + this.path).getDownloadURL())
   }
 
- 
-   
-
-
+  
   async addNewCar(): Promise <void> {
     try{
       await this._authservice.getCurrentUser().subscribe(resp => {
@@ -164,23 +194,24 @@ export class VehiclesComponent implements OnInit {
         this.firestore.collection('users').doc(localStorage.getItem('user')).snapshotChanges().subscribe(res => {
           this.ownerName = res.payload.get('name')
           this._vehicleservice.newCar(
-          this.carId = '',
-          this.owner,
-          this.ownerName,
-          this.ownerEmail,
-          this.serial = this.registrarVehiculoForm.get('serial').value,
-          this.registrarVehiculoForm.get('brand').value,
-          this.registrarVehiculoForm.get('model').value,
-          this.registrarVehiculoForm.get('year').value,
-          this.registrarVehiculoForm.get('plate').value,
-          this.fecha = this.formatDate(),
-          this.photo = this.registrarVehiculoForm.get('photo').value,
-          this.needsReparation,
-          this.appointmentConfirmed,
-          this.repaired,
-          this.appointmentDate,
-          this.appointmentHour,
-          this.alertManager
+            this.carId = '',
+            this.owner,
+            this.ownerName,
+            this.ownerEmail,
+            this.serial = this.registrarVehiculoForm.get('serial').value,
+            this.registrarVehiculoForm.get('brand').value,
+            this.registrarVehiculoForm.get('model').value,
+            this.registrarVehiculoForm.get('year').value,
+            this.registrarVehiculoForm.get('plate').value,
+            this.fecha = this.formatDate(),
+            this.photo = this.path,
+            this.needsReparation,
+            this.appointmentConfirmed,
+            this.repaired,
+            this.appointmentDate,
+            this.appointmentHour,
+            this.alertManager,
+            this.disabled
         )
         this.registrarVehiculoForm.reset();
         this.modalService.dismissAll();
@@ -224,12 +255,15 @@ export class VehiclesComponent implements OnInit {
   updateCar(){
     this.vehiclesCrudService.updateCar(this.registrarVehiculoForm.value, this.id2)
     .then(resp => {
+      this.vehiclesCrudService.updateCarPhoto(this.id2, this.path)
       this.registrarVehiculoForm.reset();
       this.modalService.dismissAll();
     }).catch(error => {
       console.error(error);
     });
   }
+
+  
 
   openEditar(content, car: any) {
 
@@ -239,9 +273,8 @@ export class VehiclesComponent implements OnInit {
       model: car.model,
       year: car.year,
       plate: car.plate,
-      photo: car.photo
     });
-    //car: car.photo
+    this.path = car.photo;
     this.id2 = car.id;
     this.actualizar = true;
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -251,12 +284,20 @@ export class VehiclesComponent implements OnInit {
     });
   }
 
-
-  delete(car):void{
-
-      this.vehiclesCrudService.deleteCar(car);
+  disableCar(){
+   
+    this.disabled = true;
+    this.vehiclesCrudService.updateCarDisabledStatus(this.id3, this.disabled)
+    console.log('carro deshabilitado!')
 
   }
+
+
+  // delete(car):void{
+
+  //     this.vehiclesCrudService.deleteCar(car);
+
+  // }
 
   
 

@@ -33,7 +33,7 @@ export class VehiclesCrudService {
 
   }
 
-  async newCar(id2, owner, ownerName, ownerEmail, serial, brand, model, year, placa, date, photo, needsReparation, appointmentConfirmed, repaired, appointmentDate, appointmentHour, alertManager): Promise<void> {
+  async newCar(id2, owner, ownerName, ownerEmail, serial, brand, model, year, placa, date, photo, needsReparation, appointmentConfirmed, repaired, appointmentDate, appointmentHour, alertManager, disabled): Promise<void> {
     try {
       const { id } = await this.firestore.collection('cars').add({
         id2: id2,
@@ -53,6 +53,7 @@ export class VehiclesCrudService {
         appointmentDate: appointmentDate,
         appointmentHour: appointmentHour,
         alertManager: alertManager,
+        disabled: disabled
       })
 
       this.carId = id
@@ -77,10 +78,22 @@ export class VehiclesCrudService {
     return this.firestore.collection("cars").doc(id).update(car);
   }
 
-  deleteCar(car: Vehicle) {
-    this.vehicleDoc = this.firestore.doc(`cars/${car.owner}`);
-    this.vehicleDoc.delete();
+  updateCarPhoto(id:any, photo:any){
+    this.firestore.collection("cars").doc(id).update({
+      photo: photo
+    })
   }
+
+  updateCarDisabledStatus(id:any, disabled:any){
+    this.firestore.collection("cars").doc(id).update({
+      disabled: disabled
+    })
+  }
+
+  // deleteCar(car: Vehicle) {
+  //   this.vehicleDoc = this.firestore.doc(`cars/${car.owner}`);
+  //   this.vehicleDoc.delete();
+  // }
 
   getUsersCars(userId) {
     return this.firestore.collection('cars', ref => ref.where("owner", "==", userId));

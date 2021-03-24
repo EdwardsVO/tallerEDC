@@ -1,39 +1,44 @@
 <h1>MIS VEHÍCULOS</h1>
 
-                <!-- <img mat-card-sm-image src="{{car.photo}}" alt="client's car1"> -->
-                    
-                <div *ngIf="downloadURL | async; let url">
-                    <img mat-card-sm-image [src]="url"   alt="Image from AngularFireStorage">
-                </div>
-                
-    <div class='carros'>
-        <div class="vehicle-container" *ngFor="let car of cars" mat-card>
-            <mat-card class = "mat-card-class">
-                <img mat-card-sm-image src="{{car.foto}}" alt="client's car1">
 
-                <mat-card-subtitle>SERIAL
-                    <p>{{car.serial}}</p>
-                </mat-card-subtitle>
-                <mat-card-subtitle>MARCA
-                    <p>{{car.brand}}</p>
-                </mat-card-subtitle>
-                <mat-card-subtitle>MODELO
-                    <p>{{car.model}}</p>
-                </mat-card-subtitle>
-                <mat-card-subtitle>AÑO
-                    <P>{{car.year}}</P>
-                </mat-card-subtitle>
-                <mat-card-subtitle>PLACA
-                    <P>{{car.plate}}</P>
-                </mat-card-subtitle>
-                <button mat-fab color="primary" class = "editar" title="editar" (click)="openEditar(content,car)">
-                <button mat-fab class = "delete" title="Eliminar" (click)="openEditar(content,car)">
-                    <mat-icon>edit</mat-icon>
-                </button>
-            </mat-card>
-        </div>  
-        <a mat-raised-button class="agg-btn" (click)= "cars.length < 3 && open(content)" [disabled] = "cars.length >= 3 ">Nuevo Vehículo</a> 
+<div class='carros'>
+    <div class="vehicle-container" *ngFor="let car of cars" mat-card>
+        <mat-card class = "mat-card-class">
+
+            <!-- <img mat-card-sm-image src="{{car.photo}}" alt="client's car1"> -->
+            <div *ngIf="downloadURL | async; let url"> 
+                <img mat-card-sm-image [src]="url" alt="Image from AngularFireStorage">
+            <!-- <img mat-card-sm-image src="{{car.photo}}" alt="client's car1"> -->
+            </div>
+
+            <mat-card-subtitle>SERIAL
+                <p>{{car.serial}}</p>
+            </mat-card-subtitle>
+            <mat-card-subtitle>MARCA
+                <p>{{car.brand}}</p>
+            </mat-card-subtitle>
+            <mat-card-subtitle>MODELO
+                <p>{{car.model}}</p>
+            </mat-card-subtitle>
+            <mat-card-subtitle>AÑO
+                <P>{{car.year}}</P>
+            </mat-card-subtitle>
+            <mat-card-subtitle>PLACA
+                <P>{{car.plate}}</P>
+            </mat-card-subtitle>
+            <button mat-fab color="primary" class = "editar" title="editar" (click)="openEditar(content,car)">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-fab color="primary" class = "deshabilitar" title="deshabilitar" (click)="disableCar()">
+                <mat-icon>disabled_by_default</mat-icon>
+            </button>
+            <!-- <button mat-fab class = "delete" title="Eliminar" (click)="openEditar(content,car)">
+                
+            </button> -->
+        </mat-card>
     </div>
+    <a mat-raised-button class="agg-btn" (click)= "cars.length < 3 && open(content)" [disabled] = "cars.length >= 3 ">Nuevo Vehículo</a> 
+</div>
 
 
 <ng-template #content let-modal>
@@ -93,16 +98,18 @@
                             </p>
 
                             <p>
-                                <mat-form-field class="placa">
-                                    <mat-label>*Placa</mat-label>
-                                    <input type="text" placeholder="nombre" formControlName="photo" matInput>
+                                <mat-form-field class="hidden">
+                                    <mat-label></mat-label>
+                                    <input matInput type="text" formControlName="plate" [disabled]>
         
                                 </mat-form-field>
+                                <br>
                                     <input type="file" (change)="upload($event)" accept=".png,.jpg">
                                     <progress max="100" [value]="(uploadProgress | async)"></progress>
                                     <div class="result" *ngIf="downloadURL | async; let uploadSrc">
-                                        <a [href]="uploadSrc">La foto se ha subido exitosamente!</a>
+                                        <a [href]="uploadSrc" *ngIf="!actualizar">La foto se ha subido exitosamente!</a>
                                     </div>
+                            
                             
 
                         
@@ -120,7 +127,6 @@
                 </mat-card>
             </div>
         </form>
-        
 
     </div>
 

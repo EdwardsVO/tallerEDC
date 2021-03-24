@@ -8,6 +8,7 @@ export interface Vehicle {
     id2?: string;
     photo?: string;
 
+
 }
 
 export class Vehicle {
