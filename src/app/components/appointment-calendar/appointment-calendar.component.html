@@ -7,15 +7,19 @@
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 </div>
-<mat-card>
-    <div *ngFor="let car of cars">
-        <div class="vehicle-container"  *ngIf="car.appointmentConfirmed">
+
+<div *ngFor="let car of cars">
+    <div class="vehicle-container"  *ngIf="car.appointmentConfirmed">
+        <mat-card>
             <img mat-card-sm-image src="{{car.img}}" alt="client's car1">
-            <mat-card-subtitle>SERIAL
-                <p>{{car.serial}}</p>
+            <mat-card-subtitle>CLIENTE
+                <p>{{car.ownerName}}</p>
             </mat-card-subtitle>
             <mat-card-subtitle>MARCA
                 <p>{{car.brand}}</p>
+            </mat-card-subtitle>
+            <mat-card-subtitle>MODELO
+                <p>{{car.model}}</p>
             </mat-card-subtitle>
             <mat-card-subtitle>AÑO
                 <P>{{car.year}}</P>
@@ -23,12 +27,12 @@
             <mat-card-subtitle>PLACA
                 <P>{{car.plate}}</P>
             </mat-card-subtitle>
-            <mat-card-subtitle>HORA
-                <P>{{car.appointmentDate.hour}}</P>
+            <mat-card-subtitle>FECHA
+                <P>{{car.appointmentDate}} - {{car.appointmentHour}}</P>
             </mat-card-subtitle>
             <mat-card-actions><span class="material-icons">
                     task_alt
                 </span></mat-card-actions>
-        </div>
+        </mat-card>
     </div>
-</mat-card>
+</div>

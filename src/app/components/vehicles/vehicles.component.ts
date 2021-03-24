@@ -25,6 +25,7 @@ export class VehiclesComponent implements OnInit {
   carBrand: string;
   closeResult = '';
   owner: string;
+  ownerName: string;
   cars = [];
   id2 = '';
   needsReparation: boolean;
@@ -46,6 +47,7 @@ export class VehiclesComponent implements OnInit {
   downloadURL;
   uploadState: Observable<string>;
   path: string;
+  ownerEmail: string;
 
 
   constructor(
@@ -156,11 +158,16 @@ export class VehiclesComponent implements OnInit {
   async addNewCar(): Promise <void> {
     try{
       await this._authservice.getCurrentUser().subscribe(resp => {
-        this.owner = resp.uid
+        this.owner = resp.uid;
+        this.ownerEmail = resp.email;
 
-        this._vehicleservice.newCar(
+        this.firestore.collection('users').doc(localStorage.getItem('user')).snapshotChanges().subscribe(res => {
+          this.ownerName = res.payload.get('name')
+          this._vehicleservice.newCar(
           this.carId = '',
           this.owner,
+          this.ownerName,
+          this.ownerEmail,
           this.serial = this.registrarVehiculoForm.get('serial').value,
           this.registrarVehiculoForm.get('brand').value,
           this.registrarVehiculoForm.get('model').value,
@@ -177,6 +184,7 @@ export class VehiclesComponent implements OnInit {
         )
         this.registrarVehiculoForm.reset();
         this.modalService.dismissAll();
+        })
       })
     }catch(error){
       console.log(error)

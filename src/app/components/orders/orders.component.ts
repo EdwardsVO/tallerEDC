@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { VehiclesCrudService } from '../../services/vehicles-crud.service';
+import { ProfileComponent } from '../profile/profile.component';
 
 @Component({
   selector: 'app-orders',
@@ -9,45 +12,47 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export class OrdersComponent implements OnInit {
 
   closeResult = '';
- 
 
 
-  cars = [
-    {
-      img: "assets/corolla.png",
-      serial: "JHLRD77875C027456",
-      model: "Corolla",
-      year: "2020",
-      license_plate: "RAL38K",
-      time: "8:15am",
-      order1: "reproductor",
-      order2:"vidrio derecho"
-    },
-    {
-      img: "assets/yaris.png",
-      serial: "VIHRD19374C048203",
-      model: "Yaris",
-      year: "2018",
-      license_plate: "RJA27C",
-      time: "7:15am",
-      order1: "reproductor",
-      order2:"vidrio derecho"
-    },
-    {
-      img: "assets/yaris.png",
-      serial: "VIHRD19374C048203",
-      model: "Yaris",
-      year: "2018",
-      license_plate: "RJA27C",
-      time: "9:25am",
-      order1: "reproductor",
-      order2:"vidrio derecho"
-    },
-  ]
 
-  constructor( private modalService: NgbModal) { }
+  appointments = [];
+
+  constructor( private modalService: NgbModal, private _vehicleSvc: VehiclesCrudService, private _firestore: AngularFirestore) { }
 
   ngOnInit(): void {
+
+    this.getConfirmedAppointments();
+  }
+
+  // GET ALL THE CARS WHICH APPOINTMENTS WERE CONFIRMED BY THE CLIENT
+
+  getConfirmedAppointments() {
+    this._firestore.collection('cars', ref => ref.where("repaired", "==", true)).snapshotChanges().subscribe(res => {
+      this.appointments = res.map((e: any) => {
+        return {
+          id: e.payload.doc.id,
+          ownerName: e.payload.doc.data().ownerName,
+          serial: e.payload.doc.data().serial,
+          brand: e.payload.doc.data().brand,
+          model: e.payload.doc.data().model,
+          year: e.payload.doc.data().year,
+          plate: e.payload.doc.data().plate,
+          reparation: e.payload.doc.data().needsReparation,
+          appointmentDate: e.payload.doc.data().appointmentDate,
+          appointmentConfirmed: e.payload.doc.data().appointmentConfirmed,
+          appointmentHour: e.payload.doc.data().appointmentHour,
+          alertManager: e.payload.doc.data().alertManager
+        }
+      })
+    })
+  }
+
+  // CLOSE APPOINTMENT THAT WAS PREVIOUSLY MARKED AS REPAIRED BY THE MECHANIC
+
+  closeAppointment(appointmentId) {
+    this._vehicleSvc.closeAppointments(appointmentId, false, '', '', false);
+    // AQUI FALTA ENVIAR EL REPORTE DE REPARACION
+    // .......
   }
 
   open(content) {

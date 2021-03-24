@@ -11,21 +11,32 @@ mat-form-field{
 .calendar{
     margin-top: 3rem;
     display: inline-block;
-    margin-left: 15%;
+    margin-left: 13%;
     
 }
 
-.vehicle-container {
+mat-card {
     display: flex;
     justify-content: space-between;
     padding: 1rem;
-    background-color: rgb(233, 233, 233);
-    margin-bottom: 15px;
-    width: 70%;
-    margin-left: 14%;
-  } 
-.vehicle-container p {
-font-size: 12px;
+    background-color: rgb(243, 243, 243);
+    margin-bottom: 1.5%;
+    width: 75%;
+    margin-left: 13%;
+    text-align: center;
+    
+    
+}
+
+
+
+p {
+  font-size: 12px;
+  font-family: "Roboto", sans-serif;
+}
+
+mat-card-subtitle{
+    vertical-align: middle;
 }
 
 .material-icons{

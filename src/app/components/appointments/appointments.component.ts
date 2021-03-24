@@ -2,6 +2,7 @@ import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { VehiclesCrudService } from '../../services/vehicles-crud.service';
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 
 
 
@@ -11,6 +12,8 @@ import { VehiclesCrudService } from '../../services/vehicles-crud.service';
   styleUrls: ['./appointments.component.scss']
 })
 export class AppointmentsComponent implements OnInit {
+
+
 
 // ARRAYS TO STORE FIRESTORE DATA AND FETCH IT
   cars = [];
@@ -40,10 +43,10 @@ export class AppointmentsComponent implements OnInit {
         return {
           id: e.payload.doc.id,
           serial: e.payload.doc.data().serial,
-          brand: e.payload.doc.data().marca,
-          model: e.payload.doc.data().modelo,
+          brand: e.payload.doc.data().brand,
+          model: e.payload.doc.data().model,
           year: e.payload.doc.data().year,
-          plate: e.payload.doc.data().placa,
+          plate: e.payload.doc.data().plate,
           reparation: e.payload.doc.data().needsReparation,
         }
       })
@@ -79,6 +82,10 @@ export class AppointmentsComponent implements OnInit {
       this._vehicleSvc.appointmentConfirmed(appointmentId, false);
     }
 
+    confirmAppointment(appointmentId) {
+      this._vehicleSvc.appointmentConfirmed(appointmentId, true);
+    }
+
 // FUNCTION TO GET ALL APPOINTMENT FROM THE DATABASE
 
     getAppointments() {
@@ -89,23 +96,30 @@ export class AppointmentsComponent implements OnInit {
               return {
                 id: e.payload.doc.id,
                 serial: e.payload.doc.data().serial,
-                brand: e.payload.doc.data().marca,
-                model: e.payload.doc.data().modelo,
+                brand: e.payload.doc.data().brand,
+                model: e.payload.doc.data().model,
                 year: e.payload.doc.data().year,
-                plate: e.payload.doc.data().placa,
+                plate: e.payload.doc.data().plate,
                 reparation: e.payload.doc.data().needsReparation,
                 appointmentDate: e.payload.doc.data().appointmentDate,
                 appointmentConfirmed: e.payload.doc.data().appointmentConfirmed,
                 appointmentHour: e.payload.doc.data().appointmentHour,
+                ownerName: e.payload.doc.data().ownerName,
+                ownerEmail: e.payload.doc.data().ownerEmail,
                 alertManager: e.payload.doc.data().alertManager
               }
             })
           })
         }
 
-
-      appointmentConfirmed(carId) {
-        this._vehicleSvc.appointmentConfirmed(carId, true);
-      }
+        public sendEmail(e: Event) {
+          e.preventDefault();
+          emailjs.sendForm('service_pwcf60n', 'template_gsog4jn', e.target as HTMLFormElement, 'user_WiVZBumT4YhIFxwiixzgr')
+            .then((result: EmailJSResponseStatus) => {
+              console.log(result.text);
+            }, (error) => {
+              console.log(error.text);
+            });
+        }
 }
 

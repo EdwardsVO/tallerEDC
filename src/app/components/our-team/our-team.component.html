@@ -1,0 +1,9 @@
+<h1>CONOCE A NUESTRO EQUIPO</h1>
+<div class="space">
+    <div class="mate" *ngFor="let mate of mates">
+        <img mat-card-sm-image src="{{mate.img}}" alt="client's car1">
+            <h2>{{mate.name}}</h2>
+            <h2>{{mate.last}}</h2>
+            <p>{{mate.fact}}</p>
+    </div>
+</div>

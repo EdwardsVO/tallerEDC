@@ -9,16 +9,21 @@ import { VehiclesCrudService } from 'src/app/services/vehicles-crud.service';
 })
 export class AppointmentWaitlistComponent implements OnInit {
   ownerName: string;
-  appointmentDate: string;
+  appointmentDate: any;
   appointmentHour: string;
   cars = []
   @Output() carsAppointmet = new EventEmitter <any[]>();
+
+
 
   constructor(private _firestore: AngularFirestore, private _crudVeh: VehiclesCrudService) { }
 
   ngOnInit(): void {
     this.getCarsToRepair();
   }
+
+
+
 
   getCarsToRepair(){
     this._firestore.collection('cars', ref => ref.where("needsReparation", "==", true )).snapshotChanges().subscribe(res => {
@@ -27,14 +32,15 @@ export class AppointmentWaitlistComponent implements OnInit {
           id: e.payload.doc.id,
           serial: e.payload.doc.data().serial,
           brand: e.payload.doc.data().marca,
-          model: e.payload.doc.data().modelo,
+          modelo: e.payload.doc.data().model,
           year: e.payload.doc.data().year,
-          plate: e.payload.doc.data().placa,
+          plate: e.payload.doc.data().plate,
           reparation: e.payload.doc.data().needsReparation,
           appointmentDate: e.payload.doc.data().appointmentDate,
           appointmentHour: e.payload.doc.data().appointmentHour,
           appointmentConfirmed: e.payload.doc.data().appointmentConfirmed,
-          owner: e.payload.doc.data().owner,        
+          owner: e.payload.doc.data().owner,
+          ownerName: e.payload.doc.data().ownerName,
           alertManager: e.payload.doc.data().alertManager
         }
       })
@@ -42,9 +48,10 @@ export class AppointmentWaitlistComponent implements OnInit {
   }
 
   confirmAppointment(carId: string){
-    this._crudVeh.updateCarAppointmentDate(carId, this.appointmentDate)
-    this._crudVeh.updateCarAppointmentHour(carId, this.appointmentHour)
-    this._crudVeh.updateCarAppointmentStatus(carId, true);
+    this._crudVeh.updateCarAppointmentDate(carId, this.appointmentDate.toDateString());
+    this._crudVeh.updateCarAppointmentHour(carId, this.appointmentHour);
+    this._crudVeh.alertManager(carId, false);
+    // this._crudVeh.updateCarAppointmentStatus(carId, true);
     this.carsAppointmet.emit(this.cars)
   }
 

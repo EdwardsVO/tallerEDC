@@ -1,15 +1,16 @@
-.vehicle-container {
+mat-card{
   display: flex;
   justify-content: space-between;
   padding: 1rem;
-  background-color: rgb(233, 233, 233);
-  margin-bottom: 10px;
+  background-color: rgb(243, 243, 243);
+  margin-bottom: 1.5%;
 }
 
 
 
-.vehicle-container p {
+p {
   font-size: 12px;
+  font-family: "Roboto", sans-serif;
 }
 
 .button-container {
@@ -31,11 +32,6 @@
   button{
     margin-left: 1%;
   }
-  .green{
-    background-color: rgb(3, 180, 3);
-    color: white;
-
-  }
 }
 
 
@@ -43,12 +39,7 @@ button{
   height: 50px;
 }
 
-.appointment-container {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
-  background-color:rgb(233, 233, 233);
-}
+
 
 h1{
   color: #2e3192;
@@ -56,6 +47,37 @@ h1{
   margin-top: 5%;
 }
 
-mat-card{
-  background-color: rgb(233, 233, 233);
+
+.reject{
+    color: white;
+    background-color: red;
+
+}
+
+.green{
+  background-color:  rgb(3, 180, 3);
+  color: white;
+
+
+}
+
+mat-card-subtitle{
+  text-align: center;
+}
+
+.invisible {
+  display: none;
+}
+
+input {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  background-color: #eee;
+  font-size: 12px;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  color: grey;
+  text-decoration-style: none;
 }

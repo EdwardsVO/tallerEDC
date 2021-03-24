@@ -1,23 +1,26 @@
 <h1>ÓRDENES DE REPARACIÓN</h1>
 <mat-card>
-    <div class="vehicle-container" *ngFor="let car of cars">
-        <img mat-card-sm-image src="{{car.img}}" alt="client's car1">
-        <mat-card-subtitle>SERIAL
-            <p>{{car.serial}}</p>
+    <div class="vehicle-container" *ngFor="let appointment of appointments">
+        <img mat-card-sm-image src="{{appointment.img}}" alt="client's car1">
+        <mat-card-subtitle>CLIENTE
+            <p>{{appointment.ownerName}}</p>
+        </mat-card-subtitle>
+        <mat-card-subtitle>MARCA
+            <p>{{appointment.brand}}</p>
         </mat-card-subtitle>
         <mat-card-subtitle>MODELO
-            <p>{{car.model}}</p>
+            <p>{{appointment.model}}</p>
         </mat-card-subtitle>
         <mat-card-subtitle>AÑO
-            <P>{{car.year}}</P>
+            <P>{{appointment.year}}</P>
         </mat-card-subtitle>
         <mat-card-subtitle>PLACA
-            <P>{{car.license_plate}}</P>
+            <P>{{appointment.plate}}</P>
         </mat-card-subtitle>
-        <button mat-raised-button (click)="open(content)">CERRAR ORDEN</button>
-        
+        <button mat-raised-button (click) = "cancelAppointment(appointment.id)">FINALIZAR REPARACION</button>
+
     </div>
-    
+
 </mat-card>
 
 <ng-template #content let-modal>
@@ -44,5 +47,4 @@
       <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
     </div>
 </ng-template>
-  
-  
+
