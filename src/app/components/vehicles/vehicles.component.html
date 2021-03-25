@@ -61,6 +61,8 @@
                             <p>
                                 <mat-form-field class="tlf">
                                     <mat-label>*Serial del Motor</mat-label>
+                                    <input matInput type="text" formControlName="serial" class="form-control">
+
                                     <input matInput type="text" formControlName="serial" class="form-control" *ngIf="!actualizar">
                                     <input matInput type="text" formControlName="serial" class="form-control" readonly *ngIf="actualizar">
 

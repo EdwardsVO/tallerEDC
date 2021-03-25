@@ -11,16 +11,18 @@
                     <mat-card-subtitle>MODELO
                         <p>{{appointment.model}}</p>
                     </mat-card-subtitle>
-                    <!-- <mat-card-subtitle>AÑO
+                    <mat-card-subtitle>AÑO
                         <P>{{appointment.year}}</P>
-                    </mat-card-subtitle> -->
+                    </mat-card-subtitle> 
                     <mat-card-subtitle>PLACA
                         <P>{{appointment.plate}}</P>
                     </mat-card-subtitle>
 
                     <div class="btn-container">
                         <button mat-raised-button class="green" (click) = "confirmWork(appointment.id)" title="Aceptar Trabajo"><span class="material-icons">done</span></button>
-                        <button mat-raised-button class="green" (click) = "scanQR()">QR</button>
+                        <button mat-raised-button class="qr" (click) = "scanQR()"><span class="material-icons">
+                            qr_code_2
+                            </span></button>
                     </div>
 
                 </mat-card>

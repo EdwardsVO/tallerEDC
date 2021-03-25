@@ -1,32 +1,96 @@
 h1{
-    color: #2e3192;
-    font-family: "Bree Serif", serif;
-    margin-top: 5%;
+  color: #2e3192;
+  font-family: "Bree Serif", serif;
+  margin-top: 5rem;
+  margin-left: 11.5%;
+}
+
+.vehicle-container mat-card{
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: rgb(243, 243, 243);
+  margin-bottom: 1.5%;
+  text-align: center;
+} 
+p {
+font-size: 12px;
+font-family: "Roboto", sans-serif;
+}
+
+.edit{
+  color: #2e3192;
+  background-color: white;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+button.trash:hover, button.edit:hover{
+  background-color: #2e3192;
+  color: white;
+}
+.trash {
+  color: #2e3192;
+  background-color: white;
+}
+
+.done{
+  color:  rgb(3, 180, 3);
+  background-color: white;
+}
+button.done:hover{
+  background-color: rgb(3, 180, 3);
+  color: white;
+}
+
+.green{
+  background-color:  rgb(3, 180, 3);
+  color: white;
+}
+
+.btn{
+  height: 50px;
+  color: white;
+  background-color: #2e3192;
+  margin-bottom: auto;
+}
+.text-inputs{
+  display:flex;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: rgb(243, 243, 243);
+  margin-bottom: 1.5%;
+  text-align: center;
+ 
+  input{
+    width: 90%;
+    margin-right: 160px;
+    
   }
+}
+.checbox-area{
+  display: flex;
 
-.mat-card-class{
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    background-color: rgb(243, 243, 243);
-    margin-bottom: 1.5%;
-    width: 75%;
-    margin-left: 13%;
-    text-align: center;
+}
 
-  }
+.checkbox-left{
+  text-align: left;
+  margin-right: 10%;
+  margin-left: 2%;
+}
 
-  p {
-    font-size: 12px;
-    font-family: "Roboto", sans-serif;
-  }
+.checkbox-right{
+  text-align: left;
+}
 
-  button {
-    height: 50px;
+h2{
+  text-align: left;
+  color: #2e3192;
+  font-family: "Bree Serif", serif;
+  margin-top: 1%;
+  margin-bottom: 0.5%;
+}
+textarea{
+  text-align: left;
+}
 
-  }
 
-  .green{
-    background-color:  rgb(3, 180, 3);
-    color: white;
-  }

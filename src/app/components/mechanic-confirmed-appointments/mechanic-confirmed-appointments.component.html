@@ -1,41 +1,37 @@
+<h1>MIS TRABAJOS PENDIENTES</h1>
 <div class="container">
-    <h1>MIS TRABAJOS PENDIENTES</h1>
 
-        <div class='carros'>
-            <div class="vehicle-container" *ngFor="let appointment of appointments" mat-card>
+        
+            <div class="vehicle-container" *ngFor="let appointment of appointments">
 
-                <mat-card class = "mat-card-class" *ngIf="!appointment.repaired">
+                <mat-card>
 
                     <mat-card-subtitle>MARCA
                         <p>{{appointment.brand}}</p>
                     </mat-card-subtitle>
-
                     <mat-card-subtitle>MODELO
                         <p>{{appointment.model}}</p>
                     </mat-card-subtitle>
-
                     <mat-card-subtitle>AÑO
                         <P>{{appointment.year}}</P>
                     </mat-card-subtitle>
-
                     <mat-card-subtitle>PLACA
                         <P>{{appointment.plate}}</P>
                     </mat-card-subtitle>
-
-                    <button mat-mini-fab class="done"color="primary" title="Finalizar reparacion" (click) = "finishWork(appointment.carId)">
-                        <mat-icon (click) = "finishWork(appointment.carId)" (click) = "finishWork2(appointment.id)">done</mat-icon>
-                    </button>
-
-                    <button mat-mini-fab class="edit"color="primary" title="Añadir informacion adicional" *ngIf="!editState">
-                        <mat-icon (click) = "addCarInfo(appointment)">add</mat-icon>
-                    </button>
-
-                    <button mat-mini-fab class = "edit" color = "primary" *ngIf="editState && carToEdit.id == appointment.id">
-                        <mat-icon (click) = "clearState()">close</mat-icon>
-                    </button>
-
-                    <button class="trash" mat-raised-button (click) = "rejectWork(appointment.id)"><mat-icon color="primary" title="Rechazar Trabajo">delete</mat-icon></button>
-
+                    <div class="btns">
+                        <button mat-mini-fab class="done" title="Finalizar reparacion">
+                            <mat-icon (click) = "finishWork(appointment.carId)" (click) = "finishWork2(appointment.id)">done</mat-icon>
+                        </button>
+                        <button mat-mini-fab class="edit" title="Añadir informacion adicional" *ngIf="!editState">
+                            <mat-icon (click) = "addCarInfo(appointment)">add</mat-icon>
+                        </button>
+                        <button mat-mini-fab class = "edit"  *ngIf="editState && carToEdit.id == appointment.id">
+                            <mat-icon (click) = "clearState()">close</mat-icon>
+                        </button>
+                        <button mat-mini-fab class = "trash">
+                            <mat-icon (click) = "rejectWork(appointment.id)">delete</mat-icon>
+                        </button>
+                    </div>
                 </mat-card>
 
                 <div *ngIf="editState && carToEdit.id == appointment.id">
@@ -44,84 +40,73 @@
                         <div class="row">
                             <div class="input-field col s6">
 
-                               <mat-card>
+                               <mat-card class="information">
 
                                     <mat-input>
-
-                                    <mat-card-subtitle>COLOR
-                                        <input type="text" [(ngModel)] = "appointment.carColor" name = "COLOR">
-                                    </mat-card-subtitle>
-
-                                    <mat-card-subtitle>Km de Ingreso
-                                        <input type="text" [(ngModel)] = "appointment.carKm" name = "Km">
-                                    </mat-card-subtitle>
-
-                                    <mat-card-subtitle>Nivel de Gasolina
-                                        <input type="text" [(ngModel)] = "appointment.carGas" name = "GAS">
-                                    </mat-card-subtitle>
-
-                                    <mat-card-subtitle>Caucho de Repuesto
-                                        <input type="checkbox" [(ngModel)] = "appointment.extraTire" value = "false" name = "Caucho" id="extraTire"(change) = "print($event, appointment.extraTire)">
-                                    </mat-card-subtitle>
-
-                                    <mat-card-subtitle>Llaves
-                                        <input type="checkbox" [(ngModel)] = "appointment.keys" value= "false" name = "Herramientas" id= "keys" (change) = "print($event, appointment.keys)">
-                                    </mat-card-subtitle>
-
-                                    <mat-card-subtitle>Herramientas
-                                        <input type="checkbox" [(ngModel)] = "appointment.tools" value = "false" name = "Herramientas" id= "tools" (change) = "print($event, appointment.tools)">
-                                    </mat-card-subtitle>
-
-                                    <mat-card-subtitle>Gato
-                                        <input type="checkbox" [(ngModel)] = "appointment.gato" value = "false" (change) = "print($event, appointment.gato)" name = "Gato" id= "gato">
-                                    </mat-card-subtitle>
-
-                                    <mat-card-subtitle>Reproductor
-                                        <input type="checkbox" [(ngModel)] = "appointment.stereo" name = "Herramientas" id= "stereo" (change) = "print($event, appointment.stereo)" value = "false">
-                                    </mat-card-subtitle>
-
-                                    <mat-card-subtitle>Rayones
-                                        <input type="checkbox" [(ngModel)] = "appointment.scratches" value = "false" name = "Rayones" id="scratches" (change) = "print($event, appointment.scratches)">
-                                    </mat-card-subtitle>
-
-                                    
-
-                                        <mat-card-subtitle>Repuestos Necesarios</mat-card-subtitle>
-
-                                        <textarea name="repuestos" [(ngModel)] = "appointment.repuestos"  cols="80" rows="5"></textarea>
-                                    
+                                        <h2>INFORMACION NECESARIA</h2>
+                                        <div class="text-inputs">
+                                            <mat-card-subtitle>COLOR
+                                                <input type="text" [(ngModel)] = "appointment.carColor" name = "COLOR">
+                                            </mat-card-subtitle>
+                                            <mat-card-subtitle>Km de Ingreso
+                                                <input type="text" [(ngModel)] = "appointment.carKm" name = "Km">
+                                            </mat-card-subtitle>
+                                            <mat-card-subtitle>Nivel de Gasolina
+                                                <input type="text" [(ngModel)] = "appointment.carGas" name = "GAS">
+                                            </mat-card-subtitle>
+                                        </div>
+                                        <h2>SELECCIONA SI EXISTE</h2>
+                                        <div class="checbox-area">
+                                            <div class="checkbox-left">
+                                                <mat-card-subtitle>
+                                                    <input type="checkbox" [(ngModel)] = "appointment.extraTire" value = "false" name = "Caucho" id="extraTire"(change) = "print($event, appointment.extraTire)">  Caucho de Repuesto
+                                                </mat-card-subtitle>
+                                                <mat-card-subtitle>
+                                                    <input type="checkbox" [(ngModel)] = "appointment.keys" value= "false" name = "Herramientas" id= "keys" (change) = "print($event, appointment.keys)">  Llaves
+                                                </mat-card-subtitle>
+                                                <mat-card-subtitle>
+                                                    <input type="checkbox" [(ngModel)] = "appointment.tools" value = "false" name = "Herramientas" id= "tools" (change) = "print($event, appointment.tools)">  Herramientas
+                                                </mat-card-subtitle>
+                                            </div>
+                                            <div class="checkbox-right">
+                                                <mat-card-subtitle>
+                                                    <input type="checkbox" [(ngModel)] = "appointment.gato" value = "false" (change) = "print($event, appointment.gato)" name = "Gato" id= "gato">  Gato
+                                                </mat-card-subtitle>
+                                                <mat-card-subtitle>
+                                                    <input type="checkbox" [(ngModel)] = "appointment.stereo" name = "Herramientas" id= "stereo" (change) = "print($event, appointment.stereo)" value = "false">  Reproductor
+                                                </mat-card-subtitle>
+                                                <mat-card-subtitle>
+                                                    <input type="checkbox" [(ngModel)] = "appointment.scratches" value = "false" name = "Rayones" id="scratches" (change) = "print($event, appointment.scratches)">  Rayones
+                                                </mat-card-subtitle>
+                                            </div>
+                                        </div>
                                         
-
-
-                                        <mat-card-subtitle>Procedimiento Aplicado</mat-card-subtitle>
-
+                                        <div class="first">
+                                            <h2>REPUESTOS NECESARIOS</h2>
+                                            <textarea name="repuestos" [(ngModel)] = "appointment.repuestos"  cols="80" rows="5"></textarea>
+                                        </div>
+                                        <div class="second">
+                                            <h2>PROCEDIMIENTO APLICADO</h2>
                                             <textarea name="procedimiento" [(ngModel)] = "appointment.procedure"  cols="80" rows="5"></textarea>
-                                        
-                                        
-
-                                        <mat-card-subtitle>Diagnostico</mat-card-subtitle>
-
+                                             
+                                        </div>
+                                        <div class="third">
+                                            <h2>DIAGNOSTICO</h2>
                                             <textarea name="diagnostico" [(ngModel)] = "appointment.diagnostic"  cols="80" rows="5"></textarea>
+                                            
+                                        </div>
                                         
+                                     
+                                        <button mat-raised-button type="submit" class = "btn" (click) = "updateAppointment(appointment)">Confirmar</button>
                                     </mat-input>
-
-                                    <button mat-raised-button color = "primary" type="submit" class = "btn" (click) = "updateAppointment(appointment)">Confirmar</button>
 
                             </mat-card>
 
                         </div>
 
                     </div>
-
                 </form>
-
-
-
             </div>
-
-
         </div>
-
-    </div>
-
+    
 </div>
