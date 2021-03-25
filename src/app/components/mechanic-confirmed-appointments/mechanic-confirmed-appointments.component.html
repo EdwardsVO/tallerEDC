@@ -4,7 +4,7 @@
         
             <div class="vehicle-container" *ngFor="let appointment of appointments">
 
-                <mat-card>
+                <mat-card *ngIf="!appointment.repaired">
 
                     <mat-card-subtitle>MARCA
                         <p>{{appointment.brand}}</p>
