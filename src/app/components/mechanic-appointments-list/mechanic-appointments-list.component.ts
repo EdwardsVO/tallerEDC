@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from 'src/app/services/auth.service';
 import { MechanicCrudService } from '../../services/mechanic-crud.service';
+import {ToastrService} from 'ngx-toastr';
+
 
 
 @Component({
@@ -15,7 +17,8 @@ export class MechanicAppointmentsListComponent implements OnInit {
   mechanicName: string;
   mechanicId: string
 
-  constructor(private firestore: AngularFirestore, private _authSvc: AuthService, private _mechSvc: MechanicCrudService) { }
+   
+    constructor(private firestore: AngularFirestore, private _authSvc: AuthService, private _mechSvc: MechanicCrudService, private toastr: ToastrService ) { }
 
   ngOnInit(): void {
 
@@ -37,8 +40,13 @@ export class MechanicAppointmentsListComponent implements OnInit {
     })
   }
 
+  showSucces(message,title){
+    this.toastr.success('message','LISTO');
+   }
+
   confirmWork(appointmentId) {
     this._mechSvc.confirmWork(appointmentId, this.mechanicName)
+    this.toastr.success('Cita confirmada','LISTO');
     console.log(`Cita: ${appointmentId} ha sido asignada a ${this.mechanicName}! A chambear`);
   }
 

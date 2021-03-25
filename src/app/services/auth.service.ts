@@ -4,6 +4,7 @@ import firebase from 'firebase'
 import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { User } from '../models/user';
+import {ToastrService} from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +17,16 @@ export class AuthService {
 
 
 
-  constructor(private _afAuth: AngularFireAuth, private _afs: AngularFirestore, private afAuth: AngularFireAuth) { }
+  constructor(private _afAuth: AngularFireAuth, private _afs: AngularFirestore, private afAuth: AngularFireAuth, private toastr: ToastrService) { }
 
 
+  showSucces(message,title){
+   this.toastr.success('message','title');
+  }
 
+  showError(message,title){
+    this.toastr.error('message','title');
+   }
 
   async resetPassword(email: string): Promise<void> {
     try {
@@ -71,6 +78,7 @@ export class AuthService {
 
       if (response.user) {
         localStorage.setItem('user', response.user.uid)
+        this.toastr.success('Registrado exitosamente!','LISTO');
         await response.user.sendEmailVerification();
         return response.user;
 
@@ -87,8 +95,6 @@ export class AuthService {
       return null;
     }
   }
-
-
 
   async loginWithEmail(
     email: string,
@@ -107,15 +113,17 @@ export class AuthService {
         }).catch(err => {
           switch (err.code) {
             case 'auth/too-many-requests':
-              alert(`Acceso temporalmente registringido. Intente de nuevo mas tarde`);
+              this.toastr.error('Acceso temporalmente registringido. Intente de nuevo mas tarde','ERROR');  
               break;
             case "auth/wrong-password":
+              this.toastr.error('Contrasenia o email incorrecto.','ERROR');  
               alert(`Contrasenia o email incorrecto.`);
               break
             case 'auth/operation-not-allowed':
-              alert(`Error during sign up.`);
+              this.toastr.error('Error during sign up.','ERROR');  
             case 'auth/weak-password':
-              alert('Password is not strong enough. Add additional characters including special characters and numbers.');
+              this.toastr.error('Password is not strong enough. Add additional characters including special characters and numbers.','ERROR');  
+            
             default:
             // alert(err.message);
           }

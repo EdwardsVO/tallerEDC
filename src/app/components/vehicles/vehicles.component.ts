@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {VehiclesCrudService} from '../../services/vehicles-crud.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-vehicles',
@@ -38,7 +39,8 @@ export class VehiclesComponent implements OnInit {
     private vehiclesCrudService: VehiclesCrudService,
     private _vehicleservice: VehiclesCrudService,
     private _authservice: AuthService,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -74,7 +76,10 @@ export class VehiclesComponent implements OnInit {
   }
 
 
-
+  showSucces(message,title){
+    this.toastr.success('message','LISTO');
+   }
+ 
 
   async addNewCar(): Promise <void> {
     try{
@@ -103,6 +108,8 @@ export class VehiclesComponent implements OnInit {
           this.alertManager
         )
         this.registrarVehiculoForm.reset();
+        this.toastr.success('Vehiculo agregado exitosamente!','LISTO');
+
         this.modalService.dismissAll();
         })
       })
@@ -125,6 +132,7 @@ export class VehiclesComponent implements OnInit {
     this.vehiclesCrudService.updateCar(this.registrarVehiculoForm.value, this.id2)
     .then(resp => {
       this.registrarVehiculoForm.reset();
+      this.toastr.success('Vehiculo actualizado exitosamente!','LISTO');
       this.modalService.dismissAll();
     }).catch(error => {
       console.error(error);
@@ -153,6 +161,7 @@ export class VehiclesComponent implements OnInit {
   delete(car):void{
 
       this.vehiclesCrudService.deleteCar(car);
+      this.toastr.success('Vehiculo eliminado exitosamente!','LISTO');
 
   }
 
