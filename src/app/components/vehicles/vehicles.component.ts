@@ -53,7 +53,7 @@ export class VehiclesComponent implements OnInit {
   uploadState: Observable<string>;
   path: string;
   ownerEmail: string;
-  timesRepaired: any;
+  timesRepaired: number;
 
 
   constructor(
@@ -80,6 +80,7 @@ export class VehiclesComponent implements OnInit {
     this.repeated = false;
     this.serial = false;
     this.disabled = false;
+    this.timesRepaired = 0;
 
     
 
@@ -223,6 +224,7 @@ export class VehiclesComponent implements OnInit {
             this.needsReparation,
             this.appointmentConfirmed,
             this.repaired,
+            this.timesRepaired,
             this.appointmentDate,
             this.appointmentHour,
             this.alertManager,
