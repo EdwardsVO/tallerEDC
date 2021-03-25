@@ -43,6 +43,7 @@ export class VehiclesComponent implements OnInit {
   disabled: boolean;
   disabled2: '';
   url2;
+  selectedImg;
  
 
   ref: AngularFireStorageReference;
@@ -96,7 +97,7 @@ export class VehiclesComponent implements OnInit {
       this.firestore.collection('cars', ref => ref.where("owner", "==", localStorage.getItem('user'))) //,'cars', ref => ref.where("disabled", "==", false)
       .snapshotChanges().subscribe(res => {
         this.cars = res.map((e: any) => {
-          this.downloadURL = this.af.ref(e.payload.doc.data().photo).getDownloadURL();
+          this.downloadURL = this.af.ref(e.payload.doc.data().photo).getDownloadURL()
           this.id3 = e.payload.doc.id;
           this.disabled2 = e.payload.doc.data().disabled
           return {
@@ -147,41 +148,54 @@ export class VehiclesComponent implements OnInit {
   }
 
  
-  upload = (event) => {
-    // create a random id
-    //this.actualizar = false;
-    const randomId = Math.random().toString(36).substring(2);
-    // create a reference to the storage bucket location
-    this.path = '/images/' + randomId;
-    this.ref = this.af.ref(this.path);
+  // upload = (event) => {
+  //   // create a random id
+  //   //this.actualizar = false;
+  //   const randomId = Math.random().toString(36).substring(2);
+  //   // create a reference to the storage bucket location
+  //   this.path = '/images/' + randomId;
+  //   this.ref = this.af.ref(this.path);
     
-    //console.log(this.ref)
-    // the put method creates an AngularFireUploadTask
-    // and kicks off the upload
-    this.task = this.ref.put(event.target.files[0]);
-    // this.path = event.target.files[0]
-    // console.log(this.path)
+  //   //console.log(this.ref)
+  //   // the put method creates an AngularFireUploadTask
+  //   // and kicks off the upload
+  //   this.task = this.ref.put(event.target.files[0]);
+  //   // this.path = event.target.files[0]
+  //   // console.log(this.path)
 
-    // AngularFireUploadTask provides observable
-    // to get uploadProgress value
-    this.uploadProgress = this.task.snapshotChanges()
-    .pipe(map(s => (s.bytesTransferred / s.totalBytes) * 100));
+  //   // AngularFireUploadTask provides observable
+  //   // to get uploadProgress value
+  //   this.uploadProgress = this.task.snapshotChanges()
+  //   .pipe(map(s => (s.bytesTransferred / s.totalBytes) * 100));
 
-    // observe upload progress
-    this.uploadProgress = this.task.percentageChanges();
-    // get notified when the download URL is available
-    this.task.snapshotChanges().pipe(
-      finalize(() => this.downloadURL = this.ref.getDownloadURL())
+  //   // observe upload progress
+  //   this.uploadProgress = this.task.percentageChanges();
+  //   // get notified when the download URL is available
+  //   this.task.snapshotChanges().pipe(
+  //     finalize(() => this.downloadURL = this.ref.getDownloadURL())
       
-    )
-    .subscribe();
+  //   )
+  //   .subscribe();
 
 
-    console.log(this.url2)
+  //   console.log(this.af.ref(this.path).getDownloadURL())
     
 
-    this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
+  //   this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
     
+  // }
+
+  upload(event){
+    this.selectedImg = event.target.files[0]
+
+  }
+
+  uploadImage(){
+    const randomId = Math.random().toString(36).substring(2);
+    this.path = '/images/' + randomId;
+    //this.ref = this.af.ref(this.path);
+    this.af.upload(this.path, this.selectedImg)
+
   }
 
   
@@ -288,7 +302,8 @@ export class VehiclesComponent implements OnInit {
    
     this.disabled = true;
     this.vehiclesCrudService.updateCarDisabledStatus(this.id3, this.disabled)
-    console.log('carro deshabilitado!')
+    console.log(this.id3)
+    console.log(this.disabled)
 
   }
 

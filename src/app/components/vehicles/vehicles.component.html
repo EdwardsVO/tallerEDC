@@ -7,6 +7,7 @@
 
             <!-- <img mat-card-sm-image src="{{car.photo}}" alt="client's car1"> -->
             <div *ngIf="downloadURL | async; let url"> 
+            <!-- <div *ngFor="let downloadURL of downloadURLs">  -->
                 <img mat-card-sm-image [src]="url" alt="Image from AngularFireStorage">
             <!-- <img mat-card-sm-image src="{{car.photo}}" alt="client's car1"> -->
             </div>
@@ -60,7 +61,8 @@
                             <p>
                                 <mat-form-field class="tlf">
                                     <mat-label>*Serial del Motor</mat-label>
-                                    <input matInput type="text" formControlName="serial" class="form-control" readonly>
+                                    <input matInput type="text" formControlName="serial" class="form-control" *ngIf="!actualizar">
+                                    <input matInput type="text" formControlName="serial" class="form-control" readonly *ngIf="actualizar">
 
                                 </mat-form-field>
                             </p>
@@ -105,10 +107,12 @@
                                 </mat-form-field>
                                 <br>
                                     <input type="file" (change)="upload($event)" accept=".png,.jpg">
-                                    <progress max="100" [value]="(uploadProgress | async)"></progress>
+                                    <button (click)="uploadImage()"> Upload </button>
+                                    <br>
+                                    <!-- <progress max="100" [value]="(uploadProgress | async)"></progress>
                                     <div class="result" *ngIf="downloadURL | async; let uploadSrc">
                                         <a [href]="uploadSrc" *ngIf="!actualizar">La foto se ha subido exitosamente!</a>
-                                    </div>
+                                    </div> -->
                             
                             
 
