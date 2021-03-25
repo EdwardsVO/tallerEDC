@@ -64,17 +64,33 @@ button.done:hover{
   input{
     width: 90%;
     margin-right: 160px;
-    border-radius: none;
+    
   }
 }
-.checkbox-area{
-  text-align: center;
+.checbox-area{
+  display: flex;
+
 }
-.checkbox-right{
-  text-align: right;
-}
+
 .checkbox-left{
-  text-align: right;
+  text-align: left;
+  margin-right: 10%;
+  margin-left: 2%;
+}
+
+.checkbox-right{
+  text-align: left;
+}
+
+h2{
+  text-align: left;
+  color: #2e3192;
+  font-family: "Bree Serif", serif;
+  margin-top: 1%;
+  margin-bottom: 0.5%;
+}
+textarea{
+  text-align: left;
 }
 
 
