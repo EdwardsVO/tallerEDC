@@ -1,10 +1,21 @@
 export interface Vehicle {
     owner?: string;
     serial?: string;
-    marca?: string;
-    modelo?: string;
+    brand?: string;
+    model?: string;
     year?: string;
-    placa?: string;
+    plate?: string;
     id2?: string;
+    photo?: string;
 
+
+}
+
+export class Vehicle {
+    constructor (serial) {
+        this.serial = serial
+    }
+    toString() {
+        return this.serial;
+    }
 }

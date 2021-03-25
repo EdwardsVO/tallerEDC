@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Vehicle } from '../models/vehicle';
-import { map } from 'rxjs/operators';
+import {map} from 'rxjs/operators';
+import firebase from 'firebase';
+
 
 
 @Injectable({
@@ -32,7 +34,7 @@ export class VehiclesCrudService {
 
   }
 
-  async newCar(id2,lastAppointment, owner, ownerName, ownerEmail, serial, marca, modelo, year, placa, fecha, needsReparation, appointmentConfirmed, timesRepaired, repaired, appointmentDate, appointmentHour, alertManager): Promise<void> {
+  async newCar(id2, owner, ownerName, ownerEmail, serial, brand, model, year, plate, date, photo, needsReparation, appointmentConfirmed, repaired, timesRepaired, appointmentDate, appointmentHour, alertManager, disabled): Promise<void> {
     try {
       const { id } = await this.firestore.collection('cars').add({
         id2: id2,
@@ -41,11 +43,12 @@ export class VehiclesCrudService {
         ownerName: ownerName,
         ownerEmail: ownerEmail,
         serial: serial,
-        brand: marca,
-        model: modelo,
+        brand: brand,
+        model: model,
         year: year,
-        plate: placa,
-        initDate: fecha,
+        plate: plate,
+        initDate: date,
+        photo: photo,
         needsReparation: needsReparation,
         appointmentConfirmed: appointmentConfirmed,
         repaired: false,
@@ -53,6 +56,7 @@ export class VehiclesCrudService {
         appointmentDate: appointmentDate,
         appointmentHour: appointmentHour,
         alertManager: alertManager,
+        disabled: disabled
       })
 
       this.carId = id
@@ -72,32 +76,27 @@ export class VehiclesCrudService {
     })
   }
 
-  getSerial(serial) {
-
-    this.firestore.collection("cars", ref => ref.where("serial", "==", serial))
-      .get()
-      .subscribe((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          if (doc.exists) {
-            //console.log("Document data:", doc.data());
-            return true
-          } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-          }
-
-        });
-      })
-  }
 
   updateCar(car: any, id: any) {
     return this.firestore.collection("cars").doc(id).update(car);
   }
 
-  deleteCar(car: Vehicle) {
-    this.vehicleDoc = this.firestore.doc(`cars/${car.owner}`);
-    this.vehicleDoc.delete();
+  updateCarPhoto(id:any, photo:any){
+    this.firestore.collection("cars").doc(id).update({
+      photo: photo
+    })
   }
+
+  updateCarDisabledStatus(id:any, disabled:any){
+    this.firestore.collection("cars").doc(id).update({
+      disabled: disabled
+    })
+  }
+
+  // deleteCar(car: Vehicle) {
+  //   this.vehicleDoc = this.firestore.doc(`cars/${car.owner}`);
+  //   this.vehicleDoc.delete();
+  // }
 
   getUsersCars(userId) {
     return this.firestore.collection('cars', ref => ref.where("owner", "==", userId));
