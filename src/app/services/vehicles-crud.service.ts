@@ -33,7 +33,7 @@ export class VehiclesCrudService {
 
   }
 
-  async newCar(id2, owner, ownerName, ownerEmail, serial, brand, model, year, placa, date, photo, needsReparation, appointmentConfirmed, repaired, appointmentDate, appointmentHour, alertManager, disabled): Promise<void> {
+  async newCar(id2, owner, ownerName, ownerEmail, serial, brand, model, year, plate, date, photo, needsReparation, appointmentConfirmed, repaired, timesRepaired, appointmentDate, appointmentHour, alertManager, disabled): Promise<void> {
     try {
       const { id } = await this.firestore.collection('cars').add({
         id2: id2,
@@ -44,7 +44,7 @@ export class VehiclesCrudService {
         brand: brand,
         model: model,
         year: year,
-        plate: placa,
+        plate: plate,
         initDate: date,
         photo: photo,
         needsReparation: needsReparation,

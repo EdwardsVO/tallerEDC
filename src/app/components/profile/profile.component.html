@@ -7,6 +7,11 @@
             <mat-card-content>
 
                 <img src="assets/img/placeholder.jpg" alt="Avatar">
+                <!-- <div *ngIf="downloadURL | async; let url"> 
+                    <!-- <div *ngFor="let downloadURL of downloadURLs">  -->
+                    <!-- <img mat-card-sm-image [src]="url" alt="Image from AngularFireStorage"> -->
+                    <!-- <img mat-card-sm-image src="{{car.photo}}" alt="client's car1"> -->
+                <!-- </div>  -->
 
                 <button mat-raised-button (click)="open(content)"color="primary" class="pic-btn">Subir Imagen <mat-icon>photo_camera</mat-icon>
                     </button>
@@ -117,16 +122,16 @@
         <div class="form-group">
             <label for="dateOfBirth">Selecciona Imagen</label>
             <div class="input-group">
-            <input type="file" change="upload($event)" accept=".png,.jpg,.jpeg">
-            <progress max="100" [value]="(uploadProgress | async)"></progress>
+            <input type="file" (change)="upload($event)" accept=".png,.jpg">
+            <!-- <progress max="100" [value]="(uploadProgress | async)"></progress>
             <div class="result" *ngIf="downloadURL | async; let uploadSrc">
                 <a [href]="uploadSrc">You just uploaded this file!</a>
-              </div>
+              </div> -->
             </div>
         </div>
         </form>
     </div>
     <div class="modal-footer">
-        <button type="button" (click)="uploadImg()" mat-raised-button>SUBIR</button>
+        <button (click)="uploadImage()" mat-raised-button>SUBIR</button>
     </div>
 </ng-template>     
