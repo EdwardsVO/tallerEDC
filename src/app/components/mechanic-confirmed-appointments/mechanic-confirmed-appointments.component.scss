@@ -52,6 +52,8 @@ button.done:hover{
   color: white;
   background-color: #2e3192;
   margin-bottom: auto;
+  width: 60%;
+  margin-top: 2%;
 }
 .text-inputs{
   display:flex;
@@ -89,7 +91,7 @@ h2{
   margin-top: 1%;
   margin-bottom: 0.5%;
 }
-textarea{
+.first, .second, .third{
   text-align: left;
 }
 
