@@ -50,7 +50,7 @@ export class MechanicCrudService {
         appointmentConfirmed: false,
         appointmentDate: '',
         appointmentHour: '',
-        timesRepaired: +1,
+        // timesRepaired: +1,
       })
     } catch(err) {
       console.log(err);

@@ -48,6 +48,7 @@ export class MechanicConfirmedAppointmentsComponent implements OnInit {
           model: e.payload.doc.data().carModel,
           plate: e.payload.doc.data().carPlate,
           year: e.payload.doc.data().carYear,
+          repaired: e.payload.doc.data().repaired,
           
         }
       })
@@ -90,6 +91,13 @@ export class MechanicConfirmedAppointmentsComponent implements OnInit {
   finishWork(carId){
     this._mechSvc.finishWork(carId)
   }
+
+  finishWork2(appointmentId) {
+    this.firestore.collection('appointments').doc(appointmentId).update({
+      repaired: true,
+    })
+  }
+
 
 }
 

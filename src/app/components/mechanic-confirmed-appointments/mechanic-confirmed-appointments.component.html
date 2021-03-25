@@ -4,7 +4,7 @@
         <div class='carros'>
             <div class="vehicle-container" *ngFor="let appointment of appointments" mat-card>
 
-                <mat-card class = "mat-card-class">
+                <mat-card class = "mat-card-class" *ngIf="!appointment.repaired">
 
                     <mat-card-subtitle>MARCA
                         <p>{{appointment.brand}}</p>
@@ -22,8 +22,8 @@
                         <P>{{appointment.plate}}</P>
                     </mat-card-subtitle>
 
-                    <button mat-mini-fab class="done"color="primary" title="Finalizar reparacion">
-                        <mat-icon (click) = "finishWork(appointment.carId)">done</mat-icon>
+                    <button mat-mini-fab class="done"color="primary" title="Finalizar reparacion" (click) = "finishWork(appointment.carId)">
+                        <mat-icon (click) = "finishWork(appointment.carId)" (click) = "finishWork2(appointment.id)">done</mat-icon>
                     </button>
 
                     <button mat-mini-fab class="edit"color="primary" title="Añadir informacion adicional" *ngIf="!editState">
