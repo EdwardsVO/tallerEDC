@@ -88,7 +88,7 @@ export class MechanicConfirmedAppointmentsComponent implements OnInit {
   }
 
   finishWork(carId){
-    this._mechSvc.finisWork(carId)
+    this._mechSvc.finishWork(carId)
   }
 
 }

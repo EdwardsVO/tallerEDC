@@ -17,6 +17,7 @@ export class VehiclesCrudService {
   vehicleDoc: AngularFirestoreDocument<Vehicle>
   carId: string;
   carsCollection: AngularFirestoreCollection<Vehicle>;
+  lastAppointment: string = ''
 
 
 
@@ -37,6 +38,7 @@ export class VehiclesCrudService {
     try {
       const { id } = await this.firestore.collection('cars').add({
         id2: id2,
+        lastAppointment: '',
         owner: owner,
         ownerName: ownerName,
         ownerEmail: ownerEmail,
@@ -49,7 +51,7 @@ export class VehiclesCrudService {
         photo: photo,
         needsReparation: needsReparation,
         appointmentConfirmed: appointmentConfirmed,
-        repaired: repaired,
+        repaired: false,
         timesRepaired: timesRepaired,
         appointmentDate: appointmentDate,
         appointmentHour: appointmentHour,
@@ -134,20 +136,23 @@ export class VehiclesCrudService {
     })
   }
 
-  closeAppointments(id: string, appointmentConfirmed, appointmentDate, appointmentHour, needsReparation) {
+  closeAppointments(id: string) {
     this.firestore.collection('cars').doc(id).update({
-      appointmentConfirmed: appointmentConfirmed,
-      appointmentDate: appointmentDate,
-      appointmentHour: appointmentHour,
-      needsReparation: needsReparation
+      appointmentConfirmed: false,
+      appointmentDate: '',
+      appointmentHour: '',
+      needsReparation: false,
+      repaired: false,
     })
   }
 
-  async newAppointment(carId, carBrand, carModel, carPlate, carYear, carColor, carKm, carGas,
+  async newAppointment(carId, appointmentDate,repaired, carBrand, carModel, carPlate, carYear, carColor, carKm, carGas,
     extraTire, keys, gato,  tools, stereo, scratches, mechName, repairs, diagnostic, procedures, repuestos, totalPriceService): Promise<void> {
     try {
-      await this.firestore.collection('appointments').add({
+       const {id} = await this.firestore.collection('appointments').add({
         carId: carId,
+        appointmentDate: appointmentDate,
+        repaired: false,
         carBrand: carBrand,
         carModel: carModel,
         carPlate: carPlate,
@@ -168,12 +173,19 @@ export class VehiclesCrudService {
         repuestos: repuestos,
         totalPriceService: totalPriceService
       })
+      this.lastAppointment = id;
+      this.setLastAppointment(carId, id);
     }
-    catch {
-
+    catch(err) {
+      console.log(err);
     }
   }
 
+  setLastAppointment(carId, lastAppointment) {
+    this.firestore.collection('cars').doc(carId).update({
+      lastAppointment: lastAppointment,
+    })
+  }
 
 }
 

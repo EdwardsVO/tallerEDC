@@ -53,6 +53,7 @@ export class VehiclesComponent implements OnInit {
   uploadState: Observable<string>;
   path: string;
   ownerEmail: string;
+  lastAppointment: any;
   timesRepaired: number;
 
 

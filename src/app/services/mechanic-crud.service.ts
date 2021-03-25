@@ -41,7 +41,7 @@ export class MechanicCrudService {
     }
   }
 
-  async finisWork(carId) {
+  async finishWork(carId) {
     try {
       await this._firestore.collection('cars').doc(carId).update({
         repaired: true,
