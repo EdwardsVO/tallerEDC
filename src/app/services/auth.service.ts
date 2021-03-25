@@ -117,7 +117,6 @@ export class AuthService {
               break;
             case "auth/wrong-password":
               this.toastr.error('Contrasenia o email incorrecto.','ERROR');  
-              alert(`Contrasenia o email incorrecto.`);
               break
             case 'auth/operation-not-allowed':
               this.toastr.error('Error during sign up.','ERROR');  
