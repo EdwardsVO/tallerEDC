@@ -31,6 +31,7 @@ export class VehiclesComponent implements OnInit {
   alertManager: boolean;
   ownerEmail: string;
   timesRepaired: any;
+  lastAppointment: any;
 
 
   constructor(
@@ -87,6 +88,7 @@ export class VehiclesComponent implements OnInit {
           this.ownerName = res.payload.get('name')
           this._vehicleservice.newCar(
           this.carId = '',
+          this.lastAppointment,
           this.owner,
           this.ownerName,
           this.ownerEmail,
