@@ -4,7 +4,11 @@
         
             <div class="vehicle-container" *ngFor="let appointment of appointments">
 
+
                 <mat-card>
+
+                <mat-card class = "mat-card-class" *ngIf="!appointment.repaired">
+
 
                     <mat-card-subtitle>MARCA
                         <p>{{appointment.brand}}</p>
@@ -18,6 +22,7 @@
                     <mat-card-subtitle>PLACA
                         <P>{{appointment.plate}}</P>
                     </mat-card-subtitle>
+
                     <div class="btns">
                         <button mat-mini-fab class="done" title="Finalizar reparacion">
                             <mat-icon (click) = "finishWork(appointment.carId)">done</mat-icon>
@@ -32,6 +37,23 @@
                             <mat-icon (click) = "rejectWork(appointment.id)">delete</mat-icon>
                         </button>
                     </div>
+
+
+                    <button mat-mini-fab class="done"color="primary" title="Finalizar reparacion" (click) = "finishWork(appointment.carId)">
+                        <mat-icon (click) = "finishWork(appointment.carId)" (click) = "finishWork2(appointment.id)">done</mat-icon>
+                    </button>
+
+                    <button mat-mini-fab class="edit"color="primary" title="Añadir informacion adicional" *ngIf="!editState">
+                        <mat-icon (click) = "addCarInfo(appointment)">add</mat-icon>
+                    </button>
+
+                    <button mat-mini-fab class = "edit" color = "primary" *ngIf="editState && carToEdit.id == appointment.id">
+                        <mat-icon (click) = "clearState()">close</mat-icon>
+                    </button>
+
+                    <button class="trash" mat-raised-button (click) = "rejectWork(appointment.id)"><mat-icon color="primary" title="Rechazar Trabajo">delete</mat-icon></button>
+
+
                 </mat-card>
 
                 <div *ngIf="editState && carToEdit.id == appointment.id">

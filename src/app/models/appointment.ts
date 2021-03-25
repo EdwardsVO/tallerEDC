@@ -1,6 +1,7 @@
 
 export interface Appointment {
     appointmentId?: string,
+    appointmentDate?: string,
     carBrand?: string,
     carModel?: string,
     carPlate?: string,

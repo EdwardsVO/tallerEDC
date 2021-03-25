@@ -1,23 +1,30 @@
 <h1>ÓRDENES DE REPARACIÓN</h1>
 <mat-card>
-    <div class="vehicle-container" *ngFor="let appointment of appointments">
-        <img mat-card-sm-image src="{{appointment.img}}" alt="client's car1">
+    <div class="vehicle-container" *ngFor="let car of cars">
+        <img mat-card-sm-image src="{{car.img}}" alt="client's car1">
         <mat-card-subtitle>CLIENTE
-            <p>{{appointment.ownerName}}</p>
+            <p>{{car.ownerName}}</p>
         </mat-card-subtitle>
         <mat-card-subtitle>MARCA
-            <p>{{appointment.brand}}</p>
+            <p>{{car.brand}}</p>
         </mat-card-subtitle>
         <mat-card-subtitle>MODELO
-            <p>{{appointment.model}}</p>
+            <p>{{car.model}}</p>
         </mat-card-subtitle>
         <mat-card-subtitle>AÑO
-            <P>{{appointment.year}}</P>
+            <P>{{car.year}}</P>
         </mat-card-subtitle>
         <mat-card-subtitle>PLACA
-            <P>{{appointment.plate}}</P>
+            <P>{{car.plate}}</P>
         </mat-card-subtitle>
-        <button mat-raised-button (click) = "cancelAppointment(appointment.id)">FINALIZAR REPARACION</button>
+
+        <mat-card-subtitle>LA
+          <P>{{car.lastAppointment}}</P>
+      </mat-card-subtitle>
+
+        <button mat-raised-button (click) = "getLastAppointment(car.lastAppointment)">DETALLES</button>
+
+        <button mat-raised-button (click) = "closeAppointment(car.id)">CERRAR</button>
 
     </div>
 

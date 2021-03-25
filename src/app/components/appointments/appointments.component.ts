@@ -21,6 +21,7 @@ export class AppointmentsComponent implements OnInit {
 
   carId: string;
   userId: string;
+  query = [];
 
 
 
@@ -42,12 +43,15 @@ export class AppointmentsComponent implements OnInit {
       this.cars = res.map((e: any) => {
         return {
           id: e.payload.doc.id,
+          appointmentDate: e.payload.doc.data().appointmentDate,
           serial: e.payload.doc.data().serial,
           brand: e.payload.doc.data().brand,
           model: e.payload.doc.data().model,
           year: e.payload.doc.data().year,
           plate: e.payload.doc.data().plate,
           reparation: e.payload.doc.data().needsReparation,
+          repaired: e.payload.doc.data().repaired,
+          lastAppointment: e.payload.doc.data().lastAppointment,
         }
       })
     })
@@ -85,11 +89,14 @@ export class AppointmentsComponent implements OnInit {
 
     confirmAppointment(appointmentId) {
       this._vehicleSvc.appointmentConfirmed(appointmentId, true);
+      // this._vehicleSvc.setLastAppointment(appointmentId);
+
     }
 
-    newAppointment(carId, carBrand, carModel, carPlate, carYear){
+   async newAppointment(carId, appointmentDate,carBrand, carModel, carPlate, carYear){
       this.confirmAppointment(carId);
-      this._vehicleSvc.newAppointment(carId, carBrand, carModel, carPlate, carYear, "", "", "", false, false, false, false, false, false, "", 0,0, "","","");
+      await this._vehicleSvc.newAppointment(carId, appointmentDate, false, carBrand, carModel, carPlate, carYear, "", "", "", false, false, false, false, false, false, "", 0,0, "","","");
+        // this._vehicleSvc.setLastAppointment(carId);
     }
 
 // FUNCTION TO GET ALL APPOINTMENT FROM THE DATABASE
