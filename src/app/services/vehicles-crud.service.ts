@@ -50,6 +50,7 @@ export class VehiclesCrudService {
         needsReparation: needsReparation,
         appointmentConfirmed: appointmentConfirmed,
         repaired: repaired,
+        timesRepaired: timesRepaired,
         appointmentDate: appointmentDate,
         appointmentHour: appointmentHour,
         alertManager: alertManager,
@@ -142,22 +143,37 @@ export class VehiclesCrudService {
     })
   }
 
-  async newAppointment(mechName,carYear, carBrand, carModel, carPlate, initConditions, repairs, totalPriceService): Promise<void> {
+  async newAppointment(carId, carBrand, carModel, carPlate, carYear, carColor, carKm, carGas,
+    extraTire, keys, gato,  tools, stereo, scratches, mechName, repairs, diagnostic, procedures, repuestos, totalPriceService): Promise<void> {
     try {
       await this.firestore.collection('appointments').add({
-        mechName: mechName,
-        carYear: carYear,
+        carId: carId,
         carBrand: carBrand,
         carModel: carModel,
         carPlate: carPlate,
-        initConditions: initConditions,
+        carYear:carYear,
+        carColor:carColor,
+        carKm:carKm,
+        carGas:carGas,
+        extraTire: extraTire,
+        keys: keys,
+        tools: tools,
+        gato: gato,
+        scratches: scratches,
+        stereo: stereo,
+        mechName: mechName,
         repairs: repairs,
-        totalPriceService: totalPriceService,
+        diagnostic: diagnostic,
+        procedures: procedures,
+        repuestos: repuestos,
+        totalPriceService: totalPriceService
       })
     }
     catch {
 
     }
   }
+
+
 }
 

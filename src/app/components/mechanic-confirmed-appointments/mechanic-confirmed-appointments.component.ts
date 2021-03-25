@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { CheckboxControlValueAccessor } from '@angular/forms';
+import { Appointment } from 'src/app/models/appointment';
 import { AuthService } from 'src/app/services/auth.service';
+import { VehiclesCrudService } from 'src/app/services/vehicles-crud.service';
 import { MechanicCrudService } from '../../services/mechanic-crud.service';
 
 @Component({
@@ -13,11 +16,22 @@ export class MechanicConfirmedAppointmentsComponent implements OnInit {
   mechanicName: string;
   mechanicId: string;
   appointments = [];
+  editState: boolean = false;
+  editInfo: boolean = false;
+  carToEdit: Appointment;
+  extraTire: boolean = false;
+  keys: boolean= false;
+  gato: boolean= false;
+  stereo: boolean= false;
+  tools: boolean= false;
+  scratches: boolean= false;
 
-  constructor(private firestore: AngularFirestore, private _authSvc: AuthService, private _mechSvc: MechanicCrudService) { }
+
+  constructor(private firestore: AngularFirestore, private _authSvc: AuthService, private _mechSvc: MechanicCrudService, private _vehicleSvc: VehiclesCrudService) { }
 
   ngOnInit(): void {
 
+    
 
   this.firestore.collection('users').doc(localStorage.getItem('user')).snapshotChanges().subscribe(res => {
     this.mechanicName = res.payload.get('name');
@@ -26,11 +40,15 @@ export class MechanicConfirmedAppointmentsComponent implements OnInit {
     this.firestore.collection('appointments', ref => ref.where("mechName", "==", this.mechanicName)).snapshotChanges().subscribe(res => {
       this.appointments = res.map((e: any) => {
         return {
+
           // Appointment document ID
           id: e.payload.doc.id,
+          carId: e.payload.doc.data().carId,
           brand: e.payload.doc.data().carBrand,
           model: e.payload.doc.data().carModel,
           plate: e.payload.doc.data().carPlate,
+          year: e.payload.doc.data().carYear,
+          
         }
       })
     })
@@ -38,13 +56,39 @@ export class MechanicConfirmedAppointmentsComponent implements OnInit {
 
 }
 
-  scanQR() {
-    console.log("aqui se abre el escaner y toma foto del QR del cliente.");
-  }
-
   rejectWork(appointmentId) {
     this._mechSvc.confirmWork(appointmentId, '');
     console.log(this.appointments.length);
+  }
+
+  addCarInfo(appointment){
+    this.editState = true;
+    this.carToEdit = appointment;
+  }
+
+  clearState() {
+    this.editState = false;
+    this.carToEdit = null;
+  }
+
+  updateAppointment(appointment) {
+    this._mechSvc.updateAppointment(appointment);
+    this.clearState();
+  }
+
+  print(e, checkbox) {
+
+    if(e.target.checked) {
+      checkbox = true
+
+    } else {
+      checkbox = false;
+
+    }
+  }
+
+  finishWork(carId){
+    this._mechSvc.finisWork(carId)
   }
 
 }
