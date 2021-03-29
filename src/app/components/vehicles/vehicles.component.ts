@@ -43,7 +43,7 @@ export class VehiclesComponent implements OnInit {
   disabled2: '';
   url2;
   selectedImg;
- 
+
 
   ref: AngularFireStorageReference;
   task: AngularFireUploadTask;
@@ -68,7 +68,7 @@ export class VehiclesComponent implements OnInit {
 
   ) { }
 
-  
+
 
   ngOnInit(): void {
 
@@ -83,7 +83,7 @@ export class VehiclesComponent implements OnInit {
     this.disabled = false;
     this.timesRepaired = 0;
 
-    
+
 
 
     this.registrarVehiculoForm = this.fb.group({
@@ -95,7 +95,7 @@ export class VehiclesComponent implements OnInit {
       //photo: ['', Validators.required]
     })
 
-    
+
     //if (!this.disabled2){
       this.firestore.collection('cars', ref => ref.where("owner", "==", localStorage.getItem('user'))) //,'cars', ref => ref.where("disabled", "==", false)
       .snapshotChanges().subscribe(res => {
@@ -114,7 +114,7 @@ export class VehiclesComponent implements OnInit {
             disabled: e.payload.doc.data().disabled
           }
         })
-        
+
       })
 
     // }else {
@@ -133,7 +133,7 @@ export class VehiclesComponent implements OnInit {
     //       photo: e.payload.doc.data().photo
     //     }
     //   })
-      
+
     // })
 
       // Firestore data converter
@@ -150,7 +150,7 @@ export class VehiclesComponent implements OnInit {
     };
   }
 
- 
+
   // upload = (event) => {
   //   // create a random id
   //   //this.actualizar = false;
@@ -158,7 +158,7 @@ export class VehiclesComponent implements OnInit {
   //   // create a reference to the storage bucket location
   //   this.path = '/images/' + randomId;
   //   this.ref = this.af.ref(this.path);
-    
+
   //   //console.log(this.ref)
   //   // the put method creates an AngularFireUploadTask
   //   // and kicks off the upload
@@ -176,21 +176,21 @@ export class VehiclesComponent implements OnInit {
   //   // get notified when the download URL is available
   //   this.task.snapshotChanges().pipe(
   //     finalize(() => this.downloadURL = this.ref.getDownloadURL())
-      
+
   //   )
   //   .subscribe();
 
 
   //   console.log(this.af.ref(this.path).getDownloadURL())
-    
+
 
   //   this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
-    
+
   // }
   showSucces(message,title){
     this.toastr.success('message','LISTO');
    }
- 
+
   upload(event){
     this.selectedImg = event.target.files[0]
 
@@ -204,7 +204,7 @@ export class VehiclesComponent implements OnInit {
 
   }
 
-  
+
   async addNewCar(): Promise <void> {
     try{
       await this._authservice.getCurrentUser().subscribe(resp => {
@@ -245,7 +245,7 @@ export class VehiclesComponent implements OnInit {
     }
   }
 
-  
+
 
   formatDate(){
     const timeElapsed = Date.now();
@@ -263,7 +263,7 @@ export class VehiclesComponent implements OnInit {
       if (doc.empty){
         console.log("carro no existe!");
         this.addNewCar()
-        
+
       } else {
         var car = doc.isEqual(doc);
         console.log(car);
@@ -287,7 +287,7 @@ export class VehiclesComponent implements OnInit {
     });
   }
 
-  
+
 
   openEditar(content, car: any) {
 
@@ -309,7 +309,7 @@ export class VehiclesComponent implements OnInit {
   }
 
   disableCar(){
-   
+
     this.disabled = true;
     try {
     this.vehiclesCrudService.updateCarDisabledStatus(this.id3, this.disabled)
@@ -318,6 +318,7 @@ export class VehiclesComponent implements OnInit {
     this.toastr.success('Vehiculo deshabilitado exitosamente!','LISTO');
     } catch(err) {
       console.log(err)
+      this.toastr.error('Error, verifique su información e inténtelo de nuevo!')
     }
 
   }
