@@ -81,6 +81,7 @@ import { ManagerNavbarComponent } from './components/navbar/manager-navbar/manag
 import { IconsMeaningComponent } from './components/icons-meaning/icons-meaning.component';
 import { MechanicAppointmentsListComponent } from './components/mechanic-appointments-list/mechanic-appointments-list.component';
 import { MechanicConfirmedAppointmentsComponent } from './components/mechanic-confirmed-appointments/mechanic-confirmed-appointments.component';
+import {ToastrModule, ToastrService} from 'ngx-toastr';
 
 
 
@@ -136,6 +137,7 @@ import { MechanicConfirmedAppointmentsComponent } from './components/mechanic-co
     IconsMeaningComponent,
     MechanicAppointmentsListComponent,
     MechanicConfirmedAppointmentsComponent,
+    
   ],
 
   imports: [
@@ -164,7 +166,8 @@ import { MechanicConfirmedAppointmentsComponent } from './components/mechanic-co
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBByzbHz4Z4lQ8uJdqRGXcXM2BRxKJhkvM'
-    })
+    }), ToastrModule.forRoot(),
+    
   ],
   providers: [AngularFirestore],
   bootstrap: [AppComponent],

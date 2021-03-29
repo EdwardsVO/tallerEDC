@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
+
 @Component({
   selector: 'app-vehicle-register',
   templateUrl: './vehicle-register.component.html',
@@ -16,6 +17,7 @@ export class VehicleRegisterComponent implements OnInit {
 
   constructor(
     public fb: FormBuilder,
+   
     
   ) { }
 
@@ -42,11 +44,15 @@ export class VehicleRegisterComponent implements OnInit {
     }
   }
 
+  
+  
+
   delete(item:any):void{
 
     //this.firebaseServiceService.deleteEstudiante(item.idFirebase);
 
     this.collection.data.pop();
+
   }
 
   saveCar():void {
@@ -60,6 +66,7 @@ export class VehicleRegisterComponent implements OnInit {
 
     this.collection.data.push(this.registrarVehiculoForm.value);
     this.registrarVehiculoForm.reset();
+
   }
 
   // actualizarStudent(){
