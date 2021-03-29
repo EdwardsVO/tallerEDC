@@ -95,46 +95,41 @@ export class VehiclesComponent implements OnInit {
       //photo: ['', Validators.required]
     })
 
-
-    //if (!this.disabled2){
-      this.firestore.collection('cars', ref => ref.where("owner", "==", localStorage.getItem('user'))) //,'cars', ref => ref.where("disabled", "==", false)
-      .snapshotChanges().subscribe(res => {
-        this.cars = res.map((e: any) => {
-          this.downloadURL = this.af.ref(e.payload.doc.data().photo).getDownloadURL()
-          this.id3 = e.payload.doc.id;
-          this.disabled2 = e.payload.doc.data().disabled
-          return {
-            id: e.payload.doc.id,
-            serial: e.payload.doc.data().serial,
-            brand: e.payload.doc.data().brand,
-            model: e.payload.doc.data().model,
-            year: e.payload.doc.data().year,
-            plate: e.payload.doc.data().plate,
-            photo: e.payload.doc.data().photo,
-            disabled: e.payload.doc.data().disabled
-          }
-        })
-
+    
+    
+    this.firestore.collection('cars', ref => ref.where("owner", "==", localStorage.getItem('user')))
+    .snapshotChanges().subscribe(res => {
+      this.cars = res.map((e: any) => {
+        //this.downloadURL = this.af.ref(e.payload.doc.data().photo).getDownloadURL()
+        
+        return {
+          id: e.payload.doc.id,
+          serial: e.payload.doc.data().serial,
+          brand: e.payload.doc.data().brand,
+          model: e.payload.doc.data().model,
+          year: e.payload.doc.data().year,
+          plate: e.payload.doc.data().plate,
+          photo: this.af.ref(e.payload.doc.data().photo).getDownloadURL(),
+          disabled: e.payload.doc.data().disabled
+        }
       })
+      
+    })
 
-    // }else {
-    //   console.log('carro deshabilitado')
-    // }
-    // this.firestore.collection('cars', ref => ref.where("owner", "==", localStorage.getItem('user'))).snapshotChanges().subscribe(res => {
+    // this.downloadURL = this.firestore.collection('cars', ref => ref.where("owner", "==", localStorage.getItem('user')))
+    // .snapshotChanges().subscribe(res => {
     //   this.cars = res.map((e: any) => {
-    //     this.downloadURL = this.af.ref(e.payload.doc.data().photo).getDownloadURL();
+    //     //this.downloadURL = this.af.ref(e.payload.doc.data().photo).getDownloadURL()
+        
     //     return {
-    //       id: e.payload.doc.id,
-    //       serial: e.payload.doc.data().serial,
-    //       brand: e.payload.doc.data().brand,
-    //       model: e.payload.doc.data().model,
-    //       year: e.payload.doc.data().year,
-    //       plate: e.payload.doc.data().plate,
-    //       photo: e.payload.doc.data().photo
+    //       photo: e.payload.doc.data().photo,
     //     }
+        
     //   })
-
+      
     // })
+
+   
 
       // Firestore data converter
     this.carConverter = {
@@ -187,6 +182,9 @@ export class VehiclesComponent implements OnInit {
   //   this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
 
   // }
+
+  
+  
   showSucces(message,title){
     this.toastr.success('message','LISTO');
    }
@@ -201,6 +199,7 @@ export class VehiclesComponent implements OnInit {
     this.path = '/images/' + randomId;
     //this.ref = this.af.ref(this.path);
     this.af.upload(this.path, this.selectedImg)
+
 
   }
 
@@ -232,10 +231,10 @@ export class VehiclesComponent implements OnInit {
             this.appointmentDate,
             this.appointmentHour,
             this.alertManager,
-            this.disabled = false
+            this.disabled
         )
         this.registrarVehiculoForm.reset();
-        this.toastr.success('Vehiculo agregado exitosamente!','LISTO');
+        this.toastr.success('¡Vehículo agregado exitosamente!','LISTO');
 
         this.modalService.dismissAll();
         })
@@ -308,13 +307,14 @@ export class VehiclesComponent implements OnInit {
     });
   }
 
-  disableCar(){
+  disableCar(car:any){
 
+    this.id2 = car.id;
     this.disabled = true;
     try {
-    this.vehiclesCrudService.updateCarDisabledStatus(this.id3, this.disabled);
-    this.vehiclesCrudService.updateCarOwner(this.id3, "");
-    console.log(this.id3)
+    this.vehiclesCrudService.updateCarDisabledStatus(this.id2, this.disabled);
+    this.vehiclesCrudService.updateCarOwner(this.id2, "");
+    console.log(this.id2)
     console.log(this.disabled)
     this.toastr.success('Vehiculo deshabilitado exitosamente!','LISTO');
     } catch(err) {
