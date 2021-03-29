@@ -130,6 +130,16 @@ export class VehiclesCrudService {
     })
   }
 
+  updateCarOwner(id:string, owner){
+    this.firestore.collection('cars').doc(id).update({
+      owner: owner
+    })
+  }
+  updateCarOwnerName(id:string, owner){
+    this.firestore.collection('cars').doc(id).update({
+      ownerName: owner
+    })
+  }
   alertManager(id: string, alert) {
     this.firestore.collection('cars').doc(id).update({
       alertManager: alert
