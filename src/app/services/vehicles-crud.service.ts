@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Vehicle } from '../models/vehicle';
-import { map } from 'rxjs/operators';
+import {map} from 'rxjs/operators';
+import firebase from 'firebase';
+
 
 
 @Injectable({
@@ -15,6 +17,7 @@ export class VehiclesCrudService {
   vehicleDoc: AngularFirestoreDocument<Vehicle>
   carId: string;
   carsCollection: AngularFirestoreCollection<Vehicle>;
+  lastAppointment: string = ''
 
 
 
@@ -31,25 +34,29 @@ export class VehiclesCrudService {
 
   }
 
-  async newCar(id2, owner, ownerName, ownerEmail, serial, marca, modelo, year, placa, fecha, needsReparation, appointmentConfirmed, repaired, appointmentDate, appointmentHour, alertManager): Promise<void> {
+  async newCar(id2, owner, ownerName, ownerEmail, serial, brand, model, year, plate, date, photo, needsReparation, appointmentConfirmed, repaired, timesRepaired, appointmentDate, appointmentHour, alertManager, disabled): Promise<void> {
     try {
       const { id } = await this.firestore.collection('cars').add({
         id2: id2,
+        lastAppointment: '',
         owner: owner,
         ownerName: ownerName,
         ownerEmail: ownerEmail,
         serial: serial,
-        brand: marca,
-        model: modelo,
+        brand: brand,
+        model: model,
         year: year,
-        plate: placa,
-        initDate: fecha,
+        plate: plate,
+        initDate: date,
+        photo: photo,
         needsReparation: needsReparation,
         appointmentConfirmed: appointmentConfirmed,
-        repaired: repaired,
+        repaired: false,
+        timesRepaired: timesRepaired,
         appointmentDate: appointmentDate,
         appointmentHour: appointmentHour,
         alertManager: alertManager,
+        disabled: disabled
       })
 
       this.carId = id
@@ -69,32 +76,27 @@ export class VehiclesCrudService {
     })
   }
 
-  getSerial(serial) {
-
-    this.firestore.collection("cars", ref => ref.where("serial", "==", serial))
-      .get()
-      .subscribe((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          if (doc.exists) {
-            //console.log("Document data:", doc.data());
-            return true
-          } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-          }
-
-        });
-      })
-  }
 
   updateCar(car: any, id: any) {
     return this.firestore.collection("cars").doc(id).update(car);
   }
 
-  deleteCar(car: Vehicle) {
-    this.vehicleDoc = this.firestore.doc(`cars/${car.owner}`);
-    this.vehicleDoc.delete();
+  updateCarPhoto(id:any, photo:any){
+    this.firestore.collection("cars").doc(id).update({
+      photo: photo
+    })
   }
+
+  updateCarDisabledStatus(id:any, disabled:any){
+    this.firestore.collection("cars").doc(id).update({
+      disabled: disabled
+    })
+  }
+
+  // deleteCar(car: Vehicle) {
+  //   this.vehicleDoc = this.firestore.doc(`cars/${car.owner}`);
+  //   this.vehicleDoc.delete();
+  // }
 
   getUsersCars(userId) {
     return this.firestore.collection('cars', ref => ref.where("owner", "==", userId));
@@ -134,19 +136,23 @@ export class VehiclesCrudService {
     })
   }
 
-  closeAppointments(id: string, appointmentConfirmed, appointmentDate, appointmentHour, needsReparation) {
+  closeAppointments(id: string) {
     this.firestore.collection('cars').doc(id).update({
-      appointmentConfirmed: appointmentConfirmed,
-      appointmentDate: appointmentDate,
-      appointmentHour: appointmentHour,
-      needsReparation: needsReparation
+      appointmentConfirmed: false,
+      appointmentDate: '',
+      appointmentHour: '',
+      needsReparation: false,
+      repaired: false,
     })
   }
 
-  async newAppointment(carBrand, carModel, carPlate, carYear, carColor, carKm, carGas,
-    extraTire, keys, tools, stereo, mechName, repairs, totalPriceService): Promise<void> {
+  async newAppointment(carId, appointmentDate,repaired, carBrand, carModel, carPlate, carYear, carColor, carKm, carGas,
+    extraTire, keys, gato,  tools, stereo, scratches, mechName, repairs, diagnostic, procedures, repuestos, totalPriceService): Promise<void> {
     try {
-      await this.firestore.collection('appointments').add({
+       const {id} = await this.firestore.collection('appointments').add({
+        carId: carId,
+        appointmentDate: appointmentDate,
+        repaired: false,
         carBrand: carBrand,
         carModel: carModel,
         carPlate: carPlate,
@@ -157,15 +163,29 @@ export class VehiclesCrudService {
         extraTire: extraTire,
         keys: keys,
         tools: tools,
+        gato: gato,
+        scratches: scratches,
         stereo: stereo,
         mechName: mechName,
         repairs: repairs,
+        diagnostic: diagnostic,
+        procedures: procedures,
+        repuestos: repuestos,
         totalPriceService: totalPriceService
       })
+      this.lastAppointment = id;
+      this.setLastAppointment(carId, id);
     }
-    catch {
-
+    catch(err) {
+      console.log(err);
     }
   }
+
+  setLastAppointment(carId, lastAppointment) {
+    this.firestore.collection('cars').doc(carId).update({
+      lastAppointment: lastAppointment,
+    })
+  }
+
 }
 

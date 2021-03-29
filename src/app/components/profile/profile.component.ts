@@ -31,33 +31,50 @@ export class ProfileComponent implements OnInit {
   task: AngularFireUploadTask;
   uploadProgress: Observable<number>;
   downloadURL: string;
+  selectedImg;
+  path: string;
 
   constructor(private _db: CrudService, private _auth: AuthService, private _afs: AngularFirestore, private _fb: FormBuilder, private modalService: NgbModal, private af:AngularFireStorage) { }
 
-  path:String;
+
   
   // function to upload file
-  upload = (event) => {
-    // create a random id
-    const randomId = Math.random().toString(36).substring(2);
-    // create a reference to the storage bucket location
-    this.ref = this.af.ref('/images/' + randomId);
-    // the put method creates an AngularFireUploadTask
-    // and kicks off the upload
-    this.task = this.ref.put(event.target.files[0]);
-    this.uploadProgress = this.task.snapshotChanges()
-    .pipe(map(s => (s.bytesTransferred / s.totalBytes) * 100));
-    this.task.snapshotChanges().pipe(
-      //finalize(() => this.downloadURL = this.ref.getDownloadURL())
-    )
-    .subscribe();
-  }
+  // upload = (event) => {
+  //   // create a random id
+  //   const randomId = Math.random().toString(36).substring(2);
+  //   // create a reference to the storage bucket location
+  //   this.ref = this.af.ref('/images/' + randomId);
+  //   // the put method creates an AngularFireUploadTask
+  //   // and kicks off the upload
+  //   this.task = this.ref.put(event.target.files[0]);
+  //   this.uploadProgress = this.task.snapshotChanges()
+  //   .pipe(map(s => (s.bytesTransferred / s.totalBytes) * 100));
+  //   this.task.snapshotChanges().pipe(
+  //     //finalize(() => this.downloadURL = this.ref.getDownloadURL())
+  //   )
+  //   .subscribe();
+  // }
 
   
   ngOnInit(): void {
     this.getCurrentUser();
     this.updateProfileForm();
-    };
+  };
+
+  upload(event){
+    this.selectedImg = event.target.files[0]
+
+  }
+
+  uploadImage(){
+    const randomId = Math.random().toString(36).substring(2);
+    this.path = '/images/' + randomId;
+    //this.ref = this.af.ref(this.path);
+    this.af.upload(this.path, this.selectedImg)
+    console.log(this.af.upload(this.path, this.selectedImg))
+    //console.log('foto subida')
+
+  }
 
 
 
