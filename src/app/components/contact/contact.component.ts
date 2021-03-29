@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 CrudContactService
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AngularFirestore} from '@angular/fire/firestore';
 import { CrudContactService } from 'src/app/services/crud-contact.service';
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
+import {ToastrService} from 'ngx-toastr';
 
 
 
@@ -13,50 +15,40 @@ import { CrudContactService } from 'src/app/services/crud-contact.service';
 })
 export class ContactComponent implements OnInit {
 
-  
-
-  getValues(val){
-    console.warn(val)
-  }
-  
-  contact: string;
   name: string;
   email: string;
   phone: number  ;
-  mensaje: string;
-
   message: string;
+  FormData: FormGroup;
 
-  constructor( public crudcontactservice:CrudContactService){}
-
-  createMsj(){
-
-   let Get ={};
-   Get ['name'] = this.name;
-   Get['email'] = this.email;
-   Get['phone'] = this.phone;
-   Get['mensaje'] = this.mensaje;
-
-    this.crudcontactservice.contactMsj(Get).then(res => {
-
-      this.name = "";
-      this.email = "";
-      this.phone = undefined;
-      this.mensaje = "";
-
-      console.log(res);
-
-      this.message = "Mensaje enviado!";
-      alert(this.message)
-
-    }).catch(error => {
-      console.log(error);
-    });
-
+  
+  public sendEmail(e: Event) {
+    e.preventDefault();
+    emailjs.sendForm('service_nq5o7n4', 'template_k3j4hbv', e.target as HTMLFormElement,  'user_mS3TbPNqwHVFgfafqXvBr')
+      .then((result: EmailJSResponseStatus) => {
+        this.toastr.success('¡Mensaje enviado!', "LISTO")
+        console.log(result.text);
+      }, (error) => {
+        console.log(error.text);
+      });
   }
-   
+
+  
+  
+ 
+  
+
+  constructor( public crudcontactservice:CrudContactService, private builder: FormBuilder, private toastr: ToastrService){}
+
+
 
   ngOnInit(): void {
+    this.FormData = this.builder.group({
+      name: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.compose([Validators.required, Validators.email])]),
+      phone: new FormControl('', [Validators.required]),
+      message: new FormControl('', [Validators.required])
+    })
   }
 
   

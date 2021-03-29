@@ -82,6 +82,7 @@ import { IconsMeaningComponent } from './components/icons-meaning/icons-meaning.
 import { MechanicAppointmentsListComponent } from './components/mechanic-appointments-list/mechanic-appointments-list.component';
 import { MechanicConfirmedAppointmentsComponent } from './components/mechanic-confirmed-appointments/mechanic-confirmed-appointments.component';
 import {ToastrModule, ToastrService} from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -167,9 +168,10 @@ import {ToastrModule, ToastrService} from 'ngx-toastr';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBByzbHz4Z4lQ8uJdqRGXcXM2BRxKJhkvM'
     }), ToastrModule.forRoot(),
+    HttpClientModule
     
   ],
-  providers: [AngularFirestore],
+  providers: [AngularFirestore, ContactComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
