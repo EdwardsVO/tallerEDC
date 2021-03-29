@@ -232,7 +232,7 @@ export class VehiclesComponent implements OnInit {
             this.appointmentDate,
             this.appointmentHour,
             this.alertManager,
-            this.disabled
+            this.disabled = false
         )
         this.registrarVehiculoForm.reset();
         this.toastr.success('Vehiculo agregado exitosamente!','LISTO');
@@ -312,7 +312,8 @@ export class VehiclesComponent implements OnInit {
 
     this.disabled = true;
     try {
-    this.vehiclesCrudService.updateCarDisabledStatus(this.id3, this.disabled)
+    this.vehiclesCrudService.updateCarDisabledStatus(this.id3, this.disabled);
+    this.vehiclesCrudService.updateCarOwner(this.id3, "");
     console.log(this.id3)
     console.log(this.disabled)
     this.toastr.success('Vehiculo deshabilitado exitosamente!','LISTO');

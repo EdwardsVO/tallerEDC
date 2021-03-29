@@ -3,58 +3,61 @@
 
 <div class='carros'>
     <div class="vehicle-container" *ngFor="let car of cars" mat-card>
-        <mat-card class = "mat-card-class">
+        <div *ngIf="!car.disabled">
+            <mat-card class="mat-card-class">
 
-            <!-- <img mat-card-sm-image src="{{car.photo}}" alt="client's car1"> -->
-            <div *ngIf="downloadURL | async; let url"> 
-            <!-- <div *ngFor="let downloadURL of downloadURLs">  -->
-                <img mat-card-sm-image [src]="url" alt="Image from AngularFireStorage">
-            <!-- <img mat-card-sm-image src="{{car.photo}}" alt="client's car1"> -->
-            </div>
+                <!-- <img mat-card-sm-image src="{{car.photo}}" alt="client's car1"> -->
+                <div *ngIf="downloadURL | async; let url">
+                    <!-- <div *ngFor="let downloadURL of downloadURLs">  -->
+                    <img mat-card-sm-image [src]="url" alt="Image from AngularFireStorage">
+                    <!-- <img mat-card-sm-image src="{{car.photo}}" alt="client's car1"> -->
+                </div>
 
-            <mat-card-subtitle>SERIAL
-                <p>{{car.serial}}</p>
-            </mat-card-subtitle>
-            <mat-card-subtitle>MARCA
-                <p>{{car.brand}}</p>
-            </mat-card-subtitle>
-            <mat-card-subtitle>MODELO
-                <p>{{car.model}}</p>
-            </mat-card-subtitle>
-            <mat-card-subtitle>AÑO
-                <P>{{car.year}}</P>
-            </mat-card-subtitle>
-            <mat-card-subtitle>PLACA
-                <P>{{car.plate}}</P>
-            </mat-card-subtitle>
-            <button mat-fab color="primary" class = "editar" title="editar" (click)="openEditar(content,car)">
-                <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-fab color="primary" class = "deshabilitar" title="deshabilitar" (click)="disableCar()">
-                <mat-icon>disabled_by_default</mat-icon>
-            </button>
-            <!-- <button mat-fab class = "delete" title="Eliminar" (click)="openEditar(content,car)">
+                <mat-card-subtitle>SERIAL
+                    <p>{{car.serial}}</p>
+                </mat-card-subtitle>
+                <mat-card-subtitle>MARCA
+                    <p>{{car.brand}}</p>
+                </mat-card-subtitle>
+                <mat-card-subtitle>MODELO
+                    <p>{{car.model}}</p>
+                </mat-card-subtitle>
+                <mat-card-subtitle>AÑO
+                    <P>{{car.year}}</P>
+                </mat-card-subtitle>
+                <mat-card-subtitle>PLACA
+                    <P>{{car.plate}}</P>
+                </mat-card-subtitle>
+                <button mat-fab color="primary" class="editar" title="editar" (click)="openEditar(content,car)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-fab color="primary" class="deshabilitar" title="deshabilitar" (click)="disableCar()">
+                    <mat-icon>disabled_by_default</mat-icon>
+                </button>
+                <!-- <button mat-fab class = "delete" title="Eliminar" (click)="openEditar(content,car)">
                 
             </button> -->
-        </mat-card>
+            </mat-card>
+        </div>
     </div>
-    <a mat-raised-button class="agg-btn" (click)= "cars.length < 3 && open(content)" [disabled] = "cars.length >= 3 ">Nuevo Vehículo</a> 
+    <a mat-raised-button class="agg-btn" (click)="cars.length < 3 && open(content)" [disabled]="cars.length >= 3 ">Nuevo
+        Vehículo</a>
 </div>
 
 
 <ng-template #content let-modal>
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Registrar carro</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
+        <h4 class="modal-title" id="modal-basic-title">Registrar carro</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
 
     </div>
     <div class="modal-body">
         <form [formGroup]="registrarVehiculoForm">
             <div class="vehicle">
                 <mat-card class="example-card">
-                    <div  class="info-card">
+                    <div class="info-card">
 
                         <mat-card-content>
 
@@ -63,8 +66,10 @@
                                     <mat-label>*Serial del Motor</mat-label>
                                     <input matInput type="text" formControlName="serial" class="form-control">
 
-                                    <input matInput type="text" formControlName="serial" class="form-control" *ngIf="!actualizar">
-                                    <input matInput type="text" formControlName="serial" class="form-control" readonly *ngIf="actualizar">
+                                    <input matInput type="text" formControlName="serial" class="form-control"
+                                        *ngIf="!actualizar">
+                                    <input matInput type="text" formControlName="serial" class="form-control" readonly
+                                        *ngIf="actualizar">
 
                                 </mat-form-field>
                             </p>
@@ -79,19 +84,25 @@
 
                             </div>
 
-                            <table class="user-info" cellspacing="0"><tr>
-                                <td><mat-form-field class="first-name">
-                                <mat-label>*Modelo</mat-label>
-                                <input matInput type="text" formControlName="model" class="form-control">
+                            <table class="user-info" cellspacing="0">
+                                <tr>
+                                    <td>
+                                        <mat-form-field class="first-name">
+                                            <mat-label>*Modelo</mat-label>
+                                            <input matInput type="text" formControlName="model" class="form-control">
 
-                                </mat-form-field></td>
+                                        </mat-form-field>
+                                    </td>
 
-                                <td><mat-form-field class="last-name">
-                                <mat-label>*Año</mat-label>
-                                <input matInput type="text" formControlName="year" class="form-control">
+                                    <td>
+                                        <mat-form-field class="last-name">
+                                            <mat-label>*Año</mat-label>
+                                            <input matInput type="text" formControlName="year" class="form-control">
 
-                                </mat-form-field></td>
-                            </tr></table>
+                                        </mat-form-field>
+                                    </td>
+                                </tr>
+                            </table>
 
                             <p>
                                 <mat-form-field class="placa">
@@ -105,24 +116,26 @@
                                 <mat-form-field class="hidden">
                                     <mat-label></mat-label>
                                     <input matInput type="text" formControlName="plate" [disabled]>
-        
+
                                 </mat-form-field>
                                 <br>
-                                    <input type="file" (change)="upload($event)" accept=".png,.jpg">
-                                    <button (click)="uploadImage()"> Upload </button>
-                                    <br>
-                                    <!-- <progress max="100" [value]="(uploadProgress | async)"></progress>
+                                <input type="file" (change)="upload($event)" accept=".png,.jpg">
+                                <button (click)="uploadImage()"> Upload </button>
+                                <br>
+                                <!-- <progress max="100" [value]="(uploadProgress | async)"></progress>
                                     <div class="result" *ngIf="downloadURL | async; let uploadSrc">
                                         <a [href]="uploadSrc" *ngIf="!actualizar">La foto se ha subido exitosamente!</a>
                                     </div> -->
-                            
-                            
-
-                        
 
 
-                            <button type="button" class="btn btn-outline-dark" (click)="checkCar()" *ngIf="!actualizar">REGISTRAR</button>
-                            <button type="button" class="btn btn-outline-dark" (click)="updateCar()" *ngIf="actualizar">Actualizar</button>
+
+
+
+
+                                <button type="button" class="btn btn-outline-dark" (click)="checkCar()"
+                                    *ngIf="!actualizar">REGISTRAR</button>
+                                <button type="button" class="btn btn-outline-dark" (click)="updateCar()"
+                                    *ngIf="actualizar">Actualizar</button>
 
                         </mat-card-content>
                     </div>
@@ -149,11 +162,3 @@
 <button (click)="task.cancel()" [disabled]="!(state === 'paused' || state === 'running')">Cancel</button>
 <button (click)="task.resume()" [disabled]="state === 'running'">Resume</button>
 </section> -->
-
-
-
-
-
-
-
-
