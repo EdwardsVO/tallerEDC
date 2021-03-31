@@ -7,6 +7,7 @@ export interface Vehicle {
     plate?: string;
     id2?: string;
     photo?: string;
+    //url?;
 
 
 }

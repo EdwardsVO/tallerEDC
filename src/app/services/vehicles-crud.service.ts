@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Vehicle } from '../models/vehicle';
 import {map} from 'rxjs/operators';
 import firebase from 'firebase';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 
 
@@ -22,7 +23,8 @@ export class VehiclesCrudService {
 
 
   constructor(
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private db: AngularFireDatabase,
   ) {
     this.cars = this.firestore.collection('cars').snapshotChanges().pipe(map(changes => {
       return changes.map(e => {
@@ -56,7 +58,8 @@ export class VehiclesCrudService {
         appointmentDate: appointmentDate,
         appointmentHour: appointmentHour,
         alertManager: alertManager,
-        disabled: disabled
+        disabled: disabled,
+        //url: url
       })
 
       this.carId = id
@@ -69,6 +72,11 @@ export class VehiclesCrudService {
   getCars() {
     return this.firestore.collection("cars").snapshotChanges();
   }
+
+  // getCarsPhotos(numberItems) {
+  //   return this.db.list(this.basePath, ref =>
+  //     ref.limitToLast(numberItems));
+  // }
 
   getCarId2(id) {
     this.firestore.collection("cars").doc(id).update({
