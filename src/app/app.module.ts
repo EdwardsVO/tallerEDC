@@ -6,7 +6,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { BrowserModule } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { RouterModule } from '@angular/router';
-import { AngularFirestore } from '@angular/fire/firestore'
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 // Google Maps
 import { AgmCoreModule } from '@agm/core';
@@ -168,7 +169,8 @@ import { HttpClientModule } from '@angular/common/http';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBByzbHz4Z4lQ8uJdqRGXcXM2BRxKJhkvM'
     }), ToastrModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    AngularFireDatabaseModule,
     
   ],
   providers: [AngularFirestore, ContactComponent],

@@ -41,8 +41,11 @@ export class VehiclesComponent implements OnInit {
   photo;
   disabled: boolean;
   disabled2: '';
-  url2;
+  url;
   selectedImg;
+  percentage: number;
+  percentage2: boolean;
+
 
 
   ref: AngularFireStorageReference;
@@ -82,6 +85,7 @@ export class VehiclesComponent implements OnInit {
     this.serial = false;
     this.disabled = false;
     this.timesRepaired = 0;
+    this.percentage2 = false;
 
 
 
@@ -100,7 +104,6 @@ export class VehiclesComponent implements OnInit {
     this.firestore.collection('cars', ref => ref.where("owner", "==", localStorage.getItem('user')))
     .snapshotChanges().subscribe(res => {
       this.cars = res.map((e: any) => {
-        //this.downloadURL = this.af.ref(e.payload.doc.data().photo).getDownloadURL()
         
         return {
           id: e.payload.doc.id,
@@ -109,25 +112,14 @@ export class VehiclesComponent implements OnInit {
           model: e.payload.doc.data().model,
           year: e.payload.doc.data().year,
           plate: e.payload.doc.data().plate,
-          photo: this.af.ref(e.payload.doc.data().photo).getDownloadURL(),
-          disabled: e.payload.doc.data().disabled
+          photo: e.payload.doc.data().photo,
+          disabled: e.payload.doc.data().disabled,
         }
       })
       
     })
 
-    // this.downloadURL = this.firestore.collection('cars', ref => ref.where("owner", "==", localStorage.getItem('user')))
-    // .snapshotChanges().subscribe(res => {
-    //   this.cars = res.map((e: any) => {
-    //     //this.downloadURL = this.af.ref(e.payload.doc.data().photo).getDownloadURL()
-        
-    //     return {
-    //       photo: e.payload.doc.data().photo,
-    //     }
-        
-    //   })
-      
-    // })
+    
 
    
 
@@ -146,44 +138,7 @@ export class VehiclesComponent implements OnInit {
   }
 
 
-  // upload = (event) => {
-  //   // create a random id
-  //   //this.actualizar = false;
-  //   const randomId = Math.random().toString(36).substring(2);
-  //   // create a reference to the storage bucket location
-  //   this.path = '/images/' + randomId;
-  //   this.ref = this.af.ref(this.path);
 
-  //   //console.log(this.ref)
-  //   // the put method creates an AngularFireUploadTask
-  //   // and kicks off the upload
-  //   this.task = this.ref.put(event.target.files[0]);
-  //   // this.path = event.target.files[0]
-  //   // console.log(this.path)
-
-  //   // AngularFireUploadTask provides observable
-  //   // to get uploadProgress value
-  //   this.uploadProgress = this.task.snapshotChanges()
-  //   .pipe(map(s => (s.bytesTransferred / s.totalBytes) * 100));
-
-  //   // observe upload progress
-  //   this.uploadProgress = this.task.percentageChanges();
-  //   // get notified when the download URL is available
-  //   this.task.snapshotChanges().pipe(
-  //     finalize(() => this.downloadURL = this.ref.getDownloadURL())
-
-  //   )
-  //   .subscribe();
-
-
-  //   console.log(this.af.ref(this.path).getDownloadURL())
-
-
-  //   this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
-
-  // }
-
-  
   
   showSucces(message,title){
     this.toastr.success('message','LISTO');
@@ -194,50 +149,90 @@ export class VehiclesComponent implements OnInit {
 
   }
 
-  uploadImage(){
+  
+
+  pushPhotoToStorage(){
     const randomId = Math.random().toString(36).substring(2);
     this.path = '/images/' + randomId;
     //this.ref = this.af.ref(this.path);
-    this.af.upload(this.path, this.selectedImg)
+    const uploadTask = this.af.upload(this.path, this.selectedImg)
+    
 
-
+    uploadTask.snapshotChanges()
+    .pipe(
+      finalize(() => {
+        this.downloadURL = this.af.ref(this.path).getDownloadURL();
+        this.downloadURL.subscribe(url => {
+          if (url) {
+            this.url = url;
+          }
+          console.log(this.url);
+        });
+      })
+    )
+    .subscribe(url => {
+      if (url) {
+        console.log(url);
+      }
+    });
+    //return this.url
+    return uploadTask.percentageChanges();
   }
+
+  uploadImage(): void {
+
+    this.pushPhotoToStorage().subscribe(
+      percentage => {
+        this.percentage = Math.round(percentage);
+        console.log(this.percentage)
+        if(this.percentage == 100) {
+          this.percentage2 = true
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+
 
 
   async addNewCar(): Promise <void> {
     try{
-      await this._authservice.getCurrentUser().subscribe(resp => {
+      await this._authservice.getCurrentUser().subscribe(async resp => {
         this.owner = resp.uid;
         this.ownerEmail = resp.email;
+        //await this.uploadImage().subscribe(resp => {
+          this.firestore.collection('users').doc(localStorage.getItem('user')).snapshotChanges().subscribe(res => {
+            this.ownerName = res.payload.get('name')
+            this._vehicleservice.newCar(
+              this.carId = '',
+              this.owner,
+              this.ownerName,
+              this.ownerEmail,
+              this.serial = this.registrarVehiculoForm.get('serial').value,
+              this.registrarVehiculoForm.get('brand').value,
+              this.registrarVehiculoForm.get('model').value,
+              this.registrarVehiculoForm.get('year').value,
+              this.registrarVehiculoForm.get('plate').value,
+              this.fecha = this.formatDate(),
+              this.photo = this.url,
+              this.needsReparation,
+              this.appointmentConfirmed,
+              this.repaired,
+              this.timesRepaired,
+              this.appointmentDate,
+              this.appointmentHour,
+              this.alertManager,
+              this.disabled
+          )
+          this.registrarVehiculoForm.reset();
+          this.toastr.success('¡Vehículo agregado exitosamente!','LISTO');
 
-        this.firestore.collection('users').doc(localStorage.getItem('user')).snapshotChanges().subscribe(res => {
-          this.ownerName = res.payload.get('name')
-          this._vehicleservice.newCar(
-            this.carId = '',
-            this.owner,
-            this.ownerName,
-            this.ownerEmail,
-            this.serial = this.registrarVehiculoForm.get('serial').value,
-            this.registrarVehiculoForm.get('brand').value,
-            this.registrarVehiculoForm.get('model').value,
-            this.registrarVehiculoForm.get('year').value,
-            this.registrarVehiculoForm.get('plate').value,
-            this.fecha = this.formatDate(),
-            this.photo = this.path,
-            this.needsReparation,
-            this.appointmentConfirmed,
-            this.repaired,
-            this.timesRepaired,
-            this.appointmentDate,
-            this.appointmentHour,
-            this.alertManager,
-            this.disabled
-        )
-        this.registrarVehiculoForm.reset();
-        this.toastr.success('¡Vehículo agregado exitosamente!','LISTO');
-
-        this.modalService.dismissAll();
-        })
+          this.modalService.dismissAll();
+          })
+        //})
       })
     }catch(error){
       console.log(error)
@@ -277,7 +272,7 @@ export class VehiclesComponent implements OnInit {
   updateCar(){
     this.vehiclesCrudService.updateCar(this.registrarVehiculoForm.value, this.id2)
     .then(resp => {
-      this.vehiclesCrudService.updateCarPhoto(this.id2, this.path)
+      this.vehiclesCrudService.updateCarPhoto(this.id2, this.url)
       this.registrarVehiculoForm.reset();
       this.toastr.success('Vehiculo actualizado exitosamente!','LISTO');
       this.modalService.dismissAll();
