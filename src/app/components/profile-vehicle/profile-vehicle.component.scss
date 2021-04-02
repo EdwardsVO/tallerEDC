@@ -6,6 +6,10 @@
   background-color: white;
 }
 
+mat-card{
+  overflow-x:scroll;
+}
+
 .agg-btn {
   margin-top: 2%;
   float: right;
@@ -16,6 +20,9 @@
 
 .carros {
   background-color: rgb(241, 241, 241);
+  overflow-y:scroll;
+
+
 }
 
 td {
@@ -31,14 +38,23 @@ td {
   justify-content: space-between;
   padding: 1rem;
   align-items: center;
+  
+
+}
+
+mat-card-subtitle{
+  word-spacing: 8%;
+
 }
 
 .container mat-card-title {
   color: #2e3192;
+
 }
 
 .vehicle-container p {
   font-size: 12px;
+  
 }
 
 .button-container {
@@ -50,6 +66,7 @@ td {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
+  
 }
 
 h1 {

@@ -1,3 +1,14 @@
+mat-card{
+    overflow-x: scroll;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: rgb(233, 233, 233);
+    margin-bottom: 15px;
+    width: 70%;
+    margin-left: 14%;
+    
+}
+
 h1{
     color: #2e3192;
     font-family: "Bree Serif", serif;
@@ -6,16 +17,21 @@ h1{
 }
 
 .vehicle-container {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    background-color: rgb(233, 233, 233);
-    margin-bottom: 15px;
-    width: 70%;
-    margin-left: 14%;
+    display: flex; 
   } 
 .vehicle-container p {
-font-size: 12px;
+    font-size: 12px;
+    padding-left: 5%;
+    padding-right: 5%;
+   
+
+}
+
+mat-card-subtitle{
+
+    padding-left: 5%;
+    padding-right: 5%;
+
 }
 
 button{

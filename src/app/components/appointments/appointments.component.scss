@@ -3,7 +3,8 @@ mat-card{
   justify-content: space-between;
   padding: 1rem;
   background-color: rgb(243, 243, 243);
-  margin-bottom: 1.5%;
+  margin-bottom: 1%;
+  overflow: scroll;
 }
 
 
@@ -14,29 +15,35 @@ p {
 }
 
 .button-container {
-  text-align: right;
+  text-align: center;
   margin-top: 1rem;
+  
+
   button{
     color: white;
     background-color: #2e3192;
+    padding-right:5% ;
+    width:fit-content;
   }
   button:hover{
     color: #2e3192;
     background-color: white;
+    
   }
 }
 .buttons-container {
   text-align: right;
   margin-top: 1rem;
-  margin-bottom: 30px;
+  
   button{
     margin-left: 1%;
+    
   }
 }
 
 
 button{
-  height: 50px;
+  height: 50px; 
 }
 
 
@@ -63,6 +70,10 @@ h1{
 
 mat-card-subtitle{
   text-align: center;
+  padding-left: 5%;
+  padding-right: 5%;
+
+
 }
 
 .invisible {
@@ -80,4 +91,10 @@ input {
   text-align: center;
   color: grey;
   text-decoration-style: none;
+
+}
+
+mat-input{
+  padding-right: 2%;
+  padding-left: 2%;
 }

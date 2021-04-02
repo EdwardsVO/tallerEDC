@@ -14,12 +14,16 @@ mat-card{
     width: 75%;
     margin-left: 13%;
     text-align: center;
+    overflow-x: scroll;
 
     
   } 
 p {
 font-size: 12px;
 font-family: "Roboto", sans-serif;
+padding-left: 3%;
+padding-right: 3%;
+
 }
 
 
@@ -54,8 +58,9 @@ button{
     color:#2E3192;
     background-color: white;
     margin-bottom: 25px;
-
+    
 }
+
 button:hover{
     color: white;
     background-color: #2E3192;
@@ -63,4 +68,9 @@ button:hover{
 
 img{
     border-radius: 50%;
+}
+
+mat-card-action{
+    //margin-left: 5%;
+    display:block 
 }

@@ -24,6 +24,7 @@ mat-card {
     width: 75%;
     margin-left: 13%;
     text-align: center;
+    overflow-x: scroll;
     
     
 }
@@ -37,8 +38,14 @@ p {
 
 mat-card-subtitle{
     vertical-align: middle;
+    padding-left: 5%;
+    padding-right: 5%;
+
 }
 
 .material-icons{
     color: green;
+    padding-left: 3%;
+    padding-right: 2%;
+
 }

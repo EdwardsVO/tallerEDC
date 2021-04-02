@@ -97,6 +97,7 @@ img {
   display: block;
   margin: auto;
   margin-top: 8%;
+  width: auto;
 }
 
 mat-card {
@@ -158,8 +159,9 @@ form {
 .edit-btn {
   color: white;
   background-color: #2e3192;
-  margin-left: 75%;
+  //margin-left: 75%;
   margin-top: 30%;
+  align-items: center;
 }
 
 .icon {
