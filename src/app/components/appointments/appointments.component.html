@@ -43,42 +43,10 @@
 
   <h1>CITAS ACTIVAS</h1>
 
-  <!-- <div *ngFor="let appointment of appointments" >
-        <div *ngIf = "appointment.reparation" class="appointment-container">
-            <mat-card>
-                <img mat-card-sm-image src="{{appointment.img}}" alt="client's car1">
-                <mat-card-subtitle>MODELO
-                    <p>{{appointment.model}}</p>
-                </mat-card-subtitle>
-                <mat-card-subtitle>AÑO
-                    <P>{{appointment.year}}</P>
-                </mat-card-subtitle>
-                <mat-card-subtitle>PLACA
-                    <P>{{appointment.plate}}</P>
-                </mat-card-subtitle>
-                <mat-card-subtitle>FECHA CITA
-                    <P>{{appointment.appointmentDate}} - {{appointment.appointmentHour}}</P>
-                </mat-card-subtitle>
-
-                <button mat-raised-button class="green" [disabled] ="!appointment.appointmentDate" (click) = "confirmAppointment(appointment.id)" *ngIf = "!appointment.appointmentConfirmed"><span class="material-icons">
-                    done
-                    </span></button>
-
-                <button mat-raised-button class="reject" [disabled] ="!appointment.appointmentDate" *ngIf = "!appointment.appointmentConfirmed" (click) = "rejectAppointment(appointment.id)" ><span color="warn" class="material-icons">
-                    clear
-                    </span></button>
-
-                <button class="trash" mat-raised-button (click) = "deleteAppointment(appointment.id)" *ngIf="!appointment.appointmentConfirmed"><mat-icon color="primary">delete</mat-icon></button>
-            </mat-card>
-
-        </div>
-    </div> -->
-
   <div *ngFor="let appointment of appointments" class="appointment-container">
     <div *ngIf="appointment.reparation" class="appointment-container">
       <form (submit)="sendEmail($event)">
         <!-- <form  > -->
-
         <mat-card>
           <mat-input class="invisible">
             <mat-card-subtitle>CLIENTE</mat-card-subtitle>

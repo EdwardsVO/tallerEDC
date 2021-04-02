@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { VehiclesCrudService } from '../../services/vehicles-crud.service';
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 
@@ -22,10 +24,12 @@ export class AppointmentsComponent implements OnInit {
   carId: string;
   userId: string;
   query = [];
+  closeResult = '';
 
 
 
-  constructor(private _firestore: AngularFirestore, private _vehicleSvc: VehiclesCrudService, private _authSvc: AuthService) { }
+
+  constructor(private _firestore: AngularFirestore, private _vehicleSvc: VehiclesCrudService, private _authSvc: AuthService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
 
@@ -94,7 +98,7 @@ export class AppointmentsComponent implements OnInit {
 
     }
 
-   async newAppointment(carId, appointmentDate,carBrand, carModel, carPlate, carYear){
+    async newAppointment(carId, appointmentDate,carBrand, carModel, carPlate, carYear){
       this.confirmAppointment(carId);
       await this._vehicleSvc.newAppointment(carId, appointmentDate, false, carBrand, carModel, carPlate, carYear, "", "", "", false, false, false, false, false, false, "", 0,0, "","","");
         // this._vehicleSvc.setLastAppointment(carId);
@@ -135,6 +139,24 @@ export class AppointmentsComponent implements OnInit {
             }, (error) => {
               console.log(error.text);
             });
+        }
+
+        open(content) {
+          this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+            this.closeResult = `Closed with: ${result}`;
+          }, (reason) => {
+            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+          });
+        }
+      
+        private getDismissReason(reason: any): string {
+          if (reason === ModalDismissReasons.ESC) {
+            return 'by pressing ESC';
+          } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+            return 'by clicking on a backdrop';
+          } else {
+            return `with: ${reason}`;
+          }
         }
 }
 
