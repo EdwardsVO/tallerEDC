@@ -43,7 +43,9 @@ mat-toolbar {
 }
 
 .logo-container {
-  width: 15%;
+  //width: 15%;
+  max-width: 170px;
+
   height: 100%;
   margin-top: 5px;
   margin-left: 20px;

@@ -1,20 +1,22 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="sidenav-container" >
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [ngClass]="{hidden: (isHandset$ | async) === false}"
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
     <!-- <mat-toolbar>Menu</mat-toolbar> -->
-    <mat-nav-list>
+    <mat-nav-list >
       <a mat-button (click) ="toHome()" routerLink = "/home" routerLinkActive = "active ">Home</a>
       <a mat-button (click) ="toAbout()"li routerLinkActive = "active">Nosotros</a>
       <a mat-button (click) ="toLocation()"li routerLinkActive = "active">Ubicación</a>
       <a mat-button (click) ="toContact()"li routerLinkActive = "active">Contacto</a>
+      
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar>
+    <mat-toolbar >
       <button
+      
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
@@ -22,17 +24,17 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <div class="container">
-        <div class="logo-container">
+      <div class="container" fxLayout="row">
+        <div class="logo-container" >
             <img src="assets/img/logo-edc1.png" alt="logo">
         </div>
-        <div *ngIf="!userLog" class="buttons-container">    
+        <div *ngIf="!userLog" class="buttons-container" fxHide.xs>    
             <a mat-button (click) ="toHome()" routerLink = "/home" routerLinkActive = "active ">Home</a>
             <a mat-button (click) ="toAbout()"li routerLinkActive = "active">Nosotros</a>
             <a mat-button (click) ="toLocation()"li routerLinkActive = "active">Ubicación</a>
             <a mat-button (click) ="toContact()"li routerLinkActive = "active">Contacto</a>
         </div> 
-        <div class="login" *ngIf="!userLog">       
+        <div class="login" *ngIf="!userLog" >       
             <a class="loging-b" mat-raised-button color="primary" routerLink="/login">Login    
                 <mat-icon aria-hidden="false" aria-label="Example home icon">login
                 </mat-icon>

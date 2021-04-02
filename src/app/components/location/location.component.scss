@@ -11,10 +11,13 @@ h1{
 .div {
 margin-left: auto;
 align-items: center;
-height: 200px; 
+height: 30%; 
 width :50%; 
 margin-bottom: 25%; 
-margin-right:  auto;
+margin-right:  25%;
+position:static;
+
+
 }
 
 agm-map {
@@ -22,3 +25,4 @@ agm-map {
     width: 700px;
     
 }
+

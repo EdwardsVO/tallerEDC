@@ -7,12 +7,18 @@ mat-card{
   width: 75%;
   margin-left: 13%;
   text-align: center;
-
-  
+  overflow-x:scroll;
+ 
+ 
 } 
+
 p {
 font-size: 12px;
 font-family: "Roboto", sans-serif;
+padding: auto;
+word-break: normal;
+
+
 }
 
 .agg-btn{
@@ -31,7 +37,7 @@ td {
     align-items: center;
     flex-direction: row;
     position: -webkit-sticky;
-position: sticky;
+    position: sticky;
 }
 
 
@@ -55,7 +61,8 @@ position: sticky;
     padding: 1rem;
   }
   img{
-      width: 8%;
+      width: 10%;
+      height: 10%;
       border-radius: 50%;
   }
 
@@ -63,4 +70,8 @@ position: sticky;
   button:hover{
       color: #2e3192;
       background-color: white;
+  }
+
+  mat-card-subtitle{
+    margin: 5%;
   }
