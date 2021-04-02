@@ -52,6 +52,7 @@ export class AppointmentsComponent implements OnInit {
           reparation: e.payload.doc.data().needsReparation,
           repaired: e.payload.doc.data().repaired,
           lastAppointment: e.payload.doc.data().lastAppointment,
+          photo: e.payload.doc.data().photo,
         }
       })
     })
@@ -119,7 +120,8 @@ export class AppointmentsComponent implements OnInit {
                 appointmentHour: e.payload.doc.data().appointmentHour,
                 ownerName: e.payload.doc.data().ownerName,
                 ownerEmail: e.payload.doc.data().ownerEmail,
-                alertManager: e.payload.doc.data().alertManager
+                alertManager: e.payload.doc.data().alertManager,
+                photo: e.payload.doc.data().photo,
               }
             })
           })
