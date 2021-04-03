@@ -4,6 +4,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { VehiclesCrudService } from '../../services/vehicles-crud.service';
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SafePropertyRead } from '@angular/compiler';
+import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 
 
 
@@ -25,17 +28,23 @@ export class AppointmentsComponent implements OnInit {
   userId: string;
   query = [];
   closeResult = '';
+  setAppointmentReason: FormGroup;
+  reason = ""
 
 
 
 
-  constructor(private _firestore: AngularFirestore, private _vehicleSvc: VehiclesCrudService, private _authSvc: AuthService, private modalService: NgbModal) { }
+  constructor(private _firestore: AngularFirestore, private _fb: FormBuilder,private _vehicleSvc: VehiclesCrudService, private _authSvc: AuthService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
 
     this.getCars();
 
     this.getAppointments();
+
+    this.setAppointmentReason = this._fb.group({
+      reason: ['', Validators.required]
+    })
 
   }
 
@@ -90,6 +99,7 @@ export class AppointmentsComponent implements OnInit {
       this._vehicleSvc.updateCarAppointmentHour(appointmentId, '');
       this._vehicleSvc.alertManager(appointmentId, false);
       this._vehicleSvc.appointmentConfirmed(appointmentId, false);
+      this._vehicleSvc.setAppointmentReason(appointmentId, '')
     }
 
     confirmAppointment(appointmentId) {
@@ -100,7 +110,7 @@ export class AppointmentsComponent implements OnInit {
 
     async newAppointment(carId, appointmentDate,carBrand, carModel, carPlate, carYear){
       this.confirmAppointment(carId);
-      await this._vehicleSvc.newAppointment(carId, appointmentDate, false, carBrand, carModel, carPlate, carYear, "", "", "", false, false, false, false, false, false, "", 0,0, "","","");
+      await this._vehicleSvc.newAppointment(carId, appointmentDate, false, carBrand, carModel, carPlate, carYear, "", "", "", false, false, false, false, false, false, "", 0,0, "","","", this.reason);
         // this._vehicleSvc.setLastAppointment(carId);
     }
 
@@ -142,7 +152,7 @@ export class AppointmentsComponent implements OnInit {
         }
 
         open(content) {
-          this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+          this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
             this.closeResult = `Closed with: ${result}`;
           }, (reason) => {
             this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -157,6 +167,12 @@ export class AppointmentsComponent implements OnInit {
           } else {
             return `with: ${reason}`;
           }
+        }
+
+        updateCarAppointmentReason(){
+            this.reason = this.setAppointmentReason.get('reason').value
+            this.setAppointmentReason.reset();
+            this.modalService.dismissAll();
         }
 }
 
