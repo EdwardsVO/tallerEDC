@@ -17,6 +17,7 @@ export class VehiclesCrudService {
   cars: Observable<Vehicle[]>
   vehicleDoc: AngularFirestoreDocument<Vehicle>
   carId: string;
+  appointmentID: string;
   carsCollection: AngularFirestoreCollection<Vehicle>;
   lastAppointment: string = ''
 
@@ -154,7 +155,7 @@ export class VehiclesCrudService {
     })
   }
 
-  closeAppointments(id: string) {
+  closeAppointments(id: string, aID: string, price) {
     this.firestore.collection('cars').doc(id).update({
       appointmentConfirmed: false,
       appointmentDate: '',
@@ -162,6 +163,11 @@ export class VehiclesCrudService {
       needsReparation: false,
       repaired: false,
       reason: ''
+    })
+
+    this.firestore.collection('appointments').doc(aID).update({
+      totalPriceService: price,
+      repaired: false
     })
   }
 
@@ -171,6 +177,7 @@ export class VehiclesCrudService {
         const {id} = await this.firestore.collection('appointments').add({
         carId: carId,
         appointmentDate: appointmentDate,
+        appointmentID: "",
         repaired: false,
         carBrand: carBrand,
         carModel: carModel,
@@ -195,6 +202,9 @@ export class VehiclesCrudService {
       })
       this.lastAppointment = id;
       this.setLastAppointment(carId, id);
+      this.firestore.collection('appointments').doc(this.lastAppointment).update({
+        appointmentID: this.lastAppointment 
+      })
     }
     catch(err) {
       console.log(err);

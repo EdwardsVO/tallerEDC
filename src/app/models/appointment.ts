@@ -1,5 +1,6 @@
 
 export interface Appointment {
+    carID?: string;
     appointmentId?: string,
     appointmentDate?: string,
     carBrand?: string,
@@ -17,7 +18,8 @@ export interface Appointment {
     mechName?: string,
     repairs?: number,
     totalPriceService?: number,
-    diagnostic?: string;
-    procedure?: string;
-    repuestos?: string;
+    diagnostic?: string,
+    procedure?: string,
+    repuestos?: string,
+    reason?: string,
 }

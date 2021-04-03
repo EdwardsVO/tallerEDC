@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { VehiclesCrudService } from '../../services/vehicles-crud.service';
 import { Appointment } from 'src/app/models/appointment'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
@@ -11,16 +12,20 @@ import { Appointment } from 'src/app/models/appointment'
 export class OrdersComponent implements OnInit {
 
   closeResult = '';
+  priceValue: FormGroup;
 
 
 
   cars = [];
   appointmentInfo: Appointment[];
+  totalPrice = ""
 
-  constructor( private modalService: NgbModal, private _vehicleSvc: VehiclesCrudService, private _firestore: AngularFirestore) { }
+  constructor( private modalService: NgbModal, private _vehicleSvc: VehiclesCrudService, private _firestore: AngularFirestore, private _form: FormBuilder) { }
 
   ngOnInit(): void {
-
+    this.priceValue = this._form.group({
+      totalPrice: ["", Validators.required]
+    })
     this.getConfirmedAppointments();
     this.getAppointmentInfo();
   }
@@ -57,6 +62,8 @@ export class OrdersComponent implements OnInit {
         return {
           appointmentId: e.payload.doc.id,
           appointmentDate: e.payload.doc.data().appointmentDate,
+          reason: e.payload.doc.data().reason,
+          carID: e.payload.doc.data().carId ,
           carBrand: e.payload.doc.data().carBrand,
           carModel: e.payload.doc.data().carModel,
           carPlate: e.payload.doc.data().carPlate,
@@ -82,15 +89,18 @@ export class OrdersComponent implements OnInit {
 
 
 
-  // CLOSE APPOINTMENT THAT WAS PREVIOUSLY MARKED AS REPAIRED BY THE MECHANIC
-
-  closeAppointment(carId) {
-    this._vehicleSvc.closeAppointments(carId);
-
+  closeOrder(carId, aID){
+    this.totalPrice = this.priceValue.get("totalPrice").value
+    this._vehicleSvc.closeAppointments(carId, aID, this.totalPrice);
+    this.priceValue.reset();
+    this.modalService.dismissAll();
+    // this.totalPrice = "";
   }
 
+
+
   open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

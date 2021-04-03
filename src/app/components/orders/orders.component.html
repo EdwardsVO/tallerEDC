@@ -1,57 +1,59 @@
 <h1>ÓRDENES DE REPARACIÓN</h1>
 <mat-card>
-    <div class="vehicle-container" *ngFor="let car of cars">
-        <img mat-card-sm-image src="{{car.img}}" alt="client's car1">
-        <mat-card-subtitle>CLIENTE
+  <div class="vehicle-container" *ngFor="let car of appointmentInfo">
+    <!-- <img mat-card-sm-image src="{{car.img}}" alt="client's car1"> -->
+    <!-- <mat-card-subtitle>CLIENTE
             <p>{{car.ownerName}}</p>
-        </mat-card-subtitle>
-        <mat-card-subtitle>MARCA
-            <p>{{car.brand}}</p>
-        </mat-card-subtitle>
-        <mat-card-subtitle>MODELO
-            <p>{{car.model}}</p>
-        </mat-card-subtitle>
-        <mat-card-subtitle>AÑO
-            <P>{{car.year}}</P>
-        </mat-card-subtitle>
-        <mat-card-subtitle>PLACA
-            <P>{{car.plate}}</P>
-        </mat-card-subtitle>
-
-        <mat-card-subtitle>LA
+        </mat-card-subtitle> -->
+    <mat-card-subtitle>MARCA
+      <p>{{car.carBrand}}</p>
+    </mat-card-subtitle>
+    <mat-card-subtitle>MODELO
+      <p>{{car.carModel}}</p>
+    </mat-card-subtitle>
+    <mat-card-subtitle>AÑO
+      <P>{{car.carYear}}</P>
+    </mat-card-subtitle>
+    <mat-card-subtitle>PLACA
+      <P>{{car.carPlate}}</P>
+    </mat-card-subtitle>
+    <!-- <mat-card-subtitle>LA
           <P>{{car.lastAppointment}}</P>
-      </mat-card-subtitle>
+      </mat-card-subtitle> -->
 
-        <button mat-raised-button (click) = "getLastAppointment(car.lastAppointment)">DETALLES</button>
+    <button mat-raised-button (click)="open(content)">CERRAR ORDEN</button>
 
-        <button mat-raised-button (click) = "closeAppointment(car.id)">CERRAR</button>
+    <!-- <button mat-raised-button (click) = "closeAppointment(car.id)">CERRAR</button> -->
 
-    </div>
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <mat-card-title><b> DETALLES DEL SERVICIO</b></mat-card-title>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <mat-card-subtitle><b>El carro:</b> {{car.carBrand}} </mat-card-subtitle>
+        <mat-card-subtitle><b> Ingresado en:</b> {{car.appointmentDate}} </mat-card-subtitle>
+        <mat-card-subtitle><b>Motivo de la cita: </b> {{car.reason}}</mat-card-subtitle>
+        <mat-card-subtitle><b>Reparado por:</b> {{car.mechName}} </mat-card-subtitle>
+        <mat-card-subtitle><b>Presento el siguiente diagnostico:</b> {{car.diagnostic}} </mat-card-subtitle>
+        <mat-card-subtitle><b>Necesito los siguientes repuestos: </b> {{car.repuestos}}</mat-card-subtitle>
+        <mat-card-subtitle><b>Se le realizo el siguiente procedimiento: </b> {{car.procedure}}</mat-card-subtitle>
+        <mat-divider></mat-divider>
+        <mat-card-subtitle><b>INGRESE EL MONTO TOTAL DEL SERVICIO:     </b> 
+          <form [formGroup] = "priceValue">
+          <mat-form-field>
+                <input formControlName="totalPrice" class="price "type ="text"matInput placeholder="$$$" >
+              </mat-form-field>
+            </form>
+          </mat-card-subtitle>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-lg btn-outline-primary" (click)="modal.close('Save click')" (click)=" closeOrder(car.carID, car.appointmentId)">CERRAR ORDEN</button>
+      </div>
+    </ng-template>
+
+  </div>
 
 </mat-card>
-
-<ng-template #content let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <form>
-        <div class="form-group">
-          <label for="dateOfBirth">Date of birth</label>
-          <div class="input-group">
-            <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-    </div>
-</ng-template>
-
