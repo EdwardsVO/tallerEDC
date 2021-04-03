@@ -262,6 +262,7 @@ export class VehiclesComponent implements OnInit {
         var car = doc.isEqual(doc);
         console.log(car);
         console.log('carro ya existe!')
+        this.toastr.error('Este serial ya se encuentra registrado!', 'ERROR')
 
       }}).catch((error) => {
         console.log("Error getting document:", error);
