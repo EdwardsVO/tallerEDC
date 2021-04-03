@@ -155,20 +155,34 @@ export class VehiclesCrudService {
     })
   }
 
-  closeAppointments(id: string, aID: string, price) {
-    this.firestore.collection('cars').doc(id).update({
-      appointmentConfirmed: false,
-      appointmentDate: '',
-      appointmentHour: '',
-      needsReparation: false,
-      repaired: false,
-      reason: ''
-    })
+  async closeAppointments(id: string, aID: string, price) {
+    var timesR=0;
 
-    this.firestore.collection('appointments').doc(aID).update({
-      totalPriceService: price,
-      repaired: false
-    })
+      this.firestore.collection('cars').doc(id).get().subscribe(x=>{
+      var timesRe = x.get('timesRepaired');
+      if(timesRe > 0){
+        timesR = timesRe;
+        timesR ++;
+      }
+      else{
+        timesR++;
+      }
+      
+          this.firestore.collection('cars').doc(id).update({
+            appointmentConfirmed: false,
+            appointmentDate: '',
+            appointmentHour: '',
+            needsReparation: false,
+            repaired: false,
+            reason: '',
+            timesRepaired: timesR
+          })
+      
+          this.firestore.collection('appointments').doc(aID).update({
+            totalPriceService: price,
+            repaired: false
+          })
+    });
   }
 
   async newAppointment(carId, appointmentDate,repaired, carBrand, carModel, carPlate, carYear, carColor, carKm, carGas,
