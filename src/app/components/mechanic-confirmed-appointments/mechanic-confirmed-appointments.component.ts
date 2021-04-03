@@ -95,6 +95,7 @@ export class MechanicConfirmedAppointmentsComponent implements OnInit {
   finishWork2(appointmentId) {
     this.firestore.collection('appointments').doc(appointmentId).update({
       repaired: true,
+      mechName: this.mechanicName
     })
   }
 

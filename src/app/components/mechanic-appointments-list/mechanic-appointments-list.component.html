@@ -3,7 +3,7 @@
 
         <div class='carros'>
             <div class="vehicle-container" *ngFor="let appointment of appointments" mat-card>
-                <mat-card class = "mat-card-class">
+                <mat-card class = "mat-card-class" *ngIf="appointment.needsReparation">
 
                     <mat-card-subtitle>MARCA
                         <p>{{appointment.brand}}</p>

@@ -36,6 +36,7 @@ export class MechanicAppointmentsListComponent implements OnInit {
           model: e.payload.doc.data().carModel,
           year: e.payload.doc.data().carYear,
           plate: e.payload.doc.data().carPlate,
+          needsReparation: e.payload.doc.data().needsReparation
         }
       })
     })
