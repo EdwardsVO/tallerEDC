@@ -82,6 +82,7 @@ export class OrdersComponent implements OnInit {
           diagnostic: e.payload.doc.data().diagnostic,
           procedure: e.payload.doc.data().procedure,
           repuestos: e.payload.doc.data().repuestos,
+          needsReparation: e.payload.doc.data().needsReparation
         }
       })
     })

@@ -6,6 +6,7 @@ import {ToastrService} from 'ngx-toastr';
 
 
 
+
 @Component({
   selector: 'app-mechanic-appointments-list',
   templateUrl: './mechanic-appointments-list.component.html',
@@ -16,18 +17,23 @@ export class MechanicAppointmentsListComponent implements OnInit {
   appointments = []
   mechanicName: string;
   mechanicId: string
+  todaysDate = ""
 
    
     constructor(private firestore: AngularFirestore, private _authSvc: AuthService, private _mechSvc: MechanicCrudService, private toastr: ToastrService ) { }
 
   ngOnInit(): void {
 
+    this.getTodaysDate()
+
     this.firestore.collection('users').doc(localStorage.getItem('user')).snapshotChanges().subscribe(res => {
       this.mechanicName = res.payload.get('name');
       this.mechanicId = res.payload.get('id');
     })
 
-    this.firestore.collection('appointments', ref => ref.where("mechName", "==", "")).snapshotChanges().subscribe(res => {
+    this.getTodaysDate()
+
+    this.firestore.collection('appointments', ref => ref.where("mechName", "==", "").where("appointmentDate", "==", this.todaysDate)).snapshotChanges().subscribe(res => {
       this.appointments = res.map((e: any) => {
         return {
           // Appointment document ID
@@ -36,6 +42,7 @@ export class MechanicAppointmentsListComponent implements OnInit {
           model: e.payload.doc.data().carModel,
           year: e.payload.doc.data().carYear,
           plate: e.payload.doc.data().carPlate,
+          needsReparation: e.payload.doc.data().needsReparation
         }
       })
     })
@@ -55,5 +62,9 @@ export class MechanicAppointmentsListComponent implements OnInit {
     console.log("aqui se abre el escaner y toma foto del QR del cliente.");
   }
 
+  getTodaysDate(){
+    let date = new Date().toDateString();
+    this.todaysDate = date
+  }
 
 }

@@ -180,13 +180,14 @@ export class VehiclesCrudService {
       
           this.firestore.collection('appointments').doc(aID).update({
             totalPriceService: price,
-            repaired: false
+            repaired: false,
+            needsReparation: false,
           })
     });
   }
 
   async newAppointment(carId, appointmentDate,repaired, carBrand, carModel, carPlate, carYear, carColor, carKm, carGas,
-    extraTire, keys, gato,  tools, stereo, scratches, mechName, repairs, diagnostic, procedures, repuestos, totalPriceService, reason): Promise<void> {
+    extraTire, keys, gato,  tools, stereo, scratches, mechName, repairs, diagnostic, procedures, repuestos, totalPriceService, reason, needsReparation): Promise<void> {
     try {
         const {id} = await this.firestore.collection('appointments').add({
         carId: carId,
@@ -212,7 +213,8 @@ export class VehiclesCrudService {
         procedures: procedures,
         repuestos: repuestos,
         totalPriceService: totalPriceService,
-        reason: reason
+        reason: reason,
+        needsReparation: needsReparation
       })
       this.lastAppointment = id;
       this.setLastAppointment(carId, id);
