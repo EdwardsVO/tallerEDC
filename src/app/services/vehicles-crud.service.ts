@@ -180,7 +180,8 @@ export class VehiclesCrudService {
       
           this.firestore.collection('appointments').doc(aID).update({
             totalPriceService: price,
-            repaired: false
+            repaired: false,
+            needsReparation: false,
           })
     });
   }
