@@ -1,15 +1,9 @@
-import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import firebase from 'firebase'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { Observable } from 'rxjs';
-import { User } from 'src/app/models/user';
-import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 import { CrudService } from 'src/app/services/crud.service';
-import { MatDialog } from '@angular/material/dialog';
-import { RegisterComponent } from '../register/register.component';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFirestore } from '@angular/fire/firestore';
 
