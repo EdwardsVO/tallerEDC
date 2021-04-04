@@ -64,7 +64,7 @@ export class ReportsPageComponent implements OnInit {
     })
   }
   async getMechs() {
-    await this._firestore.collection('users', ref => ref.where("role", "==", "mechanics")).snapshotChanges().subscribe(res => {
+    await this._firestore.collection('users', ref => ref.where("role", "==", "mechanic")).snapshotChanges().subscribe(res => {
       this.mechanics = res.map((e: any) => {
         return {
           id: e.payload.doc.data().id,
