@@ -1,14 +1,15 @@
 <div class="calendar">
     <h1>CALENDARIO</h1>
-    <mat-form-field appearance="fill">
-        <mat-label>Elige una Fecha</mat-label>
-        <input matInput [matDatepicker]="picker">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
 </div>
 
-<div *ngFor="let car of cars">
+<div class="search-space">
+    <form action="search">
+        <input type="Search" name = "filterCar"placeholder="Search..." [(ngModel)]="filterCar">
+        <button mat-raised-button>Search</button>
+    </form>
+</div>  
+
+<div *ngFor="let car of cars | filterCar: filterCar">
     <div class="vehicle-container"  *ngIf="car.appointmentConfirmed">
         <mat-card>
             <img mat-card-sm-image src="{{car.img}}" alt="client's car1">
