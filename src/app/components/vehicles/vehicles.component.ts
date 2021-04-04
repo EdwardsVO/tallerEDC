@@ -191,6 +191,7 @@ export class VehiclesComponent implements OnInit {
       },
       error => {
         console.log(error);
+        this.toastr.error('Vaya... Tuvimos un problema al guardar tu imagen.', 'Error')
       }
     );
   }

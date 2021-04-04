@@ -1,6 +1,12 @@
 <div class="user-space">
+    <div class="search-space">
+        <form action="search">
+            <input type="Search" name = "filterUser"placeholder="Search..." [(ngModel)]="filterUser">
+            <button mat-raised-button>Search</button>
+        </form>
+    </div>    
     <div class="user">
-        <div class="user-container" *ngFor="let user of users">
+        <div class="user-container" *ngFor="let user of users | filterAll: filterUser">
             <mat-card >
                 <img mat-card-sm-image src="assets/img/placeholder.jpg" alt="client's car1">
 

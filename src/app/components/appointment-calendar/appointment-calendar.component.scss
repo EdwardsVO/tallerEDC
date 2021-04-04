@@ -1,51 +1,72 @@
-h1{
-    color: #2e3192;
-    font-family: "Bree Serif", serif;
+h1 {
+  color: #2e3192;
+  font-family: "Bree Serif", serif;
 }
 
-mat-form-field{
-    color: #2e3192;
-    width: 80%;   
+mat-form-field {
+  color: #2e3192;
+  width: 80%;
 }
 
-.calendar{
-    margin-top: 3rem;
-    display: inline-block;
-    margin-left: 13%;
-    
+.calendar {
+  margin-top: 3rem;
+  display: inline-block;
+  margin-left: 13%;
 }
 
 mat-card {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    background-color: rgb(243, 243, 243);
-    margin-bottom: 1.5%;
-    width: 75%;
-    margin-left: 13%;
-    text-align: center;
-    overflow-x: scroll;
-    
-    
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: rgb(243, 243, 243);
+  margin-bottom: 1.5%;
+  width: 75%;
+  margin-left: 13%;
+  text-align: center;
+  overflow-x: scroll;
 }
-
-
 
 p {
   font-size: 12px;
   font-family: "Roboto", sans-serif;
 }
 
-mat-card-subtitle{
-    vertical-align: middle;
-    padding-left: 5%;
-    padding-right: 5%;
-
+mat-card-subtitle {
+  vertical-align: middle;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
-.material-icons{
-    color: green;
-    padding-left: 3%;
-    padding-right: 2%;
+.material-icons {
+  color: green;
+  padding-left: 3%;
+  padding-right: 2%;
+}
 
+.search-space {
+  text-align: right;
+  margin-right: 12%;
+  margin-bottom: 2%;
+  form {
+    padding-top: 20px;
+  }
+
+  input {
+    width: 30%;
+    align-items: center;
+    height: 50px;
+    margin-top: 40px;
+    border: 1px solid rgb(151, 151, 151);
+  }
+  button {
+    height: 50px;
+    color: white;
+    background-color: #2e3192;
+    margin-bottom: 25px;
+    border-radius: 0;
+  }
+  button:hover {
+    color: #2e3192;
+    background-color: white;
+  }
 }

@@ -93,5 +93,11 @@ export class CrudService {
     }
   }
 
+  setProfilePic(userId, url) {
+    this._afs.collection('users').doc(userId).update({
+      photo: url
+    })
+  }
+
 } 
 
