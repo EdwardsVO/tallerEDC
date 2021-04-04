@@ -52,6 +52,10 @@ export class MechanicCrudService {
         appointmentHour: '',
         // timesRepaired: +1,
       })
+      
+      this._firestore.collection('users').doc(localStorage.getItem("user")).update({
+        carsRepaired: + 1
+      })
     } catch(err) {
       console.log(err);
     }

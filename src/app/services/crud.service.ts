@@ -44,8 +44,8 @@ export class CrudService {
         phone: phone,
         role: role,
       })
-      this.updateCarsRepaired(id, 0);
-      this.updateMoneySpent(id, 0);
+      this.updateCarsRepaired(id,0);
+      this.updateMoneySpent(id,0);
     }catch(err){
       console.log(err);
     }
@@ -57,9 +57,9 @@ export class CrudService {
     })
   }
 
-  async updateMoneySpent(id, moneyS){
+  async updateMoneySpent(id, cR){
     await this.db.collection('users').doc(id).update({
-      moneySpent: moneyS
+      carsRepaired: cR
     })
   }
 
