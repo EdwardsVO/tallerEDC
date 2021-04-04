@@ -39,7 +39,7 @@ export class UsersComponent implements OnInit {
 
 }
 
-filterUser = '';
+filterUser: string;
 
 showSucces(message,title){
   this.toastr.success('message','LISTO');

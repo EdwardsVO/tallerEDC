@@ -8,7 +8,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class AppointmentCalendarComponent implements OnInit {
   cars = [];
-  filterCar = '';
+  filterCar: string;
 
 
   constructor(private _firestore: AngularFirestore) { }

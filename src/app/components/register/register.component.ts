@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 import {LoginComponent} from 'src/app/components/login/login.component'
 import { AuthService } from 'src/app/services/auth.service';
 import { CrudService } from "src/app/services/crud.service";
@@ -22,7 +23,7 @@ export class RegisterComponent implements OnInit {
 
   
 
-  constructor(private _fb: FormBuilder ,private _authService: AuthService, private _db: CrudService, private _firestore: AngularFirestore, private _router: Router) { }
+  constructor(private _fb: FormBuilder ,private _authService: AuthService, private _db: CrudService, private _firestore: AngularFirestore, private _router: Router, private _toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.createRegistrationForm();
@@ -38,11 +39,7 @@ export class RegisterComponent implements OnInit {
     })
   }
 
-
-
   async handleRegistration(): Promise<void> {
-    console.log('es aaqui')
-    
     try{
       await this._authService.registerNewUser(this.authForm.get('email').value, this.authForm.get('password').value)
       this._authService.getCurrentUser().subscribe( res => {
@@ -54,14 +51,9 @@ export class RegisterComponent implements OnInit {
           this.authForm.get('phone').value,
           this.role,
           )
-          
-
-        
     })
-    
     }catch(err) {
       console.log(err);
-      console.log(this.authForm.get('email'));
     }
   }
 }

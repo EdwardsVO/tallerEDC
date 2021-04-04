@@ -6,7 +6,7 @@
         </form>
     </div>    
     <div class="user">
-        <div class="user-container" *ngFor="let user of users | filter: filterUser">
+        <div class="user-container" *ngFor="let user of users | filterAll: filterUser">
             <mat-card >
                 <img mat-card-sm-image src="assets/img/placeholder.jpg" alt="client's car1">
 
