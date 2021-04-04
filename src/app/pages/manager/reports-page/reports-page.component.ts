@@ -20,7 +20,10 @@ export class ReportsPageComponent implements OnInit {
   constructor(private _firestore: AngularFirestore) { }
 
   ngOnInit(): void {
-    
+    this.getAdmins();
+    this.getClients();
+    this.getManagers();
+    this.getMechs();
   }
 
   async getClients() {
@@ -74,10 +77,5 @@ export class ReportsPageComponent implements OnInit {
     })
   }
 
-  getTotals(){
-    this.totalAdmins = this.admins.length;
-    this.totalClients = this.clients.length;
-    this.totalMan = this.managers.length;
-    this.totalMec = this.mechanics.length;
-  }
+
 }
