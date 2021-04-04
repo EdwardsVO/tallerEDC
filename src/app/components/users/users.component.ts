@@ -32,11 +32,14 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
 
+
     this._db.getUsers().subscribe(users => {
       this.users = users;
     });
 
 }
+
+filterUser = '';
 
 showSucces(message,title){
   this.toastr.success('message','LISTO');

@@ -1,4 +1,4 @@
-mat-card{
+mat-card {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
@@ -7,71 +7,90 @@ mat-card{
   width: 75%;
   margin-left: 13%;
   text-align: center;
-  overflow-x:scroll;
- 
- 
-} 
+  overflow-x: scroll;
+}
 
 p {
-font-size: 12px;
-font-family: "Roboto", sans-serif;
-padding: auto;
-word-break: normal;
-
-
+  font-size: 12px;
+  font-family: "Roboto", sans-serif;
+  padding: auto;
+  word-break: normal;
 }
 
-.agg-btn{
-    margin-top: 3%;
-    float: right;
-    
+.agg-btn {
+  margin-top: 3%;
+  float: right;
 }
 
-.user{
-    background-color: white;
-    
+.user {
+  background-color: white;
 }
 
 td {
-    padding-right: 9%;
-    align-items: center;
-    flex-direction: row;
-    position: -webkit-sticky;
-    position: sticky;
+  padding-right: 9%;
+  align-items: center;
+  flex-direction: row;
+  position: -webkit-sticky;
+  position: sticky;
 }
 
+.container mat-card-title {
+  color: #2e3192;
+}
 
-  
-  .container mat-card-title {
+.user-container p {
+  font-size: 12px;
+}
+
+.button-container {
+  text-align: right;
+  margin-top: 1rem;
+}
+
+.appointment-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+img {
+  width: 10%;
+  height: 10%;
+  border-radius: 50%;
+}
+
+button:hover {
+  color: #2e3192;
+  background-color: white;
+}
+
+mat-card-subtitle {
+  margin: 5%;
+}
+
+.search-space {
+  text-align: right;
+  margin-right: 12%;
+  margin-bottom: 2%;
+  form {
+    padding-top: 20px;
+  }
+
+  input {
+    width: 30%;
+    align-items: center;
+    height: 50px;
+    margin-top: 40px;
+    border: 1px solid rgb(151, 151, 151);
+  }
+  button {
+    height: 50px;
+    color: white;
+    background-color: #2e3192;
+    margin-bottom: 25px;
+    border-radius: 0;
+  }
+  button:hover {
     color: #2e3192;
+    background-color: white;
   }
-  
-  .user-container p {
-    font-size: 12px;
-  }
-  
-  .button-container {
-    text-align: right;
-    margin-top: 1rem;
-  }
-  
-  .appointment-container {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-  }
-  img{
-      width: 10%;
-      height: 10%;
-      border-radius: 50%;
-  }
-
-  
-  button:hover{
-      color: #2e3192;
-      background-color: white;
-  }
-
-  mat-card-subtitle{
-    margin: 5%;
-  }
+}
