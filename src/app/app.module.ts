@@ -87,6 +87,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule} from '@angular/flex-layout';
 import { FilterPipe } from './pipes/filter.pipe';
 import { FilterCarPipe } from './pipes/filter-car.pipe';
+import { NotImageDirective } from './directives/not-image.directive';
 
 
 
@@ -144,6 +145,7 @@ import { FilterCarPipe } from './pipes/filter-car.pipe';
     MechanicConfirmedAppointmentsComponent,
     FilterPipe,
     FilterCarPipe,
+    NotImageDirective,
     
   ],
 
