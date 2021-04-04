@@ -7,6 +7,7 @@
   width: 75%;
   margin-left: 13%;
   text-align: center;
+  overflow-x: scroll;
 }
 
 p {
@@ -80,3 +81,10 @@ input#brandChosen {
 .hidden {
   display: none;
 }
+
+mat-card-subtitle{
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
+
