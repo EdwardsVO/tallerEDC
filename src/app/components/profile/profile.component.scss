@@ -34,10 +34,15 @@ td {
 
   display: inline-block;
   align-items: center;
-
 }
 
-.age, .gender,.password,.password2,.tlf, .user-info, .email {
+.age,
+.gender,
+.password,
+.password2,
+.tlf,
+.user-info,
+.email {
   width: 200%;
 }
 
@@ -172,7 +177,13 @@ form {
   color: white;
   background-color: #2e3192;
 }
-.modal-title{
+.modal-title {
   color: #2e3192;
   font-family: "Bree Serif", serif;
+}
+
+.profilePic {
+  width: 220px;
+  height: 220px;
+  margin-right: 7rem;
 }
