@@ -85,6 +85,9 @@ import { MechanicConfirmedAppointmentsComponent } from './components/mechanic-co
 import {ToastrModule, ToastrService} from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule} from '@angular/flex-layout';
+import { FilterPipe } from './pipes/filter.pipe';
+import { FilterCarPipe } from './pipes/filter-car.pipe';
+import { NotImageDirective } from './directives/not-image.directive';
 
 
 
@@ -140,6 +143,9 @@ import { FlexLayoutModule} from '@angular/flex-layout';
     IconsMeaningComponent,
     MechanicAppointmentsListComponent,
     MechanicConfirmedAppointmentsComponent,
+    FilterPipe,
+    FilterCarPipe,
+    NotImageDirective,
     
   ],
 
