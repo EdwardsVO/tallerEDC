@@ -5,15 +5,9 @@
         <mat-card class="foto">
 
             <mat-card-content>
-
-                <img src="assets/img/placeholder.jpg" alt="Avatar">
-                <!-- <div *ngIf="downloadURL | async; let url"> 
-                    <!-- <div *ngFor="let downloadURL of downloadURLs">  -->
-                    <!-- <img mat-card-sm-image [src]="url" alt="Image from AngularFireStorage"> -->
-                    <!-- <img mat-card-sm-image src="{{car.photo}}" alt="client's car1"> -->
-                <!-- </div>  -->
-
-                <button mat-raised-button (click)="open(content)"color="primary" class="pic-btn">Subir Imagen <mat-icon>photo_camera</mat-icon>
+                <img src="{{userPhoto}}" alt="Profile Picture" class = "profilePic">
+                <button mat-raised-button (click)="open(content)"color="primary" class="pic-btn">Subir Imagen
+                    <mat-icon>photo_camera</mat-icon>
                     </button>
 
             </mat-card-content>
@@ -105,7 +99,7 @@
 
 
                 </mat-card-content>
-                    <button mat-raised-button (click)="updateInfo()" class="edit-btn"> Edit<mat-icon>edit</mat-icon> </button>
+                    <button mat-raised-button (click)="updateInfo()" class="edit-btn"> Editar<mat-icon>edit</mat-icon> </button>
                 </mat-card-content>
                 </mat-card>
             </div>
@@ -123,10 +117,6 @@
             <label for="dateOfBirth">Selecciona Imagen</label>
             <div class="input-group">
             <input type="file" (change)="upload($event)" accept=".png,.jpg">
-            <!-- <progress max="100" [value]="(uploadProgress | async)"></progress>
-            <div class="result" *ngIf="downloadURL | async; let uploadSrc">
-                <a [href]="uploadSrc">You just uploaded this file!</a>
-              </div> -->
             </div>
         </div>
         </form>
@@ -134,4 +124,8 @@
     <div class="modal-footer">
         <button (click)="uploadImage()" mat-raised-button>SUBIR</button>
     </div>
+    <progress max="100" [value]="(uploadProgress | async)"></progress>
+                                    <div class="result" *ngIf="downloadURL | async; let uploadSrc">
+                                        <a [href]="uploadSrc" *ngIf="!actualizar">La foto se ha subido exitosamente!</a>
+                                    </div>
 </ng-template>     

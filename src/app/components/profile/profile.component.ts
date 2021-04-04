@@ -8,6 +8,8 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import { map, finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs/internal/Observable';
+import {ToastrService} from 'ngx-toastr';
+
 
 
 @Component({
@@ -23,18 +25,24 @@ export class ProfileComponent implements OnInit {
   userPhone: string;
   userGender: string;
   userAge: number;
+  userPhoto: string = "";
+
   editInfo: boolean = false;
   dataUploaded: boolean = false;
   userToEdit: User;
   authForm: FormGroup;
+  selectedImg;
+  path: string;
   ref: AngularFireStorageReference;
   task: AngularFireUploadTask;
   uploadProgress: Observable<number>;
-  downloadURL: string;
-  selectedImg;
-  path: string;
+  downloadURL;
+  uploadState: Observable<string>;
+  percentage: number;
+  percentage2: boolean;
+  url;
 
-  constructor(private _db: CrudService, private _auth: AuthService, private _afs: AngularFirestore, private _fb: FormBuilder, private modalService: NgbModal, private af:AngularFireStorage) { }
+  constructor(private _db: CrudService ,private _auth: AuthService, private _afs: AngularFirestore, private _fb: FormBuilder, private modalService: NgbModal, private af:AngularFireStorage, private toastr: ToastrService,) { }
 
 
   
@@ -66,16 +74,6 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  uploadImage(){
-    const randomId = Math.random().toString(36).substring(2);
-    this.path = '/images/' + randomId;
-    //this.ref = this.af.ref(this.path);
-    this.af.upload(this.path, this.selectedImg)
-    console.log(this.af.upload(this.path, this.selectedImg))
-    //console.log('foto subida')
-
-  }
-
 
 
   updateInfo(): boolean {
@@ -89,6 +87,7 @@ export class ProfileComponent implements OnInit {
     this.userPhone = x.payload.get('phone')
     this.userGender = x.payload.get('gender')
     this.userAge = x.payload.get('age')
+    this.userPhoto = x.payload.get('photo')
   })
   this.dataUploaded = true;
   }
@@ -97,8 +96,8 @@ export class ProfileComponent implements OnInit {
   async getCurrentUser(): Promise<void>{
 
     await this._auth.getCurrentUser().subscribe(user => {
-       this.userID = user.uid;
-       this.getLoggedUser();
+      this.userID = user.uid;
+      this.getLoggedUser();
     })
   }
 
@@ -131,6 +130,7 @@ export class ProfileComponent implements OnInit {
         this.closeResult = `Closed with: ${result}`;
       }, (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        
       });
     }
   
@@ -142,6 +142,55 @@ export class ProfileComponent implements OnInit {
       } else {
         return `with: ${reason}`;
       }
+    }
+
+    uploadImage(): void {
+
+      this.pushPhotoToStorage().subscribe(
+        percentage => {
+          this.percentage = Math.round(percentage);
+          console.log(this.percentage)
+          if(this.percentage == 100) {
+            this.percentage2 = true
+          }
+        },
+        error => {
+          console.log(error);
+          this.toastr.error('Vaya... Tuvimos un problema al guardar tu imagen.', 'Error')
+        }
+      );
+    }
+
+    pushPhotoToStorage(){
+      const randomId = Math.random().toString(36).substring(2);
+      this.path = '/images/' + randomId;
+      //this.ref = this.af.ref(this.path);
+      const uploadTask = this.af.upload(this.path, this.selectedImg)
+      
+  
+      uploadTask.snapshotChanges()
+      .pipe(
+        finalize(() => {
+          this.downloadURL = this.af.ref(this.path).getDownloadURL();
+          this.downloadURL.subscribe(url => {
+            if (url) {
+              this.url = url;
+              this.setProfilePic(this.url)
+              this.toastr.success('Imagen guardada con exito!', 'Listo')
+            }
+          });
+        })
+      )
+      .subscribe(url => {
+        if (url) {
+          
+        }
+      });
+      return uploadTask.percentageChanges();
+    }
+
+    setProfilePic(url) {
+      this._db.setProfilePic(this.userID, url)
     }
 
 }
