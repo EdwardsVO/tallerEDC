@@ -86,6 +86,7 @@ export class VehiclesComponent implements OnInit {
     this.disabled = false;
     this.timesRepaired = 0;
     this.percentage2 = false;
+    this.percentage = 0;
 
 
 
@@ -194,6 +195,7 @@ export class VehiclesComponent implements OnInit {
         this.toastr.error('Vaya... Tuvimos un problema al guardar tu imagen.', 'Error')
       }
     );
+    
   }
 
 
@@ -232,6 +234,7 @@ export class VehiclesComponent implements OnInit {
           this.toastr.success('¡Vehículo agregado exitosamente!','LISTO');
 
           this.modalService.dismissAll();
+          this.percentage = 0;
           })
         //})
       })
@@ -260,10 +263,35 @@ export class VehiclesComponent implements OnInit {
         this.addNewCar()
 
       } else {
+        this.checkDisabledCar();
+        // var car = doc.isEqual(doc);
+        // console.log(car);
+        // console.log('carro ya existe!')
+        // this.toastr.error('Este serial ya se encuentra registrado!', 'ERROR')
+
+      }}).catch((error) => {
+        console.log("Error getting document:", error);
+      });
+
+  }
+
+  checkDisabledCar(){
+    var db = firebase.firestore()
+
+    db.collection("cars").where("serial", "==", this.registrarVehiculoForm.get('serial').value).where("owner", "==", "")
+    .withConverter(this.carConverter)
+    .get().then((doc) => {
+      if (doc.empty){
         var car = doc.isEqual(doc);
         console.log(car);
         console.log('carro ya existe!')
         this.toastr.error('Este serial ya se encuentra registrado!', 'ERROR')
+        
+
+      } else {
+        console.log("carro deshabilitado!");
+        this.addNewCar()
+        
 
       }}).catch((error) => {
         console.log("Error getting document:", error);
