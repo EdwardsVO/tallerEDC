@@ -30,7 +30,9 @@ export class AppointmentsComponent implements OnInit {
   query = [];
   closeResult = '';
   setAppointmentReason: FormGroup;
-  reason = ""
+  reason = "";
+  ownerEmail = "";
+  ownerName = "";
 
   title = 'Appointment';
   elementType = 'url';
@@ -123,7 +125,7 @@ export class AppointmentsComponent implements OnInit {
 
     async newAppointment(carId, appointmentDate,carBrand, carModel, carPlate, carYear){
       this.confirmAppointment(carId);
-      await this._vehicleSvc.newAppointment(carId, appointmentDate, false, carBrand, carModel, carPlate, carYear, "", "", "", false, false, false, false, false, false, "", 0,0, "","","", this.reason, true);
+      await this._vehicleSvc.newAppointment(carId, appointmentDate, false, carBrand, carModel, carPlate, carYear, "", "", "", false, false, false, false, false, false, "", 0,0, "","","", this.reason, true, this.ownerEmail, this.ownerName, this.userId);
     }
 
 // FUNCTION TO GET ALL APPOINTMENT FROM THE DATABASE
@@ -131,8 +133,11 @@ export class AppointmentsComponent implements OnInit {
     getAppointments() {
 
       this.userId = localStorage.getItem('user');
+      
       this._firestore.collection('cars', ref => ref.where("owner", "==", this.userId)).snapshotChanges().subscribe(res => {
             this.appointments = res.map((e: any) => {
+              this.ownerEmail = e.payload.doc.data().ownerEmail
+              this.ownerName = e.payload.doc.data().ownerName
               return {
                 id: e.payload.doc.id,
                 serial: e.payload.doc.data().serial,
