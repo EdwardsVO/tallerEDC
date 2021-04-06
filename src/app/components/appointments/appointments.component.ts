@@ -1,3 +1,4 @@
+import { CodigoQRComponent } from './../codigo-qr/codigo-qr.component';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -31,6 +32,12 @@ export class AppointmentsComponent implements OnInit {
   setAppointmentReason: FormGroup;
   reason = ""
 
+  title = 'Appointment';
+  elementType = 'url';
+  value = "https://www.twitter.com/"
+  gotData = false;
+
+  appointmentQR = "";
 
 
 
@@ -54,6 +61,7 @@ export class AppointmentsComponent implements OnInit {
 
     this._firestore.collection('cars', ref => ref.where("owner", "==", localStorage.getItem('user'))).snapshotChanges().subscribe(res => {
       this.cars = res.map((e: any) => {
+        this.appointmentQR = e.payload.doc.data().lastAppointment;
         return {
           id: e.payload.doc.id,
           appointmentDate: e.payload.doc.data().appointmentDate,
@@ -69,6 +77,12 @@ export class AppointmentsComponent implements OnInit {
         }
       })
     })
+  }
+
+  getQRCode(){
+    this.value += this.appointmentQR;
+    console.log(this.value);
+    return this.value
   }
 
   // FUNCTION TO MAKE AN APPOINTMENT. SETS "needsReparation" ATTRIBUTE TO TRUE IN THE DATABASE
@@ -105,13 +119,11 @@ export class AppointmentsComponent implements OnInit {
     confirmAppointment(appointmentId) {
       this._vehicleSvc.appointmentConfirmed(appointmentId, true);
       // this._vehicleSvc.setLastAppointment(appointmentId);
-
     }
 
     async newAppointment(carId, appointmentDate,carBrand, carModel, carPlate, carYear){
       this.confirmAppointment(carId);
       await this._vehicleSvc.newAppointment(carId, appointmentDate, false, carBrand, carModel, carPlate, carYear, "", "", "", false, false, false, false, false, false, "", 0,0, "","","", this.reason, true);
-        // this._vehicleSvc.setLastAppointment(carId);
     }
 
 // FUNCTION TO GET ALL APPOINTMENT FROM THE DATABASE
@@ -158,7 +170,7 @@ export class AppointmentsComponent implements OnInit {
             this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
           });
         }
-      
+
         private getDismissReason(reason: any): string {
           if (reason === ModalDismissReasons.ESC) {
             return 'by pressing ESC';

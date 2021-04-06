@@ -16,6 +16,10 @@ import { AgmCoreModule } from '@agm/core';
 // Bootstrap
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+// QR Code
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -88,6 +92,7 @@ import { FlexLayoutModule} from '@angular/flex-layout';
 import { FilterPipe } from './pipes/filter.pipe';
 import { FilterCarPipe } from './pipes/filter-car.pipe';
 import { NotImageDirective } from './directives/not-image.directive';
+import { CodigoQRComponent } from './components/codigo-qr/codigo-qr.component';
 
 
 
@@ -146,7 +151,8 @@ import { NotImageDirective } from './directives/not-image.directive';
     FilterPipe,
     FilterCarPipe,
     NotImageDirective,
-    
+    CodigoQRComponent,
+
   ],
 
   imports: [
@@ -179,7 +185,8 @@ import { NotImageDirective } from './directives/not-image.directive';
     }), ToastrModule.forRoot(),
     HttpClientModule,
     AngularFireDatabaseModule,
-    
+    NgxQRCodeModule
+
   ],
   providers: [AngularFirestore, ContactComponent],
   bootstrap: [AppComponent],
