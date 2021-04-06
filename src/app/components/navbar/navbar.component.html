@@ -6,6 +6,7 @@
 
     <app-client-navbar *ngIf = "clientNav" fxHide.xs></app-client-navbar>
     <app-admin-navbar *ngIf = "adminNav" class="adm" fxHide.xs></app-admin-navbar>
+    <app-mech-navbar *ngIf = "mechNav" class="mech" fxHide.xs></app-mech-navbar>
     <app-manager-navbar *ngIf = "managerNav" class="man" fxHide.xs></app-manager-navbar>
     <a href="/home" class="loging-b" mat-raised-button color="primary" (click) = "logOut()" fxHide.xs>Salir
         <mat-icon aria-hidden="false" aria-label="Example home icon" >logout</mat-icon>
