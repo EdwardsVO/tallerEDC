@@ -13,7 +13,6 @@ export const environment = {
     appId: "1:829885697499:web:d650cc672a12dd8ec4ebfe",
     measurementId: "G-HLZZK446TP"
   },
-  defaultImgURL: 'https://firebasestorage.googleapis.com/v0/b/talleredc-8704c.appspot.com/o/images%2Fplaceholder.jpg?alt=media&token=68871d28-fd48-4a95-a8c7-8bf32680dc95',
 };
 
 /*
