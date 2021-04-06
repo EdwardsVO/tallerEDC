@@ -22,4 +22,7 @@ export interface Appointment {
     procedure?: string,
     repuestos?: string,
     reason?: string,
+    ownerEmail?: string,
+    ownerName?: string,
+    owner?: string
 }

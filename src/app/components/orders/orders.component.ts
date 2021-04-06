@@ -5,6 +5,11 @@ import { VehiclesCrudService } from '../../services/vehicles-crud.service';
 import { Appointment } from 'src/app/models/appointment'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CrudService } from 'src/app/services/crud.service';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/services/auth.service';
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
+import { map } from 'rxjs/operators';
+
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
@@ -22,21 +27,32 @@ export class OrdersComponent implements OnInit {
   totalPrice = ""
   ownerId = ""
 
-  constructor( private modalService: NgbModal, private _vehicleSvc: VehiclesCrudService, private _firestore: AngularFirestore, private _form: FormBuilder, private _crudSvc: CrudService) { }
+  constructor( private modalService: NgbModal, private _vehicleSvc: VehiclesCrudService, private _firestore: AngularFirestore, private _form: FormBuilder, private toastrr: ToastrService, private _authService: AuthService, private _crudSvc: CrudService) { }
+  toastr: any;
+  userInfo = [];
+  ownerEmail = "";
+  ownerName = "";
+  carId = "";
+  userId = "";
+
 
   ngOnInit(): void {
     this.priceValue = this._form.group({
-      totalPrice: ["", Validators.required]
+      totalPriceService: ["", Validators.required]
     })
     this.getConfirmedAppointments();
     this.getAppointmentInfo();
+    
   }
+
+  
 
   // GET ALL THE CARS WHICH APPOINTMENTS ARE DONE
 
   getConfirmedAppointments() {
     this._firestore.collection('cars', ref => ref.where("repaired", "==", true)).snapshotChanges().subscribe(res => {
       this.cars = res.map((e: any) => {
+        
         return {
           id: e.payload.doc.id,
           ownerName: e.payload.doc.data().ownerName,
@@ -53,15 +69,22 @@ export class OrdersComponent implements OnInit {
           lastAppointment: e.payload.doc.data().lastAppointment,
           owner: e.payload.doc.data().owner
         }
+        
       })
     })
   }
+
+  
+
+  
 
   // GET ALL THE INFORMATION ABOUT THE APPOINTMENTS AND REPARATIONS.
 
   getAppointmentInfo(){
     this._firestore.collection('appointments', ref => ref.where("repaired", "==", true)).snapshotChanges().subscribe(res => {
       this.appointmentInfo = res.map((e: any) => {
+        // this.carId = e.payload.doc.data().carId;
+        // console.log(this.ownerEmail)
         return {
           appointmentId: e.payload.doc.id,
           appointmentDate: e.payload.doc.data().appointmentDate,
@@ -87,22 +110,41 @@ export class OrdersComponent implements OnInit {
           repuestos: e.payload.doc.data().repuestos,
           needsReparation: e.payload.doc.data().needsReparation,
           ownerName: e.payload.doc.data().ownerName,
-          owner: e.payload.doc.data().owner
+          owner: e.payload.doc.data().owner,
+          ownerEmail: e.payload.doc.data().ownerEmail,
         }
       })
     })
   }
 
+  
+
 
 
   closeOrder(carId, aID, owner){
     console.log(owner);
-    this.totalPrice = this.priceValue.get("totalPrice").value
+    // this.totalPrice2 = this.priceValue.get("totalPrice").value
+  
+    this.totalPrice = this.priceValue.get("totalPriceService").value
+
     this._vehicleSvc.closeAppointments(carId, aID, this.totalPrice);
     this._crudSvc.totalMoneySpent(owner, this.totalPrice);
     this.priceValue.reset();
     this.modalService.dismissAll();
   }
+
+  public sendEmail(e: Event) {
+    e.preventDefault();
+    emailjs.sendForm('service_nq5o7n4', 'template_q8to63n', e.target as HTMLFormElement,  'user_mS3TbPNqwHVFgfafqXvBr')
+      .then((result: EmailJSResponseStatus) => {
+        this.toastrr.success('¡Factura enviado!', "LISTO")
+        console.log(result.text);
+      }, (error) => {
+        console.log(error.text);
+      });
+  }
+
+  
 
 
 
