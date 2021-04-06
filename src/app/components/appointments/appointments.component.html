@@ -1,6 +1,15 @@
 <div class="container">
   <h1>MIS VEHÍCULOS</h1>
 
+  <div *ngIf="value != ''">
+    <ngx-qrcode
+      [elementType] = "elementType"
+      [value] = ""
+      cssClass = "aClass"
+      errorCorrectionLevel = "L"
+    ></ngx-qrcode>
+  </div>
+
   <div *ngFor="let car of cars" class="car-container">
     <mat-card>
       <img mat-card-sm-image src="{{ car.photo }}" alt="client's car1" />
@@ -33,6 +42,8 @@
       <button
         mat-raised-button
         class="sol-btn"
+        color="primary"
+
         (click)="open(content)"
         [disabled]="car.reparation"
       >
@@ -114,7 +125,7 @@
                 alt="client's car1"
               />
 
-            
+
               <mat-input>
                 <mat-card-subtitle>MODELO</mat-card-subtitle>
                 <input
@@ -181,6 +192,55 @@
                   <mat-icon>delete</mat-icon>
                 </button>
               </div>
+
+              <button
+                type="submit"
+                mat-raised-button
+                class="green"
+                [disabled]="!appointment.appointmentDate"
+                (click)="
+                  newAppointment(
+                    appointment.id,
+                    appointment.appointmentDate,
+                    appointment.brand,
+                    appointment.model,
+                    appointment.plate,
+                    appointment.year
+                  )
+                "
+                *ngIf="!appointment.appointmentConfirmed"
+              >
+                <span class="material-icons"> done </span>
+
+              </button>
+
+              <div>
+                <button
+                mat-raised-button
+                (click)="getQRCode()"
+              >
+                <span color="warn" class="material-icons"> QR </span>
+              </button>
+              </div>
+
+              <button
+                mat-raised-button
+                class="reject"
+                [disabled]="!appointment.appointmentDate"
+                *ngIf="!appointment.appointmentConfirmed"
+                (click)="rejectAppointment(appointment.id)"
+              >
+                <span color="warn" class="material-icons"> clear </span>
+              </button>
+
+              <button
+                class="trash"
+                mat-raised-button
+                (click)="deleteAppointment(appointment.id)"
+                *ngIf="!appointment.appointmentConfirmed"
+              >
+                <mat-icon color="primary">delete</mat-icon>
+              </button>
             </mat-card>
           </form>
           <div></div>
