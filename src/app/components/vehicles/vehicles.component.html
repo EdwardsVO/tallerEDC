@@ -122,9 +122,18 @@
                                 <input type="file" (change)="upload($event)" accept=".png,.jpg">
                                 <button (click)="uploadImage()"> Upload </button>
                                 <br>
-                                <progress max="100" [value]="(uploadProgress | async)"></progress>
-                                    <div class="result" *ngIf="downloadURL | async; let uploadSrc">
-                                        <a [href]="uploadSrc" *ngIf="!actualizar">La foto se ha subido exitosamente!</a>
+                                
+                                <div *ngIf="selectedImg" class="progress mt-2">
+                                    <div
+                                        class="progress-bar progress-bar-info"
+                                        role="progressbar"
+                                        attr.aria-valuenow="{{ percentage }}"
+                                        aria-valuemin="0"
+                                        aria-valuemax="100"
+                                        [ngStyle]="{ width: percentage + '%' }"
+                                    >
+                                        {{ percentage }}%
+                                    </div>
                                     </div>
 
 
@@ -133,7 +142,7 @@
 
 
                                 <button type="button" class="btn btn-outline-dark" (click)="checkCar()"
-                                    *ngIf="!actualizar">REGISTRAR</button>
+                                    *ngIf="!actualizar" [disabled] = "!percentage2" >REGISTRAR</button>
                                 <button type="button" class="btn btn-outline-dark" (click)="updateCar()"
                                     *ngIf="actualizar">Actualizar</button>
 

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import firebase from 'firebase'
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,7 @@ export class MechanicCrudService {
   }
 
   async finishWork(carId) {
+    var cont = firebase.firestore.FieldValue.increment(1);
     try {
       await this._firestore.collection('cars').doc(carId).update({
         repaired: true,
@@ -50,7 +52,11 @@ export class MechanicCrudService {
         appointmentConfirmed: false,
         appointmentDate: '',
         appointmentHour: '',
-        // timesRepaired: +1,
+        timesRepaired: cont,
+      })
+      
+      this._firestore.collection('users').doc(localStorage.getItem("user")).update({
+        carsRepaired: cont,
       })
     } catch(err) {
       console.log(err);

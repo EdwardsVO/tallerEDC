@@ -32,6 +32,7 @@ export class AppointmentCalendarComponent implements OnInit {
           appointmentConfirmed: e.payload.doc.data().appointmentConfirmed,
           owner: e.payload.doc.data().owner,
           ownerName: e.payload.doc.data().ownerName,
+          photo: e.payload.doc.data().photo
         }
       })
     })

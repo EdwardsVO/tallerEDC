@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { CheckboxControlValueAccessor } from '@angular/forms';
 import { Appointment } from 'src/app/models/appointment';
 import { AuthService } from 'src/app/services/auth.service';
+import { CrudService } from 'src/app/services/crud.service';
 import { VehiclesCrudService } from 'src/app/services/vehicles-crud.service';
 import { MechanicCrudService } from '../../services/mechanic-crud.service';
 
@@ -25,9 +26,10 @@ export class MechanicConfirmedAppointmentsComponent implements OnInit {
   stereo: boolean= false;
   tools: boolean= false;
   scratches: boolean= false;
+  mechR: number;
 
 
-  constructor(private firestore: AngularFirestore, private _authSvc: AuthService, private _mechSvc: MechanicCrudService, private _vehicleSvc: VehiclesCrudService) { }
+  constructor(private firestore: AngularFirestore, private _authSvc: AuthService, private _mechSvc: MechanicCrudService, private _vehicleSvc: VehiclesCrudService, private _crud: CrudService) { }
 
   ngOnInit(): void {
 
@@ -91,6 +93,9 @@ export class MechanicConfirmedAppointmentsComponent implements OnInit {
 
   finishWork(carId){
     this._mechSvc.finishWork(carId)
+    console.log(this.mechanicId);
+
+    // this._crud.updateCarsRepaired(localStorage.getItem('user'));
   }
 
   finishWork2(appointmentId) {

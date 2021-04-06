@@ -1,4 +1,41 @@
-<app-client-reports></app-client-reports>
+<h1>RESUMEN</h1>
+<div class="main-div">
+    
+    <mat-card>
+        <p><b>{{clients.length}}</b> clientes</p> <button mat-raised-button>Ver mas</button>
+    </mat-card>
+    <mat-card>
+        <p><b>{{admins.length}}</b> admins</p>
+        <button mat-raised-button>Ver mas</button>
+    </mat-card>
+    <mat-card>
+        <p><b>{{managers.length}}</b> managers</p>
+        <button mat-raised-button>Ver mas</button>
+    </mat-card>
+    <mat-card>
+        <p><b>{{mechanics.length}}</b> mecanicos</p>
+        <button mat-raised-button>Ver mas</button>
+    </mat-card>
+    <mat-card>
+        <p><b>{{cars.length}}</b> carros</p>
+        <button mat-raised-button>Ver mas</button>
+    </mat-card>
+</div>
+
+<div class="second-div">
+
+    <mat-card class="btn-press">
+        <button mat-raised-button class="press" (click)="showDataS()">DATOS DEL TALLER</button>
+        <p *ngIf="showData">El mejor mecanico es: <b>{{bestMech.name}}</b> con <b>{{bestMech.carsRepaired}}</b> carros
+            reparados</p>
+        <p *ngIf="showData">El carro mas jodido es: <b>{{bestCar.model}}</b> del ano <b>{{bestCar.year}}</b> y placa:
+            <b>{{bestCar.plate}}</b> del owner <b>{{bestCar.ownerName}}</b>
+        </p>
+        <p *ngIf="showData"> Carros que han sido reparados: {{carsRepaired.length}}</p>
+    </mat-card>
+
+</div>
+<!-- <app-client-reports></app-client-reports>
 <app-vehicle-reports></app-vehicle-reports>
 <app-mechanic-reports></app-mechanic-reports>
-<app-garage-statistics></app-garage-statistics>
+<app-garage-statistics></app-garage-statistics> -->

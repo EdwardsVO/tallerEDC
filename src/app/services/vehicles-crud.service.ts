@@ -5,6 +5,7 @@ import { Vehicle } from '../models/vehicle';
 import {map} from 'rxjs/operators';
 import firebase from 'firebase';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { validateHorizontalPosition } from '@angular/cdk/overlay';
 
 
 
@@ -20,7 +21,7 @@ export class VehiclesCrudService {
   appointmentID: string;
   carsCollection: AngularFirestoreCollection<Vehicle>;
   lastAppointment: string = ''
-
+  value: string;
 
 
   constructor(
@@ -167,7 +168,7 @@ export class VehiclesCrudService {
       else{
         timesR++;
       }
-      
+
           this.firestore.collection('cars').doc(id).update({
             appointmentConfirmed: false,
             appointmentDate: '',
@@ -177,7 +178,7 @@ export class VehiclesCrudService {
             reason: '',
             timesRepaired: timesR
           })
-      
+
           this.firestore.collection('appointments').doc(aID).update({
             totalPriceService: price,
             repaired: false,
@@ -219,7 +220,7 @@ export class VehiclesCrudService {
       this.lastAppointment = id;
       this.setLastAppointment(carId, id);
       this.firestore.collection('appointments').doc(this.lastAppointment).update({
-        appointmentID: this.lastAppointment 
+        appointmentID: this.lastAppointment
       })
     }
     catch(err) {
@@ -238,6 +239,5 @@ export class VehiclesCrudService {
       reason: reason,
     })
   }
-
 }
 
