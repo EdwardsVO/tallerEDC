@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import firebase from 'firebase';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { map, shareReplay } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-navbar',
@@ -18,8 +21,21 @@ export class NavbarComponent implements OnInit {
   mechNav: boolean;
   managerNav: boolean;
 
-  constructor( private _afs: AngularFirestore, private _authService: AuthService, private _router: Router) { }
+  @ViewChild('drawer') drawer: any;
 
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
+
+  constructor( private _afs: AngularFirestore, private _authService: AuthService, private _router: Router,private breakpointObserver: BreakpointObserver) { }
+
+  closeSideNav() {
+    if (this.drawer._mode=='over') {
+      this.drawer.close();
+    }
+  }
 
   ngOnInit(): void {
     this._authService.getCurrentUser().subscribe( x => {

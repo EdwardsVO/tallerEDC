@@ -26,25 +26,22 @@
                     <mat-icon (click) = "updateRoleForm(user)">edit</mat-icon>
                 </button>
                 <button mat-mini-fab class = "" color = "primary" *ngIf="editState && userToEdit.id == user.id">
-                    <mat-icon (click) = "clearState()"></mat-icon>
+                    <mat-icon (click) = "clearState()"><span class="material-icons">
+                        close
+                        </span></mat-icon>
                 </button>
             </mat-card>
 
-            <div *ngIf="editState && userToEdit.id == user.id">
+            <div class="form" *ngIf="editState && userToEdit.id == user.id">
                 <form (ngSubmit)= "updateUser(user)">
                    <div class="row">
-                       <div class="input-field col s6">
-                           <input type="text" placeholder="Nombre del usuario" [(ngModel)] = "user.name" name = "Nombre">
-                       </div>
-
-                       <div class="input-field col s6">
+                       
+                        <input type="text" placeholder="Nombre del usuario" [(ngModel)] = "user.name" name = "Nombre">
+     
                         <input type="text" placeholder="Telefono" [(ngModel)] = "user.phone" name = "Telefono">
-                    </div>
-
-                    <div class="input-field col s6">
+        
                         <input type="text" placeholder="Rol" [(ngModel)] = "user.role" name = "Role">
-                    </div>
-                    <button mat-raised-button color = "primary" type="submit" class = "btn" (click) = "updateUser(user)">Actualizar</button>
+                        <button mat-raised-button color = "primary" type="submit" class = "btn" (click) = "updateUser(user)">Actualizar</button>
                    </div>
                 </form>
             </div>

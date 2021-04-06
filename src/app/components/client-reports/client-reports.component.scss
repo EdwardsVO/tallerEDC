@@ -45,6 +45,8 @@ padding-right: 3%;
         color: white;
         background-color: #2E3192;
         margin-bottom: 25px;
+        width: fit-content;
+
     
     }
     button:hover{
@@ -70,7 +72,15 @@ img{
     border-radius: 50%;
 }
 
-mat-card-action{
-    //margin-left: 5%;
-    display:block 
+.btn{
+    margin-left: 5%;
+    margin-right: 5%;
+    display:block;
+    min-width: fit-content;
+}
+
+mat-card-subtitle{
+    padding-left: 2%;
+    padding-right: 2%;
+
 }

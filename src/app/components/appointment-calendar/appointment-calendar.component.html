@@ -12,7 +12,7 @@
 <div *ngFor="let car of cars | filterCar: filterCar">
     <div class="vehicle-container"  *ngIf="car.appointmentConfirmed">
         <mat-card>
-            <img mat-card-sm-image src="{{car.img}}" alt="client's car1">
+            <img mat-card-sm-image src="{{car.photo}}" alt="client's car1">
             <mat-card-subtitle>CLIENTE
                 <p>{{car.ownerName}}</p>
             </mat-card-subtitle>

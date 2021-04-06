@@ -1,18 +1,30 @@
 <mat-sidenav-container class="sidenav-container" >
+  
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [ngClass]="{hidden: (isHandset$ | async) === false}"
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <!-- <mat-toolbar>Menu</mat-toolbar> -->
-    <mat-nav-list >
+    
+    <mat-nav-list *ngIf="!userLog" >
       <a mat-button (click) ="toHome()" routerLink = "/home" routerLinkActive = "active ">Home</a>
       <a mat-button (click) ="toAbout()"li routerLinkActive = "active">Nosotros</a>
       <a mat-button (click) ="toLocation()"li routerLinkActive = "active">Ubicación</a>
       <a mat-button (click) ="toContact()"li routerLinkActive = "active">Contacto</a>
-      
+
     </mat-nav-list>
-  </mat-sidenav>
+ 
+    <mat-nav-list *ngIf="userLog">
+    <app-client-navbar *ngIf = "clientNav" fxLayout="column" class="client" ></app-client-navbar>
+      <app-admin-navbar *ngIf = "adminNav" class="admin" fxLayout="column"></app-admin-navbar>
+      <app-mech-navbar *ngIf = "mechNav" class="mech" fxLayout="column"></app-mech-navbar>
+      <app-manager-navbar *ngIf = "managerNav" class="man" fxLayout="column"></app-manager-navbar>
+      <a href="/home" class="loging-b-sd" (click) = "logOut()" >Cerrar Sesion</a>
+
+    </mat-nav-list>
+
+  </mat-sidenav> 
+
   <mat-sidenav-content>
     <mat-toolbar >
       <button
@@ -48,3 +60,4 @@
     </mat-toolbar>
   </mat-sidenav-content>
 </mat-sidenav-container>
+ 

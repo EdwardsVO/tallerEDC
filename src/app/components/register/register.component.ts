@@ -20,6 +20,8 @@ export class RegisterComponent implements OnInit {
   email: string;
   id: string;
   role: string = 'client';
+  moneySpent: string;
+  carsRepaired: number;
 
   
 

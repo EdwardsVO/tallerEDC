@@ -1,0 +1,76 @@
+mat-card {
+    display: flex;
+    justify-content: space-between;
+    //padding: 1rem;
+    background-color: rgb(243, 243, 243);
+    margin-bottom: 1.5%;
+    width: 12%;
+    margin-right: 2%;
+    margin-left: 2%;
+    text-align: center;
+    flex-direction: column;
+  }
+  
+  p {
+    font-family: "Roboto", sans-serif;
+    padding: auto;
+    word-break: normal;
+    
+  }
+
+  h1 {
+    color: #2e3192;
+    font-family: "Bree Serif", serif;
+    margin-top: 5%;
+    text-align: center;
+  }
+
+  b{
+      font-size: xx-large;
+      color: #2e3192;
+  }
+
+  .main-div, .second-div{
+    display: flex;
+    justify-content: center;
+  }
+
+  button{
+    color: #2e3192;
+    background-color: white;
+    height: 50%;
+    margin-top: 20%;
+    
+  }
+
+  button:hover{
+      color: white;
+      background-color: #2e3192;
+  }
+
+  .btn-press{
+      background-color: white;
+      box-shadow: none;
+      margin-top: 5%;
+      width: 50%;
+      text-align: center;
+      
+      
+  }
+
+  .press{
+      height: 50px;
+      color: white;
+      background-color: #2e3192;
+      margin-bottom: 5%;
+      
+  }
+  button.press:hover{
+      color: #2e3192;
+      background-color: white;
+  }
+
+  p.btn-press{
+      width: 200%;
+      margin-top: 5%;
+  }

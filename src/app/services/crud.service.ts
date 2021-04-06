@@ -44,9 +44,23 @@ export class CrudService {
         phone: phone,
         role: role,
       })
+      this.updateCarsRepaired(id,0);
+      this.updateMoneySpent(id,0);
     }catch(err){
       console.log(err);
     }
+  }
+
+  async updateCarsRepaired(id, carsR){
+    await this.db.collection('users').doc(id).update({
+      carsRepaired: carsR
+    })
+  }
+
+  async updateMoneySpent(id, cR){
+    await this.db.collection('users').doc(id).update({
+      carsRepaired: cR
+    })
   }
 
   getUsers(){

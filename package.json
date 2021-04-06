@@ -27,6 +27,7 @@
     "@angular/router": "~11.2.1",
     "@material/icon-button": "^10.0.0",
     "@ng-bootstrap/ng-bootstrap": "^9.0.2",
+    "@techiediaries/ngx-qrcode": "^9.1.0",
     "@types/google-maps": "^3.2.2",
     "bootstrap": "^4.5.0",
     "date-fns": "^2.19.0",
