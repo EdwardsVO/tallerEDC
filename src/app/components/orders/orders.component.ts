@@ -3,10 +3,11 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { VehiclesCrudService } from '../../services/vehicles-crud.service';
 import { Appointment } from 'src/app/models/appointment'
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CrudService } from 'src/app/services/crud.service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -24,17 +25,16 @@ export class OrdersComponent implements OnInit {
   cars = [];
   appointmentInfo: Appointment[];
   totalPrice = ""
+  ownerId = ""
+
+  constructor( private modalService: NgbModal, private _vehicleSvc: VehiclesCrudService, private _firestore: AngularFirestore, private _form: FormBuilder, private toastrr: ToastrService, private _authService: AuthService, private _crudSvc: CrudService) { }
   toastr: any;
   userInfo = [];
   ownerEmail = "";
   ownerName = "";
   carId = "";
   userId = "";
-  
 
-  
-
-  constructor( private modalService: NgbModal, private _vehicleSvc: VehiclesCrudService, private _firestore: AngularFirestore, private _form: FormBuilder, private toastrr: ToastrService, private _authService: AuthService) { }
 
   ngOnInit(): void {
     this.priceValue = this._form.group({
@@ -67,8 +67,7 @@ export class OrdersComponent implements OnInit {
           appointmentHour: e.payload.doc.data().appointmentHour,
           alertManager: e.payload.doc.data().alertManager,
           lastAppointment: e.payload.doc.data().lastAppointment,
-          
-          
+          owner: e.payload.doc.data().owner
         }
         
       })
@@ -110,8 +109,9 @@ export class OrdersComponent implements OnInit {
           procedure: e.payload.doc.data().procedure,
           repuestos: e.payload.doc.data().repuestos,
           needsReparation: e.payload.doc.data().needsReparation,
+          ownerName: e.payload.doc.data().ownerName,
+          owner: e.payload.doc.data().owner,
           ownerEmail: e.payload.doc.data().ownerEmail,
-          ownerName: e.payload.doc.data().ownerName
         }
       })
     })
@@ -121,11 +121,14 @@ export class OrdersComponent implements OnInit {
 
 
 
-  closeOrder(carId, aID){
+  closeOrder(carId, aID, owner){
+    console.log(owner);
+    // this.totalPrice2 = this.priceValue.get("totalPrice").value
+  
     this.totalPrice = this.priceValue.get("totalPriceService").value
-    
 
     this._vehicleSvc.closeAppointments(carId, aID, this.totalPrice);
+    this._crudSvc.totalMoneySpent(owner, this.totalPrice);
     this.priceValue.reset();
     this.modalService.dismissAll();
   }
