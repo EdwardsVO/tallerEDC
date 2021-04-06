@@ -4,6 +4,10 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { VehiclesCrudService } from '../../services/vehicles-crud.service';
 import { Appointment } from 'src/app/models/appointment'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/services/auth.service';
+
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
@@ -19,8 +23,15 @@ export class OrdersComponent implements OnInit {
   cars = [];
   appointmentInfo: Appointment[];
   totalPrice = ""
+  toastr: any;
+  userInfo = [];
+  ownerEmail = "";
+  ownerName = "";
+  
 
-  constructor( private modalService: NgbModal, private _vehicleSvc: VehiclesCrudService, private _firestore: AngularFirestore, private _form: FormBuilder) { }
+  
+
+  constructor( private modalService: NgbModal, private _vehicleSvc: VehiclesCrudService, private _firestore: AngularFirestore, private _form: FormBuilder, private toastrr: ToastrService, private _authService: AuthService) { }
 
   ngOnInit(): void {
     this.priceValue = this._form.group({
@@ -49,6 +60,7 @@ export class OrdersComponent implements OnInit {
           appointmentHour: e.payload.doc.data().appointmentHour,
           alertManager: e.payload.doc.data().alertManager,
           lastAppointment: e.payload.doc.data().lastAppointment,
+          //ownerEmail: e.payload.doc.data().ownerEmail
         }
       })
     })
@@ -82,7 +94,8 @@ export class OrdersComponent implements OnInit {
           diagnostic: e.payload.doc.data().diagnostic,
           procedure: e.payload.doc.data().procedure,
           repuestos: e.payload.doc.data().repuestos,
-          needsReparation: e.payload.doc.data().needsReparation
+          needsReparation: e.payload.doc.data().needsReparation,
+          //ownerEmail: e.payload.doc.data().ownerEmail
         }
       })
     })
@@ -92,11 +105,34 @@ export class OrdersComponent implements OnInit {
 
   closeOrder(carId, aID){
     this.totalPrice = this.priceValue.get("totalPrice").value
+    this._authService.getCurrentUser().subscribe(res => {
+      this.userInfo[0] = res.email;
+      
+
+
+        // this.ownerEmail = user.email;
+        // this.ownerName = user.displayName;
+      })
+    
+
     this._vehicleSvc.closeAppointments(carId, aID, this.totalPrice);
     this.priceValue.reset();
     this.modalService.dismissAll();
     // this.totalPrice = "";
   }
+
+  public sendEmail(e: Event) {
+    e.preventDefault();
+    emailjs.sendForm('service_nq5o7n4', 'template_q8to63n', e.target as HTMLFormElement,  'user_mS3TbPNqwHVFgfafqXvBr')
+      .then((result: EmailJSResponseStatus) => {
+        this.toastrr.success('¡Facturada enviado!', "LISTO")
+        console.log(result.text);
+      }, (error) => {
+        console.log(error.text);
+      });
+  }
+
+  
 
 
 

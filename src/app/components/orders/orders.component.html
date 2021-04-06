@@ -37,20 +37,40 @@
         <mat-card-subtitle><b> Ingresado en:</b> {{car.appointmentDate}} </mat-card-subtitle>
         <mat-card-subtitle><b>Motivo de la cita: </b> {{car.reason}}</mat-card-subtitle>
         <mat-card-subtitle><b>Reparado por:</b> {{car.mechName}} </mat-card-subtitle>
-        <mat-card-subtitle><b>Presento el siguiente diagnostico:</b> {{car.diagnostic}} </mat-card-subtitle>
-        <mat-card-subtitle><b>Necesito los siguientes repuestos: </b> {{car.repuestos}}</mat-card-subtitle>
-        <mat-card-subtitle><b>Se le realizo el siguiente procedimiento: </b> {{car.procedure}}</mat-card-subtitle>
+        <mat-card-subtitle><b>Presentó el siguiente diagnóstico:</b> {{car.diagnostic}} </mat-card-subtitle>
+        <mat-card-subtitle><b>Necesitó los siguientes repuestos: </b> {{car.repuestos}}</mat-card-subtitle>
+        <mat-card-subtitle><b>Se le realizó el siguiente procedimiento: </b> {{car.procedure}}</mat-card-subtitle>
         <mat-divider></mat-divider>
         <mat-card-subtitle><b>INGRESE EL MONTO TOTAL DEL SERVICIO:     </b> 
-          <form [formGroup] = "priceValue">
-          <mat-form-field>
-                <input formControlName="totalPrice" class="price "type ="text"matInput placeholder="$$$" >
-              </mat-form-field>
+          <form [formGroup] = "priceValue" >
+            <mat-form-field>
+              <input formControlName="totalPrice" class="price "type ="text"matInput placeholder="$$$" >
+            </mat-form-field>
+            
+            <form (submit)="sendEmail($event)">
+              <input name="car" class="price" type ="hidden" value="{{car.carBrand}}"   >
+           
+              <input name="date" class="price" type ="hidden" value="{{car.appointmentDate}}"   >
+           
+              <input name="reason" class="price" type ="hidden" value="{{car.reason}}"   >
+            
+              <input name="mech" class="price" type ="hidden" value="{{car.mechName}}"   >
+           
+              <input name="diagnostic" class="price" type ="hidden" value="{{car.diagnostic}}"   >
+           
+              <input name="repuestos" class="price" type ="hidden" value="{{car.repuestos}}"   >
+            
+              <input name="procedure" class="price" type ="hidden" value="{{car.procedure}}"   >
+            
+              <input name="email" class="price" type ="hidden" value="france.marinuzzi0203@gmail.com"   >
+              <input name="name" class="price" type ="hidden" value="{{car.ownerName}}"   >
+            
+            </form>
             </form>
           </mat-card-subtitle>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-lg btn-outline-primary" (click)="modal.close('Save click')" (click)=" closeOrder(car.carID, car.appointmentId)">CERRAR ORDEN</button>
+        <button type="submit" class="btn btn-lg btn-outline-primary" (click)="modal.close('Save click')" (click)=" closeOrder(car.carID, car.appointmentId)" >CERRAR ORDEN</button>
       </div>
     </ng-template>
 
