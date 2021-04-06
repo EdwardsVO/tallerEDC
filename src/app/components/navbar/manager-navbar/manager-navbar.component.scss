@@ -1,3 +1,4 @@
+
 .sidenav-container {
     height: 100px;
   }
@@ -19,6 +20,7 @@
   .hidden {
     display: none;
   }
+  
   
   mat-toolbar {
     width: 100%;
@@ -51,6 +53,7 @@
   
   .logo-container img {
     width: 60%;
+    display: block;
   }
   
   a {
@@ -73,4 +76,6 @@
     color: white;
     background-color: #2e3192;
   }
+  
+  
   

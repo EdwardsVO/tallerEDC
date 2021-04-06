@@ -1,13 +1,5 @@
 
-.mat-toolbar.mat-primary {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
 
-.hidden {
-  display: none;
-}
 
 a {
   text-decoration: none;
@@ -27,9 +19,14 @@ a.loging-b:hover {
 
 a.loging-b{
   color: white;
-  background-color: #2e3192;
+  background-color: #2e3192; 
   
 }
 
-
+a.login-b-s{
+  align-items:flex-end;
+  color: #2e3192;
+  margin-right: -30%;
+  
+}
 
