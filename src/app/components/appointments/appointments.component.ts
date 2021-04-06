@@ -125,7 +125,7 @@ export class AppointmentsComponent implements OnInit {
 
     async newAppointment(carId, appointmentDate,carBrand, carModel, carPlate, carYear){
       this.confirmAppointment(carId);
-      await this._vehicleSvc.newAppointment(carId, appointmentDate, false, carBrand, carModel, carPlate, carYear, "", "", "", false, false, false, false, false, false, "", 0,0, "","","", this.reason, true);
+      await this._vehicleSvc.newAppointment(carId, appointmentDate, false, carBrand, carModel, carPlate, carYear, "", "", "", false, false, false, false, false, false, "", 0,0, "","","", this.reason, true, this.ownerEmail, this.ownerName, this.userId);
     }
 
 // FUNCTION TO GET ALL APPOINTMENT FROM THE DATABASE
