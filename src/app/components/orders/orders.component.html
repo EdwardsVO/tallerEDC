@@ -42,12 +42,12 @@
         <mat-card-subtitle><b>Se le realizó el siguiente procedimiento: </b> {{car.procedure}}</mat-card-subtitle>
         <mat-divider></mat-divider>
         <mat-card-subtitle><b>INGRESE EL MONTO TOTAL DEL SERVICIO:     </b> 
-          <form [formGroup] = "priceValue" >
+          <form [formGroup] = "priceValue" (submit)="sendEmail($event)">
             <mat-form-field>
-              <input formControlName="totalPrice" class="price "type ="text"matInput placeholder="$$$" >
+              <input formControlName="totalPriceService" name= "totalPriceService" class="price "type ="text" matInput placeholder="$$$"  >
             </mat-form-field>
             
-            <form (submit)="sendEmail($event)">
+            
               <input name="car" class="price" type ="hidden" value="{{car.carBrand}}"   >
            
               <input name="date" class="price" type ="hidden" value="{{car.appointmentDate}}"   >
@@ -61,17 +61,23 @@
               <input name="repuestos" class="price" type ="hidden" value="{{car.repuestos}}"   >
             
               <input name="procedure" class="price" type ="hidden" value="{{car.procedure}}"   >
+              <!-- <div *ngFor="let car2 of cars"> -->
+                <input name="email" class="price" type ="hidden" value="{{car.ownerEmail}}"   >
+              
+                <input name="name" class="price" type ="hidden" value="{{car.ownerName}}"   >
+
+                <input name="ps" class="price" type ="hidden" value="{{car.totalPriceService}}">
+              <!-- </div> -->
+
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-lg btn-outline-primary" (click)="modal.close('Save click')" (click)=" closeOrder(car.carID, car.appointmentId)" >CERRAR ORDEN</button>
+              </div>
             
-              <input name="email" class="price" type ="hidden" value="france.marinuzzi0203@gmail.com"   >
-              <input name="name" class="price" type ="hidden" value="{{car.ownerName}}"   >
             
-            </form>
             </form>
           </mat-card-subtitle>
       </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-lg btn-outline-primary" (click)="modal.close('Save click')" (click)=" closeOrder(car.carID, car.appointmentId)" >CERRAR ORDEN</button>
-      </div>
+     
     </ng-template>
 
   </div>
