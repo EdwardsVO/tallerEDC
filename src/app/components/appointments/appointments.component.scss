@@ -42,9 +42,13 @@ p {
 }
 
 
-button{
-  height: 50px; 
+button.sol-btn{
+  height: 60%;
+  color: white;
+  background-color: #2e3192;
 }
+
+
 
 
 
@@ -55,18 +59,6 @@ h1{
 }
 
 
-.reject{
-    color: white;
-    background-color: red;
-
-}
-
-.green{
-  background-color:  rgb(3, 180, 3);
-  color: white;
-
-
-}
 
 mat-card-subtitle{
   text-align: center;
@@ -91,10 +83,42 @@ input {
   text-align: center;
   color: grey;
   text-decoration-style: none;
+  width: 120%;
+
 
 }
 
-mat-input{
-  padding-right: 2%;
-  padding-left: 2%;
+
+
+button.green{
+  color: rgb(3, 180, 3);
+  background-color: white;
+  
 }
+
+button.green:hover{
+  background-color: rgb(3, 180, 3);
+  color: white;
+}
+
+button.reject{
+  color: red;
+  background-color: white;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+button.reject:hover{
+  color: white;
+  background-color: red;
+}
+
+button.trash{
+  color: #2e3192;
+  background-color: white;
+}
+button.trash:hover{
+  color: white;
+  background-color: #2e3192;
+}
+
+

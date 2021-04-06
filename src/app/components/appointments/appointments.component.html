@@ -32,8 +32,7 @@
 
       <button
         mat-raised-button
-        color="primary"
-        
+        class="sol-btn"
         (click)="open(content)"
         [disabled]="car.reparation"
       >
@@ -115,16 +114,7 @@
                 alt="client's car1"
               />
 
-              <mat-input>
-                <mat-card-subtitle>MARCA</mat-card-subtitle>
-                <input
-                  type="text"
-                  value="{{ appointment.brand }}"
-                  name="carBrand"
-                  readonly
-                />
-              </mat-input>
-
+            
               <mat-input>
                 <mat-card-subtitle>MODELO</mat-card-subtitle>
                 <input
@@ -133,11 +123,6 @@
                   name="carModel"
                   readonly
                 />
-              </mat-input>
-
-              <mat-input>
-                <mat-card-subtitle>AÑO</mat-card-subtitle>
-                <input type="text" value="{{ appointment.year }}" readonly />
               </mat-input>
 
               <mat-input>
@@ -156,45 +141,46 @@
                   readonly
                 />
               </mat-input>
+              <div class="btn-div">
+                <button
+                  type="submit"
+                  mat-mini-fab
+                  class="green"
+                  [disabled]="!appointment.appointmentDate"
+                  (click)="
+                    newAppointment(
+                      appointment.id,
+                      appointment.appointmentDate,
+                      appointment.brand,
+                      appointment.model,
+                      appointment.plate,
+                      appointment.year
+                    )
+                  "
+                  *ngIf="!appointment.appointmentConfirmed"
+                >
+                  <mat-icon class="material-icons"> done </mat-icon>
+                </button>
 
-              <button
-                type="submit"
-                mat-raised-button
-                class="green"
-                [disabled]="!appointment.appointmentDate"
-                (click)="
-                  newAppointment(
-                    appointment.id,
-                    appointment.appointmentDate,
-                    appointment.brand,
-                    appointment.model,
-                    appointment.plate,
-                    appointment.year
-                  )
-                "
-                *ngIf="!appointment.appointmentConfirmed"
-              >
-                <span class="material-icons"> done </span>
-              </button>
+                <button
+                  mat-mini-fab
+                  class="reject"
+                  [disabled]="!appointment.appointmentDate"
+                  *ngIf="!appointment.appointmentConfirmed"
+                  (click)="rejectAppointment(appointment.id)"
+                >
+                  <span color="warn" class="material-icons"> clear </span>
+                </button>
 
-              <button
-                mat-raised-button
-                class="reject"
-                [disabled]="!appointment.appointmentDate"
-                *ngIf="!appointment.appointmentConfirmed"
-                (click)="rejectAppointment(appointment.id)"
-              >
-                <span color="warn" class="material-icons"> clear </span>
-              </button>
-
-              <button
-                class="trash"
-                mat-raised-button
-                (click)="deleteAppointment(appointment.id)"
-                *ngIf="!appointment.appointmentConfirmed"
-              >
-                <mat-icon color="primary">delete</mat-icon>
-              </button>
+                <button
+                  class="trash"
+                  mat-mini-fab
+                  (click)="deleteAppointment(appointment.id)"
+                  *ngIf="!appointment.appointmentConfirmed"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
             </mat-card>
           </form>
           <div></div>
