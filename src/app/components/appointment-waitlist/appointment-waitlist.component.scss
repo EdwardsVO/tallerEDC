@@ -61,7 +61,22 @@ mat-icon{
     margin-left: 30%;
     
 
-    
+ 
+}
+
+.hora{
+    max-width: 50%;
+    min-width: 50%;
+    text-align: center;
+    height: 40px;
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: #2e3192;
+    background-color: rgb(233, 233, 233);
+    margin-left: 30%;
+    //margin-right: 20%;
+    //margin-top: 5%;
+
 }
 
 mat-card-action{

@@ -37,8 +37,10 @@ mat-card-subtitle{
 button{
     color: white;
     background-color: #2e3192;
+    min-width: fit-content;
 }
 button:hover{
     color: #2e3192;
     background-color: white;
 }
+

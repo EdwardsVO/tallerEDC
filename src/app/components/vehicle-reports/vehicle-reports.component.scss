@@ -14,7 +14,7 @@ mat-card{
     width: 75%;
     margin-left: 13%;
     text-align: center;
-
+    overflow-x: scroll;
     
   } 
 p {
@@ -63,4 +63,17 @@ button:hover{
 
 img{
     border-radius: 50%;
+}
+
+.btn{
+    margin-left: 5%;
+    margin-right: 5%;
+    display:block;
+    min-width: fit-content;
+}
+
+mat-card-subtitle{
+    padding-left: 2%;
+    padding-right: 2%;
+
 }

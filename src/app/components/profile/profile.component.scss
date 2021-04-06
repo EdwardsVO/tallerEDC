@@ -34,6 +34,7 @@ td {
 
   display: inline-block;
   align-items: center;
+
 }
 
 .age,
@@ -106,10 +107,11 @@ img {
 }
 
 mat-card {
-  width: auto;
+  width: 90%;
   align-items: center;
   contain: content;
   flex-direction: row;
+
 }
 
 mat-form-field {
@@ -140,7 +142,11 @@ form {
   height: 560.38px;
   margin-bottom: 0;
   box-shadow: none;
+  
+
 }
+
+
 
 .last-name {
   margin-left: 5%;
@@ -154,6 +160,8 @@ form {
 .example-card {
   box-shadow: none;
   width: 150%;
+  
+
 }
 
 .data-title {
@@ -186,4 +194,39 @@ form {
   width: 220px;
   height: 220px;
   margin-right: 7rem;
+}
+
+@media screen and (max-width: 1000px) {
+  
+ .example-card{
+   width: 150%;
+   padding-left: 1%;
+ }
+
+  .foto{
+    width: 90%;
+    margin-left: 10%;
+
+  }
+
+  .profilePic {
+    width: 90px;
+    height: 90px;
+    margin-left: 12%;
+  } 
+
+  .pic-btn{
+    min-width: 15%;
+    height: 3%;
+    text-align: center;
+    font-size: 70%;
+    padding: 2%;
+    //margin-left: 20%;
+  }
+
+  .avatar{
+    width: 50%;
+    margin-left: 7%;
+    padding-right: 1%;
+  }
 }

@@ -44,15 +44,19 @@ mat-toolbar {
 
 .logo-container {
   //width: 15%;
-  max-width: 170px;
+  width: 170px;
+  //min-width: 20%;
 
   height: 100%;
   margin-top: 5px;
-  margin-left: 20px;
+  margin-left: 15px;
 }
 
 .logo-container img {
-  width: 60%;
+  max-width: 60%;
+  min-width: 50%;
+  margin-left: -10%;
+ 
 }
 
 a {
@@ -74,4 +78,28 @@ a.loging-b:hover {
 a.loging-b{
   color: white;
   background-color: #2e3192;
+}
+
+.loging-b-sd{
+  color: #2e3192;
+}
+
+.user-sn{
+  width: fit-content;
+}
+
+.client{
+  margin-left: -60%;
+}
+
+.admin{
+  margin-left: 20%;
+}
+
+.man{
+  margin-left: -20%;
+}
+
+.mech{
+  margin-left:-37%;
 }
