@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { VehiclesCrudService } from 'src/app/services/vehicles-crud.service';
 
 @Component({
   selector: 'app-reports-page',
@@ -12,18 +13,23 @@ export class ReportsPageComponent implements OnInit {
   managers = [];
   mechanics = [];
   admins = [];
-  totalClients: number;
-  totalMan: number;
-  totalAdmins: number;
-  totalMec: number;
+  vehicles = [];
+  cars = [];
+  carsRepaired = [];
+  bestMech: any;
+  bestCar: any;
+  bestClient: any;
+  showData = false;
 
-  constructor(private _firestore: AngularFirestore) { }
+  constructor(private _firestore: AngularFirestore, private _vech: VehiclesCrudService) { }
 
   ngOnInit(): void {
     this.getAdmins();
     this.getClients();
     this.getManagers();
     this.getMechs();
+    this.getTotalCars();
+    this.getRepairedCars();
   }
 
   async getClients() {
@@ -76,6 +82,67 @@ export class ReportsPageComponent implements OnInit {
       })
     })
   }
+  async getTotalCars() {
+    await this._firestore.collection('cars').snapshotChanges().subscribe(res => {
+      this.cars = res.map((e: any) => {
+        return {
+          model: e.payload.doc.data().model,
+          brand: e.payload.doc.data().brand,
+          initDate: e.payload.doc.data().initDate,
+          ownerName: e.payload.doc.data().ownerName,
+          serial: e.payload.doc.data().serial,
+          year: e.payload.doc.data().year,
+          timesRepaired: e.payload.doc.data().timesRepaired,
+          plate: e.payload.doc.data().plate,
+
+        }
+      })
+    })
+  }
+
+  async getRepairedCars() {
+    await this._firestore.collection('cars', ref => ref.where("timesRepaired", ">", 0)).snapshotChanges().subscribe(res => {
+      this.carsRepaired = res.map((e: any) => {
+        return {
+          model: e.payload.doc.data().model,
+          brand: e.payload.doc.data().brand,
+          initDate: e.payload.doc.data().initDate,
+          ownerName: e.payload.doc.data().ownerName,
+          serial: e.payload.doc.data().serial,
+          year: e.payload.doc.data().year,
+          timesRepaired: e.payload.doc.data().timesRepaired,
+          plate: e.payload.doc.data().plate,
+
+        }
+      })
+    })
+  }
+  
+  async showDataS() {
+    var bestMech;
+    var bestCarAux;
+    var hightM = -1;
+    var hightC = -1;
+  
+    for(var mech in this.mechanics){ //BEST MECHANIC SEARCH
+      if (this.mechanics[mech].carsRepaired > hightM){
+        bestMech = this.mechanics[mech];
+        hightM = this.mechanics[mech].carsRepaired;
+      }
+    }
+    this.bestMech = bestMech
+    for(var car in this.cars){ //SEARCH CAR MOST REPAIRED
+      console.log(this.cars[car].timesRepaired)
+      console.log(hightC)
+      if(this.cars[car].timesRepaired > hightC){
+        bestCarAux = this.cars[car];
+        hightC = this.cars[car].timesRepaired; 
+      }
+      this.bestCar = bestCarAux
+    }
+    this.showData = true;
+  }
+
 
 
 }
