@@ -33,12 +33,12 @@
         </button>
       </div>
       <div class="modal-body">
-        <mat-card-subtitle><b>El carro:</b> {{car.carBrand}} </mat-card-subtitle>
+        <mat-card-subtitle><b>El carro:</b> {{car.carBrand}}<b>, del cliente:</b> {{car.ownerName}} </mat-card-subtitle>
         <mat-card-subtitle><b> Ingresado en:</b> {{car.appointmentDate}} </mat-card-subtitle>
         <mat-card-subtitle><b>Motivo de la cita: </b> {{car.reason}}</mat-card-subtitle>
         <mat-card-subtitle><b>Reparado por:</b> {{car.mechName}} </mat-card-subtitle>
         <mat-card-subtitle><b>Presento el siguiente diagnostico:</b> {{car.diagnostic}} </mat-card-subtitle>
-        <mat-card-subtitle><b>Necesito los siguientes repuestos: </b> {{car.repuestos}}</mat-card-subtitle>
+        <mat-card-subtitle><b>Necesita los siguientes repuestos: </b> {{car.repuestos}}</mat-card-subtitle>
         <mat-card-subtitle><b>Se le realizo el siguiente procedimiento: </b> {{car.procedure}}</mat-card-subtitle>
         <mat-divider></mat-divider>
         <mat-card-subtitle><b>INGRESE EL MONTO TOTAL DEL SERVICIO:     </b> 
@@ -50,7 +50,7 @@
           </mat-card-subtitle>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-lg btn-outline-primary" (click)="modal.close('Save click')" (click)=" closeOrder(car.carID, car.appointmentId)">CERRAR ORDEN</button>
+        <button type="button" class="btn btn-lg btn-outline-primary" (click)="modal.close('Save click')" (click)=" closeOrder(car.carID, car.appointmentId, car.owner)">CERRAR ORDEN</button>
       </div>
     </ng-template>
 

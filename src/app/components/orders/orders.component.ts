@@ -4,6 +4,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { VehiclesCrudService } from '../../services/vehicles-crud.service';
 import { Appointment } from 'src/app/models/appointment'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CrudService } from 'src/app/services/crud.service';
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
@@ -19,8 +20,9 @@ export class OrdersComponent implements OnInit {
   cars = [];
   appointmentInfo: Appointment[];
   totalPrice = ""
+  ownerId = ""
 
-  constructor( private modalService: NgbModal, private _vehicleSvc: VehiclesCrudService, private _firestore: AngularFirestore, private _form: FormBuilder) { }
+  constructor( private modalService: NgbModal, private _vehicleSvc: VehiclesCrudService, private _firestore: AngularFirestore, private _form: FormBuilder, private _crudSvc: CrudService) { }
 
   ngOnInit(): void {
     this.priceValue = this._form.group({
@@ -49,6 +51,7 @@ export class OrdersComponent implements OnInit {
           appointmentHour: e.payload.doc.data().appointmentHour,
           alertManager: e.payload.doc.data().alertManager,
           lastAppointment: e.payload.doc.data().lastAppointment,
+          owner: e.payload.doc.data().owner
         }
       })
     })
@@ -82,7 +85,9 @@ export class OrdersComponent implements OnInit {
           diagnostic: e.payload.doc.data().diagnostic,
           procedure: e.payload.doc.data().procedure,
           repuestos: e.payload.doc.data().repuestos,
-          needsReparation: e.payload.doc.data().needsReparation
+          needsReparation: e.payload.doc.data().needsReparation,
+          ownerName: e.payload.doc.data().ownerName,
+          owner: e.payload.doc.data().owner
         }
       })
     })
@@ -90,12 +95,13 @@ export class OrdersComponent implements OnInit {
 
 
 
-  closeOrder(carId, aID){
+  closeOrder(carId, aID, owner){
+    console.log(owner);
     this.totalPrice = this.priceValue.get("totalPrice").value
     this._vehicleSvc.closeAppointments(carId, aID, this.totalPrice);
+    this._crudSvc.totalMoneySpent(owner, this.totalPrice);
     this.priceValue.reset();
     this.modalService.dismissAll();
-    // this.totalPrice = "";
   }
 
 

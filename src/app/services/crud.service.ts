@@ -99,5 +99,16 @@ export class CrudService {
     })
   }
 
+    totalMoneySpent(id, money){
+    var cont = firebase.firestore.FieldValue.increment(money);
+    console.log(cont);
+    try{
+        this._afs.collection('users').doc(id).update({
+        moneySpent: cont
+      })
+    } catch(err) {
+      console.log(err);
+    }
+  }
 } 
 

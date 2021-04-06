@@ -22,6 +22,7 @@ export class VehiclesCrudService {
   carsCollection: AngularFirestoreCollection<Vehicle>;
   lastAppointment: string = ''
   value: string;
+  owner: string = ""
 
 
   constructor(
@@ -239,5 +240,7 @@ export class VehiclesCrudService {
       reason: reason,
     })
   }
+
+
 }
 
