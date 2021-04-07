@@ -36,10 +36,8 @@ export class AppointmentsComponent implements OnInit {
 
   title = 'Appointment';
   elementType = 'url';
-  value = "https://www.twitter.com/"
-  gotData = false;
-
-  appointmentQR = "";
+  value = ""
+  appointmentQR: string;
 
 
 
@@ -81,8 +79,8 @@ export class AppointmentsComponent implements OnInit {
     })
   }
 
-  getQRCode(){
-    this.value += this.appointmentQR;
+  getQRCode(appointment){
+    this.value = appointment;
     console.log(this.value);
     return this.value
   }
@@ -133,7 +131,7 @@ export class AppointmentsComponent implements OnInit {
     getAppointments() {
 
       this.userId = localStorage.getItem('user');
-      
+
       this._firestore.collection('cars', ref => ref.where("owner", "==", this.userId)).snapshotChanges().subscribe(res => {
             this.appointments = res.map((e: any) => {
               this.ownerEmail = e.payload.doc.data().ownerEmail

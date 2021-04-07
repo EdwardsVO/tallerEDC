@@ -17,7 +17,7 @@ p {
 .button-container {
   text-align: center;
   margin-top: 1rem;
-  
+
 
   button{
     color: white;
@@ -28,16 +28,16 @@ p {
   button:hover{
     color: #2e3192;
     background-color: white;
-    
+
   }
 }
 .buttons-container {
   text-align: right;
   margin-top: 1rem;
-  
+
   button{
     margin-left: 1%;
-    
+
   }
 }
 
@@ -107,7 +107,7 @@ input {
 button.green{
   color: rgb(3, 180, 3);
   background-color: white;
-  
+
 }
 
 button.green:hover{
@@ -134,5 +134,9 @@ button.trash:hover{
   color: white;
   background-color: #2e3192;
 }
+mat-card-content.qrcode {
+  margin-left: 105%;
+}
+
 
 
