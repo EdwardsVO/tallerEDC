@@ -78,7 +78,15 @@
 
                         <input type="text" placeholder="Telefono" [(ngModel)] = "user.phone" name = "Telefono">
 
-                        <input type="text" placeholder="Rol" [(ngModel)] = "user.role" name = "Role">
+                        <input type="text" placeholder="Rol" [(ngModel)] = "user.role" name = "Role" matInput [matAutocomplete] = "auto">
+
+                        <!-- Autocomplete -->
+                        <mat-autocomplete #auto="matAutocomplete">
+                          <mat-option *ngFor="let option of options" [value]="option">
+                            {{option}}
+                          </mat-option>
+                        </mat-autocomplete>
+
                         <button mat-raised-button color = "primary" type="submit" class = "btn" (click) = "updateUser(user)">Actualizar</button>
                    </div>
                 </form>

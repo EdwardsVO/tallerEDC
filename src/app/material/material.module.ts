@@ -9,6 +9,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 
@@ -24,6 +25,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
         MatDividerModule,
         MatMenuModule,
         MatCheckboxModule,
+        MatAutocompleteModule,
     ],
     exports: [
         MatToolbarModule,
@@ -36,6 +38,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
         MatDividerModule,
         MatMenuModule,
         MatCheckboxModule,
+        MatAutocompleteModule,
     ]
 })
 
