@@ -1,6 +1,9 @@
 import { Component, VERSION, OnInit, ViewChild } from '@angular/core';
 import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 import { Result } from '@zxing/library';
+import { MechanicCrudService } from 'src/app/services/mechanic-crud.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-codigo-qr',
@@ -17,15 +20,33 @@ export class CodigoQRComponent implements OnInit {
   hasDevices: boolean;
   hasPermission: boolean;
   qrResultString: string;
+  // qrResultString: string = 'xWxl0PEBI5F9M8RJBjB5';
+
   qrResult: Result;
+
+  extraTire: boolean = false;
+  keys: boolean= false;
+  gato: boolean= false;
+  stereo: boolean= false;
+  tools: boolean= false;
+  scratches: boolean= false;
 
   availableDevices: MediaDeviceInfo[];
   currentDevice: MediaDeviceInfo;
 
 
-  constructor() { }
+  mechanicName = ""
+  mechanicId = ""
+
+
+  constructor(private _mechSvc: MechanicCrudService, private _firestore: AngularFirestore, private _router: Router) { }
 
   ngOnInit(): void {
+
+    this._firestore.collection('users').doc(localStorage.getItem('user')).snapshotChanges().subscribe(res => {
+      this.mechanicName = res.payload.get('name');
+      this.mechanicId = res.payload.get('id');
+    })
 
     this.scanner.camerasFound.subscribe((devices: MediaDeviceInfo[]) => {
       this.hasDevices = true;
@@ -47,8 +68,17 @@ export class CodigoQRComponent implements OnInit {
 
   }
 
-  handleQrCodeResult(resultString: string) {
+    handleQrCodeResult(resultString: string) {
+    this.qrResultString = resultString;
     console.log(resultString);
+    this.confirmWork(resultString);
+  }
+
+  confirmWork(appointmentId) {
+    this._mechSvc.confirmWork(appointmentId, this.mechanicName)
+    console.log(`Cita: ${appointmentId} ha sido asignada a ${this.mechanicName}! A chambear`);
+    this._router.navigate(['/diagnostic'])
+
   }
 
 
