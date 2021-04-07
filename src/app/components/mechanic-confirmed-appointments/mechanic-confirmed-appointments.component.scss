@@ -95,4 +95,34 @@ h2{
   text-align: left;
 }
 
+@media only screen and (max-width:440px) {
+  
 
+  mat-card-subtitle{
+    font-size: smaller;
+  }
+
+  p{
+    font-size: smaller;
+  }
+
+  button{
+    width: 22px;
+    height: 32px;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  mat-icon{
+    font-size: 20px;
+  }
+ 
+  }
+
+  
+
+  @media only screen and (max-width:320px) {
+    .txt{
+      display: none;
+    }
+  }
