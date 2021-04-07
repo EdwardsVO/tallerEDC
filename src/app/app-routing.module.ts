@@ -21,11 +21,13 @@ import { UsPageComponent } from './pages/us-page/us-page.component';
 import { EmailConfirmationComponent } from './components/email-confirmation/email-confirmation.component';
 import { QrcodeComponent } from '@techiediaries/ngx-qrcode';
 import { CodigoQRComponent } from './components/codigo-qr/codigo-qr.component';
+import { MechdiagnosticComponent } from './components/mechdiagnostic/mechdiagnostic.component';
 
 
 
 const routes: Routes = [
   { path: 'home', component: LandingPageComponent },
+  { path: '', component: LandingPageComponent },
   { path: 'team', component: UsPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
@@ -44,6 +46,9 @@ const routes: Routes = [
   { path: 'email-confirmation', component: EmailConfirmationComponent},
   { path:'mechanic', component: MechanicPageComponent, canActivate: [MechGuard]},
   { path:'scan', component: CodigoQRComponent, canActivate: [MechGuard]},
+  { path:'diagnostic', component: MechdiagnosticComponent, canActivate: [MechGuard]},
+
+  
 
   { path: '**', component: Error404Component },
 ];

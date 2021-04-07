@@ -96,6 +96,7 @@ import { CodigoQRComponent } from './components/codigo-qr/codigo-qr.component';
 
 // QR Scanner
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { MechdiagnosticComponent } from './components/mechdiagnostic/mechdiagnostic.component';
 
 
 
@@ -156,6 +157,7 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     FilterCarPipe,
     NotImageDirective,
     CodigoQRComponent,
+    MechdiagnosticComponent,
 
   ],
 
@@ -194,7 +196,7 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 
   ],
-  providers: [AngularFirestore, ContactComponent],
+  providers: [AngularFirestore, ContactComponent, CodigoQRComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
