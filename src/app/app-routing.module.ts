@@ -19,6 +19,8 @@ import { MechGuard } from './guards/mech.guard';
 import { ManagerGuard } from './guards/manager.guard';
 import { UsPageComponent } from './pages/us-page/us-page.component';
 import { EmailConfirmationComponent } from './components/email-confirmation/email-confirmation.component';
+import { QrcodeComponent } from '@techiediaries/ngx-qrcode';
+import { CodigoQRComponent } from './components/codigo-qr/codigo-qr.component';
 
 
 
@@ -41,6 +43,8 @@ const routes: Routes = [
   { path:'mechanic', component: MechanicPageComponent},
   { path: 'email-confirmation', component: EmailConfirmationComponent},
   { path:'mechanic', component: MechanicPageComponent, canActivate: [MechGuard]},
+  { path:'scan', component: CodigoQRComponent, canActivate: [MechGuard]},
+
   { path: '**', component: Error404Component },
 ];
 
