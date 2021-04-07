@@ -3,7 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { VehiclesCrudService } from '../../services/vehicles-crud.service';
 import { Appointment } from 'src/app/models/appointment'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CrudService } from 'src/app/services/crud.service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
@@ -24,7 +24,7 @@ export class OrdersComponent implements OnInit {
 
   cars = [];
   appointmentInfo: Appointment[];
-  totalPrice = ""
+  totalPrice: string;
   ownerId = ""
 
   constructor( private modalService: NgbModal, private _vehicleSvc: VehiclesCrudService, private _firestore: AngularFirestore, private _form: FormBuilder, private toastrr: ToastrService, private _authService: AuthService, private _crudSvc: CrudService) { }
@@ -38,7 +38,7 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.priceValue = this._form.group({
-      totalPriceService: ["", Validators.required]
+      totalPriceService: new FormControl('', [Validators.required])
     })
     this.getConfirmedAppointments();
     this.getAppointmentInfo();
@@ -126,6 +126,7 @@ export class OrdersComponent implements OnInit {
     // this.totalPrice2 = this.priceValue.get("totalPrice").value
   
     this.totalPrice = this.priceValue.get("totalPriceService").value
+    console.log(this.totalPrice)
 
     this._vehicleSvc.closeAppointments(carId, aID, this.totalPrice);
     this._crudSvc.totalMoneySpent(owner, this.totalPrice);
