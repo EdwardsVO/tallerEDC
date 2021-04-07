@@ -91,16 +91,40 @@
                 <p>Fecha de Ingreso al Sistema: {{info.initDate}}</p>
                 <p>Dueño: {{info.ownerName}}<p>
                 <p>Cantidad de Servicios Realizados: {{info.timesRepaired}}</p>
-                <!-- <p>El rol es {{info.role}}</p> -->
-                <p *ngIf="info.role =='client' && info.moneySpent != '0'">Dinero invertido: {{info.moneySpent}}</p>
-                <p *ngIf='info.role =="mechanic"'>Carros Reparados: {{info.carsRepaired}}</p>
+                <button mat-raised-button (click)="getAppointments(info.id2)" (click) = "close(content)">Ver Servicios</button>
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
             </div>
         </ng-template>
+        
+        
     </div>
 </mat-card>
+
+        <div *ngIf ="tecnicalInfo">
+            <div *ngFor = "let at of appointments">
+                <mat-card>
+                    <p>Fecha de Cita: {{at.appointmentDate}}</p>
+                    <p>Estado de Entrada: </p>
+                    <p>     Llaves: {{at.keys}}</p>
+                    <p>     Gato: {{at.gato}}</p>
+                    <p>     Caucho de Repuesto: {{at.extraTire}}</p>
+                    <p>     Kilometraje: {{at.carKm}}</p>
+                    <p>     Gasolina: {{at.carGas}}</p>
+                    <p>     Rayones: {{at.scratches}}</p>
+                    <p>     Stereo: {{at.stereo}}</p>
+                    <p>     Herramientas: {{at.tools}}</p>
+                    <p>Mecanico encargado: {{at.mechName}}</p>
+                    <p>Razon de entrada: "{{at.reason}}"</p>
+                    <p>Diagnostico: "{{at.diagnostic}}"</p>
+                    <p>Repuestos colocados: "{{at.repuestos}}"</p>
+                    <p>Precio Total: {{at.totalPriceService | currency:'USD'}}</p>
+                </mat-card>
+            </div>
+        </div>
+
 
 <div class="second-div">
 

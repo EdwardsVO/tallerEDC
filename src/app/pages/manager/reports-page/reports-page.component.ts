@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { VehiclesCrudService } from 'src/app/services/vehicles-crud.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import {CurrencyPipe } from '@angular/common'
 
 @Component({
   selector: 'app-reports-page',
@@ -18,8 +19,9 @@ export class ReportsPageComponent implements OnInit {
   cars = [];
   showMore = [];
   carsRepaired = [];
-  appointmetns = [];
+  appointments = [];
   appointmetnsC = [];
+  carAppointments = [];
   bestMech: any;
   bestCar: any;
   bestClient: any;
@@ -40,7 +42,6 @@ export class ReportsPageComponent implements OnInit {
     this.getMechs();
     this.getTotalCars();
     this.getRepairedCars();
-    this.getAppointmetns();
     this.getAppointmetnsCompleted();
   }
 
@@ -73,9 +74,12 @@ export class ReportsPageComponent implements OnInit {
       })
     })
   }
-  async getAppointmetns() {
-    await this._firestore.collection('appointments').snapshotChanges().subscribe(res => {
-      this.appointmetns = res.map((e: any) => {
+  async getAppointments(id) {
+    await this._firestore.collection('appointments', ref => ref.where("carId", "==", id)).snapshotChanges().subscribe(res => {
+      this.appointments = res.map((e: any) => {
+        setTimeout(()=>{
+          this.tecnicalInfo = true;
+        }, 1000)
         return {
           appointmentDate: e.payload.doc.data().appointmentDate,
           appointmentID: e.payload.doc.data().appointmentID,
@@ -97,6 +101,7 @@ export class ReportsPageComponent implements OnInit {
           scratches: e.payload.doc.data().scratches,
           stereo: e.payload.doc.data().stereo,
           tools: e.payload.doc.data().tools,
+          totalPriceService: e.payload.doc.data().totalPriceService
         }
       })
     })
@@ -187,7 +192,7 @@ export class ReportsPageComponent implements OnInit {
           timesRepaired: e.payload.doc.data().timesRepaired,
           plate: e.payload.doc.data().plate,
           photo: e.payload.doc.data().photo,
-          
+          id2: e.payload.doc.data().id2
         }
       })
     })
@@ -264,6 +269,7 @@ export class ReportsPageComponent implements OnInit {
     this.tecnicalInfo = true;
   }
 
+    
   
 
   open(content) { //MODAL
