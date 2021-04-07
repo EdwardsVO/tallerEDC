@@ -206,7 +206,6 @@ export class ReportsPageComponent implements OnInit {
 
   async getRepairedCars() {
     await this._firestore.collection('cars', ref => ref.where("timesRepaired", ">", 0)).snapshotChanges().subscribe(res => {
-      this.getTotalEarn();
       this.carsRepaired = res.map((e: any) => {
         return {
           model: e.payload.doc.data().model,
@@ -223,7 +222,11 @@ export class ReportsPageComponent implements OnInit {
       })
     })
   }
-
+  // async getMoneyEarn() {
+  
+  //   await this._firestore.collection('users', ref => ref.where("moneySpent", ">", 0))
+  //   })
+  // }
   async showDataS() {
     var bestMech;
     var bestCarAux;
@@ -249,12 +252,6 @@ export class ReportsPageComponent implements OnInit {
     this.showData = true;
   }
 
-    getTotalEarn(){
-    for(let x in this.clients){
-      console.log(this.clients[x].moneySpent)
-      this.profit += Number(this.clients[x].moneySpent)
-    }
-  }
 
   getClientInfo() {
     this.showMore = this.clients;

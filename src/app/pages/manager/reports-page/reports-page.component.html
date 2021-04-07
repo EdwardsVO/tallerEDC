@@ -1,21 +1,21 @@
-1<h1>RESUMEN ADMINISTRATIVO</h1>
+<h1>RESUMEN ADMINISTRATIVO</h1>
 <div class="main-div">
 
     <mat-card>
         <p><b>{{clients.length}}</b> clientes</p>
-        <button mat-raised-button (click)="getClientInfo()">Ver mas</button>
+        <button mat-raised-button (click) = "close()" (click)="getClientInfo()">Ver mas</button>
     </mat-card>
     <mat-card>
         <p><b>{{admins.length}}</b> admins</p>
-        <button mat-raised-button (click)="getAdminInfo()">Ver mas</button>
+        <button mat-raised-button (click) = "close()" (click)="getAdminInfo()">Ver mas</button>
     </mat-card>
     <mat-card>
         <p><b>{{managers.length}}</b> managers</p>
-        <button mat-raised-button (click)="getManInfo()">Ver mas</button>
+        <button mat-raised-button (click) = "close()" (click)="getManInfo()">Ver mas</button>
     </mat-card>
     <mat-card>
         <p><b>{{mechanics.length}}</b> mecanicos</p>
-        <button mat-raised-button (click)="getMechInfo()">Ver mas</button>
+        <button mat-raised-button (click) = "close()" (click)="getMechInfo()">Ver mas</button>
     </mat-card>
 </div>
 <div class="second-div">
