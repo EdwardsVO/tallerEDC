@@ -98,6 +98,7 @@ mat-card-subtitle {
 
 .btn{
   height: 20%;
+  margin-left: 15%;
 }
 
 .row{
@@ -107,3 +108,33 @@ mat-card-subtitle {
   margin-left: 13%;
   margin-bottom: 2%;
 }
+
+@media only screen and (max-width: 600px) {
+
+  .txt,img{
+    display: none;
+  }
+
+  p,mat-card-subtitle{
+    font-size: smaller;
+    margin-left: 1%;
+  }
+
+  .btn{
+    flex-direction: column;
+    display:flex;
+  }
+
+  mat-card{
+    height: fit-content;
+  }
+
+  
+  }
+
+  @media only screen and (max-width: 900px) {
+
+    .text,img{
+      display: none;
+    }
+  }
