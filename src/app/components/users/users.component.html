@@ -28,7 +28,7 @@
                     <mat-icon (click) = "updateRoleForm(user)">edit</mat-icon>
                 </button>
 
-                <button mat-mini-fab class="edit"color="primary" title = "Deshabilitar usuario">
+                <button mat-mini-fab class="edit"color="primary" title = "Deshabilitar usuario" *ngIf="!editState">
                     <mat-icon (click)="open(content)">block</mat-icon>
                 </button>
 
@@ -78,14 +78,7 @@
 
                         <input type="text" placeholder="Telefono" [(ngModel)] = "user.phone" name = "Telefono">
 
-                        <input type="text" placeholder="Rol" [(ngModel)] = "user.role" name = "Role" matInput [matAutocomplete] = "auto">
-
-                        <!-- Autocomplete -->
-                        <mat-autocomplete #auto="matAutocomplete">
-                          <mat-option *ngFor="let option of options" [value]="option">
-                            {{option}}
-                          </mat-option>
-                        </mat-autocomplete>
+                        <input type="text" placeholder="Rol" [(ngModel)] = "user.role" name = "Role"  [matAutocomplete] = "auto">
 
                         <button mat-raised-button color = "primary" type="submit" class = "btn" (click) = "updateUser(user)">Actualizar</button>
                    </div>
@@ -96,4 +89,11 @@
 
     </div>
 </div>
+
+<!-- Autocomplete -->
+<mat-autocomplete #auto="matAutocomplete">
+  <mat-option *ngFor="let option of options" [value]="option">
+    {{option}}
+  </mat-option>
+</mat-autocomplete>
 
