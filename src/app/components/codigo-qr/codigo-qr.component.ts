@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, VERSION, OnInit, ViewChild } from '@angular/core';
+import { ZXingScannerComponent } from '@zxing/ngx-scanner';
+import { Result } from '@zxing/library';
 
 @Component({
   selector: 'app-codigo-qr',
@@ -8,16 +10,50 @@ import { Component, OnInit } from '@angular/core';
 export class CodigoQRComponent implements OnInit {
 
   value = ''
+
+  @ViewChild('scanner')
+  scanner: ZXingScannerComponent;
+
+  hasDevices: boolean;
+  hasPermission: boolean;
+  qrResultString: string;
+  qrResult: Result;
+
+  availableDevices: MediaDeviceInfo[];
+  currentDevice: MediaDeviceInfo;
+
+
   constructor() { }
 
   ngOnInit(): void {
+
+    this.scanner.camerasFound.subscribe((devices: MediaDeviceInfo[]) => {
+      this.hasDevices = true;
+      this.availableDevices = devices;
+
+      // selects the devices's back camera by default
+      for (const device of devices) {
+          if (/back|rear|environment/gi.test(device.label)) {
+              // this.scanner.changeDevice(device);
+              this.currentDevice = device;
+              break;
+          }
+      }
+    });
+
+    this.scanner.camerasNotFound.subscribe(() => this.hasDevices = false);
+    this.scanner.scanComplete.subscribe((result: Result) => this.qrResult = result);
+    this.scanner.permissionResponse.subscribe((perm: boolean) => this.hasPermission = perm);
+
   }
 
-  setQRData(appointmentId){
-    console.log(appointmentId);
-    this.value = appointmentId;
-    console.log(this.value);
-    return this.value
+  handleQrCodeResult(resultString: string) {
+    console.debug('Result: ', resultString);
+    const final_value = JSON.parse(resultString)
+    this.qrResultString = 'name: ' + final_value.name + ' age: ' + final_value.age;
+    console.log(this.qrResultString);
   }
+
+
 
 }
