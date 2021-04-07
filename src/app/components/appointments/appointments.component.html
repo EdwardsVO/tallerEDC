@@ -40,7 +40,7 @@
         (click)="open(content)"
         [disabled]="car.reparation"
 
-       
+
       >
         SOLICITAR CITA
       </button>
@@ -258,7 +258,7 @@
                               <p>
                                 <ngx-qrcode
                                     [elementType] = "elementType"
-                                    [value] = "appointment.id"
+                                    [value] = "appointment.appointmentId"
                                     cssClass = "aClass"
                                     errorCorrectionLevel = "L">
                                 </ngx-qrcode>

@@ -4,6 +4,8 @@ import { Result } from '@zxing/library';
 import { MechanicCrudService } from 'src/app/services/mechanic-crud.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-codigo-qr',
@@ -37,6 +39,11 @@ export class CodigoQRComponent implements OnInit {
 
   mechanicName = ""
   mechanicId = ""
+  scannerEnabled: boolean;
+  information: string;
+
+  id: string;
+  subscription: Subscription;
 
 
   constructor(private _mechSvc: MechanicCrudService, private _firestore: AngularFirestore, private _router: Router) { }
@@ -62,9 +69,11 @@ export class CodigoQRComponent implements OnInit {
       }
     });
 
-    this.scanner.camerasNotFound.subscribe(() => this.hasDevices = false);
+    // this.scanner.camerasNotFound.subscribe(() => this.hasDevices = false);
     this.scanner.scanComplete.subscribe((result: Result) => this.qrResult = result);
-    this.scanner.permissionResponse.subscribe((perm: boolean) => this.hasPermission = perm);
+    // this.scanner.permissionResponse.subscribe((perm: boolean) => this.hasPermission = perm);
+
+    this.subscription = this._mechSvc.currentId.subscribe(id => this.id = id)
 
   }
 
@@ -77,8 +86,13 @@ export class CodigoQRComponent implements OnInit {
   confirmWork(appointmentId) {
     this._mechSvc.confirmWork(appointmentId, this.mechanicName)
     console.log(`Cita: ${appointmentId} ha sido asignada a ${this.mechanicName}! A chambear`);
-    this._router.navigate(['/diagnostic'])
+    this._router.navigate(['/diagnostic'], {queryParams: { qrId: this.qrResultString }})
+    this.getString()
+  }
 
+  getString(){
+    console.log(this.qrResultString);
+    return this.qrResultString
   }
 
 

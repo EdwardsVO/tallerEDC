@@ -151,6 +151,7 @@ export class AppointmentsComponent implements OnInit {
                 ownerEmail: e.payload.doc.data().ownerEmail,
                 alertManager: e.payload.doc.data().alertManager,
                 photo: e.payload.doc.data().photo,
+                appointmentId: e.payload.doc.data().lastAppointment,
               }
             })
           })
