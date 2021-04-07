@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { Router } from '@angular/router';
+import { Router , ActivatedRoute } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
@@ -15,6 +15,8 @@ import { CodigoQRComponent } from './../../components/codigo-qr/codigo-qr.compon
   styleUrls: ['./mechdiagnostic.component.scss']
 })
 export class MechdiagnosticComponent implements OnInit {
+
+  @Input() id: string;
 
   appointmentId: string;
   mechanicName: string;
@@ -32,22 +34,25 @@ export class MechdiagnosticComponent implements OnInit {
   path: string;
 
   closeResult = ""
+  qrResult: string;
 
 
-  constructor(private _qrComponent: CodigoQRComponent, private _firestore: AngularFirestore, private _mechSvc: MechanicCrudService, private _toastr: ToastrService, private _router: Router, private af:AngularFireStorage, private modalService: NgbModal) { }
+  constructor(private _qrComponent: CodigoQRComponent, private _firestore: AngularFirestore, private _mechSvc: MechanicCrudService, private _toastr: ToastrService, private _router: Router, private af:AngularFireStorage, private modalService: NgbModal, private _route: ActivatedRoute) { }
 
 
   ngOnInit(): void {
+
+    this._route.queryParamMap.subscribe(x => { this.qrResult = (x.get('qrId')) })
+
     this.appointmentId = this._qrComponent.qrResultString;
 
     this._firestore.collection('users').doc(localStorage.getItem('user')).snapshotChanges().subscribe(res => {
       this.mechanicName = res.payload.get('name');
       this.mechanicId = res.payload.get('id');
-  
-      this._firestore.collection('appointments', ref => ref.where("appointmentID", "==", this.appointmentId)).snapshotChanges().subscribe(res => {
+
+      this._firestore.collection('appointments', ref => ref.where("appointmentID", "==", this.qrResult)).snapshotChanges().subscribe(res => {
         this.appointments = res.map((e: any) => {
           return {
-  
             id: e.payload.doc.id,
             carId: e.payload.doc.data().carId,
             brand: e.payload.doc.data().carBrand,
@@ -56,7 +61,6 @@ export class MechdiagnosticComponent implements OnInit {
             year: e.payload.doc.data().carYear,
             repaired: e.payload.doc.data().repaired,
             needsReparation: e.payload.doc.data().needsReparation
-            
           }
         })
       })
@@ -97,7 +101,7 @@ export class MechdiagnosticComponent implements OnInit {
     this.path = '/images/' + randomId;
     //this.ref = this.af.ref(this.path);
     const uploadTask = this.af.upload(this.path, this.selectedImg)
-    
+
 
     uploadTask.snapshotChanges()
     .pipe(
@@ -114,7 +118,7 @@ export class MechdiagnosticComponent implements OnInit {
     )
     .subscribe(url => {
       if (url) {
-        
+
       }
     });
     return uploadTask.percentageChanges();
@@ -131,7 +135,7 @@ export class MechdiagnosticComponent implements OnInit {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      
+
     });
   }
 

@@ -1,13 +1,22 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import firebase from 'firebase'
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MechanicCrudService {
 
+  private idSource = new BehaviorSubject('default Id')
+  currentId = this.idSource.asObservable();
+
   constructor(private _firestore: AngularFirestore) { }
+
+  changeId(id: string){
+    this.idSource.next(id)
+  }
+
 
   confirmWork(appointmentId, mechName){
     this._firestore.collection('appointments').doc(appointmentId).update({
@@ -54,7 +63,7 @@ export class MechanicCrudService {
         appointmentHour: '',
         timesRepaired: cont,
       })
-      
+
       this._firestore.collection('users').doc(localStorage.getItem("user")).update({
         carsRepaired: cont,
       })
