@@ -21,8 +21,8 @@ export class CodigoQRComponent implements OnInit {
 
   hasDevices: boolean;
   hasPermission: boolean;
-  //qrResultString: string;
-   qrResultString: string = 'xWxl0PEBI5F9M8RJBjB5';
+  qrResultString: string;
+   //qrResultString: string = 'xWxl0PEBI5F9M8RJBjB5';
 
   qrResult: Result;
 

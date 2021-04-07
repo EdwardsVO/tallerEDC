@@ -284,7 +284,7 @@ h2 {
   .container{
     flex-flow: row wrap;
     display:block;
-    width: auto;
+    width: 60%;
   }  
 
   textarea{
@@ -293,8 +293,24 @@ h2 {
   }
 
   .text-inputs{
-    width: 00%;
+    //margin-left: -5%;
+    //width: fit-content;
+
+    input{
+      //margin-left: 10px;
+      margin-right:1px;
+      width: 80%;
+      
+    }
   }
-  
+
+  .pic-btn{
+    float:left;
+  }
+
+  .btn{
+    margin-top:10%;
+    margin-right: 15%;
+  }
   
   }

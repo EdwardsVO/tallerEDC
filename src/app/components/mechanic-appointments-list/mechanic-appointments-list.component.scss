@@ -42,3 +42,40 @@ button.qr:hover{
   background-color: #2e3192;
 }
 
+@media only screen and (max-width:440px) {
+  
+
+mat-card{
+  height: 70px;
+}
+
+  .green,.qr{
+    flex-direction: column;
+    max-width:3px ;
+    min-width: 3px;
+    height: 35px;
+    align-items: center;
+
+    mat-icon{
+      font-size: smaller;
+      margin-left: -5%;
+    }
+
+  }
+
+
+  mat-card-subtitle{
+    font-size: smaller;
+  }
+
+  p{
+    font-size: smaller;
+  }
+
+}
+
+@media only screen and (max-width:300px) {
+  .txt{
+    display: none;
+  }
+}
