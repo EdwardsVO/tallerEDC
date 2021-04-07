@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { CrudService } from 'src/app/services/crud.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { formatDate } from '@angular/common';
 
 
 
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
   currentUser: string;
   currentRole: string;
   roleLoad: boolean = false;
+  date: string = this.formatDate()
 
 
   constructor(private _fb: FormBuilder, private _router: Router, private modalService: NgbModal, private _authService: AuthService, private _db: CrudService, private _afs: AngularFirestore) {
@@ -38,6 +40,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.createAuthForm();
     this.createRegistrationForm();
+    
   }
 
 
@@ -47,6 +50,12 @@ export class LoginComponent implements OnInit {
       email: '',
       password: ''
     })
+  }
+
+  formatDate(){
+    const timeElapsed = Date.now();
+    const today = new Date(timeElapsed);
+    return today.toDateString()
   }
 
   async handleGoogleLogin(): Promise<void> {
@@ -60,6 +69,7 @@ export class LoginComponent implements OnInit {
           this.name = user.displayName;
           this.email = user.email;
           this.role;
+          this.date;
 
           this._afs.collection('users').doc(this.id).ref.get().then((docSnapshot) => {
             if (!docSnapshot.exists) {
@@ -68,7 +78,8 @@ export class LoginComponent implements OnInit {
                 this.name,
                 this.email,
                 this.phone,
-                this.role)
+                this.role,
+                this.date)
             }
           });
         }
@@ -170,6 +181,7 @@ export class LoginComponent implements OnInit {
           this.authForm.get('email').value,
           this.authForm.get('phone').value,
           this.role,
+          this.date
         )
         this._router.navigate(['/user'], { queryParams: { login: 'true' }, queryParamsHandling: 'merge' })
         this.modalService.dismissAll()

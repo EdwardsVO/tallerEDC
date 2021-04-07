@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
   role: string = 'client';
   moneySpent: string;
   carsRepaired: number;
+  date: string;
 
   
 
@@ -40,6 +41,12 @@ export class RegisterComponent implements OnInit {
       phone: ['', Validators.required] 
     })
   }
+  
+  formatDate(){
+    const timeElapsed = Date.now();
+    const today = new Date(timeElapsed);
+    return today.toDateString()
+  }
 
   async handleRegistration(): Promise<void> {
     try{
@@ -52,6 +59,7 @@ export class RegisterComponent implements OnInit {
           this.authForm.get('email').value,
           this.authForm.get('phone').value,
           this.role,
+          this.date = this.formatDate(),
           )
     })
     }catch(err) {
