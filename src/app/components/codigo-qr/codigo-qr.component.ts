@@ -48,10 +48,7 @@ export class CodigoQRComponent implements OnInit {
   }
 
   handleQrCodeResult(resultString: string) {
-    console.debug('Result: ', resultString);
-    const final_value = JSON.parse(resultString)
-    this.qrResultString = 'name: ' + final_value.name + ' age: ' + final_value.age;
-    console.log(this.qrResultString);
+    console.log(resultString);
   }
 
 
