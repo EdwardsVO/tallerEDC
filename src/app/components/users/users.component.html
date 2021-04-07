@@ -4,11 +4,12 @@
             <input type="Search" name = "filterUser"placeholder="Search..." [(ngModel)]="filterUser">
             <button mat-raised-button>Search</button>
         </form>
-    </div>    
+    </div>
     <div class="user">
         <div class="user-container" *ngFor="let user of users | filterAll: filterUser">
             <mat-card >
-                <img mat-card-sm-image src="assets/img/placeholder.jpg" alt="client's car1">
+
+               <img src="{{user.photo}}" class = "profilePic" appNotImage>
 
                 <mat-card-subtitle>NOMBRE
                     <p>{{user.name}}</p>
@@ -72,19 +73,27 @@
             <div class="form" *ngIf="editState && userToEdit.id == user.id">
                 <form (ngSubmit)= "updateUser(user)">
                    <div class="row">
-                       
+
                         <input type="text" placeholder="Nombre del usuario" [(ngModel)] = "user.name" name = "Nombre">
-     
+
                         <input type="text" placeholder="Telefono" [(ngModel)] = "user.phone" name = "Telefono">
-        
-                        <input type="text" placeholder="Rol" [(ngModel)] = "user.role" name = "Role">
+
+                        <input type="text" placeholder="Rol" [(ngModel)] = "user.role" name = "Role" matInput [matAutocomplete] = "auto">
+
+                        <!-- Autocomplete -->
+                        <mat-autocomplete #auto="matAutocomplete">
+                          <mat-option *ngFor="let option of options" [value]="option">
+                            {{option}}
+                          </mat-option>
+                        </mat-autocomplete>
+
                         <button mat-raised-button color = "primary" type="submit" class = "btn" (click) = "updateUser(user)">Actualizar</button>
                    </div>
                 </form>
             </div>
 
         </div>
-       
+
     </div>
 </div>
 
