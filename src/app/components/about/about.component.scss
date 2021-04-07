@@ -27,6 +27,8 @@ h1{
    
 }
 
+
+
 p::-webkit-scrollbar {
     width: 1em;
 }
@@ -44,9 +46,9 @@ button{
     color: white;
     background-color: #2E3192;
     height: 50px;
-    margin-left: 15%;
     width: auto;
     text-align: center;
+    margin-left: 40%;
       
 }
 button:hover{
@@ -60,11 +62,8 @@ button:hover{
     }
 
     button{
-        margin-left: -1%;
-        //margin-right: 10%;
-        //osition: absolute;
-
-        
+        margin-left: auto;
+        margin-right: auto;
     }
 
     img{
@@ -75,7 +74,7 @@ button:hover{
     }
 
     mat-card{
-        align-items: center;    }
+        text-align: center;    }
    
   
     }
