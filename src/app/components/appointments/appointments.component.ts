@@ -159,7 +159,7 @@ export class AppointmentsComponent implements OnInit {
 
         public sendEmail(e: Event) {
           e.preventDefault();
-          emailjs.sendForm('service_pwcf60n', 'template_gsog4jn', e.target as HTMLFormElement, 'user_WiVZBumT4YhIFxwiixzgr')
+          emailjs.sendForm('service_dnxdt8m', 'template_4ua2jpe', e.target as HTMLFormElement, 'user_q58MLrmPLuDZ9VZaTnXDU')
             .then((result: EmailJSResponseStatus) => {
               console.log(result.text);
             }, (error) => {
