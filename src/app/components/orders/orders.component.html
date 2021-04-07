@@ -44,7 +44,7 @@
         <mat-card-subtitle><b>INGRESE EL MONTO TOTAL DEL SERVICIO:     </b> 
           <form [formGroup] = "priceValue" (submit)="sendEmail($event)">
             <mat-form-field>
-              <input formControlName="totalPriceService" name= "totalPriceService" class="price "type ="text" matInput placeholder="$$$"  >
+              <input formControlName="totalPriceService" name= "totalPriceService" class="price" type ="text" matInput placeholder="$$$"  >
             </mat-form-field>
             
             
@@ -66,7 +66,7 @@
               
                 <input name="name" class="price" type ="hidden" value="{{car.ownerName}}"   >
 
-                <input name="ps" class="price" type ="hidden" value="{{car.totalPriceService}}">
+                <input name="ps" class="price" type ="hidden" value="{{totalPrice}}">
               <!-- </div> -->
 
               <div class="modal-footer">
