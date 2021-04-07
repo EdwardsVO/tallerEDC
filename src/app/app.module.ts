@@ -94,6 +94,11 @@ import { FilterCarPipe } from './pipes/filter-car.pipe';
 import { NotImageDirective } from './directives/not-image.directive';
 import { CodigoQRComponent } from './components/codigo-qr/codigo-qr.component';
 
+// QR Scanner
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { MechdiagnosticComponent } from './components/mechdiagnostic/mechdiagnostic.component';
+
+
 
 
 @NgModule({
@@ -152,6 +157,7 @@ import { CodigoQRComponent } from './components/codigo-qr/codigo-qr.component';
     FilterCarPipe,
     NotImageDirective,
     CodigoQRComponent,
+    MechdiagnosticComponent,
 
   ],
 
@@ -185,10 +191,12 @@ import { CodigoQRComponent } from './components/codigo-qr/codigo-qr.component';
     }), ToastrModule.forRoot(),
     HttpClientModule,
     AngularFireDatabaseModule,
-    NgxQRCodeModule
+    NgxQRCodeModule,
+    ZXingScannerModule
+
 
   ],
-  providers: [AngularFirestore, ContactComponent],
+  providers: [AngularFirestore, ContactComponent, CodigoQRComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

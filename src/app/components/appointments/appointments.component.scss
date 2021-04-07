@@ -17,7 +17,7 @@ p {
 .button-container {
   text-align: center;
   margin-top: 1rem;
-  
+
 
   button{
     color: white;
@@ -28,16 +28,16 @@ p {
   button:hover{
     color: #2e3192;
     background-color: white;
-    
+
   }
 }
 .buttons-container {
   text-align: right;
   margin-top: 1rem;
-  
+
   button{
     margin-left: 1%;
-    
+
   }
 }
 
@@ -46,12 +46,6 @@ button{
   min-width: fit-content;
 }
 
-button.sol-btn{
-  height: 60%;
-  color: white;
-  background-color: #2e3192;
-
-}
 
 
 
@@ -107,7 +101,7 @@ input {
 button.green{
   color: rgb(3, 180, 3);
   background-color: white;
-  
+
 }
 
 button.green:hover{
@@ -134,5 +128,63 @@ button.trash:hover{
   color: white;
   background-color: #2e3192;
 }
+mat-card-content.qrcode {
+  margin-left: 105%;
+}
 
 
+
+@media only screen and (max-width: 600px) {
+
+  p {
+    font-size: 9px;
+    font-family: "Roboto", sans-serif;
+    
+  }
+
+  mat-card-subtitle{
+    font-size: 10px;
+    margin-left: -2%;
+  }
+
+  mat-card{
+    height: 70px;
+  }
+
+  img{
+    width: 45px;
+    height: 45px;
+  }
+
+  .sol-btn{
+  
+    font-size:x-small;
+    justify-content: center;
+    padding-bottom: 0;
+    text-align: center
+    
+  }
+
+  button.sol-btn{
+    
+    height: 30px;
+    color: white;
+    background-color: #2e3192;
+  
+  }
+
+  .txt{
+    display: none;
+  }
+    }
+
+    @media only screen and (min-width: 601px) {
+
+      button.sol-btn{
+        height: 60%;
+        color: white;
+        background-color: #2e3192;
+      
+      }
+      
+    }

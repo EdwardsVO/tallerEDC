@@ -20,7 +20,7 @@
 
                     <div class="btn-container">
                         <button mat-raised-button class="green" (click) = "confirmWork(appointment.id)" title="Aceptar Trabajo"><span class="material-icons">done</span></button>
-                        <button mat-raised-button class="qr" (click) = "scanQR()"><span class="material-icons">
+                        <button mat-raised-button class="qr" (click)="open(content)"><span class="material-icons">
                             qr_code_2
                             </span></button>
                     </div>
@@ -31,6 +31,34 @@
         </div>
 </div>
 
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Scanner</h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div class="vehicle">
+          <mat-card class="example-card">
+            <div class="info-card">
+              <mat-card-content>
+                <p>
+                 ¿Desea abrir el scanner?
+                </p>
+                <button mat-button color = "primary" (click) = "scanQR()" (click) = "modal.dismiss('Cross click')">Si</button>
+                <button mat-button color = "primary" (click) = "modal.dismiss('Cross click')">No</button>
+              </mat-card-content>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+  </ng-template>
 
 
 

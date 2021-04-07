@@ -90,21 +90,9 @@ button:hover {
   margin-right: 15%;
 }
 
-img {
-  border-radius: 50%;
-  width: 60%;
-  display: block;
-  margin-left: 20%;
-  margin-right: auto;
-}
 
-.pic-btn {
-  align-items: center;
-  display: block;
-  margin: auto;
-  margin-top: 8%;
-  width: auto;
-}
+
+
 
 mat-card {
   width: 90%;
@@ -136,15 +124,7 @@ form {
   box-shadow: none;
 }
 
-.info-card {
-  padding: 1rem;
-  margin-top: 10px;
-  height: 560.38px;
-  margin-bottom: 0;
-  box-shadow: none;
-  
 
-}
 
 
 
@@ -190,43 +170,101 @@ form {
   font-family: "Bree Serif", serif;
 }
 
-.profilePic {
-  width: 220px;
-  height: 220px;
-  margin-right: 7rem;
-}
 
-@media screen and (max-width: 1000px) {
-  
- .example-card{
-   width: 150%;
-   padding-left: 1%;
- }
 
-  .foto{
-    width: 90%;
-    margin-left: 10%;
 
+@media only screen and (max-width: 890px) {
+  .info-card{
+    width: 70%;
+    height: fit-content;
+    margin-left: 9%;
+    margin-top: 5% ;
   }
 
-  .profilePic {
-    width: 90px;
-    height: 90px;
-    margin-left: 12%;
-  } 
+  img {
+    border-radius: 50%;
+    width: 20%;
+    display: block;
+    margin-left: 20%;
+    margin-right: auto;
+  }
 
-  .pic-btn{
-    min-width: 15%;
+  mat-card {
+    width: 90%;
+    align-items: center;
+    contain: content;
+    flex-direction: column;
+    
+  
+  }
+  .profilePic {
+    width: 70px;
+    height: 70px;
+    margin-right: 9rem;
+    margin-left: -15px;
+    margin-bottom: -65px;
+    flex-direction: row;
+    display: inline-block;
+   
+  }
+
+  .pic-btn {
+    align-items: center;
+    margin: auto;
+    margin-top: 8%;
+    width: 97px;
+    flex-direction: row;
+    margin-bottom: 3%;
+    display: inline-block;
+    margin-left: 48%;
+    font-size: smaller;
     height: 3%;
     text-align: center;
-    font-size: 70%;
-    padding: 2%;
-    //margin-left: 20%;
+
+    mat-icon{
+      display: none;
+    }
   }
 
   .avatar{
-    width: 50%;
-    margin-left: 7%;
-    padding-right: 1%;
+    margin-left: 10%;
+    margin-bottom:-280px;
+    margin-top: 8%;
+    
   }
-}
+
+  }
+
+@media only screen and (min-width: 891px) {
+  .info-card {
+    padding: 1rem;
+    margin-top: 10px;
+    height: 560.38px;
+    margin-bottom: 0;
+    box-shadow: none;
+    
+  
+  }
+
+  img {
+    border-radius: 50%;
+    width: 60%;
+    display: block;
+    margin-left: 20%;
+    margin-right: auto;
+  }
+  .profilePic {
+    width: 220px;
+    height: 220px;
+    margin-right: 7rem;
+  }
+
+  .pic-btn {
+    align-items: center;
+    display: block;
+    margin: auto;
+    margin-top: 8%;
+    width: auto;
+  }
+  }
+  

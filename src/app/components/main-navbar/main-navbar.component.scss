@@ -103,3 +103,16 @@ a.loging-b{
 .mech{
   margin-left:-37%;
 }
+
+@media only screen and (max-width: 600px) {
+
+  mat-toolbar{
+    width: auto;
+  }
+
+  .login{
+    margin-right: 20%;
+  }
+
+  }
+
