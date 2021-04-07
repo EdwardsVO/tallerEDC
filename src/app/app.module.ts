@@ -94,6 +94,16 @@ import { FilterCarPipe } from './pipes/filter-car.pipe';
 import { NotImageDirective } from './directives/not-image.directive';
 import { CodigoQRComponent } from './components/codigo-qr/codigo-qr.component';
 
+//full calendar
+import { FullCalendarModule } from '@fullcalendar/angular'; 
+import dayGridPlugin from '@fullcalendar/daygrid'; 
+import interactionPlugin from '@fullcalendar/interaction'; 
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin
+]);
+
 
 
 @NgModule({
@@ -185,7 +195,8 @@ import { CodigoQRComponent } from './components/codigo-qr/codigo-qr.component';
     }), ToastrModule.forRoot(),
     HttpClientModule,
     AngularFireDatabaseModule,
-    NgxQRCodeModule
+    NgxQRCodeModule,
+    FullCalendarModule
 
   ],
   providers: [AngularFirestore, ContactComponent],
