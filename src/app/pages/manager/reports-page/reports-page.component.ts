@@ -20,7 +20,7 @@ export class ReportsPageComponent implements OnInit {
   showMore = [];
   carsRepaired = [];
   appointments = [];
-  appointmetnsC = [];
+  appointmentsC = [];
   carAppointments = [];
   bestMech: any;
   bestCar: any;
@@ -29,6 +29,8 @@ export class ReportsPageComponent implements OnInit {
   personalInfo = false;
   tecnicalInfo = false;
   carInfo = false;
+  clientDataUp = false;
+  profit = 0;
   closeResult = '';
 
   
@@ -46,8 +48,8 @@ export class ReportsPageComponent implements OnInit {
   }
 
   async getAppointmetnsCompleted() {
-    await this._firestore.collection('appointments', ref => ref.where("totalPriceService", "!=", "")).snapshotChanges().subscribe(res => {
-      this.appointmetnsC = res.map((e: any) => {
+    await this._firestore.collection('appointments').snapshotChanges().subscribe(res => {
+      this.appointmentsC = res.map((e: any) => {
         return {
           appointmentDate: e.payload.doc.data().appointmentDate,
           appointmentID: e.payload.doc.data().appointmentID,
@@ -56,6 +58,7 @@ export class ReportsPageComponent implements OnInit {
           carGas: e.payload.doc.data().carGas,
           carModel: e.payload.doc.data().carModel,
           carPlate: e.payload.doc.data().carPlate,
+          carKm: e.paylaod.do.data().carKm,
           carYear: e.payload.doc.data().carYear,
           diagnostic: e.payload.doc.data().diagnostic,
           extraTire: e.payload.doc.data().extraTire,
@@ -108,6 +111,9 @@ export class ReportsPageComponent implements OnInit {
   }
   async getClients() {
     await this._firestore.collection('users', ref => ref.where("role", "==", "client")).snapshotChanges().subscribe(res => {
+      setTimeout(() =>{
+        this.clientDataUp = true;
+      }, 1000)
       this.clients = res.map((e: any) => {
         return {
           id: e.payload.doc.data().id,
@@ -200,6 +206,7 @@ export class ReportsPageComponent implements OnInit {
 
   async getRepairedCars() {
     await this._firestore.collection('cars', ref => ref.where("timesRepaired", ">", 0)).snapshotChanges().subscribe(res => {
+      this.getTotalEarn();
       this.carsRepaired = res.map((e: any) => {
         return {
           model: e.payload.doc.data().model,
@@ -242,6 +249,13 @@ export class ReportsPageComponent implements OnInit {
     this.showData = true;
   }
 
+    getTotalEarn(){
+    for(let x in this.clients){
+      console.log(this.clients[x].moneySpent)
+      this.profit += Number(this.clients[x].moneySpent)
+    }
+  }
+
   getClientInfo() {
     this.showMore = this.clients;
     this.personalInfo = true;
@@ -265,7 +279,7 @@ export class ReportsPageComponent implements OnInit {
   }
 
   getAppointmentsInfo() { //pen
-    this.showMore = this.appointmetnsC;
+    this.showMore = this.appointmentsC;
     this.tecnicalInfo = true;
   }
 

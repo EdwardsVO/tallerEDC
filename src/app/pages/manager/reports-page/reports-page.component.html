@@ -24,15 +24,16 @@
         <button mat-raised-button (click)="getCarsInfo()">Ver mas</button>
     </mat-card>
     <mat-card>
-        <p><b>{{appointmetnsC.length}}</b> Reparaciones Totales</p>
-        <button mat-raised-button (click)="getAppointmentsInfo()">Ver mas</button>
+        <p><b>{{appointmentsC.length}}</b> Reparaciones Totales</p>
     </mat-card>
     <!-- <mat-card>
         <p><b>{{appointmetns.length}}</b> Citas Realizadas</p>
         <button mat-raised-button (click)="getCarsInfo()">Ver mas</button>
     </mat-card> -->
 </div>
-
+<div *ngIf = "clientDataUp">
+    <p><b>{{profit | currency: 'USD'}}</b> Entrada total</p>
+</div>
 
 <mat-card *ngIf="personalInfo"> <!--USER DETAILS-->
     <button mat-raised-button (click)="close()">Cerrar</button>
