@@ -22,4 +22,15 @@ export class AdminCrudService {
       console.log(err);
     }
   }
+
+  async disableUser(userId) {
+    try{
+      await this.db.collection('users').doc(userId).update({
+        role: ''
+      })
+    } catch(err){
+      console.log(err);
+    }
+  }
+
 }
