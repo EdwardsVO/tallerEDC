@@ -88,3 +88,46 @@ mat-card-subtitle{
 }
 
 
+@media only screen and (max-width: 600px) {
+
+  p {
+    font-size: 9px;
+    font-family: "Roboto", sans-serif;
+  }
+
+  mat-card-subtitle{
+    font-size: 10px;
+  }
+
+  mat-card{
+    height: 70px;
+  }
+
+  img{
+    width: 45px;
+    height: 45px;
+  }
+
+  button{
+    width:38px;
+    height:38px;
+    justify-content: center;
+    padding: 0;
+    margin-left: 1%;
+
+  }
+
+  mat-icon{
+    justify-content: center;
+    display: flex;
+    //align-items: center;
+    margin-top: -10px;
+  }
+
+  .txt{
+    display: none;
+  }
+    }
+
+
+
