@@ -7,7 +7,7 @@
             <mat-card-subtitle>MARCA<p>{{ appointment.brand }}</p></mat-card-subtitle>
             <mat-card-subtitle>MODELO<p>{{ appointment.model }}</p></mat-card-subtitle>
             <mat-card-subtitle>AÑO<P>{{ appointment.year }}</P></mat-card-subtitle>
-            <mat-card-subtitle>PLACA<P>{{ appointment.plate }}</P></mat-card-subtitle>
+            <mat-card-subtitle class="txt">PLACA<P>{{ appointment.plate }}</P></mat-card-subtitle>
         </mat-card>
       
     <!-- </mat-card> -->
@@ -20,26 +20,29 @@
               <mat-input>
                 <h2>INFORMACION NECESARIA</h2>
                 <div class="text-inputs">
-                  <mat-card-subtitle
+                  <mat-card-subtitle class="info-txt"
                     >COLOR
                     <input
+                      class="info-p"
                       type="text"
                       [(ngModel)]="appointment.carColor"
                       name="COLOR"
                     />
                   </mat-card-subtitle>
-                  <mat-card-subtitle
+                  <mat-card-subtitle class="info-txt"
                     >Km de Ingreso
                     <input
+                      class="info-p"
                       type="text"
                       [(ngModel)]="appointment.carKm"
                       name="Km"
                     />
                   </mat-card-subtitle>
-                  <mat-card-subtitle
+                  <mat-card-subtitle class="info-txt"
                     >Nivel de Gasolina
                     <input
                       type="text"
+                      class="info-p"
                       [(ngModel)]="appointment.carGas"
                       name="GAS"
                     />
