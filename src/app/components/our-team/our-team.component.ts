@@ -8,33 +8,33 @@ import { Component, OnInit } from '@angular/core';
 export class OurTeamComponent implements OnInit {
   mates = [
     {
-      img:"assets/img/placeholder.jpg",
+      img:"assets/img/edward.jpg",
       name:"Edward",
       last: "Vergel",
       fact: "FOUNDER",
       click: " window.open('http://www.google.com', '_blank'); return false;"
     },
     {
-      img:"assets/img/placeholder.jpg",
+      img:"assets/img/sebas.jpg",
       name:"Sebastian",
       last: "Vivas",
       fact: "FOUNDER",
     },
     
     {
-      img:"assets/img/placeholder.jpg",
+      img:"assets/img/ana.jpg",
       name:"Ana",
       last: "Iturbe",
       fact: "FOUNDER",
     },
     {
-      img:"assets/img/placeholder.jpg",
+      img:"assets/img/fran.jpg",
       name:"Francesca",
       last: "Marinuzzi",
       fact: "FOUNDER",
     },
     {
-      img:"assets/img/placeholder.jpg",
+      img:"assets/img/isa.jpg",
       name:"Isabella",
       last: "Abeledo",
       fact: "FOUNDER",
