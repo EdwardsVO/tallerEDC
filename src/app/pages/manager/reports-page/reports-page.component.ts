@@ -49,6 +49,7 @@ export class ReportsPageComponent implements OnInit {
     this.getRepairedCars();
     this.getAppointmetnsCompleted();
     this.totalMoneySpent();
+    // this.showDataS();
   }
 
   async getAppointmetnsCompleted() {
