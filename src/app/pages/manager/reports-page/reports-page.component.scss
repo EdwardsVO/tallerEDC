@@ -212,7 +212,27 @@ p.subt {
 }
 
 
+@media only screen and (max-width: 400px) {
+      
+    
 
+    .graph, .graph2{
+        margin-right: auto;
+        margin-left: auto;
+
+       flex-direction: column;
+        
+       
+    }
+
+   .graph{
+       display: block;
+   }   
+
+   
+
+    
+}
 
  @media only screen and (max-width: 700px) {
 
@@ -271,9 +291,34 @@ p.subt {
     .data{
         font-size: medium;
     }
+
+    .graph, .graph2{
+        flex-direction: column;
+        align-items: center;
+        height: 300px;
+        width: 250px;
+        margin-top: 8px ;
+        
+    }
+
+    .graph2{
+        margin-left: 0%;
+        }    
+
+    .graphs{
+        flex-direction: column;
+        margin-left: 20%;
+        margin-right: 5%;
+       
+   
+    }
 }
 
     @media only screen and (min-width: 701px) {
+        mad-card.graph, mat-card.graph2{
+            flex-direction: row;
+        }
+        
         b{
             font-size: 90px;
             color: #a2a300;
