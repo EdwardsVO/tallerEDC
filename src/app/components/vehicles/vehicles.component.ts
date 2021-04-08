@@ -248,8 +248,7 @@ export class VehiclesComponent implements OnInit {
   formatDate(){
     const timeElapsed = Date.now();
     const today = new Date(timeElapsed);
-    //return today.toDateString()
-    return today.toISOString().replace(/T.*$/, '')
+    return today.toDateString()
   }
 
 
