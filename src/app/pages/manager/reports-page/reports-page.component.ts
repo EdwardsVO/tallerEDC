@@ -3,6 +3,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { VehiclesCrudService } from 'src/app/services/vehicles-crud.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import {CurrencyPipe } from '@angular/common'
+import { Observable } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-reports-page',
@@ -33,7 +36,9 @@ export class ReportsPageComponent implements OnInit {
   profit = 0;
   closeResult = '';
 
-  
+  money = [];
+  // totalSpent = 0;
+
 
   constructor(private _firestore: AngularFirestore, private _vech: VehiclesCrudService, private modalService: NgbModal) { }
 
@@ -45,6 +50,7 @@ export class ReportsPageComponent implements OnInit {
     this.getTotalCars();
     this.getRepairedCars();
     this.getAppointmetnsCompleted();
+    this.totalMoneySpent();
   }
 
   async getAppointmetnsCompleted() {
@@ -58,7 +64,7 @@ export class ReportsPageComponent implements OnInit {
           carGas: e.payload.doc.data().carGas,
           carModel: e.payload.doc.data().carModel,
           carPlate: e.payload.doc.data().carPlate,
-          carKm: e.paylaod.do.data().carKm,
+          carKm: e.payload.doc.data().carKm,
           carYear: e.payload.doc.data().carYear,
           diagnostic: e.payload.doc.data().diagnostic,
           extraTire: e.payload.doc.data().extraTire,
@@ -222,11 +228,32 @@ export class ReportsPageComponent implements OnInit {
       })
     })
   }
-  // async getMoneyEarn() {
-  
-  //   await this._firestore.collection('users', ref => ref.where("moneySpent", ">", 0))
-  //   })
-  // }
+
+  async totalMoneySpent(){
+    await this._firestore.collection('users', ref => ref.where('moneySpent', '>', 0)).snapshotChanges().subscribe(res => {
+      this.money = res.map((e: any) => {
+        return {
+          moneySpent: e.payload.doc.data().moneySpent
+        }
+      })
+      this.sumMoney()
+      return this.sumMoney()
+    })
+  }
+
+
+  sumMoney(): Observable<number>{
+     let sum: number = this.money.map(a => a.moneySpent).reduce( function (a, b) {
+       console.log(a+b);
+       return a+b
+     })
+     this.profit = sum;
+     return
+    //  console.log(this.profit);
+  }
+
+
+
   async showDataS() {
     var bestMech;
     var bestCarAux;
@@ -280,8 +307,8 @@ export class ReportsPageComponent implements OnInit {
     this.tecnicalInfo = true;
   }
 
-    
-  
+
+
 
   open(content) { //MODAL
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
