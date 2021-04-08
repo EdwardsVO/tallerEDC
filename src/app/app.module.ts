@@ -94,6 +94,7 @@ import { FilterCarPipe } from './pipes/filter-car.pipe';
 import { NotImageDirective } from './directives/not-image.directive';
 import { CodigoQRComponent } from './components/codigo-qr/codigo-qr.component';
 
+
 // QR Scanner
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { MechdiagnosticComponent } from './components/mechdiagnostic/mechdiagnostic.component';
@@ -102,6 +103,16 @@ import { MechdiagnosticComponent } from './components/mechdiagnostic/mechdiagnos
 import { ChartsModule } from 'ng2-charts';
 import { GraphComponent } from './components/graph/graph.component';
 import { GraphMechComponent } from './components/graph-mech/graph-mech.component';
+
+//full calendar
+import { FullCalendarModule } from '@fullcalendar/angular'; 
+import dayGridPlugin from '@fullcalendar/daygrid'; 
+import interactionPlugin from '@fullcalendar/interaction'; 
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin
+]);
 
 
 
@@ -198,6 +209,7 @@ import { GraphMechComponent } from './components/graph-mech/graph-mech.component
     HttpClientModule,
     AngularFireDatabaseModule,
     NgxQRCodeModule,
+    FullCalendarModule,
     ZXingScannerModule,
     ChartsModule
 
