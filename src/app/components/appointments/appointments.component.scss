@@ -76,6 +76,10 @@ mat-card-subtitle{
 
 }
 
+.q{
+  color: green;
+}
+
 .invisible {
   display: none;
 }
@@ -143,6 +147,10 @@ mat-card-content.qrcode {
     
   }
 
+  .q{
+    font-size: x-small;
+  }
+
   mat-card-subtitle{
     font-size: 10px;
     margin-left: -2%;
@@ -175,7 +183,7 @@ mat-card-content.qrcode {
   
   }
 
-  .sub{
+  .sub,.fecha{
     font-size: small;
   }
 
@@ -196,16 +204,34 @@ mat-card-content.qrcode {
     
   }
 
-  mat-icon,.green,.material-icons{
+  mat-icon,.green,.material-icons,.q{
     text-align: center;
     margin-left: -12px;
     margin-top: -9px;
     
   }
 
-  .green{
+  .green,.q{
     margin-left: 4px;
   }
+
+  .q{
+    font-size: small;
+    margin-left: -7px;
+    vertical-align: middle;
+
+    
+  }
+
+  .modal-body, {
+    min-height: 490px;
+    max-height: 490px;
+  }
+  .card-q{
+    min-height: 290px;
+    max-height: 290px;
+  }
+  
 
   
     }
@@ -219,28 +245,29 @@ mat-card-content.qrcode {
       
       }
 
-      mat-icon,.green,.material-icons{
+      mat-icon,.green,.material-icons,.q{
         text-align: center;
         margin-left: -12px;
         margin-top: -9px;
         
       }
+
       
   
     }
 
-    @media only screen and (max-width: 990px) {
+    @media only screen and (max-width: 985px) {
 
       input{
         width: 80px;
       }
 
-      .sub,.text{
+      .sub,.text,.fecha{
         font-size: smaller;
         margin-top: -2px;
       }
 
-      .green,.trash, .reject{
+      .green,.trash, .reject,.q{
         min-width: 15px;
         max-width: 20px;
         height:25px;
@@ -249,14 +276,37 @@ mat-card-content.qrcode {
 
       }
      
-    
+      
 
       mat-card-subtitle{
         margin-left: -5px;
-        font-size: smaller;
+        font-size: small;
       }
      
   
     }
+
+    @media only screen and (min-width: 985px) {
+      .green,.trash, .reject,.q{
+        min-width: 50px;
+        max-width: 70px;
+        height:50px;
+        align-items: center;
+        //margin-top: 15px;
+
+      }
+
+      mat-icon,.green,.material-icons,.q{
+        text-align: center;
+        margin-left: 1px;
+        margin-top: 1px;
+        
+      }
+
+      
+
+
+    }
+
 
 
