@@ -3,7 +3,7 @@
 <div *ngFor="let car of cars">
     <div class="vehicle-container"  *ngIf="!car.appointmentConfirmed">
         <mat-card>
-            <mat-label>STATUS</mat-label>
+            <mat-label class="status">STATUS</mat-label>
             <mat-icon *ngIf="car.alertManager" color="warn" >warning</mat-icon>
             <mat-icon *ngIf="!car.alertManager && !car.appointmentDate" >alarm</mat-icon>
             <mat-icon *ngIf="car.appointmentDate && !car.alertManager" color="primary">alarm_on</mat-icon>
@@ -16,26 +16,28 @@
             <mat-card-subtitle>MODELO
                 <p>{{car.modelo}}</p>
             </mat-card-subtitle>
-            <mat-card-subtitle> AÑ0
+            <mat-card-subtitle class="txt"> AÑ0
                 <P>{{car.year}}</P>
-            </mat-card-subtitle>
-            <mat-card-subtitle>PLACA
+            </mat-card-subtitle >
+            <mat-card-subtitle class="txt">PLACA
                 <P>{{car.plate}}</P>
             </mat-card-subtitle>
 
             <mat-card-actions>
-                <div class="12hr-example">
+                <div class="hr-example">
                     <input class="hora" placeholder="HORA" aria-label="12hr format" [(ngModel)]="appointmentHour"
                         [ngxTimepicker]="default" readonly>
                     <ngx-material-timepicker #default></ngx-material-timepicker>
                 </div>
             </mat-card-actions>
-            <mat-card-actions>
+            <mat-card-actions class="fecha">
                 <mat-form-field appearance="fill">
-                    <mat-label>Elige una Fecha</mat-label>
-                    <input matInput [(ngModel)]="appointmentDate" [matDatepicker]="picker" readonly>
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    
+                        <mat-label>Elige una Fecha</mat-label>
+                        <input class="fecha"matInput [(ngModel)]="appointmentDate" [matDatepicker]="picker" readonly>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    
                 </mat-form-field>
             </mat-card-actions>
             <mat-card-actions>

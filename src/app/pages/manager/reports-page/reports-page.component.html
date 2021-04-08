@@ -2,8 +2,9 @@
 <div class="main-div">
 
     <mat-card class="m">
-        <p class="t"><b>{{clients.length}}</b> clientes</p>
+        <p class="t"><b class="a">{{clients.length}}</b> clientes</p>
         <button mat-raised-button class="h" (click) = "close()" (click)="getClientInfo()">Ver mas</button>
+        <button mat-raised-button class="i" (click) = "close()" (click)="getClientInfo()"><mat-icon>add_circle</mat-icon></button>
     </mat-card>
     <mat-card class="quantity">
         <div *ngIf = "clientDataUp">
@@ -14,26 +15,30 @@
     <mat-card class="m">
         <p class="t"><b>{{admins.length}}</b> admins</p>
         <button mat-raised-button class="h" (click) = "close()" (click)="getAdminInfo()">Ver mas</button>
+        <button mat-raised-button class="i" (click) = "close()" (click)="getAdminInfo()"><mat-icon>add_circle</mat-icon></button>
     </mat-card>
     
 </div>
 <div class="second-div">
     <mat-card class="m">
         
-        <p class="t"><b>{{cars.length}}</b> carros</p>
+        <p class="t"><b class="a">{{cars.length}}</b> carros</p>
         <button mat-raised-button class="h" (click)="getCarsInfo()">Ver mas</button>
+        <button mat-raised-button class="i" (click) = "close()" (click)="getCarsInfo()"><mat-icon>add_circle</mat-icon></button>
     </mat-card>
 
     <mat-card class="m">
-        <p class="t"><b>{{appointmentsC.length}}</b> Reparaciones Totales</p>
+        <p class="t"><b class="a">{{appointmentsC.length}}</b> Reparaciones Totales</p>
     </mat-card>
     <mat-card class="m">
-        <p class="t"><b>{{managers.length}}</b> managers</p>
+        <p class="t"><b class="a">{{managers.length}}</b> managers</p>
         <button mat-raised-button class="h" (click) = "close()" (click)="getManInfo()">Ver mas</button>
+        <button mat-raised-button class="i" (click) = "close()" (click)="getManInfo()"><mat-icon>add_circle</mat-icon></button>
     </mat-card>
     <mat-card class="m">
-        <p class="t"><b>{{mechanics.length}}</b> mecanicos</p>
+        <p class="t"><b class="a">{{mechanics.length}}</b> mecanicos</p>
         <button mat-raised-button class="h" (click) = "close()" (click)="getMechInfo()">Ver mas</button>
+        <button mat-raised-button class="i" (click) = "close()" (click)="getMechInfo()"><mat-icon>add_circle</mat-icon></button>
     </mat-card>
     <!-- <mat-card>
         <p><b>{{appointmetns.length}}</b> Citas Realizadas</p>

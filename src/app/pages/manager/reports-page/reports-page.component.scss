@@ -29,10 +29,7 @@ mat-card.m {
     text-align: center;
   }
 
-  b{
-      font-size: 90px;
-      color: #a2a300;
-  }
+  
   p.t{
       margin-top: 5%;
       color: #a2a300;
@@ -127,7 +124,7 @@ mat-card.m {
   }
 
   button.btns{
-      width: 10%;
+      width: 7%;
       color: white;
       background-color: #2e3192;
   }
@@ -192,3 +189,104 @@ mat-card.m {
      color: #a2a300;
      background-color: white;
  }
+
+  mat-icon{
+    color: #a2a300;
+    
+ }
+
+ button.i{
+     background-color: transparent;
+     box-shadow: none;
+    
+ }
+
+
+
+ 
+ 
+ @media only screen and (max-width: 700px) {
+
+    .m{
+        height: 130px;
+        width: 40px;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    
+
+    .i{
+        margin-right: 5px;
+        
+    }
+
+    .h{
+        display: none;
+    }
+
+    button{
+        text-align: center;
+    }
+
+    .t{
+        font-size: 10px;
+    }
+
+    .usd{
+        font-size: 30px;
+    }
+
+    b{
+        font-size: 30px;
+    }
+
+    .press{
+        width: 150px;
+        font-size: smaller;
+    }
+
+    h3{
+        font-size: smaller;
+    }
+
+    button.btns{
+        font-size: small;
+    }
+
+    b.u{
+        font-size: small;
+        line-height: 5%;
+    }
+
+    .data{
+        font-size: medium;
+    }
+}
+
+    @media only screen and (min-width: 701px) {
+        b{
+            font-size: 90px;
+            color: #a2a300;
+        }
+
+        .h{
+            //width: fit-content;
+            align-items: center;
+            
+        }
+
+        .i{
+            display: none;
+        }
+
+        .t{
+            font-size: larger;
+        }
+
+        .data{
+            font-size: x-large;
+        }
+       
+        }
+    
