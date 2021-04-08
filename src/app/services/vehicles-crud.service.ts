@@ -189,7 +189,7 @@ export class VehiclesCrudService {
   }
 
   async newAppointment(carId, appointmentDate,repaired, carBrand, carModel, carPlate, carYear, carColor, carKm, carGas,
-    extraTire, keys, gato,  tools, stereo, scratches, mechName, repairs, diagnostic, procedures, repuestos, totalPriceService, reason, needsReparation, ownerEmail, ownerName, owner): Promise<void> {
+    extraTire, keys, gato,  tools, stereo, scratches, mechName, repairs, diagnostic, procedure, repuestos, totalPriceService, reason, needsReparation, ownerEmail, ownerName, owner): Promise<void> {
     try {
         const {id} = await this.firestore.collection('appointments').add({
         carId: carId,
@@ -212,7 +212,7 @@ export class VehiclesCrudService {
         mechName: mechName,
         repairs: repairs,
         diagnostic: diagnostic,
-        procedures: procedures,
+        procedure: procedure,
         repuestos: repuestos,
         totalPriceService: totalPriceService,
         reason: reason,
