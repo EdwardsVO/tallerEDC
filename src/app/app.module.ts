@@ -100,6 +100,8 @@ import { MechdiagnosticComponent } from './components/mechdiagnostic/mechdiagnos
 
 // Charts
 import { ChartsModule } from 'ng2-charts';
+import { GraphComponent } from './components/graph/graph.component';
+import { GraphMechComponent } from './components/graph-mech/graph-mech.component';
 
 
 
@@ -160,6 +162,8 @@ import { ChartsModule } from 'ng2-charts';
     NotImageDirective,
     CodigoQRComponent,
     MechdiagnosticComponent,
+    GraphComponent,
+    GraphMechComponent,
 
   ],
 
