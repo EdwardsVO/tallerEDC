@@ -1,7 +1,4 @@
-<h1>Grafico Mecanicos-Reparaciones</h1>
-<app-graph-mech></app-graph-mech>
-<h1>Grafico Cliente-Inversion</h1>
-<app-graph></app-graph>
+
 <div class="main-div">
 
 
@@ -191,31 +188,37 @@
             <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
         </div>
     </ng-template>
-
-
-
-        <mat-card class="btn-press">
-            <mat-card-title class = "details">Detalles del Taller</mat-card-title>
-            <br>
-            <p *ngIf="showData"><p class = "subt">El mejor mecanico es: <b class="data">{{bestMech.name}}</b> con <b class="data">{{bestMech.carsRepaired}}</b> carros
-                reparados</p>
-            <p *ngIf="showData">El carro con mas reparaciones es: <b class="data"><p class = "data">{{bestCar.model}}</p></b> del año <b class="data">{{bestCar.year}}</b> y placa:
-                <b class="data">{{bestCar.plate}}</b> del cliente <b class="data">{{bestCar.ownerName}}</b>
-            </p>
-            <p *ngIf="showData"> Carros que han sido reparados: <b class="data">{{carsRepaired.length}}</b></p>
+    
+    <h1>GRÁFICOS</h1>
+    <div class="graphs">
+        <mat-card class="graph">
+            <h1 class="g">Mecanicos-Reparaciones</h1>
+            <app-graph-mech></app-graph-mech>
         </mat-card>
+        <mat-card class="graph2">
+            <h1 class="g">Cliente-Inversion</h1>
+            <app-graph></app-graph>
+        </mat-card>
+    
+    </div>
 
+
+<h1>DATOS DEL TALLER</h1>
+<div>
     <mat-card class="btn-press">
-        <button mat-raised-button class="press" (click)="showDataS()">DATOS DEL TALLER</button>
-        <p *ngIf="showData">El mejor mecanico es: <b class="data">{{bestMech.name}}</b> con <b
-                class="data">{{bestMech.carsRepaired}}</b> carros
+           
+        <br>
+        <p *ngIf="showData" class="subt"><p class = "subt">El mejor mecanico es: <b class="data">{{bestMech.name}}</b> con <b class="data">{{bestMech.carsRepaired}}</b> carros
             reparados</p>
-        <p *ngIf="showData">El carro con mas reparaciones es: <b class="data">{{bestCar.model}}</b> del año <b
-                class="data">{{bestCar.year}}</b> y placa:
-            <b class="data">{{bestCar.plate}}</b> del owner <b class="data">{{bestCar.ownerName}}</b>
+        <p *ngIf="showData" class="subt">El carro con mas reparaciones es: <b class="data">{{bestCar.model}}</b> del año <b class="data">{{bestCar.year}}</b> y placa:
+            <b class="data">{{bestCar.plate}}</b> del cliente <b class="data">{{bestCar.ownerName}}</b>
         </p>
-        <p *ngIf="showData"> Carros que han sido reparados: <b class="data">{{carsRepaired.length}}</b></p>
+        <p class="subt" *ngIf="showData"> Carros que han sido reparados: <b class="data">{{carsRepaired.length}}</b></p>
+        <br>
     </mat-card>
+
+</div>
+        
 
 
 </div>
