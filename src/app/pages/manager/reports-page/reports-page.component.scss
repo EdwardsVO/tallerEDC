@@ -212,24 +212,63 @@ p.subt {
 }
 
 
-@media only screen and (max-width: 400px) {
-      
-    
+@media only screen and (min-width:401px){
 
-    .graph, .graph2{
-        margin-right: auto;
-        margin-left: auto;
-
-       flex-direction: column;
-        
-       
+    .m{
+        height: 130px;
+        width: 40px;
+        align-items: center;
+        overflow: hidden;
     }
 
-   .graph{
-       display: block;
-   }   
 
-   
+
+    .i{
+        margin-right: 5px;
+
+    }
+
+    .h{
+        display: none;
+    }
+
+    button{
+        text-align: center;
+    }
+
+    .t{
+        font-size: 10px;
+    }
+
+    .usd{
+        font-size: 30px;
+    }
+
+    b{
+        font-size: 30px;
+    }
+
+    .press{
+        width: 150px;
+        font-size: smaller;
+    }
+
+    h3{
+        font-size: smaller;
+    }
+
+    button.btns{
+        font-size: small;
+    }
+
+    b.u{
+        font-size: small;
+        line-height: 5%;
+    }
+
+    .data{
+        font-size: medium;
+    }
 
     
 }
@@ -291,33 +330,30 @@ p.subt {
     .data{
         font-size: medium;
     }
-
-    .graph, .graph2{
-        flex-direction: column;
-        align-items: center;
-        height: 300px;
-        width: 250px;
-        margin-top: 8px ;
-        
-    }
-
-    .graph2{
-        margin-left: 0%;
-        }    
-
     .graphs{
+        display: flex;
         flex-direction: column;
-        margin-left: 20%;
-        margin-right: 5%;
-       
-   
+        justify-content: center;
+        text-align: center;
+        margin-top: 1%;
+        //margin-bottom: 2%;
     }
+    
+    .graph, .graph2{
+        width: 65%;
+        background-color: rgb(243, 243, 243);
+        margin-top: 2%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    
+
+
+    
 }
 
     @media only screen and (min-width: 701px) {
-        mad-card.graph, mat-card.graph2{
-            flex-direction: row;
-        }
+        
         
         b{
             font-size: 90px;
@@ -341,8 +377,25 @@ p.subt {
         .data{
             font-size: x-large;
         }
+        .graphs{
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            margin-top: 1%;
+            //margin-bottom: 2%;
+        }
+        
+        .graph, .graph2{
+            width: 35%;
+            background-color: rgb(243, 243, 243);
+        }
+        
+        .graph2{
+            margin-left: 3%;
+        }
 
         }
+
 
 .details {
     color: #2e3192;
