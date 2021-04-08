@@ -147,46 +147,7 @@
                   readonly
                 />
               </mat-input>
-              <div class="btn-div">
-                <button
-                  type="submit"
-                  mat-mini-fab
-                  class="green"
-                  [disabled]="!appointment.appointmentDate"
-                  (click)="
-                    newAppointment(
-                      appointment.id,
-                      appointment.appointmentDate,
-                      appointment.brand,
-                      appointment.model,
-                      appointment.plate,
-                      appointment.year
-                    )
-                  "
-                  *ngIf="!appointment.appointmentConfirmed"
-                >
-                  <mat-icon class="material-icons"> done </mat-icon>
-                </button>
 
-                <button
-                  mat-mini-fab
-                  class="reject"
-                  [disabled]="!appointment.appointmentDate"
-                  *ngIf="!appointment.appointmentConfirmed"
-                  (click)="rejectAppointment(appointment.id)"
-                >
-                  <span color="warn" class="material-icons"> clear </span>
-                </button>
-
-                <button
-                  class="trash"
-                  mat-mini-fab
-                  (click)="deleteAppointment(appointment.id)"
-                  *ngIf="!appointment.appointmentConfirmed"
-                >
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </div>
 
               <button
                 type="submit"
@@ -209,7 +170,7 @@
 
               </button>
 
-              <div>
+              <div *ngIf="appointment.appointmentConfirmed">
                 <button
                 mat-raised-button
                 (click)="open(content)"

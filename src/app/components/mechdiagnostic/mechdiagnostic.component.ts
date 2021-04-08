@@ -149,4 +149,21 @@ export class MechdiagnosticComponent implements OnInit {
     }
   }
 
+  finishWork(carId){
+    this._mechSvc.finishWork(carId)
+    console.log(this.mechanicId);
+  }
+
+  finishWork2(appointmentId) {
+    try {
+      this._firestore.collection('appointments').doc(appointmentId).update({
+      repaired: true,
+      mechName: this.mechanicName
+    })
+    } catch(err){
+      console.log(err);
+      this._toastr.error('Debe rellenar todos los campos del formulario.', 'ERROR')
+    }
+  }
+
 }
