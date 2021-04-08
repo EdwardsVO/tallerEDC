@@ -69,6 +69,16 @@ input#brandChosen {
   color: black;
 }
 
+button.edit, button.dis {
+  color: white;
+  background-color: #2e3192;
+  margin-right: 10px;
+}
+button.edit:hover, button.dis:hover{
+  background-color: white;
+  color: #2e3192;
+}
+
 button.brand {
   margin-left: 7px;
 }
@@ -87,4 +97,65 @@ mat-card-subtitle{
   padding-right: 3%;
 }
 
+.example-card{
+  box-shadow: none;
+}
 
+
+@media only screen and (max-width: 600px) {
+
+  p {
+    font-size: 9px;
+    font-family: "Roboto", sans-serif;
+  }
+
+  mat-card-subtitle{
+    font-size: 10px;
+  }
+
+  mat-card{
+    height: 70px;
+  }
+
+  img{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+  }
+
+  button{
+    width:38px;
+    height:38px;
+    justify-content: center;
+    padding: 0;
+    margin-left: 1%;
+
+  }
+
+  mat-icon{
+    justify-content: center;
+    display: flex;
+    //align-items: center;
+    margin-top: -10px;
+  }
+
+  .txt{
+    display: none;
+  }
+
+  .modal-body{
+  max-height: 1000px;
+  min-height: 499px;
+  width: 20%;
+  }
+  
+  .first-name, .last-name{
+    width: 100px;
+  }
+  
+  .btn-outline-dark{
+    width: fit-content;
+  }
+    }
+
+   

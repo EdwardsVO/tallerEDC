@@ -1,21 +1,26 @@
-mat-card {
+mat-card.m {
     display: flex;
     justify-content: space-between;
     //padding: 1rem;
-    background-color: rgb(243, 243, 243);
+    background-color:  rgb(243, 243, 243);
     margin-bottom: 1.5%;
-    width: 12%;
+    width: 15%;
     margin-right: 2%;
     margin-left: 2%;
     text-align: center;
     flex-direction: column;
+    margin-top: 2%;
+   
+
   }
-  
+
   p {
     font-family: "Roboto", sans-serif;
     padding: auto;
     word-break: normal;
-    
+    margin-left: 1%;
+
+
   }
 
   h1 {
@@ -25,52 +30,275 @@ mat-card {
     text-align: center;
   }
 
-  b{
-      font-size: xx-large;
-      color: #2e3192;
-  }
 
+  p.t{
+      margin-top: 5%;
+      color: #a2a300;
+  }
+  .main-div{
+      margin-top: 5%;
+  }
   .main-div, .second-div{
     display: flex;
     justify-content: center;
   }
 
-  button{
+  button.h{
     color: #2e3192;
     background-color: white;
     height: 50%;
-    margin-top: 20%;
-    
+    margin-top: 4%;
+
   }
 
-  button:hover{
+  button.h:hover{
       color: white;
       background-color: #2e3192;
   }
 
   .btn-press{
-      background-color: white;
-      box-shadow: none;
-      margin-top: 5%;
-      width: 50%;
+      background-color: rgb(243, 243, 243);
+      width: 72.2%;
       text-align: center;
-      
-      
+      margin-right: auto;
+      margin-left: auto;
   }
 
-  .press{
-      height: 50px;
+  
+
+  mat-card.user-mat{
+    width: 72%;
+    flex-direction: column;
+    margin-bottom: 1.5%;
+    text-align: center;
+    background-color: rgb(243, 243, 243);
+    margin-right: auto;
+    margin-left: auto;
+    //margin-top: 2%;
+  }
+  mat-card.single-user{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: white;
+    margin-bottom: 1.5%;
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    overflow-x: scroll;
+    height: 60px;
+
+  }
+
+  h3{
+    font-size: large;
+    color: #2e3192;
+    font-family: "Bree Serif", serif;
+  }
+
+  button.close-btn{
+      margin-bottom: 1%;
+      color: red;
+      background-color: white;
+  }
+  button.close-btn:hover{
+      color: white;
+      background-color: red;
+  }
+
+  button.btns{
+      width: 7%;
       color: white;
       background-color: #2e3192;
-      margin-bottom: 5%;
-      
   }
-  button.press:hover{
+  button.btns:hover{
       color: #2e3192;
       background-color: white;
   }
-
-  p.btn-press{
-      width: 200%;
-      margin-top: 5%;
+  .space{
+      text-align: center;
   }
+
+  img{
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+
+
+  }
+
+  .quantity{
+      width: 34%;
+      margin-right: 2%;
+    margin-left: 2%;
+    margin-top: 2%;
+    margin-bottom: 1.5%;
+    background-color: #2e3192;
+    text-align: center;
+    font-size: 100%;
+
+
+  }
+
+  .usd{
+      color: white;
+      font-size: 100px;
+
+  }
+  .usdp{
+      margin-top: 7%;
+      color: white;
+  }
+
+  .data{
+      font-size: 40px;
+      color: #2e3192;
+  }
+
+  b.u{
+    font-size: 20px;
+    color: #2e3192;
+  }
+
+ .modal-title{
+     color: #969696;
+ }
+
+ .see{
+     color: white;
+     background-color: #a2a300;
+ }
+ button.see:hover{
+     color: #a2a300;
+     background-color: white;
+ }
+
+
+
+ button.i{
+     background-color: transparent;
+     box-shadow: none;
+
+ }
+
+ b.data{
+     font-size: 25px;
+ }
+
+p.subt {
+    font-size: 20px;
+    margin-top: 3%;
+}
+
+.graphs{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 1%;
+    //margin-bottom: 2%;
+}
+
+.graph, .graph2{
+    width: 35%;
+    background-color: rgb(243, 243, 243);
+}
+
+.graph2{
+    margin-left: 3%;
+}
+.g{
+    font-size: 32px;
+}
+
+
+
+
+ @media only screen and (max-width: 700px) {
+
+    .m{
+        height: 130px;
+        width: 40px;
+        align-items: center;
+        overflow: hidden;
+    }
+
+
+
+    .i{
+        margin-right: 5px;
+
+    }
+
+    .h{
+        display: none;
+    }
+
+    button{
+        text-align: center;
+    }
+
+    .t{
+        font-size: 10px;
+    }
+
+    .usd{
+        font-size: 30px;
+    }
+
+    b{
+        font-size: 30px;
+    }
+
+    .press{
+        width: 150px;
+        font-size: smaller;
+    }
+
+    h3{
+        font-size: smaller;
+    }
+
+    button.btns{
+        font-size: small;
+    }
+
+    b.u{
+        font-size: small;
+        line-height: 5%;
+    }
+
+    .data{
+        font-size: medium;
+    }
+}
+
+    @media only screen and (min-width: 701px) {
+        b{
+            font-size: 90px;
+            color: #a2a300;
+        }
+
+        .h{
+            //width: fit-content;
+            align-items: center;
+
+        }
+
+        .i{
+            display: none;
+        }
+
+        .t{
+            font-size: larger;
+        }
+
+        .data{
+            font-size: x-large;
+        }
+
+        }
+
+.details {
+    color: #2e3192;
+}

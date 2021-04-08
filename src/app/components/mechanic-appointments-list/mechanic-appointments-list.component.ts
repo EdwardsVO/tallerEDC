@@ -3,6 +3,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from 'src/app/services/auth.service';
 import { MechanicCrudService } from '../../services/mechanic-crud.service';
 import {ToastrService} from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -18,9 +20,10 @@ export class MechanicAppointmentsListComponent implements OnInit {
   mechanicName: string;
   mechanicId: string
   todaysDate = ""
+  closeResult: string;
 
    
-    constructor(private firestore: AngularFirestore, private _authSvc: AuthService, private _mechSvc: MechanicCrudService, private toastr: ToastrService ) { }
+    constructor(private firestore: AngularFirestore, private _authSvc: AuthService, private _mechSvc: MechanicCrudService, private toastr: ToastrService, private _router: Router, private modalService: NgbModal) { }
 
   ngOnInit(): void {
 
@@ -60,11 +63,30 @@ export class MechanicAppointmentsListComponent implements OnInit {
 
   scanQR() {
     console.log("aqui se abre el escaner y toma foto del QR del cliente.");
+    this._router.navigate(['/scan'])
   }
 
   getTodaysDate(){
     let date = new Date().toDateString();
     this.todaysDate = date
+  }
+
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 
 }

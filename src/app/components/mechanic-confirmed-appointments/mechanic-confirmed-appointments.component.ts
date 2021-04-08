@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { CheckboxControlValueAccessor } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { Appointment } from 'src/app/models/appointment';
 import { AuthService } from 'src/app/services/auth.service';
 import { CrudService } from 'src/app/services/crud.service';
@@ -29,7 +30,7 @@ export class MechanicConfirmedAppointmentsComponent implements OnInit {
   mechR: number;
 
 
-  constructor(private firestore: AngularFirestore, private _authSvc: AuthService, private _mechSvc: MechanicCrudService, private _vehicleSvc: VehiclesCrudService, private _crud: CrudService) { }
+  constructor(private firestore: AngularFirestore, private _authSvc: AuthService, private _mechSvc: MechanicCrudService, private _vehicleSvc: VehiclesCrudService, private _crud: CrudService, private _toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -99,10 +100,15 @@ export class MechanicConfirmedAppointmentsComponent implements OnInit {
   }
 
   finishWork2(appointmentId) {
-    this.firestore.collection('appointments').doc(appointmentId).update({
+    try {
+      this.firestore.collection('appointments').doc(appointmentId).update({
       repaired: true,
       mechName: this.mechanicName
     })
+    } catch(err){
+      console.log(err);
+      this._toastr.error('Debe rellenar todos los campos del formulario.', 'ERROR')
+    }
   }
 
 

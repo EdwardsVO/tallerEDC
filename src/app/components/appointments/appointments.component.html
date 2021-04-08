@@ -1,25 +1,18 @@
-<div class="container">
+<div class="container" let appointment>
   <h1>MIS VEHÍCULOS</h1>
 
-  <div *ngIf="value != ''">
-    <ngx-qrcode
-      [elementType] = "elementType"
-      [value] = ""
-      cssClass = "aClass"
-      errorCorrectionLevel = "L"
-    ></ngx-qrcode>
-  </div>
+
 
   <div *ngFor="let car of cars" class="car-container">
     <mat-card>
       <img mat-card-sm-image src="{{ car.photo }}" alt="client's car1" />
 
-      <mat-card-subtitle
+      <mat-card-subtitle class="txt"
         >SERIAL
         <p>{{ car.serial }}</p>
       </mat-card-subtitle>
 
-      <mat-card-subtitle
+      <mat-card-subtitle class="txt"
         >MARCA
         <p>{{ car.brand }}</p>
       </mat-card-subtitle>
@@ -29,7 +22,7 @@
         <p>{{ car.model }}</p>
       </mat-card-subtitle>
 
-      <mat-card-subtitle
+      <mat-card-subtitle class="t"
         >AÑO
         <p>{{ car.year }}</p>
       </mat-card-subtitle>
@@ -46,6 +39,8 @@
 
         (click)="open(content)"
         [disabled]="car.reparation"
+
+
       >
         SOLICITAR CITA
       </button>
@@ -127,7 +122,7 @@
 
 
               <mat-input>
-                <mat-card-subtitle>MODELO</mat-card-subtitle>
+                <mat-card-subtitle classs="sub">MODELO</mat-card-subtitle>
                 <input
                   type="text"
                   value="{{ appointment.model }}"
@@ -137,12 +132,12 @@
               </mat-input>
 
               <mat-input>
-                <mat-card-subtitle>PLACA</mat-card-subtitle>
+                <mat-card-subtitle classs="text">PLACA</mat-card-subtitle>
                 <input type="text" value="{{ appointment.plate }}" readonly />
               </mat-input>
 
               <mat-input>
-                <mat-card-subtitle>FECHA</mat-card-subtitle>
+                <mat-card-subtitle classs="sub" >FECHA</mat-card-subtitle>
                 <input
                   type="text"
                   value="{{ appointment.appointmentDate }} - {{
@@ -152,46 +147,7 @@
                   readonly
                 />
               </mat-input>
-              <div class="btn-div">
-                <button
-                  type="submit"
-                  mat-mini-fab
-                  class="green"
-                  [disabled]="!appointment.appointmentDate"
-                  (click)="
-                    newAppointment(
-                      appointment.id,
-                      appointment.appointmentDate,
-                      appointment.brand,
-                      appointment.model,
-                      appointment.plate,
-                      appointment.year
-                    )
-                  "
-                  *ngIf="!appointment.appointmentConfirmed"
-                >
-                  <mat-icon class="material-icons"> done </mat-icon>
-                </button>
 
-                <button
-                  mat-mini-fab
-                  class="reject"
-                  [disabled]="!appointment.appointmentDate"
-                  *ngIf="!appointment.appointmentConfirmed"
-                  (click)="rejectAppointment(appointment.id)"
-                >
-                  <span color="warn" class="material-icons"> clear </span>
-                </button>
-
-                <button
-                  class="trash"
-                  mat-mini-fab
-                  (click)="deleteAppointment(appointment.id)"
-                  *ngIf="!appointment.appointmentConfirmed"
-                >
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </div>
 
               <button
                 type="submit"
@@ -214,10 +170,11 @@
 
               </button>
 
-              <div>
+              <div *ngIf="appointment.appointmentConfirmed">
                 <button
                 mat-raised-button
-                (click)="getQRCode()"
+                (click)="open(content)"
+                class="green"
               >
                 <span color="warn" class="material-icons"> QR </span>
               </button>
@@ -241,9 +198,47 @@
               >
                 <mat-icon color="primary">delete</mat-icon>
               </button>
+
+
+                <ng-template #content let-modal class = "qrmodal">
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">CODIGO QR</h4>
+                    <button
+                      type="button"
+                      class="close"
+                      aria-label="Close"
+                      (click)="modal.dismiss('Cross click')"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                      <div class="vehicle">
+                        <mat-card class="example-card">
+                          <div class="info-card">
+                            <mat-card-content class = "qrcode">
+                              <p>
+                                <ngx-qrcode
+                                    [elementType] = "elementType"
+                                    [value] = "appointment.appointmentId"
+                                    cssClass = "aClass"
+                                    errorCorrectionLevel = "L">
+                                </ngx-qrcode>
+                              </p>
+                            </mat-card-content>
+                          </div>
+                        </mat-card>
+                      </div>
+                    </div>
+                </ng-template>
+
+
+
+
             </mat-card>
           </form>
           <div></div>
         </div>
       </div>
     </div>
+

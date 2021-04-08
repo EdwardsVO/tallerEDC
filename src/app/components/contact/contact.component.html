@@ -1,42 +1,45 @@
+<h1>CONTACTO</h1>
+<div class="contact-div">
+    <mat-card class="contact">
 
-<mat-card class="contact">
-    <h1>CONTACTO</h1>
-
-    <!-- <form #contact = "ngForm"  (ngSubmit)="onSubmit(Get.value)"> ngSubmit)="onSubmit(FormData.value)"-->
-    <form [formGroup]="FormData" (submit)="sendEmail($event)" >
-
-        <mat-form-field class="name form-group" >
-            <mat-label>Ingresa tu Nombre y Apellido</mat-label>
-            <input type="text"  name="name" matInput placeholder="" class="form-control" formControlName="name">
-        </mat-form-field>
-
-
-        <div class="bi-container form-group">
-            <mat-form-field class="email">
-                <mat-label class = "email_info">Introduce tu Email</mat-label>
-                <input type="email"  class="form-control" name="email" matInput formControlName="email">
+    
+        <!-- <form #contact = "ngForm"  (ngSubmit)="onSubmit(Get.value)"> ngSubmit)="onSubmit(FormData.value)"-->
+        <form [formGroup]="FormData" (submit)="sendEmail($event)" >
+    
+            <mat-form-field class="name form-group" >
+                <mat-label>Ingresa tu Nombre y Apellido</mat-label>
+                <input type="text"  name="name" matInput placeholder="" class="form-control" formControlName="name">
             </mat-form-field>
-
-            <mat-form-field class="phone form-group">
-                <mat-label class = "phone_info">Introduce tu Teléfono</mat-label>
-                <input type="text" class="form-control"   name="phone"  matInput formControlName="phone">
+    
+    
+            <div class="bi-container form-group">
+                <mat-form-field class="email">
+                    <mat-label class = "email_info">Introduce tu Email</mat-label>
+                    <input type="email"  class="form-control" name="email" matInput formControlName="email">
+                </mat-form-field>
+    
+                <mat-form-field class="phone form-group">
+                    <mat-label class = "phone_info">Introduce tu Teléfono</mat-label>
+                    <input type="text" class="form-control"   name="phone"  matInput formControlName="phone">
+                </mat-form-field>
+            </div>
+    
+            <mat-form-field class="message form-group">
+                <mat-label class = "message_content">¡Déjanos un Mensaje!</mat-label>
+                <input type="text" class="form-control"  name="message"  matInput formControlName="message" >
             </mat-form-field>
-        </div>
+            <!-- <div class="form-group"> -->
+                <button  type="submit" [disabled]= "!FormData.valid" mat-raised-button class ="sendMessage">Enviar</button>
+    
+            <!-- </div> -->
+            <div class = "form-group">
+                <h4><b>{{message}}</b></h4>
+            </div>
+    
+        </form>
+    </mat-card>
+</div>
 
-        <mat-form-field class="message form-group">
-            <mat-label class = "message_content">¡Déjanos un Mensaje!</mat-label>
-            <input type="text" class="form-control"  name="message"  matInput formControlName="message" >
-        </mat-form-field>
-        <!-- <div class="form-group"> -->
-            <button  type="submit" [disabled]= "!FormData.valid" mat-raised-button class ="sendMessage">Enviar</button>
-
-        <!-- </div> -->
-        <div class = "form-group">
-            <h4><b>{{message}}</b></h4>
-        </div>
-
-    </form>
-</mat-card>
 
 
 

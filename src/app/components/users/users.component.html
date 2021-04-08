@@ -4,38 +4,43 @@
             <input type="Search" name = "filterUser"placeholder="Search..." [(ngModel)]="filterUser">
             <button mat-raised-button>Search</button>
         </form>
-    </div>    
+    </div>
     <div class="user">
         <div class="user-container" *ngFor="let user of users | filterAll: filterUser">
             <mat-card >
-                <img mat-card-sm-image src="assets/img/placeholder.jpg" alt="client's car1">
+
+               <img src="{{user.photo}}" class = "profilePic" appNotImage>
 
                 <mat-card-subtitle>NOMBRE
                     <p>{{user.name}}</p>
                 </mat-card-subtitle>
-                <mat-card-subtitle>TELÉFONO
+                <mat-card-subtitle class="txt">TELÉFONO
                     <p>{{user.phone}}</p>
                 </mat-card-subtitle>
                 <mat-card-subtitle>EMAIL
                     <p>{{user.email}}</p>
                 </mat-card-subtitle>
-                <mat-card-subtitle>Role
+                <mat-card-subtitle class="text">Role
                     <p>{{user.role}}</p>
                 </mat-card-subtitle>
 
-                <button mat-mini-fab class="edit"color="primary" title="Editar usuario">
-                    <mat-icon (click) = "updateRoleForm(user)">edit</mat-icon>
-                </button>
+                <div class="btns">
+                    <button mat-mini-fab class="ed" title="Editar usuario">
+                        <mat-icon (click) = "updateRoleForm(user)">edit</mat-icon>
+                    </button>
+    
+                    <button mat-mini-fab class="edit" title = "Deshabilitar usuario" *ngIf="!editState">
+                        <mat-icon (click)="open(content)">block</mat-icon>
+                    </button>
+    
+                    <button mat-mini-fab class = "edit"  *ngIf="editState && userToEdit.id == user.id">
+                        <mat-icon (click) = "clearState()"><span class="material-icons">
+                            close
+                            </span></mat-icon>
+                    </button>
+                </div>
 
-                <button mat-mini-fab class="edit"color="primary" title = "Deshabilitar usuario">
-                    <mat-icon (click)="open(content)">block</mat-icon>
-                </button>
-
-                <button mat-mini-fab class = "" color = "primary" *ngIf="editState && userToEdit.id == user.id">
-                    <mat-icon (click) = "clearState()"><span class="material-icons">
-                        close
-                        </span></mat-icon>
-                </button>
+                
             </mat-card>
 
 
@@ -59,8 +64,8 @@
                             <p>
                              ¿Está seguro que desea deshabilitar el cliente?
                             </p>
-                            <button mat-button color = "primary" (click) = "disableUser(user.id)" (click) = "modal.dismiss('Cross click')">Si</button>
-                            <button mat-button color = "primary" (click) = "modal.dismiss('Cross click')">No</button>
+                            <button mat-button class="yn" (click) = "disableUser(user.id)" (click) = "modal.dismiss('Cross click')">Si</button>
+                            <button mat-button class="yn" (click) = "modal.dismiss('Cross click')">No</button>
                           </mat-card-content>
                         </div>
                       </mat-card>
@@ -72,47 +77,32 @@
             <div class="form" *ngIf="editState && userToEdit.id == user.id">
                 <form (ngSubmit)= "updateUser(user)">
                    <div class="row">
-                       
+
                         <input type="text" placeholder="Nombre del usuario" [(ngModel)] = "user.name" name = "Nombre">
-     
+
                         <input type="text" placeholder="Telefono" [(ngModel)] = "user.phone" name = "Telefono">
-        
-                        <input type="text" placeholder="Rol" [(ngModel)] = "user.role" name = "Role">
-                        <button mat-raised-button color = "primary" type="submit" class = "btn" (click) = "updateUser(user)">Actualizar</button>
+                        <select name="Role" placeholder="Rol" [(ngModel)] = "user.role" [matAutocomplete] = "auto" id="">
+                            <option value="client">client</option>
+                            <option value="mechanic">mechanic</option>
+                            <option value="admin">admin</option>
+                            <option value="manager">manager</option>
+                        </select>
+                        <!--<input type="text" placeholder="Rol" [(ngModel)] = "user.role" name = "Role"  [matAutocomplete] = "auto">-->
+
+                        <button mat-raised-button type="submit" class = "btn" (click) = "updateUser(user)">Actualizar</button>
                    </div>
                 </form>
             </div>
 
         </div>
-       
+
     </div>
 </div>
 
-<ng-template #content let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Deshabilitar Usuario</h4>
-      <button
-        type="button"
-        class="close"
-        aria-label="Close"
-        (click)="modal.dismiss('Cross click')"
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-        <div class="vehicle">
-          <mat-card class="example-card">
-            <div class="info-card">
-              <mat-card-content>
-                <p>
-                 ¿Está seguro que desea deshabilitar el cliente?
-                </p>
-                <button mat-button color = "primary" (click) = "disableUser(user.id)">Si</button>
-                <button mat-button color = "primary" (click) = "modal.dismiss('Cross click')">No</button>
-              </mat-card-content>
-            </div>
-          </mat-card>
-        </div>
-      </div>
-  </ng-template>
+<!-- Autocomplete -->
+<mat-autocomplete #auto="matAutocomplete">
+  <mat-option *ngFor="let option of options" [value]="option">
+    {{option}}
+  </mat-option>
+</mat-autocomplete>
+

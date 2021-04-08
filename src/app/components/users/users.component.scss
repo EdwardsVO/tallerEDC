@@ -16,6 +16,26 @@ p {
   padding: auto;
   word-break: normal;
 }
+button.edit{
+  color: white;
+  background-color: #2e3192;
+}
+button.edit:hover{
+  color: #2e3192;
+  background-color: white;
+}
+button.ed{
+  color: white;
+  background-color: #2e3192;
+  margin-right: 10px;
+}
+button.ed:hover{
+  color: #2e3192;
+  background-color: white;
+}
+.yn{
+  color: #2e3192;
+}
 
 .agg-btn {
   margin-top: 3%;
@@ -98,6 +118,13 @@ mat-card-subtitle {
 
 .btn{
   height: 20%;
+  margin-left: 15%;
+  color: white;
+  background-color: #2e3192;
+}
+button.btn:hover{
+  color: #2e3192;
+  background-color: white;
 }
 
 .row{
@@ -107,3 +134,40 @@ mat-card-subtitle {
   margin-left: 13%;
   margin-bottom: 2%;
 }
+
+
+@media only screen and (max-width: 600px) {
+
+  .txt,img{
+    display: none;
+  }
+
+  p,mat-card-subtitle{
+    font-size: smaller;
+    margin-left: 1%;
+  }
+
+  .btn{
+    flex-direction: column;
+    display:flex;
+  }
+
+  mat-card{
+    height: fit-content;
+  }
+
+
+  }
+
+  @media only screen and (max-width: 900px) {
+
+    .text,img{
+      display: none;
+    }
+  }
+
+.profilePic {
+  width: 80px;
+  height: 80px;
+}
+

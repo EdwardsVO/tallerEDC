@@ -94,6 +94,16 @@ import { FilterCarPipe } from './pipes/filter-car.pipe';
 import { NotImageDirective } from './directives/not-image.directive';
 import { CodigoQRComponent } from './components/codigo-qr/codigo-qr.component';
 
+
+// QR Scanner
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { MechdiagnosticComponent } from './components/mechdiagnostic/mechdiagnostic.component';
+
+// Charts
+import { ChartsModule } from 'ng2-charts';
+import { GraphComponent } from './components/graph/graph.component';
+import { GraphMechComponent } from './components/graph-mech/graph-mech.component';
+
 //full calendar
 import { FullCalendarModule } from '@fullcalendar/angular'; 
 import dayGridPlugin from '@fullcalendar/daygrid'; 
@@ -162,6 +172,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     FilterCarPipe,
     NotImageDirective,
     CodigoQRComponent,
+    MechdiagnosticComponent,
+    GraphComponent,
+    GraphMechComponent,
 
   ],
 
@@ -196,10 +209,13 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     HttpClientModule,
     AngularFireDatabaseModule,
     NgxQRCodeModule,
-    FullCalendarModule
+    FullCalendarModule,
+    ZXingScannerModule,
+    ChartsModule
+
 
   ],
-  providers: [AngularFirestore, ContactComponent],
+  providers: [AngularFirestore, ContactComponent, CodigoQRComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

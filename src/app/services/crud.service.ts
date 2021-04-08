@@ -35,7 +35,7 @@ export class CrudService {
     }))
   }
 
-  async newUser(id, name, email, phone, role): Promise<void>{
+  async newUser(id, name, email, phone, role, date): Promise<void>{
     try{
       await this.db.collection('users').doc(id).set({
         id: id,
@@ -43,6 +43,7 @@ export class CrudService {
         email: email,
         phone: phone,
         role: role,
+        date: date
       })
       this.updateCarsRepaired(id,0);
       this.updateMoneySpent(id,0);
