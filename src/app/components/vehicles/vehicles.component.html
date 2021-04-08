@@ -9,7 +9,7 @@
                 <!-- <img mat-card-sm-image src="{{car.photo}}" alt="client's car1"> -->
                 <!-- <div *ngIf="downloadURL != null"> -->
                     <!-- <div *ngFor="let downloadURL of downloadURLs">  -->
-                    <img mat-card-sm-image src="{{car.photo}}" alt="Image from AngularFireStorage">
+                <img mat-card-sm-image src="{{car.photo}}" alt="Image from AngularFireStorage">
                     <!-- <img mat-card-sm-image src="{{car.photo}}" alt="client's car1"> -->
                 <!-- </div> -->
 
@@ -28,12 +28,15 @@
                 <mat-card-subtitle>PLACA
                     <P>{{car.plate}}</P>
                 </mat-card-subtitle>
-                <button mat-fab color="primary" class="editar" title="editar" (click)="openEditar(content,car)">
-                    <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-fab color="primary" class="deshabilitar" title="deshabilitar" (click)="disableCar(car)">
-                    <mat-icon>disabled_by_default</mat-icon>
-                </button>
+                <div>
+                    <button mat-fab  class="edit" title="editar" (click)="openEditar(content,car)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-fab  class="dis" title="deshabilitar" (click)="disableCar(car)">
+                        <mat-icon>disabled_by_default</mat-icon>
+                    </button>
+                </div>
+                
                 <!-- <button mat-fab class = "delete" title="Eliminar" (click)="openEditar(content,car)">
 
             </button> -->
@@ -124,7 +127,7 @@
                                 </mat-form-field>
                                 <br>
                                 <input type="file" (change)="upload($event)" accept=".png,.jpg">
-                                <button (click)="uploadImage()"> Upload </button>
+                                <button mat-raised-button class="dis"(click)="uploadImage()"> Upload </button>
                                 <br>
                                 
                                 <div *ngIf="selectedImg" class="progress mt-2">
