@@ -87,6 +87,10 @@ mat-card-subtitle{
   padding-right: 3%;
 }
 
+.example-card{
+  box-shadow: none;
+}
+
 
 @media only screen and (max-width: 600px) {
 
@@ -127,7 +131,20 @@ mat-card-subtitle{
   .txt{
     display: none;
   }
+
+  .modal-body{
+  max-height: 1000px;
+  min-height: 499px;
+  width: 20%;
+  }
+  
+  .first-name, .last-name{
+    width: 100px;
+  }
+  
+  .btn-outline-dark{
+    width: fit-content;
+  }
     }
 
-
-
+   
