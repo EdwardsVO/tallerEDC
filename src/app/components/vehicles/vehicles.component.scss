@@ -69,6 +69,16 @@ input#brandChosen {
   color: black;
 }
 
+button.edit, button.dis {
+  color: white;
+  background-color: #2e3192;
+  margin-right: 10px;
+}
+button.edit:hover, button.dis:hover{
+  background-color: white;
+  color: #2e3192;
+}
+
 button.brand {
   margin-left: 7px;
 }
@@ -110,6 +120,7 @@ mat-card-subtitle{
   img{
     width: 45px;
     height: 45px;
+    border-radius: 50%;
   }
 
   button{
