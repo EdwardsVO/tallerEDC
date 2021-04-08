@@ -16,6 +16,26 @@ p {
   padding: auto;
   word-break: normal;
 }
+button.edit{
+  color: white;
+  background-color: #2e3192;
+}
+button.edit:hover{
+  color: #2e3192;
+  background-color: white;
+}
+button.ed{
+  color: white;
+  background-color: #2e3192;
+  margin-right: 10px;
+}
+button.ed:hover{
+  color: #2e3192;
+  background-color: white;
+}
+.yn{
+  color: #2e3192;
+}
 
 .agg-btn {
   margin-top: 3%;
@@ -99,6 +119,12 @@ mat-card-subtitle {
 .btn{
   height: 20%;
   margin-left: 15%;
+  color: white;
+  background-color: #2e3192;
+}
+button.btn:hover{
+  color: #2e3192;
+  background-color: white;
 }
 
 .row{
