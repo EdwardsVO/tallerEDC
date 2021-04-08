@@ -134,6 +134,7 @@ mat-card-content.qrcode {
 
 
 
+
 @media only screen and (max-width: 600px) {
 
   p {
@@ -148,12 +149,13 @@ mat-card-content.qrcode {
   }
 
   mat-card{
-    height: 70px;
+    height: 85px;
   }
 
   img{
     width: 45px;
     height: 45px;
+    display:none;
   }
 
   .sol-btn{
@@ -173,9 +175,39 @@ mat-card-content.qrcode {
   
   }
 
-  .txt{
+  .sub{
+    font-size: small;
+  }
+
+  .txt,.text{
     display: none;
   }
+
+  button{
+   padding-left: -8%;
+   text-align: center;
+   align-items: center;
+  }
+
+  input{
+    max-width: 30px;
+    min-width: 30px;
+    margin-top: 2px;
+    
+  }
+
+  mat-icon,.green,.material-icons{
+    text-align: center;
+    margin-left: -12px;
+    margin-top: -9px;
+    
+  }
+
+  .green{
+    margin-left: 4px;
+  }
+
+  
     }
 
     @media only screen and (min-width: 601px) {
@@ -186,5 +218,45 @@ mat-card-content.qrcode {
         background-color: #2e3192;
       
       }
+
+      mat-icon,.green,.material-icons{
+        text-align: center;
+        margin-left: -12px;
+        margin-top: -9px;
+        
+      }
       
+  
     }
+
+    @media only screen and (max-width: 990px) {
+
+      input{
+        width: 80px;
+      }
+
+      .sub,.text{
+        font-size: smaller;
+        margin-top: -2px;
+      }
+
+      .green,.trash, .reject{
+        min-width: 15px;
+        max-width: 20px;
+        height:25px;
+        align-items: center;
+        margin-top: 15px;
+
+      }
+     
+    
+
+      mat-card-subtitle{
+        margin-left: -5px;
+        font-size: smaller;
+      }
+     
+  
+    }
+
+
