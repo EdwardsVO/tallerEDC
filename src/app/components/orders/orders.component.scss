@@ -1,11 +1,14 @@
 mat-card{
-    overflow-x: scroll;
-    justify-content: space-between;
-    padding: 1rem;
-    background-color: rgb(233, 233, 233);
-    margin-bottom: 15px;
-    width: 70%;
-    margin-left: 14%;
+    display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: rgb(243, 243, 243);
+  margin-bottom: 1.5%;
+  width: 75%;
+  text-align: center;
+  overflow-x: scroll;
+  margin-right: auto;
+margin-left: auto;
     
 }
 
@@ -13,11 +16,12 @@ h1{
     color: #2e3192;
     font-family: "Bree Serif", serif;
     margin-top: 3rem;
-    margin-left: 15%;
+    margin-left: 13%;
 }
 
-.vehicle-container {
-    display: flex; 
+.vehicle-container { 
+    text-align: center;
+    width: 100%;
   } 
 .vehicle-container p {
     font-size: 12px;
@@ -38,9 +42,16 @@ button{
     color: white;
     background-color: #2e3192;
     min-width: fit-content;
+    height: 50px;
 }
 button:hover{
     color: #2e3192;
     background-color: white;
 }
+
+b{
+    color: #2e3192;
+    font-size: 15px;
+}
+
 

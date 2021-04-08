@@ -1,27 +1,32 @@
 <h1>ÓRDENES DE REPARACIÓN</h1>
-<mat-card>
+
   <div class="vehicle-container" *ngFor="let car of appointmentInfo">
     <!-- <img mat-card-sm-image src="{{car.img}}" alt="client's car1"> -->
     <!-- <mat-card-subtitle>CLIENTE
             <p>{{car.ownerName}}</p>
         </mat-card-subtitle> -->
-    <mat-card-subtitle>MARCA
-      <p>{{car.carBrand}}</p>
-    </mat-card-subtitle>
-    <mat-card-subtitle>MODELO
-      <p>{{car.carModel}}</p>
-    </mat-card-subtitle>
-    <mat-card-subtitle>AÑO
-      <P>{{car.carYear}}</P>
-    </mat-card-subtitle>
-    <mat-card-subtitle>PLACA
-      <P>{{car.carPlate}}</P>
-    </mat-card-subtitle>
-    <!-- <mat-card-subtitle>LA
-          <P>{{car.lastAppointment}}</P>
-      </mat-card-subtitle> -->
+    <mat-card>
+      <mat-card-subtitle>MARCA
+        <p>{{car.carBrand}}</p>
+      </mat-card-subtitle>
+      <mat-card-subtitle>MODELO
+        <p>{{car.carModel}}</p>
+      </mat-card-subtitle>
+      <mat-card-subtitle>AÑO
+        <P>{{car.carYear}}</P>
+      </mat-card-subtitle>
+      <mat-card-subtitle>PLACA
+        <P>{{car.carPlate}}</P>
+      </mat-card-subtitle>
+      <!-- <mat-card-subtitle>LA
+            <P>{{car.lastAppointment}}</P>
+        </mat-card-subtitle> -->
+      <mat-card-subtitle>
+        <button mat-raised-button (click)="open(content)">CERRAR ORDEN</button>
+      </mat-card-subtitle>
+    </mat-card>
 
-    <button mat-raised-button (click)="open(content)">CERRAR ORDEN</button>
+    
 
     <!-- <button mat-raised-button (click) = "closeAppointment(car.id)">CERRAR</button> -->
 
@@ -82,4 +87,3 @@
 
   </div>
 
-</mat-card>
