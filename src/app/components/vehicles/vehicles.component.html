@@ -45,7 +45,7 @@
 </div>
 
 
-<ng-template #content let-modal>
+<ng-template #content let-modal >
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Registrar carro</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -75,31 +75,35 @@
                             </p>
 
                             <div class="form-group">
-
+                                <p>
                                 <mat-form-field class="tlf">
                                     <mat-label>Marca</mat-label>
                                     <input matInput type="text" formControlName="brand" class="form-control">
 
                                 </mat-form-field>
-
+                                </p>
                             </div>
 
                             <table class="user-info" cellspacing="0">
                                 <tr>
                                     <td>
+                                        <p>
                                         <mat-form-field class="first-name">
                                             <mat-label>*Modelo</mat-label>
                                             <input matInput type="text" formControlName="model" class="form-control">
 
                                         </mat-form-field>
+                                    </p>
                                     </td>
 
                                     <td>
+                                        <p>
                                         <mat-form-field class="last-name">
                                             <mat-label>*Año</mat-label>
                                             <input matInput type="text" formControlName="year" class="form-control">
 
                                         </mat-form-field>
+                                    </p>
                                     </td>
                                 </tr>
                             </table>
