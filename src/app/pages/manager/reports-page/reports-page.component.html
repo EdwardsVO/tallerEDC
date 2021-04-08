@@ -1,30 +1,40 @@
-
+<h1>Grafico Mecanicos-Reparaciones</h1>
+<app-graph-mech></app-graph-mech>
+<h1>Grafico Cliente-Inversion</h1>
+<app-graph></app-graph>
 <div class="main-div">
+
 
     <mat-card class="m">
         <p class="t"><b class="a">{{clients.length}}</b> clientes</p>
-        <button mat-raised-button class="h" (click) = "close()" (click)="getClientInfo()">Ver mas</button>
-        <button mat-raised-button class="i" (click) = "close()" (click)="getClientInfo()"><mat-icon>add_circle</mat-icon></button>
+        <button mat-raised-button class="h" (click)="close()" (click)="getClientInfo()">Ver mas</button>
+        <button mat-raised-button class="i" (click)="close()" (click)="getClientInfo()">
+            <mat-icon>add_circle</mat-icon>
+        </button>
     </mat-card>
     <mat-card class="quantity">
-        <div *ngIf = "clientDataUp">
+        <div *ngIf="clientDataUp">
             <p class="usdp"><b class="usd">{{profit | currency: 'USD'}}</b> Ingreso total</p>
         </div>
     </mat-card>
 
     <mat-card class="m">
         <p class="t"><b>{{admins.length}}</b> admins</p>
-        <button mat-raised-button class="h" (click) = "close()" (click)="getAdminInfo()">Ver mas</button>
-        <button mat-raised-button class="i" (click) = "close()" (click)="getAdminInfo()"><mat-icon>add_circle</mat-icon></button>
+        <button mat-raised-button class="h" (click)="close()" (click)="getAdminInfo()">Ver mas</button>
+        <button mat-raised-button class="i" (click)="close()" (click)="getAdminInfo()">
+            <mat-icon>add_circle</mat-icon>
+        </button>
     </mat-card>
 
 </div>
 <div class="second-div">
     <mat-card class="m">
-        
+
         <p class="t"><b class="a">{{cars.length}}</b> carros</p>
         <button mat-raised-button class="h" (click)="getCarsInfo()">Ver mas</button>
-        <button mat-raised-button class="i" (click) = "close()" (click)="getCarsInfo()"><mat-icon>add_circle</mat-icon></button>
+        <button mat-raised-button class="i" (click)="close()" (click)="getCarsInfo()">
+            <mat-icon>add_circle</mat-icon>
+        </button>
     </mat-card>
 
     <mat-card class="m">
@@ -32,13 +42,17 @@
     </mat-card>
     <mat-card class="m">
         <p class="t"><b class="a">{{managers.length}}</b> managers</p>
-        <button mat-raised-button class="h" (click) = "close()" (click)="getManInfo()">Ver mas</button>
-        <button mat-raised-button class="i" (click) = "close()" (click)="getManInfo()"><mat-icon>add_circle</mat-icon></button>
+        <button mat-raised-button class="h" (click)="close()" (click)="getManInfo()">Ver mas</button>
+        <button mat-raised-button class="i" (click)="close()" (click)="getManInfo()">
+            <mat-icon>add_circle</mat-icon>
+        </button>
     </mat-card>
     <mat-card class="m">
         <p class="t"><b class="a">{{mechanics.length}}</b> mecanicos</p>
-        <button mat-raised-button class="h" (click) = "close()" (click)="getMechInfo()">Ver mas</button>
-        <button mat-raised-button class="i" (click) = "close()" (click)="getMechInfo()"><mat-icon>add_circle</mat-icon></button>
+        <button mat-raised-button class="h" (click)="close()" (click)="getMechInfo()">Ver mas</button>
+        <button mat-raised-button class="i" (click)="close()" (click)="getMechInfo()">
+            <mat-icon>add_circle</mat-icon>
+        </button>
     </mat-card>
     <!-- <mat-card>
         <p><b>{{appointmetns.length}}</b> Citas Realizadas</p>
@@ -49,9 +63,10 @@
 
 
 <div class="space">
-    <mat-card class="user-mat"*ngIf="personalInfo"> <!--USER DETAILS-->
+    <mat-card class="user-mat" *ngIf="personalInfo">
+        <!--USER DETAILS-->
         <button mat-raised-button class="close-btn" (click)="close()"><span class="material-icons">
-            close
+                close
             </span></button>
         <div *ngFor="let info of showMore">
             <mat-card class="single-user">
@@ -59,7 +74,7 @@
                     <h3>{{info.name}}</h3>
                 </mat-card-subtitle>
                 <mat-card-subtitle>
-                    <button mat-raised-button class="btns"(click)="open(content)">
+                    <button mat-raised-button class="btns" (click)="open(content)">
                         <mat-icon>more</mat-icon>
                     </button>
                 </mat-card-subtitle>
@@ -82,11 +97,13 @@
                     <p><b class="u">Genero: </b>{{info.gender}}</p>
 
                     <!-- <p>El rol es {{info.role}}</p> -->
-                    <p *ngIf="info.role =='client' && info.moneySpent != '0'"><b class="u"> Dinero invertido: </b>{{info.moneySpent | currency: "USD"}}</p>
+                    <p *ngIf="info.role =='client' && info.moneySpent != '0'"><b class="u"> Dinero invertido:
+                        </b>{{info.moneySpent | currency: "USD"}}</p>
                     <p *ngIf='info.role =="mechanic"'>Carros Reparados: {{info.carsRepaired}}</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+                    <button type="button" class="btn btn-outline-dark"
+                        (click)="modal.close('Save click')">Cerrar</button>
                 </div>
             </ng-template>
         </div>
@@ -94,100 +111,106 @@
 
 
 
-<mat-card class="user-mat" *ngIf="carInfo"> <!--CAR DETAILS-->
-    <button mat-raised-button class="close-btn"(click)="close()"><span class="material-icons">
-        close
-        </span></button>
-    <div *ngFor="let info of showMore">
-        <mat-card class="single-user">
-            <mat-card-subtitle>
-                <h3>{{info.plate}}</h3>
-            </mat-card-subtitle>
-            <mat-card-subtitle>
-                <button mat-raised-button class="btns" (click)="open(content)">
-                    <mat-icon>more</mat-icon>
-                </button>
-            </mat-card-subtitle>
-        </mat-card>
+    <mat-card class="user-mat" *ngIf="carInfo">
+        <!--CAR DETAILS-->
+        <button mat-raised-button class="close-btn" (click)="close()"><span class="material-icons">
+                close
+            </span></button>
+        <div *ngFor="let info of showMore">
+            <mat-card class="single-user">
+                <mat-card-subtitle>
+                    <h3>{{info.plate}}</h3>
+                </mat-card-subtitle>
+                <mat-card-subtitle>
+                    <button mat-raised-button class="btns" (click)="open(content)">
+                        <mat-icon>more</mat-icon>
+                    </button>
+                </mat-card-subtitle>
+            </mat-card>
 
 
-        <ng-template #content let-modal>
-            <div class="modal-header">
-                <h1 class="modal-title" id="modal-basic-title">Detalles de Vehiculos</h1>
-                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img src="{{info.photo}}" alt="">
-                <p><b class="u">Marca:</b> {{info.brand}}</p>
-                <p><b class="u">Modelo:</b> {{info.model}}</p>
-                <p><b class="u">Año:</b> {{info.year}}</p>
-                <p><b class="u">Placa:</b> {{info.plate}}</p>
-                <p><b class="u">Fecha de Ingreso al Sistema:</b> {{info.initDate}}</p>
-                <p><b class="u">Dueño:</b> {{info.ownerName}}<p>
-                <p><b class="u">Cantidad de Servicios Realizados:</b> {{info.timesRepaired}}</p>
-                <button mat-raised-button class="see"(click)="getAppointments(info.id2)"  (click)="open(data)">Ver Servicios</button>
+            <ng-template #content let-modal>
+                <div class="modal-header">
+                    <h1 class="modal-title" id="modal-basic-title">Detalles de Vehiculos</h1>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="{{info.photo}}" alt="">
+                    <p><b class="u">Marca:</b> {{info.brand}}</p>
+                    <p><b class="u">Modelo:</b> {{info.model}}</p>
+                    <p><b class="u">Año:</b> {{info.year}}</p>
+                    <p><b class="u">Placa:</b> {{info.plate}}</p>
+                    <p><b class="u">Fecha de Ingreso al Sistema:</b> {{info.initDate}}</p>
+                    <p><b class="u">Dueño:</b> {{info.ownerName}}
+                    <p>
+                    <p><b class="u">Cantidad de Servicios Realizados:</b> {{info.timesRepaired}}</p>
+                    <button mat-raised-button class="see" (click)="getAppointments(info.id2)" (click)="open(data)">Ver
+                        Servicios</button>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
-            </div>
-        </ng-template>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark"
+                        (click)="modal.close('Save click')">Cerrar</button>
+                </div>
+            </ng-template>
 
-
-    </div>
-</mat-card>
-<ng-template #data let-modal>
-    <div class="modal-header">
-        <h1 class="modal-title" id="modal-basic-title">Servicios</h1>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div *ngIf ="tecnicalInfo">
-        <div *ngFor = "let at of appointments">
-
-            <p><b class="u">Fecha de Cita:</b> {{at.appointmentDate}}</p>
-            <p><b class="u">Estado de Entrada:</b> </p>
-            <p><b class="u">Llaves:</b> {{at.keys}}</p>
-            <p><b class="u">Gato:</b> {{at.gato}}</p>
-            <p><b class="u">Caucho de Repuesto:</b> {{at.extraTire}}</p>
-            <p><b class="u">Kilometraje:</b> {{at.carKm}}</p>
-            <p><b class="u">Gasolina: </b>{{at.carGas}}</p>
-            <p><b class="u">Rayones:</b> {{at.scratches}}</p>
-            <p><b class="u">Stereo:</b> {{at.stereo}}</p>
-            <p><b class="u">Herramientas:</b> {{at.tools}}</p>
-            <p><b class="u">Mecanico encargado:</b> {{at.mechName}}</p>
-            <p><b class="u">Razon de entrada:</b> "{{at.reason}}"</p>
-            <p><b class="u">Diagnostico:</b> "{{at.diagnostic}}"</p>
-            <p><b class="u">Repuestos colocados:</b> "{{at.repuestos}}"</p>
-            <p><b class="u">Precio Total:</b> {{at.totalPriceService | currency:'USD'}}</p>
 
         </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
-    </div>
-</ng-template>
+    </mat-card>
+    <ng-template #data let-modal>
+        <div class="modal-header">
+            <h1 class="modal-title" id="modal-basic-title">Servicios</h1>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div *ngIf="tecnicalInfo">
+            <div *ngFor="let at of appointments">
+
+                <p><b class="u">Fecha de Cita:</b> {{at.appointmentDate}}</p>
+                <p><b class="u">Estado de Entrada:</b> </p>
+                <p><b class="u">Llaves:</b> {{at.keys}}</p>
+                <p><b class="u">Gato:</b> {{at.gato}}</p>
+                <p><b class="u">Caucho de Repuesto:</b> {{at.extraTire}}</p>
+                <p><b class="u">Kilometraje:</b> {{at.carKm}}</p>
+                <p><b class="u">Gasolina: </b>{{at.carGas}}</p>
+                <p><b class="u">Rayones:</b> {{at.scratches}}</p>
+                <p><b class="u">Stereo:</b> {{at.stereo}}</p>
+                <p><b class="u">Herramientas:</b> {{at.tools}}</p>
+                <p><b class="u">Mecanico encargado:</b> {{at.mechName}}</p>
+                <p><b class="u">Razon de entrada:</b> "{{at.reason}}"</p>
+                <p><b class="u">Diagnostico:</b> "{{at.diagnostic}}"</p>
+                <p><b class="u">Repuestos colocados:</b> "{{at.repuestos}}"</p>
+                <p><b class="u">Precio Total:</b> {{at.totalPriceService | currency:'USD'}}</p>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+        </div>
+    </ng-template>
 
 
 
-    </div>
-    <div class="second-div">
+</div>
+<div class="second-div">
 
-        <mat-card class="btn-press">
-            <button mat-raised-button class="press" (click)="showDataS()">DATOS DEL TALLER</button>
-            <p *ngIf="showData">El mejor mecanico es: <b class="data">{{bestMech.name}}</b> con <b class="data">{{bestMech.carsRepaired}}</b> carros
-                reparados</p>
-            <p *ngIf="showData">El carro con mas reparaciones es: <b class="data">{{bestCar.model}}</b> del año <b class="data">{{bestCar.year}}</b> y placa:
-                <b class="data">{{bestCar.plate}}</b> del owner <b class="data">{{bestCar.ownerName}}</b>
-            </p>
-            <p *ngIf="showData"> Carros que han sido reparados: <b class="data">{{carsRepaired.length}}</b></p>
-        </mat-card>
+    <mat-card class="btn-press">
+        <button mat-raised-button class="press" (click)="showDataS()">DATOS DEL TALLER</button>
+        <p *ngIf="showData">El mejor mecanico es: <b class="data">{{bestMech.name}}</b> con <b
+                class="data">{{bestMech.carsRepaired}}</b> carros
+            reparados</p>
+        <p *ngIf="showData">El carro con mas reparaciones es: <b class="data">{{bestCar.model}}</b> del año <b
+                class="data">{{bestCar.year}}</b> y placa:
+            <b class="data">{{bestCar.plate}}</b> del owner <b class="data">{{bestCar.ownerName}}</b>
+        </p>
+        <p *ngIf="showData"> Carros que han sido reparados: <b class="data">{{carsRepaired.length}}</b></p>
+    </mat-card>
 
 
-    </div>
+</div>
 <!-- <app-client-reports></app-client-reports>
 <app-vehicle-reports></app-vehicle-reports>
 <app-mechanic-reports></app-mechanic-reports>
