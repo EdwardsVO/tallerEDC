@@ -57,15 +57,8 @@ h1{
   margin-top: 5%;
 }
 
-.reject{
-    color: white;
-    background-color: red;
-}
 
-.green{
-  background-color:  rgb(3, 180, 3);
-  color: white;
-}
+
 
 
 mat-card-subtitle{
@@ -105,13 +98,17 @@ input {
 button.green{
   color: rgb(3, 180, 3);
   background-color: white;
+  
 
 }
 
-button.green:hover{
-  background-color: rgb(3, 180, 3);
-  color: white;
-}
+
+
+
+// button.green:hover{
+//   background-color: rgb(3, 180, 3);
+//   color: white;
+// }
 
 button.reject{
   color: red;
@@ -119,10 +116,10 @@ button.reject{
   margin-right: 10px;
   margin-left: 10px;
 }
-button.reject:hover{
-  color: white;
-  background-color: red;
-}
+// button.reject:hover{
+//   color: white;
+//   background-color: red;
+// }
 
 button.trash{
   color: #2e3192;
@@ -223,7 +220,7 @@ mat-card-content.qrcode {
     
   }
 
-  .modal-body, {
+  .modal-body {
     min-height: 490px;
     max-height: 490px;
   }

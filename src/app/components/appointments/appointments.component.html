@@ -148,10 +148,10 @@
                 />
               </mat-input>
 
-
+            <div>
               <button
                 type="submit"
-                mat-raised-button
+                mat-mini-fab
                 class="green"
                 [disabled]="!appointment.appointmentDate"
                 (click)="
@@ -172,16 +172,18 @@
 
               <div *ngIf="appointment.appointmentConfirmed">
                 <button
-                mat-raised-button
+                mat-mini-fab
                 (click)="open(content)"
                 class="green"
               >
-                <span color="warn" class="q"> QR </span>
+                <span class="material-icons">
+                  qr_code_2
+                  </span>
               </button>
               </div>
 
               <button
-                mat-raised-button
+                mat-mini-fab
                 class="reject"
                 [disabled]="!appointment.appointmentDate"
                 *ngIf="!appointment.appointmentConfirmed"
@@ -192,13 +194,13 @@
 
               <button
                 class="trash"
-                mat-raised-button
+                mat-mini-fab
                 (click)="deleteAppointment(appointment.id)"
                 *ngIf="!appointment.appointmentConfirmed"
               >
-                <mat-icon color="primary">delete</mat-icon>
+                <mat-icon >delete</mat-icon>
               </button>
-
+            </div>
 
                 <ng-template #content let-modal class = "qrmodal">
                   <div class="modal-header">
