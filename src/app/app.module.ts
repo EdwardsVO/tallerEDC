@@ -98,6 +98,8 @@ import { CodigoQRComponent } from './components/codigo-qr/codigo-qr.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { MechdiagnosticComponent } from './components/mechdiagnostic/mechdiagnostic.component';
 
+// Charts
+import { ChartsModule } from 'ng2-charts';
 
 
 
@@ -192,7 +194,8 @@ import { MechdiagnosticComponent } from './components/mechdiagnostic/mechdiagnos
     HttpClientModule,
     AngularFireDatabaseModule,
     NgxQRCodeModule,
-    ZXingScannerModule
+    ZXingScannerModule,
+    ChartsModule
 
 
   ],
