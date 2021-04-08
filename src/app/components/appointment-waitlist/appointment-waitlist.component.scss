@@ -96,3 +96,52 @@ button:hover{
     background-color: white;
 }
 
+@media only screen and (max-width: 1000px) {
+
+    .status{
+        display: none;
+    }
+
+   
+    p, mat-card-subtitle,mat-label{
+        font-size: smaller;
+    }
+
+    .hora{
+        width: 90px;
+        margin-left: -9px;
+    }
+
+    mat-form-field{
+        padding-right: 35%;
+        padding-left: 30%;
+        width: 150px;
+        margin-left: 3%;
+    }
+    
+    button{
+       
+        height: 40px;
+        font-size: smaller;
+        margin-left: -103px;
+    }
+
+    mat-card-actions{
+        margin-left: -5px;
+    }
+
+    .fecha{
+        margin-left: -49px;
+        margin-right: -20px;
+        height: 3px;
+    }
+
+    }
+
+    @media only screen and (max-width: 650px) {
+
+        .txt{
+            display: none;
+        }
+    }
+
