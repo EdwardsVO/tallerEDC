@@ -24,13 +24,13 @@ export class RegisterComponent implements OnInit {
   carsRepaired: number;
   date: string;
 
-  
+
 
   constructor(private _fb: FormBuilder ,private _authService: AuthService, private _db: CrudService, private _firestore: AngularFirestore, private _router: Router, private _toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.createRegistrationForm();
-    
+
   }
 
   createRegistrationForm(): void {
@@ -38,10 +38,10 @@ export class RegisterComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required],
       name: ['', Validators.required],
-      phone: ['', Validators.required] 
+      phone: ['', Validators.required]
     })
   }
-  
+
   formatDate(){
     const timeElapsed = Date.now();
     const today = new Date(timeElapsed);
@@ -55,15 +55,18 @@ export class RegisterComponent implements OnInit {
         this.id = res.uid
         this._db.newUser(
           this.id,
-          this.authForm.get('name').value, 
+          this.authForm.get('name').value,
           this.authForm.get('email').value,
           this.authForm.get('phone').value,
           this.role,
           this.date = this.formatDate(),
           )
+    this._router.navigate(['/profile']);
+
     })
     }catch(err) {
       console.log(err);
     }
+    this._router.navigate(['/profile']);
   }
 }

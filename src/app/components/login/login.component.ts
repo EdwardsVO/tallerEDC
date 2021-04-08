@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.createAuthForm();
     this.createRegistrationForm();
-    
+
   }
 
 
@@ -183,7 +183,7 @@ export class LoginComponent implements OnInit {
           this.role,
           this.date
         )
-        this._router.navigate(['/user'], { queryParams: { login: 'true' }, queryParamsHandling: 'merge' })
+        this._router.navigate(['/profile'], { queryParams: { login: 'true' }, queryParamsHandling: 'merge' })
         this.modalService.dismissAll()
 
       })
@@ -191,6 +191,7 @@ export class LoginComponent implements OnInit {
       console.log(err);
       console.log(this.authForm.get('email'));
     }
+
   }
 }
 
