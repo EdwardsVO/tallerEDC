@@ -9,6 +9,6 @@ export class NotImageDirective {
   constructor(private elementImg: ElementRef) { }
   @HostListener('error')
   onError():void{
-    this.elementImg.nativeElement.src = 'https://firebasestorage.googleapis.com/v0/b/talleredc-8704c.appspot.com/o/images%2Fplaceholder.jpg?alt=media&token=68871d28-fd48-4a95-a8c7-8bf32680dc95';
+    this.elementImg.nativeElement.src = 'https://firebasestorage.googleapis.com/v0/b/talleredc-8704c.appspot.com/o/page%2Fplaceholder%2Fplaceholder.jpg?alt=media&token=5f69c8f2-d262-4985-a83e-e968dbc2d750';
   }
 }

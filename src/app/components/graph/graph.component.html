@@ -1,6 +1,6 @@
 <div>
-    <div>
-      <div style="display: block">
+    <div class="main-div">
+      <div class="div" style="display: block">
         <canvas baseChart
           [datasets]="barChartData"
           [labels]="barChartLabels"
@@ -10,6 +10,6 @@
           [chartType]="barChartType">
         </canvas>
       </div>
-      <button mat-button mat-raised-button color="primary" (click)="randomize()">Actualizar</button>
+      <button mat-button mat-raised-button (click)="randomize()">Actualizar</button>
     </div>
   </div>

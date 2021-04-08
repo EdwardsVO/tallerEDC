@@ -10,6 +10,7 @@ mat-card.m {
     text-align: center;
     flex-direction: column;
     margin-top: 2%;
+   
 
   }
 
@@ -57,28 +58,13 @@ mat-card.m {
 
   .btn-press{
       background-color: rgb(243, 243, 243);
-      box-shadow: none;
       width: 72.2%;
       text-align: center;
+      margin-right: auto;
+      margin-left: auto;
   }
 
-  .press{
-      height: 50px;
-      color: white;
-      background-color: #2e3192;
-      margin-bottom: 5%;
-      width: 60%;
-
-  }
-  button.press:hover{
-      color: #2e3192;
-      background-color: white;
-  }
-
-  p.btn-press{
-      width: 200%;
-      margin-top: 5%;
-  }
+  
 
   mat-card.user-mat{
     width: 72%;
@@ -88,7 +74,7 @@ mat-card.m {
     background-color: rgb(243, 243, 243);
     margin-right: auto;
     margin-left: auto;
-    margin-top: 5%;
+    //margin-top: 2%;
   }
   mat-card.single-user{
     display: flex;
@@ -188,10 +174,7 @@ mat-card.m {
      background-color: white;
  }
 
-  mat-icon{
-    color: #a2a300;
 
- }
 
  button.i{
      background-color: transparent;
@@ -200,13 +183,33 @@ mat-card.m {
  }
 
  b.data{
-     font-size: 20px;
+     font-size: 25px;
  }
 
 p.subt {
-    font-size: 16px;
+    font-size: 20px;
+    margin-top: 3%;
 }
 
+.graphs{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 1%;
+    //margin-bottom: 2%;
+}
+
+.graph, .graph2{
+    width: 35%;
+    background-color: rgb(243, 243, 243);
+}
+
+.graph2{
+    margin-left: 3%;
+}
+.g{
+    font-size: 32px;
+}
 
 
 
