@@ -38,37 +38,37 @@ export class AppointmentCalendarComponent implements OnInit {
   constructor(private _firestore: AngularFirestore, private _eventservice: EventCrudService) { }
 
   ngOnInit(): void {
-    this.getConfirmedCars()
+    // this.getConfirmedCars()
 
-    this.calendar = new Calendar(this.calendarEL, {
-      headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-      },
-      initialView: 'dayGridMonth',
-      events: this.events,
-      //initialEvents: this.events, // alternatively, use the `events` setting to fetch from a feed
-      weekends: true,
-      editable: true,
-      selectable: true,
-      selectMirror: true,
-      dayMaxEvents: true,
-      //select: this.handleDateSelect.bind(this),
-      //eventClick: this.handleEventClick.bind(this),
-      //eventsSet: this.handleEvents.bind(this)
+    // this.calendar = new Calendar(this.calendarEL, {
+    //   headerToolbar: {
+    //     left: 'prev,next today',
+    //     center: 'title',
+    //     right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+    //   },
+    //   initialView: 'dayGridMonth',
+    //   events: this.events,
+    //   //initialEvents: this.events, // alternatively, use the `events` setting to fetch from a feed
+    //   weekends: true,
+    //   editable: true,
+    //   selectable: true,
+    //   selectMirror: true,
+    //   dayMaxEvents: true,
+    //   //select: this.handleDateSelect.bind(this),
+    //   //eventClick: this.handleEventClick.bind(this),
+    //   //eventsSet: this.handleEvents.bind(this)
 
-    })
+    // })
     
     //this.getEvents()
 
-    this.fillCalendar()
+    //this.fillCalendar()
 
     
     
     //setTimeout(() =>
       
-      //this.showEvents()
+    this.showEvents()
     //, 3000);
     
     
@@ -180,82 +180,82 @@ export class AppointmentCalendarComponent implements OnInit {
   
 
 
-  // showEvents(){
-  //   console.log(this.events)
+  showEvents(){
+    console.log(this.events)
    
-  //   try{
-  //     this.calendarVisible = true
-  //     this.calendarOptions = {
-  //       headerToolbar: {
-  //         left: 'prev,next today',
-  //         center: 'title',
-  //         right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-  //       },
-  //       initialView: 'dayGridMonth',
-  //       initialEvents: this.events, // alternatively, use the `events` setting to fetch from a feed
-  //       weekends: true,
-  //       editable: true,
-  //       selectable: true,
-  //       selectMirror: true,
-  //       dayMaxEvents: true,
-  //       //select: this.handleDateSelect.bind(this),
-  //       //eventClick: this.handleEventClick.bind(this),
-  //       //eventsSet: this.handleEvents.bind(this)
+    try{
+      this.calendarVisible = true
+      this.calendarOptions = {
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+        },
+        initialView: 'dayGridMonth',
+        initialEvents: this.events, // alternatively, use the `events` setting to fetch from a feed
+        weekends: true,
+        editable: true,
+        selectable: true,
+        selectMirror: true,
+        dayMaxEvents: true,
+        select: this.handleDateSelect.bind(this),
+        eventClick: this.handleEventClick.bind(this),
+        eventsSet: this.handleEvents.bind(this)
         
         
-  //       /* you can update a remote database when these fire:
-  //       eventAdd:
-  //       eventChange:
-  //       eventRemove:
-  //       */
-  //     };
+        /* you can update a remote database when these fire:
+        eventAdd:
+        eventChange:
+        eventRemove:
+        */
+      };
 
-  //   }catch(error){
-  //     console.log(error)
-  //   }
+    }catch(error){
+      console.log(error)
+    }
     
     
 
-  // }
+  }
   
-  // currentEvents: EventApi[] = [];
+  currentEvents: EventApi[] = [];
 
-  // handleCalendarToggle() {
-  //   this.calendarVisible = !this.calendarVisible;
-  // }
+  handleCalendarToggle() {
+    this.calendarVisible = !this.calendarVisible;
+  }
 
-  // handleWeekendsToggle() {
-  //   const { calendarOptions } = this;
-  //   calendarOptions.weekends = !calendarOptions.weekends;
+  handleWeekendsToggle() {
+    const { calendarOptions } = this;
+    calendarOptions.weekends = !calendarOptions.weekends;
    
-  // }
+  }
 
-  // handleDateSelect(selectInfo: DateSelectArg) {
-  //   const title = prompt('Please enter a new title for your event');
-  //   const calendarApi = selectInfo.view.calendar;
+  handleDateSelect(selectInfo: DateSelectArg) {
+    const title = prompt('Please enter a new title for your event');
+    const calendarApi = selectInfo.view.calendar;
 
-  //   calendarApi.unselect(); // clear date selection
+    calendarApi.unselect(); // clear date selection
 
-  //   if (title) {
-  //     calendarApi.addEvent({
-  //       id: createEventId(),
-  //       title,
-  //       start: selectInfo.startStr,
-  //       end: selectInfo.endStr,
-  //       allDay: selectInfo.allDay
-  //     });
-  //   }
-  // }
+    if (title) {
+      calendarApi.addEvent({
+        id: createEventId(),
+        title,
+        start: selectInfo.startStr,
+        end: selectInfo.endStr,
+        allDay: selectInfo.allDay
+      });
+    }
+  }
 
-  // handleEventClick(clickInfo: EventClickArg) {
-  //   if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-  //     clickInfo.event.remove();
-  //   }
-  // }
+  handleEventClick(clickInfo: EventClickArg) {
+    if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
+      clickInfo.event.remove();
+    }
+  }
 
-  // handleEvents(events: EventApi[]) {
-  //   this.currentEvents = events;
-  // }
+  handleEvents(events: EventApi[]) {
+    this.currentEvents = events;
+  }
 
 
 

@@ -36,10 +36,8 @@ export class AppointmentsComponent implements OnInit {
 
   title = 'Appointment';
   elementType = 'url';
-  value = "https://www.twitter.com/"
-  gotData = false;
-
-  appointmentQR = "";
+  value = ""
+  appointmentQR: string;
 
 
 
@@ -81,8 +79,8 @@ export class AppointmentsComponent implements OnInit {
     })
   }
 
-  getQRCode(){
-    this.value += this.appointmentQR;
+  getQRCode(appointment){
+    this.value = appointment;
     console.log(this.value);
     return this.value
   }
@@ -133,7 +131,7 @@ export class AppointmentsComponent implements OnInit {
     getAppointments() {
 
       this.userId = localStorage.getItem('user');
-      
+
       this._firestore.collection('cars', ref => ref.where("owner", "==", this.userId)).snapshotChanges().subscribe(res => {
             this.appointments = res.map((e: any) => {
               this.ownerEmail = e.payload.doc.data().ownerEmail
@@ -153,6 +151,7 @@ export class AppointmentsComponent implements OnInit {
                 ownerEmail: e.payload.doc.data().ownerEmail,
                 alertManager: e.payload.doc.data().alertManager,
                 photo: e.payload.doc.data().photo,
+                appointmentId: e.payload.doc.data().lastAppointment,
               }
             })
           })
@@ -160,7 +159,7 @@ export class AppointmentsComponent implements OnInit {
 
         public sendEmail(e: Event) {
           e.preventDefault();
-          emailjs.sendForm('service_dnxdt8m', 'template_4ua2jpe', e.target as HTMLFormElement, 'user_q58MLrmPLuDZ9VZaTnXDU')
+          emailjs.sendForm('service_pwcf60n', 'template_gsog4jn', e.target as HTMLFormElement, 'user_WiVZBumT4YhIFxwiixzgr')
             .then((result: EmailJSResponseStatus) => {
               console.log(result.text);
             }, (error) => {
