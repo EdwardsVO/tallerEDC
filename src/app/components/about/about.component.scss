@@ -43,8 +43,8 @@ p::-webkit-scrollbar-thumb {
 }
 
 button{
-    color: #a2a300;
-    background-color: white;
+    color: white;
+    background-color: #2E3192;
     height: 50px;
     width: auto;
     text-align: center;
@@ -52,8 +52,8 @@ button{
       
 }
 button:hover{
-    color: white;
-    background-color: #a2a300;
+    color: #2E3192;
+    background-color: white;
 }
 
 @media only screen and (max-width: 870px) {
