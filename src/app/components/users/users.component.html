@@ -24,19 +24,23 @@
                     <p>{{user.role}}</p>
                 </mat-card-subtitle>
 
-                <button mat-mini-fab class="edit"color="primary" title="Editar usuario">
-                    <mat-icon (click) = "updateRoleForm(user)">edit</mat-icon>
-                </button>
+                <div class="btns">
+                    <button mat-mini-fab class="ed" title="Editar usuario">
+                        <mat-icon (click) = "updateRoleForm(user)">edit</mat-icon>
+                    </button>
+    
+                    <button mat-mini-fab class="edit" title = "Deshabilitar usuario" *ngIf="!editState">
+                        <mat-icon (click)="open(content)">block</mat-icon>
+                    </button>
+    
+                    <button mat-mini-fab class = "edit"  *ngIf="editState && userToEdit.id == user.id">
+                        <mat-icon (click) = "clearState()"><span class="material-icons">
+                            close
+                            </span></mat-icon>
+                    </button>
+                </div>
 
-                <button mat-mini-fab class="edit"color="primary" title = "Deshabilitar usuario" *ngIf="!editState">
-                    <mat-icon (click)="open(content)">block</mat-icon>
-                </button>
-
-                <button mat-mini-fab class = "" color = "primary" *ngIf="editState && userToEdit.id == user.id">
-                    <mat-icon (click) = "clearState()"><span class="material-icons">
-                        close
-                        </span></mat-icon>
-                </button>
+                
             </mat-card>
 
 
@@ -60,8 +64,8 @@
                             <p>
                              ¿Está seguro que desea deshabilitar el cliente?
                             </p>
-                            <button mat-button color = "primary" (click) = "disableUser(user.id)" (click) = "modal.dismiss('Cross click')">Si</button>
-                            <button mat-button color = "primary" (click) = "modal.dismiss('Cross click')">No</button>
+                            <button mat-button class="yn" (click) = "disableUser(user.id)" (click) = "modal.dismiss('Cross click')">Si</button>
+                            <button mat-button class="yn" (click) = "modal.dismiss('Cross click')">No</button>
                           </mat-card-content>
                         </div>
                       </mat-card>
@@ -77,10 +81,15 @@
                         <input type="text" placeholder="Nombre del usuario" [(ngModel)] = "user.name" name = "Nombre">
 
                         <input type="text" placeholder="Telefono" [(ngModel)] = "user.phone" name = "Telefono">
+                        <select name="Role" placeholder="Rol" [(ngModel)] = "user.role" [matAutocomplete] = "auto" id="">
+                            <option value="client">client</option>
+                            <option value="mechanic">mechanic</option>
+                            <option value="admin">admin</option>
+                            <option value="manager">manager</option>
+                        </select>
+                        <!--<input type="text" placeholder="Rol" [(ngModel)] = "user.role" name = "Role"  [matAutocomplete] = "auto">-->
 
-                        <input type="text" placeholder="Rol" [(ngModel)] = "user.role" name = "Role"  [matAutocomplete] = "auto">
-
-                        <button mat-raised-button color = "primary" type="submit" class = "btn" (click) = "updateUser(user)">Actualizar</button>
+                        <button mat-raised-button type="submit" class = "btn" (click) = "updateUser(user)">Actualizar</button>
                    </div>
                 </form>
             </div>
