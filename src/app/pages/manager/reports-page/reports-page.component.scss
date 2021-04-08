@@ -10,16 +10,16 @@ mat-card.m {
     text-align: center;
     flex-direction: column;
     margin-top: 2%;
-    
+
   }
-  
+
   p {
     font-family: "Roboto", sans-serif;
     padding: auto;
     word-break: normal;
     margin-left: 1%;
-    
-    
+
+
   }
 
   h1 {
@@ -29,7 +29,7 @@ mat-card.m {
     text-align: center;
   }
 
-  
+
   p.t{
       margin-top: 5%;
       color: #a2a300;
@@ -47,7 +47,7 @@ mat-card.m {
     background-color: white;
     height: 50%;
     margin-top: 4%;
-    
+
   }
 
   button.h:hover{
@@ -56,12 +56,10 @@ mat-card.m {
   }
 
   .btn-press{
-      background-color: white;
+      background-color: rgb(243, 243, 243);
       box-shadow: none;
-      width: 60%;
+      width: 72.2%;
       text-align: center;
-      
-      
   }
 
   .press{
@@ -70,7 +68,7 @@ mat-card.m {
       background-color: #2e3192;
       margin-bottom: 5%;
       width: 60%;
-      
+
   }
   button.press:hover{
       color: #2e3192;
@@ -104,7 +102,7 @@ mat-card.m {
     text-align: center;
     overflow-x: scroll;
     height: 60px;
-    
+
   }
 
   h3{
@@ -140,7 +138,7 @@ mat-card.m {
       width: 100px;
       height: 100px;
       border-radius: 50%;
-     
+
 
   }
 
@@ -153,14 +151,14 @@ mat-card.m {
     background-color: #2e3192;
     text-align: center;
     font-size: 100%;
-    
-      
+
+
   }
 
   .usd{
       color: white;
       font-size: 100px;
-      
+
   }
   .usdp{
       margin-top: 7%;
@@ -192,19 +190,27 @@ mat-card.m {
 
   mat-icon{
     color: #a2a300;
-    
+
  }
 
  button.i{
      background-color: transparent;
      box-shadow: none;
-    
+
  }
 
+ b.data{
+     font-size: 20px;
+ }
+
+p.subt {
+    font-size: 16px;
+}
 
 
- 
- 
+
+
+
  @media only screen and (max-width: 700px) {
 
     .m{
@@ -214,11 +220,11 @@ mat-card.m {
         overflow: hidden;
     }
 
-    
+
 
     .i{
         margin-right: 5px;
-        
+
     }
 
     .h{
@@ -273,7 +279,7 @@ mat-card.m {
         .h{
             //width: fit-content;
             align-items: center;
-            
+
         }
 
         .i{
@@ -287,6 +293,9 @@ mat-card.m {
         .data{
             font-size: x-large;
         }
-       
+
         }
-    
+
+.details {
+    color: #2e3192;
+}
