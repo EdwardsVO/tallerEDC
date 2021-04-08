@@ -69,7 +69,7 @@ export class ReportsPageComponent implements OnInit {
           extraTire: e.payload.doc.data().extraTire,
           gato: e.payload.doc.data().gato,
           keys: e.payload.doc.data().keys,
-          mechName: e.payload.doc.data().mechNmae,
+          mechName: e.payload.doc.data().mechName,
           procedure: e.payload.doc.data().procedure,
           reason: e.payload.doc.data().reason,
           repairs: e.payload.doc.data().repairs,
