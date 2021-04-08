@@ -27,6 +27,13 @@ export class UsersComponent implements OnInit {
   editInfo: boolean = false;
   closeResult = '';
 
+  options = [
+    'client',
+    'mechanic',
+    'admin',
+    'manager'
+  ]
+
 
   updateInfo(): boolean {
     return this.editInfo = !this.editInfo

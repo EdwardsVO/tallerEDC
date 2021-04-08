@@ -8,7 +8,7 @@
     </mat-card>
     <mat-card class="quantity">
         <div *ngIf = "clientDataUp">
-            <p class="usdp"><b class="usd">{{profit | currency: 'USD'}}</b> Entrada total</p>
+            <p class="usdp"><b class="usd">{{profit | currency: 'USD'}}</b> Ingreso total</p>
         </div>
     </mat-card>
 
@@ -17,7 +17,7 @@
         <button mat-raised-button class="h" (click) = "close()" (click)="getAdminInfo()">Ver mas</button>
         <button mat-raised-button class="i" (click) = "close()" (click)="getAdminInfo()"><mat-icon>add_circle</mat-icon></button>
     </mat-card>
-    
+
 </div>
 <div class="second-div">
     <mat-card class="m">
@@ -64,7 +64,7 @@
                     </button>
                 </mat-card-subtitle>
             </mat-card>
-    
+
             <ng-template #content let-modal>
                 <div class="modal-header">
                     <h1 class="modal-title" id="modal-basic-title">Detalles de Usuario</h1>
@@ -73,16 +73,16 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <img src="{{info.photo}}" alt="No Profile Image">
-                    <p><b class="u">Nombre:</b> {{info.name}}</p>
-                    <p><b class="u">Fecha de ingreso al sistema:</b> {{info.date}}</p>
-                    <p><b class="u">Edad:</b> {{info.age}}</p>
-                    <p><b class="u">Telefono:</b> {{info.phone}}</p>
-                    <p><b class="u">Correo Electronico:</b> {{info.email}}</p>
-                    <p><b class="u">Genero:</b>{{info.gender}}</p>
-    
+                    <img src="{{info.photo}}" alt="No Profile Image" appNotImage>
+                    <p><b class="u">Nombre: </b> {{info.name}}</p>
+                    <p><b class="u">Fecha de ingreso al sistema: </b> {{info.date}}</p>
+                    <p><b class="u">Edad: </b> {{info.age}}</p>
+                    <p><b class="u">Telefono: </b> {{info.phone}}</p>
+                    <p><b class="u">Correo Electronico: </b> {{info.email}}</p>
+                    <p><b class="u">Genero: </b>{{info.gender}}</p>
+
                     <!-- <p>El rol es {{info.role}}</p> -->
-                    <p *ngIf="info.role =='client' && info.moneySpent != '0'"><b class="u">Dinero inveritodo:</b>{{info.moneySpent}}</p>
+                    <p *ngIf="info.role =='client' && info.moneySpent != '0'"><b class="u"> Dinero invertido: </b>{{info.moneySpent | currency: "USD"}}</p>
                     <p *ngIf='info.role =="mechanic"'>Carros Reparados: {{info.carsRepaired}}</p>
                 </div>
                 <div class="modal-footer">
@@ -128,14 +128,14 @@
                 <p><b class="u">Dueño:</b> {{info.ownerName}}<p>
                 <p><b class="u">Cantidad de Servicios Realizados:</b> {{info.timesRepaired}}</p>
                 <button mat-raised-button class="see"(click)="getAppointments(info.id2)"  (click)="open(data)">Ver Servicios</button>
-                
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
             </div>
         </ng-template>
-        
-        
+
+
     </div>
 </mat-card>
 <ng-template #data let-modal>
@@ -147,7 +147,7 @@
     </div>
     <div *ngIf ="tecnicalInfo">
         <div *ngFor = "let at of appointments">
-           
+
             <p><b class="u">Fecha de Cita:</b> {{at.appointmentDate}}</p>
             <p><b class="u">Estado de Entrada:</b> </p>
             <p><b class="u">Llaves:</b> {{at.keys}}</p>
@@ -163,7 +163,7 @@
             <p><b class="u">Diagnostico:</b> "{{at.diagnostic}}"</p>
             <p><b class="u">Repuestos colocados:</b> "{{at.repuestos}}"</p>
             <p><b class="u">Precio Total:</b> {{at.totalPriceService | currency:'USD'}}</p>
-            
+
         </div>
     </div>
     <div class="modal-footer">
@@ -172,7 +172,7 @@
 </ng-template>
 
 
-        
+
     </div>
     <div class="second-div">
 
@@ -185,8 +185,8 @@
             </p>
             <p *ngIf="showData"> Carros que han sido reparados: <b class="data">{{carsRepaired.length}}</b></p>
         </mat-card>
-    
-    
+
+
     </div>
 <!-- <app-client-reports></app-client-reports>
 <app-vehicle-reports></app-vehicle-reports>

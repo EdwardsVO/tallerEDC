@@ -9,7 +9,7 @@
             <mat-card-subtitle>AÑO<P>{{ appointment.year }}</P></mat-card-subtitle>
             <mat-card-subtitle class="txt">PLACA<P>{{ appointment.plate }}</P></mat-card-subtitle>
         </mat-card>
-      
+
     <!-- </mat-card> -->
 
     <!-- <div *ngIf="editState && carToEdit.id == appointment.id"> -->
@@ -154,7 +154,7 @@
                     <button mat-raised-button (click)="open(content)"color="primary" class="pic-btn">Subir Imagen
                         <mat-icon>photo_camera</mat-icon>
                         </button>
-    
+
                 </mat-card-content>
 
                 <button
@@ -162,6 +162,8 @@
                   type="submit"
                   class="btn"
                   (click)="updateAppointment(appointment)"
+                  (click)="finishWork(appointment.carId)"
+                  (click)="finishWork2(appointment.id)"
                 >
                   Confirmar
                 </button>
@@ -178,7 +180,7 @@
 
 <ng-template #content let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+        <h4 class="modal-title" id="modal-basic-title">Subir Imagen</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
         </button>
@@ -200,4 +202,4 @@
     <div class="result" *ngIf="downloadURL | async; let uploadSrc">
         <a [href]="uploadSrc" *ngIf="!actualizar">La foto se ha subido exitosamente!</a>
     </div>
-</ng-template>     
+</ng-template>

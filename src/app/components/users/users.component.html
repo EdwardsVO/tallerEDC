@@ -4,22 +4,23 @@
             <input type="Search" name = "filterUser"placeholder="Search..." [(ngModel)]="filterUser">
             <button mat-raised-button>Search</button>
         </form>
-    </div>    
+    </div>
     <div class="user">
         <div class="user-container" *ngFor="let user of users | filterAll: filterUser">
             <mat-card >
-                <img mat-card-sm-image src="assets/img/placeholder.jpg" alt="client's car1">
+
+               <img src="{{user.photo}}" class = "profilePic" appNotImage>
 
                 <mat-card-subtitle>NOMBRE
                     <p>{{user.name}}</p>
                 </mat-card-subtitle>
-                <mat-card-subtitle>TELÉFONO
+                <mat-card-subtitle class="txt">TELÉFONO
                     <p>{{user.phone}}</p>
                 </mat-card-subtitle>
                 <mat-card-subtitle>EMAIL
                     <p>{{user.email}}</p>
                 </mat-card-subtitle>
-                <mat-card-subtitle>Role
+                <mat-card-subtitle class="text">Role
                     <p>{{user.role}}</p>
                 </mat-card-subtitle>
 
@@ -27,7 +28,7 @@
                     <mat-icon (click) = "updateRoleForm(user)">edit</mat-icon>
                 </button>
 
-                <button mat-mini-fab class="edit"color="primary" title = "Deshabilitar usuario">
+                <button mat-mini-fab class="edit"color="primary" title = "Deshabilitar usuario" *ngIf="!editState">
                     <mat-icon (click)="open(content)">block</mat-icon>
                 </button>
 
@@ -72,19 +73,27 @@
             <div class="form" *ngIf="editState && userToEdit.id == user.id">
                 <form (ngSubmit)= "updateUser(user)">
                    <div class="row">
-                       
+
                         <input type="text" placeholder="Nombre del usuario" [(ngModel)] = "user.name" name = "Nombre">
-     
+
                         <input type="text" placeholder="Telefono" [(ngModel)] = "user.phone" name = "Telefono">
-        
-                        <input type="text" placeholder="Rol" [(ngModel)] = "user.role" name = "Role">
+
+                        <input type="text" placeholder="Rol" [(ngModel)] = "user.role" name = "Role"  [matAutocomplete] = "auto">
+
                         <button mat-raised-button color = "primary" type="submit" class = "btn" (click) = "updateUser(user)">Actualizar</button>
                    </div>
                 </form>
             </div>
 
         </div>
-       
+
     </div>
 </div>
+
+<!-- Autocomplete -->
+<mat-autocomplete #auto="matAutocomplete">
+  <mat-option *ngFor="let option of options" [value]="option">
+    {{option}}
+  </mat-option>
+</mat-autocomplete>
 
