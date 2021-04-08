@@ -194,8 +194,16 @@
 
 
 
-</div>
-<div class="second-div">
+        <mat-card class="btn-press">
+            <mat-card-title class = "details">Detalles del Taller</mat-card-title>
+            <br>
+            <p *ngIf="showData"><p class = "subt">El mejor mecanico es: <b class="data">{{bestMech.name}}</b> con <b class="data">{{bestMech.carsRepaired}}</b> carros
+                reparados</p>
+            <p *ngIf="showData">El carro con mas reparaciones es: <b class="data"><p class = "data">{{bestCar.model}}</p></b> del año <b class="data">{{bestCar.year}}</b> y placa:
+                <b class="data">{{bestCar.plate}}</b> del cliente <b class="data">{{bestCar.ownerName}}</b>
+            </p>
+            <p *ngIf="showData"> Carros que han sido reparados: <b class="data">{{carsRepaired.length}}</b></p>
+        </mat-card>
 
     <mat-card class="btn-press">
         <button mat-raised-button class="press" (click)="showDataS()">DATOS DEL TALLER</button>

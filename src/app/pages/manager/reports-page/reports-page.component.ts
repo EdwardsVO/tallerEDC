@@ -35,9 +35,7 @@ export class ReportsPageComponent implements OnInit {
   clientDataUp = false;
   profit = 0;
   closeResult = '';
-
   money = [];
-  // totalSpent = 0;
 
 
   constructor(private _firestore: AngularFirestore, private _vech: VehiclesCrudService, private modalService: NgbModal) { }
@@ -81,6 +79,7 @@ export class ReportsPageComponent implements OnInit {
           totalPriceService: e.payload.doc.data().totalPriceService,
         }
       })
+      this.showDataS()
     })
   }
   async getAppointments(id) {
@@ -244,12 +243,10 @@ export class ReportsPageComponent implements OnInit {
 
   sumMoney(): Observable<number>{
      let sum: number = this.money.map(a => a.moneySpent).reduce( function (a, b) {
-       console.log(a+b);
        return a+b
      })
      this.profit = sum;
      return
-    //  console.log(this.profit);
   }
 
 
@@ -260,7 +257,8 @@ export class ReportsPageComponent implements OnInit {
     var hightM = -1;
     var hightC = -1;
 
-    for (var mech in this.mechanics) { //BEST MECHANIC SEARCH
+
+       for (var mech in this.mechanics) { //BEST MECHANIC SEARCH
       if (this.mechanics[mech].carsRepaired > hightM) {
         bestMech = this.mechanics[mech];
         hightM = this.mechanics[mech].carsRepaired;
@@ -268,8 +266,6 @@ export class ReportsPageComponent implements OnInit {
     }
     this.bestMech = bestMech
     for (var car in this.cars) { //SEARCH CAR MOST REPAIRED
-      console.log(this.cars[car].timesRepaired)
-      console.log(hightC)
       if (this.cars[car].timesRepaired > hightC) {
         bestCarAux = this.cars[car];
         hightC = this.cars[car].timesRepaired;
