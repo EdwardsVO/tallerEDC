@@ -1,6 +1,11 @@
-# TallerEDC
+# TallerEDC -- Garage Manager App 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.1.
+This app was developed as an university project for Information Systems subject.
+The project was made with Angular CLI 11.2.1 as frontend framework, Firebase as backend service and libraries such as 
+Boostrap and Angular Material for page styling.
+
+## Project page 
+https://talleredc-8704c.web.app/home
 
 ## Development server
 
